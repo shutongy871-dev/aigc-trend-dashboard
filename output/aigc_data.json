@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_at": "2026-10-07 03:29 UTC",
+    "generated_at": "2026-10-07 03:42 UTC",
     "days": 30,
     "json_name": "output/aigc_data.json",
     "counts": {
       "github": 299,
-      "hn": 63,
+      "hn": 61,
       "hf": 61
     }
   },
@@ -21,7 +21,7 @@
       "full_name": "TauricResearch/TradingAgents",
       "url": "https://github.com/TauricResearch/TradingAgents",
       "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
-      "stars": 110012,
+      "stars": 110014,
       "forks": 21149,
       "language": "Python",
       "topics": [
@@ -44,7 +44,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 110333,
+      "heat_score": 110335,
       "demo_images": [
         "https://raw.githubusercontent.com/TauricResearch/TradingAgents/HEAD/assets/schema.png",
         "https://raw.githubusercontent.com/TauricResearch/TradingAgents/HEAD/assets/analyst.png",
@@ -57,8 +57,8 @@
       "full_name": "NandhaKishorM/laya",
       "url": "https://github.com/NandhaKishorM/laya",
       "description": "Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass, in 100+ languages, with a router that picks the right checkpoint per request.",
-      "stars": 31238,
-      "forks": 2759,
+      "stars": 31240,
+      "forks": 2760,
       "language": "Python",
       "topics": [
         "calibration",
@@ -85,7 +85,7 @@
       "category": "模型/推理/微调",
       "category_emoji": "🧠",
       "extra_tags": [],
-      "heat_score": 31238,
+      "heat_score": 31240,
       "demo_images": [
         "https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/long_context_8192.png",
         "https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/laya_vs_jev_full.png",
@@ -98,7 +98,7 @@
       "full_name": "browser-use/jev-ultrafast",
       "url": "https://github.com/browser-use/jev-ultrafast",
       "description": "Fastest and cheapest web agent",
-      "stars": 22208,
+      "stars": 22212,
       "forks": 1603,
       "language": "Python",
       "topics": [],
@@ -112,7 +112,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 22208,
+      "heat_score": 22212,
       "demo_images": [
         "https://raw.githubusercontent.com/browser-use/jev-ultrafast/HEAD/docs/demo.gif"
       ]
@@ -123,7 +123,7 @@
       "full_name": "Niko1221/Strata",
       "url": "https://github.com/Niko1221/Strata",
       "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input.",
-      "stars": 15917,
+      "stars": 15934,
       "forks": 1369,
       "language": "C++",
       "topics": [],
@@ -140,7 +140,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 15917,
+      "heat_score": 15934,
       "demo_images": [
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/pagoda-preview.webp",
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/runpagoda.png",
@@ -183,7 +183,7 @@
       "full_name": "zai-org/ZCode",
       "url": "https://github.com/zai-org/ZCode",
       "description": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
-      "stars": 7481,
+      "stars": 7482,
       "forks": 2279,
       "language": "TypeScript",
       "topics": [],
@@ -197,7 +197,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 7481
+      "heat_score": 7482
     },
     {
       "id": 1374005005,
@@ -227,7 +227,7 @@
       "full_name": "jev-chat/jev-chat-jarvis",
       "url": "https://github.com/jev-chat/jev-chat-jarvis",
       "description": "The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies you fill in with one tap. You press send. Android · Windows · macOS · iOS | 聊天辅助决策工具：先看懂对方再回复，发不发由你。",
-      "stars": 7402,
+      "stars": 7405,
       "forks": 1225,
       "language": "Kotlin",
       "topics": [
@@ -254,7 +254,7 @@
         "多模态/视觉",
         "模型/推理/微调"
       ],
-      "heat_score": 7402
+      "heat_score": 7405
     },
     {
       "id": 1267145484,
@@ -262,7 +262,7 @@
       "full_name": "magnitudedev/magnitude",
       "url": "https://github.com/magnitudedev/magnitude",
       "description": "Open source inference engine for agents that optimizes itself for your exact hardware. Compiles and tunes its kernels on your device, so open models run up to 2x faster than llama.cpp. Works on Apple Silicon, NVIDIA, AMD, or just a CPU.",
-      "stars": 6470,
+      "stars": 6471,
       "forks": 442,
       "language": "Rust",
       "topics": [],
@@ -278,7 +278,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 6957,
+      "heat_score": 6958,
       "demo_images": [
         "https://raw.githubusercontent.com/magnitudedev/magnitude/HEAD/assets/benchmarks/llama-cpp-light.svg",
         "https://raw.githubusercontent.com/magnitudedev/magnitude/HEAD/assets/benchmarks/llama-cpp-dark.svg"
@@ -328,8 +328,8 @@
       "full_name": "KKKKhazix/AIHOT",
       "url": "https://github.com/KKKKhazix/AIHOT",
       "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
-      "stars": 6209,
-      "forks": 1551,
+      "stars": 6214,
+      "forks": 1552,
       "language": "TypeScript",
       "topics": [
         "ai",
@@ -357,7 +357,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 6209,
+      "heat_score": 6214,
       "demo_images": [
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/how-light.png",
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/cluster-light.png",
@@ -370,7 +370,7 @@
       "full_name": "yetone/magpie",
       "url": "https://github.com/yetone/magpie",
       "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
-      "stars": 5526,
+      "stars": 5528,
       "forks": 399,
       "language": "Go",
       "topics": [
@@ -382,7 +382,7 @@
         "macos"
       ],
       "created_at": "2026-09-23T16:22:35Z",
-      "pushed_at": "2026-10-07T03:20:58Z",
+      "pushed_at": "2026-10-07T03:32:38Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -394,7 +394,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 5526,
+      "heat_score": 5528,
       "demo_images": [
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/usage-light.png",
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/usage-dark.png",
@@ -407,8 +407,8 @@
       "full_name": "rehan-remade/universal-modder",
       "url": "https://github.com/rehan-remade/universal-modder",
       "description": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reverse engineering, fal-generated art/3D/audio, in-game testing, showcase videos.",
-      "stars": 4676,
-      "forks": 419,
+      "stars": 4685,
+      "forks": 420,
       "language": "Python",
       "topics": [
         "age-of-empires",
@@ -434,7 +434,7 @@
       "extra_tags": [
         "开发工具/框架"
       ],
-      "heat_score": 4676,
+      "heat_score": 4685,
       "demo_images": [
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/mods-teaser.gif",
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/pipeline.png",
@@ -447,8 +447,8 @@
       "full_name": "CopilotKit/openmuse",
       "url": "https://github.com/CopilotKit/openmuse",
       "description": "A personal agent with a browser, terminal, files, and work that keeps going built with CopilotKit and AG-UI.",
-      "stars": 4099,
-      "forks": 567,
+      "stars": 4100,
+      "forks": 568,
       "language": "TypeScript",
       "topics": [],
       "created_at": "2026-09-15T16:05:44Z",
@@ -461,7 +461,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 4099
+      "heat_score": 4100
     },
     {
       "id": 1396117711,
@@ -469,7 +469,7 @@
       "full_name": "CopilotKit/OpenDots",
       "url": "https://github.com/CopilotKit/OpenDots",
       "description": "Your always-on AI coworkers that move between text, calls, and Slack.",
-      "stars": 3961,
+      "stars": 3965,
       "forks": 543,
       "language": "TypeScript",
       "topics": [],
@@ -483,7 +483,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 3961
+      "heat_score": 3965
     },
     {
       "id": 1391438314,
@@ -542,8 +542,8 @@
       "full_name": "openai/math",
       "url": "https://github.com/openai/math",
       "description": "",
-      "stars": 3295,
-      "forks": 289,
+      "stars": 3396,
+      "forks": 295,
       "language": "Lean",
       "topics": [],
       "created_at": "2026-10-06T21:47:02Z",
@@ -556,7 +556,7 @@
       "category": "其他AIGC",
       "category_emoji": "📦",
       "extra_tags": [],
-      "heat_score": 3295
+      "heat_score": 3396
     },
     {
       "id": 1371378654,
@@ -590,7 +590,7 @@
       "full_name": "nykooi1/vibe-wise",
       "url": "https://github.com/nykooi1/vibe-wise",
       "description": "A Claude Code plugin that helps you learn how to build while AI writes the code.",
-      "stars": 2660,
+      "stars": 2666,
       "forks": 116,
       "language": "Python",
       "topics": [],
@@ -604,7 +604,7 @@
       "category": "开发工具/框架",
       "category_emoji": "🛠️",
       "extra_tags": [],
-      "heat_score": 2660
+      "heat_score": 2666
     },
     {
       "id": 1396688303,
@@ -657,7 +657,7 @@
       "full_name": "Ebony-Vinyl/dsh-our-free-model",
       "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
       "description": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
-      "stars": 2395,
+      "stars": 2412,
       "forks": 56,
       "language": "JavaScript",
       "topics": [
@@ -673,7 +673,7 @@
         "openai-compatible"
       ],
       "created_at": "2026-09-24T16:17:19Z",
-      "pushed_at": "2026-10-07T03:28:19Z",
+      "pushed_at": "2026-10-07T03:39:41Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -685,7 +685,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 2395,
+      "heat_score": 2412,
       "demo_images": [
         "https://raw.githubusercontent.com/Ebony-Vinyl/dsh-our-free-model/HEAD/docs/images/trendshift-daily-2026-10-06.svg",
         "https://raw.githubusercontent.com/Ebony-Vinyl/dsh-our-free-model/HEAD/docs/images/gittrend-daily-2026-10-06.svg"
@@ -738,7 +738,7 @@
       "full_name": "yihui-dev/awesome-opus5-5-videos",
       "url": "https://github.com/yihui-dev/awesome-opus5-5-videos",
       "description": "A growing collection of viral videos made with Claude Opus 5.5 and the prompts behind them. Watch each original next to a live remake on Skillry. Updated regularly.",
-      "stars": 2297,
+      "stars": 2300,
       "forks": 226,
       "language": null,
       "topics": [
@@ -762,7 +762,7 @@
       "category": "视频生成",
       "category_emoji": "🎬",
       "extra_tags": [],
-      "heat_score": 2297,
+      "heat_score": 2300,
       "demo_images": [
         "https://media.skillry.dev/opus-5-5/_readme/site-compare.592de731e6.webp",
         "https://media.skillry.dev/opus-5-5/himanshutwtxs-882858/preview.webp",
@@ -819,7 +819,7 @@
       "full_name": "omnirush-ai/omnirush-gui",
       "url": "https://github.com/omnirush-ai/omnirush-gui",
       "description": "A desktop coding agent with free access to frontier models.",
-      "stars": 2237,
+      "stars": 2245,
       "forks": 38,
       "language": "TypeScript",
       "topics": [],
@@ -835,7 +835,7 @@
       "extra_tags": [
         "AI应用/产品"
       ],
-      "heat_score": 2237
+      "heat_score": 2245
     },
     {
       "id": 1374561793,
@@ -843,8 +843,8 @@
       "full_name": "yibie/awesome-jev",
       "url": "https://github.com/yibie/awesome-jev",
       "description": "A curated list of public projects, integrations, and discussions built on Jev — TypeSafe AI's System One model for typed decisions.",
-      "stars": 2185,
-      "forks": 327,
+      "stars": 2186,
+      "forks": 328,
       "language": "Python",
       "topics": [
         "awesome",
@@ -862,7 +862,7 @@
       "category": "模型/推理/微调",
       "category_emoji": "🧠",
       "extra_tags": [],
-      "heat_score": 2185
+      "heat_score": 2186
     },
     {
       "id": 1388867993,
@@ -1003,7 +1003,7 @@
       "full_name": "QingYunA/answer-me-with-html",
       "url": "https://github.com/QingYunA/answer-me-with-html",
       "description": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
-      "stars": 1814,
+      "stars": 1816,
       "forks": 128,
       "language": "JavaScript",
       "topics": [
@@ -1021,7 +1021,7 @@
         "ste100"
       ],
       "created_at": "2026-10-02T09:57:40Z",
-      "pushed_at": "2026-10-07T03:26:50Z",
+      "pushed_at": "2026-10-07T03:39:13Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -1033,7 +1033,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 1814,
+      "heat_score": 1816,
       "demo_images": [
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/text-vs-page.png",
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/plain-vs-skill.png",
@@ -1145,7 +1145,7 @@
       "full_name": "nanaism/yomiyasu",
       "url": "https://github.com/nanaism/yomiyasu",
       "description": "AI生成の日本語を自然な日本語へ推敲するAgent Skill / Agent Skill for Refining AI-Generated Japanese into Natural Japanese",
-      "stars": 1641,
+      "stars": 1643,
       "forks": 37,
       "language": "Python",
       "topics": [
@@ -1177,7 +1177,7 @@
         "模型/推理/微调",
         "AI应用/产品"
       ],
-      "heat_score": 1641,
+      "heat_score": 1643,
       "demo_images": [
         "https://raw.githubusercontent.com/nanaism/yomiyasu/HEAD/assets/algo-artis.png"
       ]
@@ -1188,7 +1188,7 @@
       "full_name": "edenfunf/reelmimic",
       "url": "https://github.com/edenfunf/reelmimic",
       "description": "Show it a video you love. Get a new video in the same style. An AI crew (Claude Code or Codex) plans, builds and reviews it with you.",
-      "stars": 1604,
+      "stars": 1608,
       "forks": 178,
       "language": "JavaScript",
       "topics": [
@@ -1214,7 +1214,7 @@
       "extra_tags": [
         "Agent/智能体"
       ],
-      "heat_score": 1604,
+      "heat_score": 1608,
       "demo_images": [
         "https://raw.githubusercontent.com/edenfunf/reelmimic/HEAD/docs/assets/demo-sugar.gif",
         "https://raw.githubusercontent.com/edenfunf/reelmimic/HEAD/docs/assets/demo-sunshine-boy.gif",
@@ -1227,7 +1227,7 @@
       "full_name": "mizorewww/laya-coreml",
       "url": "https://github.com/mizorewww/laya-coreml",
       "description": "Local Laya typed decisions on Apple Core ML and Neural Engine. Validated ports, ~5 ms short decisions on M3 Max, reproducible speed and energy benchmarks.",
-      "stars": 1554,
+      "stars": 1555,
       "forks": 131,
       "language": "Python",
       "topics": [
@@ -1251,7 +1251,7 @@
       "category": "模型/推理/微调",
       "category_emoji": "🧠",
       "extra_tags": [],
-      "heat_score": 1554,
+      "heat_score": 1555,
       "demo_images": [
         "https://raw.githubusercontent.com/mizorewww/laya-coreml/main/docs/assets/snake-demo.gif"
       ]
@@ -1331,7 +1331,7 @@
       "full_name": "lemomo-ai/lemo-opuscar",
       "url": "https://github.com/lemomo-ai/lemo-opuscar",
       "description": "Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98). By Lemomo. | Opus5.5 x 43 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南",
-      "stars": 1293,
+      "stars": 1294,
       "forks": 149,
       "language": "JavaScript",
       "topics": [
@@ -1369,7 +1369,7 @@
         "语音/音乐",
         "Agent/智能体"
       ],
-      "heat_score": 1293,
+      "heat_score": 1294,
       "demo_images": [
         "https://raw.githubusercontent.com/lemomo-ai/lemo-opuscar/HEAD/docs/opuscar98.jpg",
         "https://raw.githubusercontent.com/lemomo-ai/lemo-opuscar/HEAD/docs/frames/crayon-book.jpg",
@@ -1542,7 +1542,7 @@
       "full_name": "freestylefly/WeChatBridge",
       "url": "https://github.com/freestylefly/WeChatBridge",
       "description": "微信聊天记录一键转发到 AI Agent 与 Obsidian 的原生 macOS 工具",
-      "stars": 1179,
+      "stars": 1182,
       "forks": 380,
       "language": "Swift",
       "topics": [
@@ -1566,7 +1566,7 @@
       "extra_tags": [
         "AI应用/产品"
       ],
-      "heat_score": 1179,
+      "heat_score": 1182,
       "demo_images": [
         "https://raw.githubusercontent.com/freestylefly/WeChatBridge/HEAD/shared/Screenshots/app-icon-rounded.png",
         "https://raw.githubusercontent.com/freestylefly/WeChatBridge/HEAD/shared/Screenshots/usage-wechat-share-menu.png",
@@ -1579,7 +1579,7 @@
       "full_name": "liangshanbo789/chatgpt-plus-pro-team-billing",
       "url": "https://github.com/liangshanbo789/chatgpt-plus-pro-team-billing",
       "description": "🔥 26年10月最新 | 企业级 OpenAI / ChatGPT充值、GPT充值、GPT采购、Pro (5x/20x)、GPTTeam 代充官方合规代采平台。支持企业银行公对公转账、开具 6% 增值税专用发票、签署加盖公章 SLA 兜底协议。商务微信：yqtp01",
-      "stars": 1179,
+      "stars": 1180,
       "forks": 15,
       "language": "TypeScript",
       "topics": [
@@ -1604,7 +1604,7 @@
       "extra_tags": [
         "AI应用/产品"
       ],
-      "heat_score": 1179,
+      "heat_score": 1180,
       "demo_images": [
         "https://raw.githubusercontent.com/liangshanbo789/chatgpt-plus-pro-team-billing/HEAD/public/images/企业微信二维码.jpg",
         "https://raw.githubusercontent.com/liangshanbo789/chatgpt-plus-pro-team-billing/HEAD/public/images/微信二维码.webp"
@@ -1648,7 +1648,7 @@
       "url": "https://github.com/aliyun/ai-agent-handbook",
       "description": "A practical guide to building enterprise AI agents across their full lifecycle.",
       "stars": 1154,
-      "forks": 172,
+      "forks": 173,
       "language": null,
       "topics": [],
       "created_at": "2026-09-11T07:02:17Z",
@@ -1822,7 +1822,7 @@
       "full_name": "angel291592/Intent-Router",
       "url": "https://github.com/angel291592/Intent-Router",
       "description": "Intent compiler for AI agents — converges vague requests into typed IntentSpec contracts (probe, ask, or halt before routing), the input layer for routers and typed-decision models like Jev & Laya",
-      "stars": 927,
+      "stars": 928,
       "forks": 101,
       "language": "Python",
       "topics": [
@@ -1853,7 +1853,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 927,
+      "heat_score": 928,
       "demo_images": [
         "https://raw.githubusercontent.com/angel291592/Intent-Router/HEAD/docs/assets/demo-1-probe.png",
         "https://raw.githubusercontent.com/angel291592/Intent-Router/HEAD/docs/assets/demo-2-question.png",
@@ -1866,7 +1866,7 @@
       "full_name": "bilibili/Index-Translate",
       "url": "https://github.com/bilibili/Index-Translate",
       "description": "A Multilingual Translation Model Family",
-      "stars": 866,
+      "stars": 867,
       "forks": 19,
       "language": "Python",
       "topics": [
@@ -1883,7 +1883,7 @@
       "category": "模型/推理/微调",
       "category_emoji": "🧠",
       "extra_tags": [],
-      "heat_score": 866,
+      "heat_score": 867,
       "demo_images": [
         "https://raw.githubusercontent.com/bilibili/Index-Translate/HEAD/docs/assets/echo_benchmark_overview.en.svg",
         "https://raw.githubusercontent.com/bilibili/Index-Translate/HEAD/docs/assets/text_benchmark_overview.en.svg",
@@ -1897,7 +1897,7 @@
       "url": "https://github.com/Edwardxlai/easyread",
       "description": "把英文论文读成舒服的中文：本地 PDF 论文翻译、原文对照、边读边问 AI、文献管理。Read English papers in comfortable Chinese.",
       "stars": 825,
-      "forks": 59,
+      "forks": 60,
       "language": "Python",
       "topics": [
         "academic",
@@ -2140,7 +2140,7 @@
       "full_name": "Jakeschincariol/replica-skill",
       "url": "https://github.com/Jakeschincariol/replica-skill",
       "description": "Eleven free Claude skills that clone any app: reverse-engineer it, rebuild it, test it for bugs, then fix what its users hate. Free, MIT.",
-      "stars": 707,
+      "stars": 709,
       "forks": 76,
       "language": "Python",
       "topics": [
@@ -2166,7 +2166,7 @@
       "extra_tags": [
         "AI应用/产品"
       ],
-      "heat_score": 707
+      "heat_score": 709
     },
     {
       "id": 1378958030,
@@ -2207,7 +2207,7 @@
       "full_name": "logicrw/awesome-jev-projects",
       "url": "https://github.com/logicrw/awesome-jev-projects",
       "description": "Awesome Jev: source-backed open-source ecosystem radar, plain-language project discovery, and automatic GitHub sync",
-      "stars": 664,
+      "stars": 665,
       "forks": 55,
       "language": "JavaScript",
       "topics": [
@@ -2233,7 +2233,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 664
+      "heat_score": 665
     },
     {
       "id": 1386778170,
@@ -2403,7 +2403,7 @@
       "full_name": "pizza-bot-app/pizza-bot",
       "url": "https://github.com/pizza-bot-app/pizza-bot",
       "description": "A local-first inbox for long-running AI agents, built with DeepAgents and LangGraph.",
-      "stars": 447,
+      "stars": 448,
       "forks": 43,
       "language": "TypeScript",
       "topics": [
@@ -2430,7 +2430,7 @@
       "extra_tags": [
         "AI应用/产品"
       ],
-      "heat_score": 606,
+      "heat_score": 607,
       "demo_images": [
         "https://raw.githubusercontent.com/pizza-bot-app/pizza-bot/HEAD/docs/assets/pizza-bot-inbox.png",
         "https://github.com/JoeDo.png?size=64",
@@ -2863,8 +2863,8 @@
       "full_name": "sno-ai/sno-station",
       "url": "https://github.com/sno-ai/sno-station",
       "description": "Sno Station — your Claude Code and Codex working as one squad on your own machine. Shared encrypted memory, agent-to-agent messaging (Reach), squad skills for handoff and cross-vendor review, and a nightly loop that rewrites the agents' own skills with your approval. Open source, no daemon, no cloud required. Assembled in public.",
-      "stars": 458,
-      "forks": 358,
+      "stars": 464,
+      "forks": 363,
       "language": "TypeScript",
       "topics": [
         "agent-communication",
@@ -2898,7 +2898,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 458,
+      "heat_score": 464,
       "demo_images": [
         "https://raw.githubusercontent.com/sno-ai/sno-station/HEAD/docs/images/hero-banner.png",
         "https://raw.githubusercontent.com/sno-ai/sno-station/HEAD/docs/images/squad-how-it-works.png",
@@ -2911,7 +2911,7 @@
       "full_name": "modelscope/ms-cookbook",
       "url": "https://github.com/modelscope/ms-cookbook",
       "description": "魔搭紫皮书｜ModelScope Cookbook：面向开发者的开源模型应用实战指南，覆盖模型选型、推理、微调、评测、RAG、Agent 与 AIGC，从跑通第一个模型到构建实际应用。",
-      "stars": 415,
+      "stars": 416,
       "forks": 77,
       "language": "HTML",
       "topics": [
@@ -2939,7 +2939,7 @@
         "Agent/智能体",
         "RAG/知识库"
       ],
-      "heat_score": 415,
+      "heat_score": 416,
       "demo_images": [
         "https://raw.githubusercontent.com/modelscope/ms-cookbook/HEAD/assets/home/book-hero.webp",
         "https://raw.githubusercontent.com/modelscope/ms-cookbook/HEAD/assets/dada/dada.webp",
@@ -2952,8 +2952,8 @@
       "full_name": "qybaihe/mu",
       "url": "https://github.com/qybaihe/mu",
       "description": "mu (μ): a coding agent that thinks before it acts. A small, fast judge makes the routine calls, the big model does the work. Built on pi and AionUi.",
-      "stars": 409,
-      "forks": 42,
+      "stars": 410,
+      "forks": 43,
       "language": "TypeScript",
       "topics": [
         "agent-harness",
@@ -2987,7 +2987,7 @@
         "模型/推理/微调",
         "AI应用/产品"
       ],
-      "heat_score": 409,
+      "heat_score": 410,
       "demo_images": [
         "https://raw.githubusercontent.com/qybaihe/mu/HEAD/docs/readme/test-log-folding.gif",
         "https://raw.githubusercontent.com/qybaihe/mu/HEAD/desktop/resources/app.png",
@@ -3115,7 +3115,7 @@
       "full_name": "Chengjun023/agent-smith",
       "url": "https://github.com/Chengjun023/agent-smith",
       "description": "Token 超支？快给史密斯打电话！ Better Call Smith. Adaptive model routing, a glassy Codex usage monitor, and reproducible benchmarks with receipts.",
-      "stars": 357,
+      "stars": 359,
       "forks": 6,
       "language": "Python",
       "topics": [
@@ -3141,7 +3141,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 357,
+      "heat_score": 359,
       "demo_images": [
         "https://raw.githubusercontent.com/Chengjun023/agent-smith/HEAD/assets/float-demo.png",
         "https://raw.githubusercontent.com/Chengjun023/agent-smith/HEAD/assets/agent-smith-ad.jpg",
@@ -4131,6 +4131,46 @@
       ]
     },
     {
+      "id": 1403597414,
+      "name": "open-instinct",
+      "full_name": "mariagorskikh/open-instinct",
+      "url": "https://github.com/mariagorskikh/open-instinct",
+      "description": "Open Instinct: an open-source Instinct. A personal agent you text on iMessage, with its own computer and a trusted network of other agents. Built on Pi, Inkbox, Maritime and Composio.",
+      "stars": 217,
+      "forks": 44,
+      "language": "TypeScript",
+      "topics": [
+        "agents",
+        "ai-agents",
+        "composio",
+        "imessage",
+        "inkbox",
+        "instinct",
+        "maritime",
+        "open-source",
+        "personal-assistant",
+        "typescript"
+      ],
+      "created_at": "2026-10-03T20:07:59Z",
+      "pushed_at": "2026-10-05T21:50:37Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "AI应用/产品"
+      ],
+      "heat_score": 217,
+      "demo_images": [
+        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/screenshots/imessage-mock.png",
+        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/screenshots/gateway-landing.png",
+        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/brand/architecture.png"
+      ]
+    },
+    {
       "id": 1373869741,
       "name": "ai-model-world",
       "full_name": "liyupi/ai-model-world",
@@ -4174,46 +4214,6 @@
         "https://raw.githubusercontent.com/liyupi/ai-model-world/HEAD/docs/screenshots/plaza-top.png",
         "https://raw.githubusercontent.com/liyupi/ai-model-world/HEAD/docs/screenshots/plaza-regions.png",
         "https://raw.githubusercontent.com/liyupi/ai-model-world/HEAD/docs/screenshots/model-detail.png"
-      ]
-    },
-    {
-      "id": 1403597414,
-      "name": "open-instinct",
-      "full_name": "mariagorskikh/open-instinct",
-      "url": "https://github.com/mariagorskikh/open-instinct",
-      "description": "Open Instinct: an open-source Instinct. A personal agent you text on iMessage, with its own computer and a trusted network of other agents. Built on Pi, Inkbox, Maritime and Composio.",
-      "stars": 216,
-      "forks": 44,
-      "language": "TypeScript",
-      "topics": [
-        "agents",
-        "ai-agents",
-        "composio",
-        "imessage",
-        "inkbox",
-        "instinct",
-        "maritime",
-        "open-source",
-        "personal-assistant",
-        "typescript"
-      ],
-      "created_at": "2026-10-03T20:07:59Z",
-      "pushed_at": "2026-10-05T21:50:37Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "AI应用/产品"
-      ],
-      "heat_score": 216,
-      "demo_images": [
-        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/screenshots/imessage-mock.png",
-        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/screenshots/gateway-landing.png",
-        "https://raw.githubusercontent.com/mariagorskikh/open-instinct/HEAD/docs/assets/brand/architecture.png"
       ]
     },
     {
@@ -4899,42 +4899,6 @@
       ]
     },
     {
-      "id": 1377956199,
-      "name": "Jev-Mem",
-      "full_name": "libingzheren/Jev-Mem",
-      "url": "https://github.com/libingzheren/Jev-Mem",
-      "description": "Jev-Mem: System-One Controlled Agentic Memory",
-      "stars": 175,
-      "forks": 19,
-      "language": "Python",
-      "topics": [
-        "agent",
-        "agent-memory",
-        "agentic-ai",
-        "agentic-memory",
-        "agents",
-        "jev",
-        "jev-ai",
-        "llm"
-      ],
-      "created_at": "2026-09-20T05:27:53Z",
-      "pushed_at": "2026-09-28T02:07:00Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "模型/推理/微调"
-      ],
-      "heat_score": 175,
-      "demo_images": [
-        "https://raw.githubusercontent.com/libingzheren/Jev-Mem/HEAD/docs/figures/overall_structure.png"
-      ]
-    },
-    {
       "id": 1376081650,
       "name": "awesome-jev",
       "full_name": "kraayenjon/awesome-jev",
@@ -4979,6 +4943,42 @@
         "开发工具/框架"
       ],
       "heat_score": 175
+    },
+    {
+      "id": 1377956199,
+      "name": "Jev-Mem",
+      "full_name": "libingzheren/Jev-Mem",
+      "url": "https://github.com/libingzheren/Jev-Mem",
+      "description": "Jev-Mem: System-One Controlled Agentic Memory",
+      "stars": 175,
+      "forks": 19,
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agent-memory",
+        "agentic-ai",
+        "agentic-memory",
+        "agents",
+        "jev",
+        "jev-ai",
+        "llm"
+      ],
+      "created_at": "2026-09-20T05:27:53Z",
+      "pushed_at": "2026-09-28T02:07:00Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "模型/推理/微调"
+      ],
+      "heat_score": 175,
+      "demo_images": [
+        "https://raw.githubusercontent.com/libingzheren/Jev-Mem/HEAD/docs/figures/overall_structure.png"
+      ]
     },
     {
       "id": 1372839573,
@@ -5061,7 +5061,7 @@
       "full_name": "theNetworkChuck/paperclip-guide",
       "url": "https://github.com/theNetworkChuck/paperclip-guide",
       "description": "Companion guide for the NetworkChuck Paperclip video: install Paperclip and build an AI IT department. Every step tested on Paperclip 2026.916.1.",
-      "stars": 168,
+      "stars": 169,
       "forks": 22,
       "language": "TypeScript",
       "topics": [
@@ -5085,7 +5085,7 @@
       "category": "Agent/智能体",
       "category_emoji": "🤖",
       "extra_tags": [],
-      "heat_score": 168,
+      "heat_score": 169,
       "demo_images": [
         "https://raw.githubusercontent.com/theNetworkChuck/paperclip-guide/HEAD/assets/screenshots/org-chart.png",
         "https://raw.githubusercontent.com/theNetworkChuck/paperclip-guide/HEAD/assets/screenshots/agents-roster.png",
@@ -5401,7 +5401,7 @@
       "full_name": "Sheltercosmo/jev4pg",
       "url": "https://github.com/Sheltercosmo/jev4pg",
       "description": "Established strong JEV based natural language to SQL performance and well-covered semantic operators for PostgreSQL(PG) with optimized cost and latency. Reusable evidence, with native execution, parallel plans and explainable embeddings in development preview.",
-      "stars": 149,
+      "stars": 150,
       "forks": 5,
       "language": "Python",
       "topics": [
@@ -5434,7 +5434,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 149,
+      "heat_score": 150,
       "demo_images": [
         "https://raw.githubusercontent.com/Sheltercosmo/jev4pg/HEAD/docs/assets/product-tour.gif?v=b87ec970",
         "https://raw.githubusercontent.com/Sheltercosmo/jev4pg/HEAD/docs/assets/readme-banner.png?v=jev4pg"
@@ -5535,6 +5535,43 @@
       ]
     },
     {
+      "id": 1405965779,
+      "name": "mortiflix-oss",
+      "full_name": "GTKottman/mortiflix-oss",
+      "url": "https://github.com/GTKottman/mortiflix-oss",
+      "description": "A motion design studio on your own machine: Claude makes the video step by step, you approve every stage. Bring your own Claude Code or API key.",
+      "stars": 149,
+      "forks": 5,
+      "language": "JavaScript",
+      "topics": [
+        "ai-agents",
+        "claude",
+        "claude-code",
+        "harness",
+        "motion-design",
+        "remotion",
+        "video",
+        "video-production"
+      ],
+      "created_at": "2026-10-05T15:15:13Z",
+      "pushed_at": "2026-10-06T21:11:28Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "图像生成",
+      "category_emoji": "🎨",
+      "extra_tags": [
+        "Agent/智能体",
+        "开发工具/框架"
+      ],
+      "heat_score": 149,
+      "demo_images": [
+        "https://raw.githubusercontent.com/GTKottman/mortiflix-oss/HEAD/web/img/mark.png"
+      ]
+    },
+    {
       "id": 1400245320,
       "name": "remocn-studio",
       "full_name": "Remocn/remocn-studio",
@@ -5605,43 +5642,6 @@
       "demo_images": [
         "https://raw.githubusercontent.com/with-pebbly/aseprite-ai-artist/HEAD/docs/media/rainy-bookshop.gif",
         "https://raw.githubusercontent.com/with-pebbly/aseprite-ai-artist/HEAD/docs/media/grid-loop.svg"
-      ]
-    },
-    {
-      "id": 1405965779,
-      "name": "mortiflix-oss",
-      "full_name": "GTKottman/mortiflix-oss",
-      "url": "https://github.com/GTKottman/mortiflix-oss",
-      "description": "A motion design studio on your own machine: Claude makes the video step by step, you approve every stage. Bring your own Claude Code or API key.",
-      "stars": 148,
-      "forks": 5,
-      "language": "JavaScript",
-      "topics": [
-        "ai-agents",
-        "claude",
-        "claude-code",
-        "harness",
-        "motion-design",
-        "remotion",
-        "video",
-        "video-production"
-      ],
-      "created_at": "2026-10-05T15:15:13Z",
-      "pushed_at": "2026-10-06T21:11:28Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "图像生成",
-      "category_emoji": "🎨",
-      "extra_tags": [
-        "Agent/智能体",
-        "开发工具/框架"
-      ],
-      "heat_score": 148,
-      "demo_images": [
-        "https://raw.githubusercontent.com/GTKottman/mortiflix-oss/HEAD/web/img/mark.png"
       ]
     },
     {
@@ -5821,7 +5821,7 @@
         "react-native"
       ],
       "created_at": "2026-09-30T13:30:00Z",
-      "pushed_at": "2026-10-07T03:13:37Z",
+      "pushed_at": "2026-10-07T03:39:03Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -5837,6 +5837,44 @@
         "https://raw.githubusercontent.com/callstackincubator/codex-mobile-dev-plugin/HEAD/img/screenshot_side_by_side.png",
         "https://raw.githubusercontent.com/callstackincubator/codex-mobile-dev-plugin/HEAD/img/screenshot_annotations.png",
         "https://raw.githubusercontent.com/callstackincubator/codex-mobile-dev-plugin/HEAD/img/screenshot_logs.png"
+      ]
+    },
+    {
+      "id": 1362130300,
+      "name": "doma",
+      "full_name": "dom-actions/doma",
+      "url": "https://github.com/dom-actions/doma",
+      "description": "The open-source of DomA, an AI automation agent for the browser.",
+      "stars": 137,
+      "forks": 21,
+      "language": "TypeScript",
+      "topics": [
+        "agents",
+        "ai-agents",
+        "browser-agent",
+        "browser-use",
+        "doma",
+        "extension-chrome",
+        "extension-edge",
+        "jev",
+        "open-source",
+        "webautomation"
+      ],
+      "created_at": "2026-09-09T02:54:51Z",
+      "pushed_at": "2026-10-06T14:34:24Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [],
+      "heat_score": 137,
+      "demo_images": [
+        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/lockup-light.svg",
+        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/slogan-light.svg",
+        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/lockup-dark.svg"
       ]
     },
     {
@@ -5876,44 +5914,6 @@
       "demo_images": [
         "https://raw.githubusercontent.com/Promethe-us/awesome-jev/HEAD/.github/social-preview.png",
         "https://raw.githubusercontent.com/Promethe-us/awesome-jev/HEAD/docs/assets/jev-guide-mark.svg"
-      ]
-    },
-    {
-      "id": 1362130300,
-      "name": "doma",
-      "full_name": "dom-actions/doma",
-      "url": "https://github.com/dom-actions/doma",
-      "description": "The open-source of DomA, an AI automation agent for the browser.",
-      "stars": 137,
-      "forks": 21,
-      "language": "TypeScript",
-      "topics": [
-        "agents",
-        "ai-agents",
-        "browser-agent",
-        "browser-use",
-        "doma",
-        "extension-chrome",
-        "extension-edge",
-        "jev",
-        "open-source",
-        "webautomation"
-      ],
-      "created_at": "2026-09-09T02:54:51Z",
-      "pushed_at": "2026-10-06T14:34:24Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [],
-      "heat_score": 137,
-      "demo_images": [
-        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/lockup-light.svg",
-        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/slogan-light.svg",
-        "https://raw.githubusercontent.com/dom-actions/doma/HEAD/.github/images/lockup-dark.svg"
       ]
     },
     {
@@ -6019,7 +6019,7 @@
       "full_name": "mirzaaghazadeh/iphone-duo-skills",
       "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills",
       "description": "Agent skills for building iOS apps on iPhone Duo, Apple's first foldable iPhone — adaptive layout, vertical bars, hinge & scenes, camera, and design review.",
-      "stars": 135,
+      "stars": 136,
       "forks": 8,
       "language": "Python",
       "topics": [
@@ -6054,7 +6054,7 @@
       "extra_tags": [
         "Agent/智能体"
       ],
-      "heat_score": 135,
+      "heat_score": 136,
       "demo_images": [
         "https://raw.githubusercontent.com/mirzaaghazadeh/iphone-duo-skills/main/assets/iphone-duo-hero.webp",
         "https://raw.githubusercontent.com/mirzaaghazadeh/iphone-duo-skills/HEAD/assets/layout-model.svg",
@@ -6402,42 +6402,6 @@
       ]
     },
     {
-      "id": 1385271151,
-      "name": "jevry",
-      "full_name": "michaelswissa/jevry",
-      "url": "https://github.com/michaelswissa/jevry",
-      "description": "Your browser. Ready to act. An MIT-licensed desktop browser agent for website tasks, cited research, and supported games.",
-      "stars": 123,
-      "forks": 3,
-      "language": "TypeScript",
-      "topics": [
-        "ai-agents",
-        "browser-automation",
-        "desktop-app",
-        "electron",
-        "research",
-        "typescript"
-      ],
-      "created_at": "2026-09-24T10:44:35Z",
-      "pushed_at": "2026-10-01T03:43:18Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "AI应用/产品"
-      ],
-      "heat_score": 123,
-      "demo_images": [
-        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/jevry-web-preview.gif",
-        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/2048-demo.gif",
-        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/workspace-latest.png"
-      ]
-    },
-    {
       "id": 1401538687,
       "name": "ai_goodpractice",
       "full_name": "xop01/ai_goodpractice",
@@ -6474,6 +6438,42 @@
         "模型/推理/微调"
       ],
       "heat_score": 123
+    },
+    {
+      "id": 1385271151,
+      "name": "jevry",
+      "full_name": "michaelswissa/jevry",
+      "url": "https://github.com/michaelswissa/jevry",
+      "description": "Your browser. Ready to act. An MIT-licensed desktop browser agent for website tasks, cited research, and supported games.",
+      "stars": 123,
+      "forks": 3,
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "browser-automation",
+        "desktop-app",
+        "electron",
+        "research",
+        "typescript"
+      ],
+      "created_at": "2026-09-24T10:44:35Z",
+      "pushed_at": "2026-10-01T03:43:18Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "AI应用/产品"
+      ],
+      "heat_score": 123,
+      "demo_images": [
+        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/jevry-web-preview.gif",
+        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/2048-demo.gif",
+        "https://raw.githubusercontent.com/michaelswissa/jevry/HEAD/docs/media/workspace-latest.png"
+      ]
     },
     {
       "id": 1371325370,
@@ -6847,6 +6847,47 @@
       ]
     },
     {
+      "id": 1386191888,
+      "name": "agentenv-framework",
+      "full_name": "scaleapi/agentenv-framework",
+      "url": "https://github.com/scaleapi/agentenv-framework",
+      "description": "Creating realistic RL environments requires collaboration between researchers, engineers, and domain experts across many dimensions: artifacts, environments tools, dynamism of the environment, reproducibility, and more. There is no open source framework for building these environments effectively. Until now.",
+      "stars": 109,
+      "forks": 4,
+      "language": "Python",
+      "topics": [
+        "a2a",
+        "agent-evaluation",
+        "agentic-ai",
+        "ai-agents",
+        "llm-agents",
+        "llm-evaluation",
+        "mcp",
+        "model-context-protocol",
+        "python",
+        "reinforcement-learning",
+        "reinforcement-learning-environments",
+        "sandbox"
+      ],
+      "created_at": "2026-09-24T18:52:20Z",
+      "pushed_at": "2026-10-07T03:31:15Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "模型/推理/微调",
+        "开发工具/框架"
+      ],
+      "heat_score": 109,
+      "demo_images": [
+        "https://raw.githubusercontent.com/scaleapi/agentenv-framework/main/assets/brand/readme-banner.png"
+      ]
+    },
+    {
       "id": 1369904743,
       "name": "tasktrooper",
       "full_name": "makifbaysal/tasktrooper",
@@ -6938,47 +6979,6 @@
         "模型/推理/微调"
       ],
       "heat_score": 108
-    },
-    {
-      "id": 1386191888,
-      "name": "agentenv-framework",
-      "full_name": "scaleapi/agentenv-framework",
-      "url": "https://github.com/scaleapi/agentenv-framework",
-      "description": "Creating realistic RL environments requires collaboration between researchers, engineers, and domain experts across many dimensions: artifacts, environments tools, dynamism of the environment, reproducibility, and more. There is no open source framework for building these environments effectively. Until now.",
-      "stars": 107,
-      "forks": 4,
-      "language": "Python",
-      "topics": [
-        "a2a",
-        "agent-evaluation",
-        "agentic-ai",
-        "ai-agents",
-        "llm-agents",
-        "llm-evaluation",
-        "mcp",
-        "model-context-protocol",
-        "python",
-        "reinforcement-learning",
-        "reinforcement-learning-environments",
-        "sandbox"
-      ],
-      "created_at": "2026-09-24T18:52:20Z",
-      "pushed_at": "2026-10-07T01:23:54Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "模型/推理/微调",
-        "开发工具/框架"
-      ],
-      "heat_score": 107,
-      "demo_images": [
-        "https://raw.githubusercontent.com/scaleapi/agentenv-framework/main/assets/brand/readme-banner.png"
-      ]
     },
     {
       "id": 1375645197,
@@ -7270,83 +7270,6 @@
       ]
     },
     {
-      "id": 1375677296,
-      "name": "ClimWorkflow",
-      "full_name": "Hongjian01/ClimWorkflow",
-      "url": "https://github.com/Hongjian01/ClimWorkflow",
-      "description": "可恢复气候数据智能体：自然语言 → 获取 / 检查 / 绘图 / 报告",
-      "stars": 102,
-      "forks": 0,
-      "language": "Python",
-      "topics": [
-        "agent",
-        "climate",
-        "era5",
-        "llm",
-        "python",
-        "workflow"
-      ],
-      "created_at": "2026-09-18T09:54:16Z",
-      "pushed_at": "2026-09-18T18:52:29Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "模型/推理/微调"
-      ],
-      "heat_score": 102,
-      "demo_images": [
-        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-tui-welcome.png",
-        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-tui-done.png",
-        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-histogram.png"
-      ]
-    },
-    {
-      "id": 1376187020,
-      "name": "aldus-palace",
-      "full_name": "heymi/aldus-palace",
-      "url": "https://github.com/heymi/aldus-palace",
-      "description": "A trustworthy context layer for AI that remembers, plans and acts — free text into typed commitments, decisions and memories, each with its evidence, in a SQLite file you own. MCP, HTTP, library and typed client.",
-      "stars": 102,
-      "forks": 1,
-      "language": "TypeScript",
-      "topics": [
-        "agent",
-        "ai-agents",
-        "cloudflare-workers",
-        "durable-objects",
-        "hono",
-        "llm",
-        "local-first",
-        "mcp",
-        "memory",
-        "personal-knowledge",
-        "sqlite",
-        "typescript"
-      ],
-      "created_at": "2026-09-18T17:10:56Z",
-      "pushed_at": "2026-09-19T16:57:09Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "模型/推理/微调",
-        "开发工具/框架"
-      ],
-      "heat_score": 102,
-      "demo_images": [
-        "https://raw.githubusercontent.com/heymi/aldus-palace/HEAD/docs/assets/capture-session.svg"
-      ]
-    },
-    {
       "id": 1378726612,
       "name": "jevals",
       "full_name": "openlayer-ai/jevals",
@@ -7424,6 +7347,83 @@
       ]
     },
     {
+      "id": 1376187020,
+      "name": "aldus-palace",
+      "full_name": "heymi/aldus-palace",
+      "url": "https://github.com/heymi/aldus-palace",
+      "description": "A trustworthy context layer for AI that remembers, plans and acts — free text into typed commitments, decisions and memories, each with its evidence, in a SQLite file you own. MCP, HTTP, library and typed client.",
+      "stars": 102,
+      "forks": 1,
+      "language": "TypeScript",
+      "topics": [
+        "agent",
+        "ai-agents",
+        "cloudflare-workers",
+        "durable-objects",
+        "hono",
+        "llm",
+        "local-first",
+        "mcp",
+        "memory",
+        "personal-knowledge",
+        "sqlite",
+        "typescript"
+      ],
+      "created_at": "2026-09-18T17:10:56Z",
+      "pushed_at": "2026-09-19T16:57:09Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "模型/推理/微调",
+        "开发工具/框架"
+      ],
+      "heat_score": 102,
+      "demo_images": [
+        "https://raw.githubusercontent.com/heymi/aldus-palace/HEAD/docs/assets/capture-session.svg"
+      ]
+    },
+    {
+      "id": 1375677296,
+      "name": "ClimWorkflow",
+      "full_name": "Hongjian01/ClimWorkflow",
+      "url": "https://github.com/Hongjian01/ClimWorkflow",
+      "description": "可恢复气候数据智能体：自然语言 → 获取 / 检查 / 绘图 / 报告",
+      "stars": 102,
+      "forks": 0,
+      "language": "Python",
+      "topics": [
+        "agent",
+        "climate",
+        "era5",
+        "llm",
+        "python",
+        "workflow"
+      ],
+      "created_at": "2026-09-18T09:54:16Z",
+      "pushed_at": "2026-09-18T18:52:29Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "模型/推理/微调"
+      ],
+      "heat_score": 102,
+      "demo_images": [
+        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-tui-welcome.png",
+        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-tui-done.png",
+        "https://raw.githubusercontent.com/Hongjian01/ClimWorkflow/HEAD/assets/climworkflow-histogram.png"
+      ]
+    },
+    {
       "id": 1374177659,
       "name": "GitBot",
       "full_name": "gitbot-hq/GitBot",
@@ -7490,42 +7490,6 @@
       "heat_score": 102
     },
     {
-      "id": 1374138703,
-      "name": "bioai-evidence-validator",
-      "full_name": "NingyuSUN/bioai-evidence-validator",
-      "url": "https://github.com/NingyuSUN/bioai-evidence-validator",
-      "description": "Evidence validation and policy engine for AI-assisted biological curation",
-      "stars": 101,
-      "forks": 1,
-      "language": "Python",
-      "topics": [
-        "ai-safety",
-        "biocuration",
-        "bioinformatics",
-        "knowledge-graph",
-        "linkml",
-        "llm",
-        "ontology",
-        "provenance"
-      ],
-      "created_at": "2026-09-17T08:18:24Z",
-      "pushed_at": "2026-10-06T06:38:31Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "模型/推理/微调",
-      "category_emoji": "🧠",
-      "extra_tags": [],
-      "heat_score": 101,
-      "demo_images": [
-        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/ai_validation_results.svg",
-        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/ai_validation_funnel.svg",
-        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/clinvar_germline_benchmark.svg"
-      ]
-    },
-    {
       "id": 1387763129,
       "name": "quicksilver",
       "full_name": "UditAkhourii/quicksilver",
@@ -7560,6 +7524,42 @@
       "heat_score": 101,
       "demo_images": [
         "https://raw.githubusercontent.com/UditAkhourii/quicksilver/HEAD/assets/benchmark.svg"
+      ]
+    },
+    {
+      "id": 1374138703,
+      "name": "bioai-evidence-validator",
+      "full_name": "NingyuSUN/bioai-evidence-validator",
+      "url": "https://github.com/NingyuSUN/bioai-evidence-validator",
+      "description": "Evidence validation and policy engine for AI-assisted biological curation",
+      "stars": 101,
+      "forks": 1,
+      "language": "Python",
+      "topics": [
+        "ai-safety",
+        "biocuration",
+        "bioinformatics",
+        "knowledge-graph",
+        "linkml",
+        "llm",
+        "ontology",
+        "provenance"
+      ],
+      "created_at": "2026-09-17T08:18:24Z",
+      "pushed_at": "2026-10-06T06:38:31Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "模型/推理/微调",
+      "category_emoji": "🧠",
+      "extra_tags": [],
+      "heat_score": 101,
+      "demo_images": [
+        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/ai_validation_results.svg",
+        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/ai_validation_funnel.svg",
+        "https://raw.githubusercontent.com/NingyuSUN/bioai-evidence-validator/main/docs/assets/clinvar_germline_benchmark.svg"
       ]
     },
     {
@@ -7606,6 +7606,36 @@
       ]
     },
     {
+      "id": 1367029840,
+      "name": "threadport",
+      "full_name": "Frankie-Xu/threadport",
+      "url": "https://github.com/Frankie-Xu/threadport",
+      "description": "Portable, verifiable work state for coding agents",
+      "stars": 101,
+      "forks": 2,
+      "language": "TypeScript",
+      "topics": [
+        "ai-agents",
+        "coding-agents",
+        "context-engineering",
+        "developer-tools",
+        "local-first",
+        "mcp",
+        "session-handoff"
+      ],
+      "created_at": "2026-09-12T06:38:25Z",
+      "pushed_at": "2026-10-01T06:55:58Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [],
+      "heat_score": 101
+    },
+    {
       "id": 1366848971,
       "name": "agent-skill-sync",
       "full_name": "kina-cmd/agent-skill-sync",
@@ -7636,36 +7666,6 @@
       "extra_tags": [
         "开发工具/框架"
       ],
-      "heat_score": 101
-    },
-    {
-      "id": 1367029840,
-      "name": "threadport",
-      "full_name": "Frankie-Xu/threadport",
-      "url": "https://github.com/Frankie-Xu/threadport",
-      "description": "Portable, verifiable work state for coding agents",
-      "stars": 101,
-      "forks": 2,
-      "language": "TypeScript",
-      "topics": [
-        "ai-agents",
-        "coding-agents",
-        "context-engineering",
-        "developer-tools",
-        "local-first",
-        "mcp",
-        "session-handoff"
-      ],
-      "created_at": "2026-09-12T06:38:25Z",
-      "pushed_at": "2026-10-01T06:55:58Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [],
       "heat_score": 101
     },
     {
@@ -8265,7 +8265,7 @@
       "full_name": "longsurf-ai/openchart",
       "url": "https://github.com/longsurf-ai/openchart",
       "description": "OSS Tradingview with your own AI, free and unlimited.",
-      "stars": 91,
+      "stars": 92,
       "forks": 9,
       "language": "TypeScript",
       "topics": [
@@ -8298,7 +8298,7 @@
         "模型/推理/微调",
         "开发工具/框架"
       ],
-      "heat_score": 91,
+      "heat_score": 92,
       "demo_images": [
         "https://raw.githubusercontent.com/longsurf-ai/openchart/HEAD/docs/assets/star-openchart.gif",
         "https://raw.githubusercontent.com/longsurf-ai/openchart/HEAD/docs/assets/feature-charts.gif",
@@ -8423,8 +8423,8 @@
       "full_name": "jiwoochris/artex-ko",
       "url": "https://github.com/jiwoochris/artex-ko",
       "description": "ARTEX 한국어판 · AI 자율 침투 테스트 프레임워크 현지화 (upstream: Autumn-27/ARTEX, AGPL-3.0)",
-      "stars": 87,
-      "forks": 35,
+      "stars": 88,
+      "forks": 36,
       "language": "Go",
       "topics": [
         "ai-agent",
@@ -8443,7 +8443,7 @@
         "threat-detection"
       ],
       "created_at": "2026-10-03T14:49:48Z",
-      "pushed_at": "2026-10-07T03:17:38Z",
+      "pushed_at": "2026-10-07T03:41:22Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -8454,7 +8454,7 @@
       "extra_tags": [
         "模型/推理/微调"
       ],
-      "heat_score": 87,
+      "heat_score": 88,
       "demo_images": [
         "https://raw.githubusercontent.com/jiwoochris/artex-ko/HEAD/screenshots/ko/dashboard.png",
         "https://raw.githubusercontent.com/jiwoochris/artex-ko/HEAD/screenshots/ko/findings.png",
@@ -8851,42 +8851,6 @@
       ]
     },
     {
-      "id": 1375473949,
-      "name": "awesome-jev-zh",
-      "full_name": "yzfly/awesome-jev-zh",
-      "url": "https://github.com/yzfly/awesome-jev-zh",
-      "description": "Jev / TypeSafe System One 中文精选列表：官方资料、SDK、爆款应用、Agent 工具、开源复现与独立评测，附中文上手指南，每日自动收录 GitHub 热门项目。",
-      "stars": 77,
-      "forks": 24,
-      "language": "HTML",
-      "topics": [
-        "ai-agent",
-        "awesome",
-        "awesome-list",
-        "chinese",
-        "jev",
-        "llm",
-        "structured-output",
-        "system-one",
-        "typesafe",
-        "typesafe-ai"
-      ],
-      "created_at": "2026-09-18T06:33:02Z",
-      "pushed_at": "2026-10-07T01:26:15Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [
-        "模型/推理/微调",
-        "开发工具/框架"
-      ],
-      "heat_score": 77
-    },
-    {
       "id": 1365523470,
       "name": "abacusai-bot",
       "full_name": "abacusai/abacusai-bot",
@@ -8932,6 +8896,42 @@
       ]
     },
     {
+      "id": 1375473949,
+      "name": "awesome-jev-zh",
+      "full_name": "yzfly/awesome-jev-zh",
+      "url": "https://github.com/yzfly/awesome-jev-zh",
+      "description": "Jev / TypeSafe System One 中文精选列表：官方资料、SDK、爆款应用、Agent 工具、开源复现与独立评测，附中文上手指南，每日自动收录 GitHub 热门项目。",
+      "stars": 77,
+      "forks": 24,
+      "language": "HTML",
+      "topics": [
+        "ai-agent",
+        "awesome",
+        "awesome-list",
+        "chinese",
+        "jev",
+        "llm",
+        "structured-output",
+        "system-one",
+        "typesafe",
+        "typesafe-ai"
+      ],
+      "created_at": "2026-09-18T06:33:02Z",
+      "pushed_at": "2026-10-07T01:26:15Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [
+        "模型/推理/微调",
+        "开发工具/框架"
+      ],
+      "heat_score": 77
+    },
+    {
       "id": 1375761817,
       "name": "jevcache",
       "full_name": "hyperspaceai/jevcache",
@@ -8959,53 +8959,6 @@
       "category_emoji": "🧠",
       "extra_tags": [],
       "heat_score": 75
-    },
-    {
-      "id": 1389866156,
-      "name": "laya-php",
-      "full_name": "marcreichel/laya-php",
-      "url": "https://github.com/marcreichel/laya-php",
-      "description": "Classify text in PHP without an LLM bill: typed decisions in 100+ languages, self-hosted. Laravel-ready SDK for Laya, a Jev AI alternative.",
-      "stars": 74,
-      "forks": 3,
-      "language": "PHP",
-      "topics": [
-        "ai",
-        "classification",
-        "decision-engine",
-        "decision-model",
-        "jev",
-        "jev-ai",
-        "jev-api",
-        "laravel",
-        "laya",
-        "llm",
-        "multilingual",
-        "nlp",
-        "php",
-        "psr-18",
-        "sdk",
-        "text-classification",
-        "wrapper",
-        "zero-shot"
-      ],
-      "created_at": "2026-09-26T23:11:29Z",
-      "pushed_at": "2026-10-01T18:02:21Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "模型/推理/微调",
-      "category_emoji": "🧠",
-      "extra_tags": [
-        "开发工具/框架"
-      ],
-      "heat_score": 74,
-      "demo_images": [
-        "https://raw.githubusercontent.com/marcreichel/laya-php/main/.github/demo.gif",
-        "https://raw.githubusercontent.com/marcreichel/laya-php/main/.github/header.svg"
-      ]
     },
     {
       "id": 1369152854,
@@ -9049,6 +9002,42 @@
         "https://raw.githubusercontent.com/acoder-ai-infra/agenui-studio/HEAD/docs/assets/product-overview.png",
         "https://raw.githubusercontent.com/acoder-ai-infra/agenui-studio/HEAD/docs/assets/showcase-weekly-picks.jpg",
         "https://raw.githubusercontent.com/acoder-ai-infra/agenui-studio/HEAD/docs/assets/showcase-ticket-inventory.jpg"
+      ]
+    },
+    {
+      "id": 1404880073,
+      "name": "paperfold",
+      "full_name": "chenxiachan/paperfold",
+      "url": "https://github.com/chenxiachan/paperfold",
+      "description": "Zoom any paper for your better understanding",
+      "stars": 74,
+      "forks": 4,
+      "language": "Python",
+      "topics": [
+        "arxiv",
+        "llm",
+        "local-first",
+        "open-source",
+        "paper-reader",
+        "research-papers",
+        "semantic-zoom",
+        "translation"
+      ],
+      "created_at": "2026-10-04T22:19:52Z",
+      "pushed_at": "2026-10-06T13:46:31Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "模型/推理/微调",
+      "category_emoji": "🧠",
+      "extra_tags": [],
+      "heat_score": 74,
+      "demo_images": [
+        "https://raw.githubusercontent.com/chenxiachan/paperfold/HEAD/docs/assets/zoom.gif",
+        "https://raw.githubusercontent.com/chenxiachan/paperfold/HEAD/docs/assets/notes.png",
+        "https://raw.githubusercontent.com/chenxiachan/paperfold/HEAD/docs/assets/keep.png"
       ]
     },
     {
@@ -9284,7 +9273,7 @@
         "systemd"
       ],
       "created_at": "2026-09-18T13:56:33Z",
-      "pushed_at": "2026-10-07T03:20:10Z",
+      "pushed_at": "2026-10-07T03:32:36Z",
       "trend_type": "new",
       "source": "github_search",
       "hn_points": 0,
@@ -9638,6 +9627,37 @@
       ]
     },
     {
+      "id": 1369313277,
+      "name": "FlareMail",
+      "full_name": "arctan303/FlareMail",
+      "url": "https://github.com/arctan303/FlareMail",
+      "description": "基于 Cloudflare 的私人域名邮箱 | Personal domain email on Cloudflare",
+      "stars": 51,
+      "forks": 10,
+      "language": "JavaScript",
+      "topics": [
+        "agent",
+        "cloudflare",
+        "custom-domain",
+        "email"
+      ],
+      "created_at": "2026-09-14T05:05:40Z",
+      "pushed_at": "2026-10-02T04:39:25Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [],
+      "heat_score": 51,
+      "demo_images": [
+        "https://raw.githubusercontent.com/arctan303/FlareMail/HEAD/assets/screenshots/inbox-zh.png",
+        "https://raw.githubusercontent.com/arctan303/FlareMail/HEAD/assets/flaremail-wordmark.svg"
+      ]
+    },
+    {
       "id": 1377012125,
       "name": "jev-use",
       "full_name": "shitianfang/jev-use",
@@ -9681,37 +9701,6 @@
         "https://raw.githubusercontent.com/shitianfang/jev-use/HEAD/assets/collab.gif",
         "https://raw.githubusercontent.com/shitianfang/jev-use/HEAD/assets/compact.gif",
         "https://raw.githubusercontent.com/shitianfang/jev-use/HEAD/assets/pong.gif"
-      ]
-    },
-    {
-      "id": 1369313277,
-      "name": "FlareMail",
-      "full_name": "arctan303/FlareMail",
-      "url": "https://github.com/arctan303/FlareMail",
-      "description": "基于 Cloudflare 的私人域名邮箱 | Personal domain email on Cloudflare",
-      "stars": 51,
-      "forks": 10,
-      "language": "JavaScript",
-      "topics": [
-        "agent",
-        "cloudflare",
-        "custom-domain",
-        "email"
-      ],
-      "created_at": "2026-09-14T05:05:40Z",
-      "pushed_at": "2026-10-02T04:39:25Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [],
-      "heat_score": 51,
-      "demo_images": [
-        "https://raw.githubusercontent.com/arctan303/FlareMail/HEAD/assets/screenshots/inbox-zh.png",
-        "https://raw.githubusercontent.com/arctan303/FlareMail/HEAD/assets/flaremail-wordmark.svg"
       ]
     },
     {
@@ -10174,51 +10163,6 @@
       ]
     },
     {
-      "id": 1394719672,
-      "name": "JARVIS-VORNEX",
-      "full_name": "VORNEX-01/JARVIS-VORNEX",
-      "url": "https://github.com/VORNEX-01/JARVIS-VORNEX",
-      "description": "Voice-first desktop assistant for Windows — talk to your PC and it works inside real apps, safely. By VORNEX.",
-      "stars": 37,
-      "forks": 0,
-      "language": "Python",
-      "topics": [
-        "agent",
-        "agent-skill",
-        "agentic-ai",
-        "agents",
-        "ai-assistants",
-        "automation",
-        "desktop-assistant",
-        "gemini",
-        "gemini-api",
-        "jarvis",
-        "jarvis-ai",
-        "llm",
-        "python",
-        "python3",
-        "speech-recognition",
-        "text-to-speech",
-        "ui-automation",
-        "voice-assistant",
-        "windows"
-      ],
-      "created_at": "2026-09-29T08:26:30Z",
-      "pushed_at": "2026-10-03T13:25:27Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "语音/音乐",
-      "category_emoji": "🎙️",
-      "extra_tags": [
-        "Agent/智能体",
-        "模型/推理/微调"
-      ],
-      "heat_score": 37
-    },
-    {
       "id": 1361363342,
       "name": "linktokenview-docs",
       "full_name": "yinyuepingguo/linktokenview-docs",
@@ -10260,6 +10204,51 @@
       "extra_tags": [
         "模型/推理/微调",
         "开发工具/框架"
+      ],
+      "heat_score": 37
+    },
+    {
+      "id": 1394719672,
+      "name": "JARVIS-VORNEX",
+      "full_name": "VORNEX-01/JARVIS-VORNEX",
+      "url": "https://github.com/VORNEX-01/JARVIS-VORNEX",
+      "description": "Voice-first desktop assistant for Windows — talk to your PC and it works inside real apps, safely. By VORNEX.",
+      "stars": 37,
+      "forks": 0,
+      "language": "Python",
+      "topics": [
+        "agent",
+        "agent-skill",
+        "agentic-ai",
+        "agents",
+        "ai-assistants",
+        "automation",
+        "desktop-assistant",
+        "gemini",
+        "gemini-api",
+        "jarvis",
+        "jarvis-ai",
+        "llm",
+        "python",
+        "python3",
+        "speech-recognition",
+        "text-to-speech",
+        "ui-automation",
+        "voice-assistant",
+        "windows"
+      ],
+      "created_at": "2026-09-29T08:26:30Z",
+      "pushed_at": "2026-10-03T13:25:27Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "语音/音乐",
+      "category_emoji": "🎙️",
+      "extra_tags": [
+        "Agent/智能体",
+        "模型/推理/微调"
       ],
       "heat_score": 37
     },
@@ -11318,42 +11307,6 @@
       ]
     },
     {
-      "id": 1395089674,
-      "name": "random-signal-agent",
-      "full_name": "PatrickStar-cmd/random-signal-agent",
-      "url": "https://github.com/PatrickStar-cmd/random-signal-agent",
-      "description": "UESTC 随机信号课程智能体项目",
-      "stars": 21,
-      "forks": 0,
-      "language": "Python",
-      "topics": [
-        "agent",
-        "digital-signal-processing",
-        "education",
-        "numpy",
-        "python",
-        "random-processes",
-        "signal-processing",
-        "web-interface"
-      ],
-      "created_at": "2026-09-29T11:43:05Z",
-      "pushed_at": "2026-10-06T08:57:23Z",
-      "trend_type": "new",
-      "source": "github_search",
-      "hn_points": 0,
-      "hn_comments": 0,
-      "hn_url": null,
-      "category": "Agent/智能体",
-      "category_emoji": "🤖",
-      "extra_tags": [],
-      "heat_score": 21,
-      "demo_images": [
-        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/ocean-demo-v030.gif",
-        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/ocean-ui.png",
-        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/workbench-v030.png"
-      ]
-    },
-    {
       "id": 1404226270,
       "name": "Adelie",
       "full_name": "lmliheng/Adelie",
@@ -11387,6 +11340,42 @@
         "https://raw.githubusercontent.com/lmliheng/Adelie/HEAD/assets/readme/rag-app-en-light.webp",
         "https://raw.githubusercontent.com/lmliheng/Adelie/HEAD/assets/readme/evaluation-center-en-light.webp",
         "https://raw.githubusercontent.com/lmliheng/Adelie/HEAD/assets/readme/plugin-market-en-light.webp"
+      ]
+    },
+    {
+      "id": 1395089674,
+      "name": "random-signal-agent",
+      "full_name": "PatrickStar-cmd/random-signal-agent",
+      "url": "https://github.com/PatrickStar-cmd/random-signal-agent",
+      "description": "UESTC 随机信号课程智能体项目",
+      "stars": 21,
+      "forks": 0,
+      "language": "Python",
+      "topics": [
+        "agent",
+        "digital-signal-processing",
+        "education",
+        "numpy",
+        "python",
+        "random-processes",
+        "signal-processing",
+        "web-interface"
+      ],
+      "created_at": "2026-09-29T11:43:05Z",
+      "pushed_at": "2026-10-06T08:57:23Z",
+      "trend_type": "new",
+      "source": "github_search",
+      "hn_points": 0,
+      "hn_comments": 0,
+      "hn_url": null,
+      "category": "Agent/智能体",
+      "category_emoji": "🤖",
+      "extra_tags": [],
+      "heat_score": 21,
+      "demo_images": [
+        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/ocean-demo-v030.gif",
+        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/ocean-ui.png",
+        "https://raw.githubusercontent.com/PatrickStar-cmd/random-signal-agent/HEAD/docs/images/workbench-v030.png"
       ]
     },
     {
@@ -11607,7 +11596,7 @@
     {
       "id": "Cloudflare/clef",
       "url": "https://huggingface.co/Cloudflare/clef",
-      "likes": 1703,
+      "likes": 1704,
       "downloads": 7255,
       "task": "image-text-to-text",
       "task_cn": "多模态理解",
@@ -11624,7 +11613,7 @@
     {
       "id": "autotrust/JEV-27B-VL",
       "url": "https://huggingface.co/autotrust/JEV-27B-VL",
-      "likes": 996,
+      "likes": 1003,
       "downloads": 1525286,
       "task": "image-text-to-text",
       "task_cn": "多模态理解",
@@ -11641,7 +11630,7 @@
     {
       "id": "Comfy-Org/Qwen-Image-2.1",
       "url": "https://huggingface.co/Comfy-Org/Qwen-Image-2.1",
-      "likes": 969,
+      "likes": 970,
       "downloads": 6899866,
       "task": "—",
       "task_cn": "—",
@@ -11652,6 +11641,23 @@
         "base_model:Qwen/Qwen-Image-2.1",
         "base_model:finetune:Qwen/Qwen-Image-2.1",
         "license:other"
+      ]
+    },
+    {
+      "id": "autotrust/GEV-26B-Decide",
+      "url": "https://huggingface.co/autotrust/GEV-26B-Decide",
+      "likes": 748,
+      "downloads": 854574,
+      "task": "text-classification",
+      "task_cn": "文本分类",
+      "created_at": "2026-10-02",
+      "tags": [
+        "transformers",
+        "safetensors",
+        "gemma4",
+        "image-text-to-text",
+        "system-one",
+        "system-two"
       ]
     },
     {
@@ -11672,26 +11678,9 @@
       ]
     },
     {
-      "id": "autotrust/GEV-26B-Decide",
-      "url": "https://huggingface.co/autotrust/GEV-26B-Decide",
-      "likes": 743,
-      "downloads": 854574,
-      "task": "text-classification",
-      "task_cn": "文本分类",
-      "created_at": "2026-10-02",
-      "tags": [
-        "transformers",
-        "safetensors",
-        "gemma4",
-        "image-text-to-text",
-        "system-one",
-        "system-two"
-      ]
-    },
-    {
       "id": "Aleph-Alpha/Kolibri-1",
       "url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
-      "likes": 723,
+      "likes": 724,
       "downloads": 4138,
       "task": "text-generation",
       "task_cn": "文本生成",
@@ -11901,14 +11890,6 @@
       "points": 262,
       "num_comments": 14,
       "created_at": "2026-09-18T10:35:28Z"
-    },
-    {
-      "title": "Unreal Agent",
-      "url": "https://unreallabs.ai/blog/unreal-agent/",
-      "hn_url": "https://news.ycombinator.com/item?id=49805748",
-      "points": 247,
-      "num_comments": 125,
-      "created_at": "2026-09-22T18:15:53Z"
     },
     {
       "title": "There's a 100% Chance AI Agents Are Ruining the Internet",
@@ -12141,14 +12122,6 @@
       "points": 74,
       "num_comments": 156,
       "created_at": "2026-09-23T18:16:41Z"
-    },
-    {
-      "title": "FTC chair suggests AI developers should be liable for conduct of agents",
-      "url": "https://www.reuters.com/business/ftc-chair-pushes-back-treating-ai-agents-independent-actors-2026-09-25/",
-      "hn_url": "https://news.ycombinator.com/item?id=49850999",
-      "points": 71,
-      "num_comments": 21,
-      "created_at": "2026-09-25T22:49:41Z"
     },
     {
       "title": "Launch HN: Skillsync (YC W26) – AI chat sessions made portable across agents",
