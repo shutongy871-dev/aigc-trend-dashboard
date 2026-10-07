@@ -1,0 +1,75 @@
+name: 每日采集并部署看板
+
+on:
+  # UTC 01:05 = 北京时间 09:05（定时任务为尽力而为，偶发延迟属正常）
+  schedule:
+    - cron: "5 1 * * *"
+  # 支持在 Actions 页面手动触发（可指定回溯天数）
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "回溯天数"
+        required: false
+        default: "30"
+
+# GITHUB_TOKEN 权限：回写产物到仓库 + 发布 Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 同一时间只允许一次部署，避免并发发布互相覆盖
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 采集数据并渲染看板
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          # GITHUB_TOKEN 由运行时自动注入，用于提升 GitHub API 速率上限
+        run: |
+          chmod +x run_daily.sh
+          ./run_daily.sh "${{ github.event.inputs.days || '30' }}"
+
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传 Pages 产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: 回写当日数据与看板到仓库（归档）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add output/aigc_data.json output/aigc_brief.md site/index.html
+          if git diff --cached --quiet; then
+            echo "今日产物无变化，跳过提交"
+          else
+            git commit -m "chore(data): 每日趋势数据与看板更新 $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
