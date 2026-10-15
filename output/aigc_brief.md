@@ -1,164 +1,159 @@
-# AIGC 前沿趋势简报（2026-09-14 ~ 2026-10-14）
+# AIGC 前沿趋势简报（2026-09-15 ~ 2026-10-15）
 
-> 数据源：GitHub 新建仓库 · Hacker News 社区热议 · Hugging Face 热门新模型 ｜ 生成时间：2026-10-14 06:02 UTC
+> 数据源：GitHub 新建仓库 · Hacker News 社区热议 · Hugging Face 热门新模型 ｜ 生成时间：2026-10-15 05:48 UTC
 
 ## 一、本期趋势洞察
 
-- **Agent/智能体 热度领先**：Top 榜中占据 12 席、合计 107,932 stars（占头部总 star 的 51%），代表项目 browser-use/jev-ultrafast（⭐22,855）
-- **模型/推理/微调 热度领先**：Top 榜中占据 3 席、合计 48,807 stars（占头部总 star 的 23%），代表项目 NandhaKishorM/laya（⭐32,801）
-- **图像生成 热度领先**：Top 榜中占据 1 席、合计 23,933 stars（占头部总 star 的 11%），代表项目 Niko1221/Strata（⭐23,933）
+- **Agent/智能体 热度领先**：Top 榜中占据 11 席、合计 109,366 stars（占头部总 star 的 50%），代表项目 browser-use/jev-ultrafast（⭐22,939）
+- **模型/推理/微调 热度领先**：Top 榜中占据 3 席、合计 49,021 stars（占头部总 star 的 22%），代表项目 NandhaKishorM/laya（⭐32,940）
+- **图像生成 热度领先**：Top 榜中占据 2 席、合计 28,585 stars（占头部总 star 的 13%），代表项目 Niko1221/Strata（⭐24,810）
 > ℹ️ 本期洞察由规则口径生成。配置 `LLM_API_KEY` 后可获得大模型语义级趋势解读。
 
 ## 二、Top 20 新发布前沿项目
 
 | # | 项目 | 赛道 | 语言 | ⭐ Stars | HN 热度 | 简介 |
 |---|---|---|---|---:|---:|---|
-| 1 | [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) | 🧠 模型/推理/微调 | Python | 32,801 | — | Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a singl… |
-| 2 | [Niko1221/Strata](https://github.com/Niko1221/Strata) | 🎨 图像生成 | C++ | 23,933 | — | Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, O… |
-| 3 | [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) | 🤖 Agent/智能体 | Python | 22,855 | — | Fastest and cheapest web agent |
-| 4 | [openai/math](https://github.com/openai/math) | 📦 其他AIGC | Lean | 14,717 | — |  |
-| 5 | [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) | 🤖 Agent/智能体 | JavaScript | 14,697 | — | 在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install … |
-| 6 | [yetone/magpie](https://github.com/yetone/magpie) | 🤖 Agent/智能体 | Go | 11,977 | — | Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar. |
-| 7 | [jaredpalmer/kev](https://github.com/jaredpalmer/kev) | 🧠 模型/推理/微调 | Python | 9,088 | — | Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own |
-| 8 | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | 🤖 Agent/智能体 | JavaScript | 8,607 | — | An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex s… |
-| 9 | [zai-org/ZCode](https://github.com/zai-org/ZCode) | 🤖 Agent/智能体 | TypeScript | 7,793 | — | Z.ai's coding agent harness. Powerful, intelligent, extensible. |
-| 10 | [jev-chat/jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis) | 🤖 Agent/智能体 | Kotlin | 7,721 | — | The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies … |
-| 11 | [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | 🛠️ 开发工具/框架 | TypeScript | 7,620 | — | Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scor… |
-| 12 | [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT) | 🤖 Agent/智能体 | TypeScript | 7,561 | — | 一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。 |
-| 13 | [rehan-remade/universal-modder](https://github.com/rehan-remade/universal-modder) | 🤖 Agent/智能体 | Python | 7,460 | — | Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: r… |
-| 14 | [mizorewww/laya-mlx](https://github.com/mizorewww/laya-mlx) | 🧠 模型/推理/微调 | Python | 6,918 | — | Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyT… |
-| 15 | [CopilotKit/OpenDots](https://github.com/CopilotKit/OpenDots) | 🤖 Agent/智能体 | TypeScript | 5,230 | — | Your always-on AI coworkers that move between text, calls, and Slack. |
-| 16 | [Louis-CFM/coucou](https://github.com/Louis-CFM/coucou) | 🤖 Agent/智能体 | Swift | 5,141 | — | A tiny friend in your Mac's notch and on your iPhone that keeps an eye on your AI coding agents: Claude Code, … |
-| 17 | [CopilotKit/openmuse](https://github.com/CopilotKit/openmuse) | 🤖 Agent/智能体 | TypeScript | 4,943 | — | A personal agent with a browser, terminal, files, and work that keeps going built with CopilotKit and AG-UI. |
-| 18 | [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) | 🎬 视频生成 | — | 4,881 | — | A growing collection of viral videos made with Claude Opus 5.5 and the prompts behind them. Watch each origina… |
-| 19 | [mhtsec/ARTEX](https://github.com/mhtsec/ARTEX) | 🤖 Agent/智能体 | Go | 3,947 | — | AI 自主渗透测试系统 \| 百度“agent+”攻防挑战赛冠军项目 |
-| 20 | [nykooi1/vibe-wise](https://github.com/nykooi1/vibe-wise) | 🛠️ 开发工具/框架 | Python | 3,541 | — | A Claude Code / Codex plugin that helps you learn how to build while AI writes the code. |
+| 1 | [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) | 🧠 模型/推理/微调 | Python | 32,940 | — | Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a singl… |
+| 2 | [Niko1221/Strata](https://github.com/Niko1221/Strata) | 🎨 图像生成 | C++ | 24,810 | — | Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, O… |
+| 3 | [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) | 🤖 Agent/智能体 | Python | 22,939 | — | Fastest and cheapest web agent |
+| 4 | [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) | 🤖 Agent/智能体 | JavaScript | 16,696 | — | 在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install … |
+| 5 | [openai/math](https://github.com/openai/math) | 📦 其他AIGC | Lean | 14,844 | — |  |
+| 6 | [yetone/magpie](https://github.com/yetone/magpie) | 🤖 Agent/智能体 | Go | 12,979 | — | Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar. |
+| 7 | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | 🤖 Agent/智能体 | JavaScript | 11,023 | — | An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex s… |
+| 8 | [jaredpalmer/kev](https://github.com/jaredpalmer/kev) | 🧠 模型/推理/微调 | Python | 9,146 | — | Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own |
+| 9 | [zai-org/ZCode](https://github.com/zai-org/ZCode) | 🤖 Agent/智能体 | TypeScript | 7,834 | — | Z.ai's coding agent harness. Powerful, intelligent, extensible. |
+| 10 | [jev-chat/jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis) | 🤖 Agent/智能体 | Kotlin | 7,753 | — | The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies … |
+| 11 | [rehan-remade/universal-modder](https://github.com/rehan-remade/universal-modder) | 🤖 Agent/智能体 | Python | 7,713 | — | Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: r… |
+| 12 | [KKKKhazix/AIHOT](https://github.com/KKKKhazix/AIHOT) | 🤖 Agent/智能体 | TypeScript | 7,702 | — | 一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。 |
+| 13 | [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) | 🛠️ 开发工具/框架 | TypeScript | 7,632 | — | Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scor… |
+| 14 | [mizorewww/laya-mlx](https://github.com/mizorewww/laya-mlx) | 🧠 模型/推理/微调 | Python | 6,935 | — | Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyT… |
+| 15 | [CopilotKit/OpenDots](https://github.com/CopilotKit/OpenDots) | 🤖 Agent/智能体 | TypeScript | 5,359 | — | Your always-on AI coworkers that move between text, calls, and Slack. |
+| 16 | [Louis-CFM/coucou](https://github.com/Louis-CFM/coucou) | 🤖 Agent/智能体 | Swift | 5,229 | — | A tiny friend in your Mac's notch and on your iPhone that keeps an eye on your AI coding agents: Claude Code, … |
+| 17 | [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) | 🎬 视频生成 | — | 5,075 | — | A growing collection of viral videos made with Claude Opus 5.5 and the prompts behind them. Watch each origina… |
+| 18 | [mhtsec/ARTEX](https://github.com/mhtsec/ARTEX) | 🤖 Agent/智能体 | Go | 4,139 | — | AI 自主渗透测试系统 \| 百度“agent+”攻防挑战赛冠军项目 |
+| 19 | [ARahim3/DigUp](https://github.com/ARahim3/DigUp) | 🎨 图像生成 | Swift | 3,775 | — | Search your computer by what's in your files: photos, PDFs, documents, recordings, videos and code. On-device … |
+| 20 | [nykooi1/vibe-wise](https://github.com/nykooi1/vibe-wise) | 🛠️ 开发工具/框架 | Python | 3,590 | — | A Claude Code / Codex plugin that helps you learn how to build while AI writes the code. |
 
 ## 三、赛道分类盘点
 
-### 🤖 Agent/智能体（197 个）
-- [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) — Fastest and cheapest web agent（⭐22,855）
-- [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) — 在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全…（⭐14,697） `模型/推理/微调` `开发工具/框架`
-- [yetone/magpie](https://github.com/yetone/magpie) — Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the…（⭐11,977） `模型/推理/微调` `开发工具/框架`
-- [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — An agent skill for creating detailed, interactive isometric illustrations of rea…（⭐8,607）
-- [zai-org/ZCode](https://github.com/zai-org/ZCode) — Z.ai's coding agent harness. Powerful, intelligent, extensible.（⭐7,793）
-- [jev-chat/jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis) — The chat decision assistant: before you reply, Jev reads the chat, judges intent…（⭐7,721） `多模态/视觉` `模型/推理/微调`
-- ……另有 191 个项目，见 JSON 明细
+### 🤖 Agent/智能体（204 个）
+- [browser-use/jev-ultrafast](https://github.com/browser-use/jev-ultrafast) — Fastest and cheapest web agent（⭐22,939）
+- [Ebony-Vinyl/dsh-our-free-model](https://github.com/Ebony-Vinyl/dsh-our-free-model) — 在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全…（⭐16,696） `模型/推理/微调` `开发工具/框架`
+- [yetone/magpie](https://github.com/yetone/magpie) — Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the…（⭐12,979） `模型/推理/微调` `开发工具/框架`
+- [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — An agent skill for creating detailed, interactive isometric illustrations of rea…（⭐11,023）
+- [zai-org/ZCode](https://github.com/zai-org/ZCode) — Z.ai's coding agent harness. Powerful, intelligent, extensible.（⭐7,834）
+- [jev-chat/jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis) — The chat decision assistant: before you reply, Jev reads the chat, judges intent…（⭐7,753） `多模态/视觉` `模型/推理/微调`
+- ……另有 198 个项目，见 JSON 明细
 
-### 🧠 模型/推理/微调（36 个）
-- [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) — Non-autoregressive System 1 decision engine. Typed choice, score and yes/no deci…（⭐32,801）
-- [jaredpalmer/kev](https://github.com/jaredpalmer/kev) — Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and…（⭐9,088）
-- [mizorewww/laya-mlx](https://github.com/mizorewww/laya-mlx) — Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M…（⭐6,918） `开发工具/框架`
-- [LosaLosSantos/aurelio-finance](https://github.com/LosaLosSantos/aurelio-finance) — Open-source personal finance app with an AI financial advisor: track your net wo…（⭐3,377） `AI应用/产品`
-- [yibie/awesome-jev](https://github.com/yibie/awesome-jev) — A curated list of public projects, integrations, and discussions built on Jev — …（⭐2,321）
-- [pallavi-shekhar/ai-engineering-interview-questions-company-wise](https://github.com/pallavi-shekhar/ai-engineering-interview-questions-company-wise) — Your Cheat Sheet For AI Engineering Interviews at Top AI Companies - Questions a…（⭐1,743）
-- ……另有 30 个项目，见 JSON 明细
+### 🧠 模型/推理/微调（35 个）
+- [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) — Non-autoregressive System 1 decision engine. Typed choice, score and yes/no deci…（⭐32,940）
+- [jaredpalmer/kev](https://github.com/jaredpalmer/kev) — Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and…（⭐9,146）
+- [mizorewww/laya-mlx](https://github.com/mizorewww/laya-mlx) — Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M…（⭐6,935） `开发工具/框架`
+- [LosaLosSantos/aurelio-finance](https://github.com/LosaLosSantos/aurelio-finance) — Open-source personal finance app with an AI financial advisor: track your net wo…（⭐3,370） `AI应用/产品`
+- [yibie/awesome-jev](https://github.com/yibie/awesome-jev) — A curated list of public projects, integrations, and discussions built on Jev — …（⭐2,345）
+- [pallavi-shekhar/ai-engineering-interview-questions-company-wise](https://github.com/pallavi-shekhar/ai-engineering-interview-questions-company-wise) — Your Cheat Sheet For AI Engineering Interviews at Top AI Companies - Questions a…（⭐1,747）
+- ……另有 29 个项目，见 JSON 明细
 
-### 🎨 图像生成（27 个）
-- [Niko1221/Strata](https://github.com/Niko1221/Strata) — Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Lin…（⭐23,933） `模型/推理/微调` `开发工具/框架`
-- [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) — A comprehensive logo-design skill for Claude, Gemini CLI, Codex and other AI age…（⭐3,225） `Agent/智能体` `开发工具/框架`
-- [ARahim3/DigUp](https://github.com/ARahim3/DigUp) — Search your Mac by what's in your files: photos, PDFs, recordings, videos and co…（⭐2,762） `RAG/知识库` `多模态/视觉`
-- [Oldcircle/geo-sleuth](https://github.com/Oldcircle/geo-sleuth) — An agent skill that finds where a photo was taken — OpenStreetMap geometry, elev…（⭐2,435） `Agent/智能体` `多模态/视觉`
-- [Inkloom-art/inkloom](https://github.com/Inkloom-art/inkloom) — Specialised AI models for logo design — a brand-analysis model turns a business …（⭐1,499） `模型/推理/微调`
-- [amitshekhariitbhu/ai-system-design](https://github.com/amitshekhariitbhu/ai-system-design) — AI System Design - Learn how to design AI systems built on LLMs, RAG, and AI Age…（⭐670） `Agent/智能体` `RAG/知识库`
-- ……另有 21 个项目，见 JSON 明细
-
-### 📦 其他AIGC（3 个）
-- [openai/math](https://github.com/openai/math) — （⭐14,717）
-- [pingdotgg/ts-rust](https://github.com/pingdotgg/ts-rust) — An experimental Rust port of the TypeScript 7 compiler (tsc)（⭐1,172 · HN 118pt）
-- [momozi1996/awesome-chinese-folk-game](https://github.com/momozi1996/awesome-chinese-folk-game) — Awesome Chinese folk game collection — Chinese folk-horror detective game. 9 pla…（⭐100）
+### 🎨 图像生成（29 个）
+- [Niko1221/Strata](https://github.com/Niko1221/Strata) — Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Lin…（⭐24,810） `模型/推理/微调` `开发工具/框架`
+- [ARahim3/DigUp](https://github.com/ARahim3/DigUp) — Search your computer by what's in your files: photos, PDFs, documents, recording…（⭐3,775） `RAG/知识库` `多模态/视觉`
+- [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) — A comprehensive logo-design skill for Claude, Gemini CLI, Codex and other AI age…（⭐3,371） `Agent/智能体` `开发工具/框架`
+- [Oldcircle/geo-sleuth](https://github.com/Oldcircle/geo-sleuth) — An agent skill that finds where a photo was taken — OpenStreetMap geometry, elev…（⭐2,840） `Agent/智能体` `多模态/视觉`
+- [Inkloom-art/inkloom](https://github.com/Inkloom-art/inkloom) — Specialised AI models for logo design — a brand-analysis model turns a business …（⭐1,754） `模型/推理/微调`
+- [deeplethe/solid-glass](https://github.com/deeplethe/solid-glass) — A design system for AI applications. Material, physical, tactile, technical.（⭐767） `Agent/智能体` `模型/推理/微调`
+- ……另有 23 个项目，见 JSON 明细
 
 ### 🎬 视频生成（20 个）
-- [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) — A growing collection of viral videos made with Claude Opus 5.5 and the prompts b…（⭐4,881）
-- [edenfunf/reelmimic](https://github.com/edenfunf/reelmimic) — Show it a video you love. Get a new video in the same style. An AI crew (Claude …（⭐2,880） `Agent/智能体`
-- [feitangyuan/onetake](https://github.com/feitangyuan/onetake) — Motion films that never cut to the next slide: every beat grows out of the one b…（⭐2,317） `Agent/智能体`
-- [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) — Claude Code skill for short films with no video model: 43 film styles, each a st…（⭐2,212） `语音/音乐` `Agent/智能体`
-- [glanderness/BeefTV](https://github.com/glanderness/BeefTV) — High-performance · Lightweight · AI Native Video workspace. 面向 AI 时代的视频创作工作台。 在画…（⭐1,163） `图像生成` `Agent/智能体`
-- [vincentsch/explainroo](https://github.com/vincentsch/explainroo) — Explainer videos and product demos made by your AI agent. Free and open source: …（⭐552） `语音/音乐` `Agent/智能体`
+- [yihui-dev/awesome-opus5-5-videos](https://github.com/yihui-dev/awesome-opus5-5-videos) — A growing collection of viral videos made with Claude Opus 5.5 and the prompts b…（⭐5,075）
+- [edenfunf/reelmimic](https://github.com/edenfunf/reelmimic) — Show it a video you love. Get a new video in the same style. An AI crew (Claude …（⭐3,259） `Agent/智能体`
+- [feitangyuan/onetake](https://github.com/feitangyuan/onetake) — Motion films that never cut to the next slide: every beat grows out of the one b…（⭐2,404） `Agent/智能体`
+- [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) — Claude Code skill for short films with no video model: 43 film styles, each a st…（⭐2,381） `语音/音乐` `Agent/智能体`
+- [glanderness/BeefTV](https://github.com/glanderness/BeefTV) — High-performance · Lightweight · AI Native Video workspace. 面向 AI 时代的视频创作工作台。 在画…（⭐1,211） `图像生成` `Agent/智能体`
+- [vincentsch/explainroo](https://github.com/vincentsch/explainroo) — Explainer videos and product demos made by your AI agent. Free and open source: …（⭐558） `语音/音乐` `Agent/智能体`
 - ……另有 14 个项目，见 JSON 明细
 
+### 📦 其他AIGC（3 个）
+- [openai/math](https://github.com/openai/math) — （⭐14,844）
+- [pingdotgg/ts-rust](https://github.com/pingdotgg/ts-rust) — An experimental Rust port of the TypeScript 7 compiler (tsc)（⭐1,219 · HN 118pt）
+- [momozi1996/awesome-chinese-folk-game](https://github.com/momozi1996/awesome-chinese-folk-game) — Awesome Chinese folk game collection — Chinese folk-horror detective game. 9 pla…（⭐100）
+
 ### 🛠️ 开发工具/框架（3 个）
-- [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) — Claude Code plugin that replaces the compaction summary with Jev decisions: ever…（⭐7,620）
-- [nykooi1/vibe-wise](https://github.com/nykooi1/vibe-wise) — A Claude Code / Codex plugin that helps you learn how to build while AI writes t…（⭐3,541）
-- [blendi-remade/dioramas](https://github.com/blendi-remade/dioramas) — A free, open-source framework for cinematic, interactive 3D websites with AI-gen…（⭐253）
+- [tamaratran/fast-jev-compaction](https://github.com/tamaratran/fast-jev-compaction) — Claude Code plugin that replaces the compaction summary with Jev decisions: ever…（⭐7,632）
+- [nykooi1/vibe-wise](https://github.com/nykooi1/vibe-wise) — A Claude Code / Codex plugin that helps you learn how to build while AI writes t…（⭐3,590）
+- [blendi-remade/dioramas](https://github.com/blendi-remade/dioramas) — A free, open-source framework for cinematic, interactive 3D websites with AI-gen…（⭐256）
 
 ### 🎙️ 语音/音乐（8 个）
-- [JohnHeibel/PDoomVideo](https://github.com/JohnHeibel/PDoomVideo) — Source code for the Claude Opus 5.5 music video for I'm Upping My P(doom)（⭐2,086）
-- [SaarthurR/atticus-mac](https://github.com/SaarthurR/atticus-mac) — Fast, free voice assistant for your Mac. No API key: runs on your Claude Pro or …（⭐150 · HN 114pt） `AI应用/产品` `开发工具/框架`
+- [JohnHeibel/PDoomVideo](https://github.com/JohnHeibel/PDoomVideo) — Source code for the Claude Opus 5.5 music video for I'm Upping My P(doom)（⭐2,108）
+- [SaarthurR/atticus-mac](https://github.com/SaarthurR/atticus-mac) — Fast, free voice assistant for your Mac. No API key: runs on your Claude Pro or …（⭐159 · HN 115pt） `Agent/智能体` `AI应用/产品`
 - [chenkanglin198904/Personal_External_Brain](https://github.com/chenkanglin198904/Personal_External_Brain) — Not another ChatGPT wrapper. This is a local-first tool that turns your notes, w…（⭐200） `RAG/知识库`
 - [savka777/jev-use](https://github.com/savka777/jev-use) — Say it, and your Mac does it. A computer-use harness on Jev that reads the scree…（⭐121） `Agent/智能体` `多模态/视觉`
-- [lintsinghua/paint-mv-skills](https://github.com/lintsinghua/paint-mv-skills) — Agent skills that turn a song and its lyrics into a hand-painted watercolour mus…（⭐36） `Agent/智能体`
+- [lintsinghua/paint-mv-skills](https://github.com/lintsinghua/paint-mv-skills) — Agent skills that turn a song and its lyrics into a hand-painted watercolour mus…（⭐37） `Agent/智能体`
 - [BoatswainValve94/1min-ai-download](https://github.com/BoatswainValve94/1min-ai-download) — 1min.AI — Business SaaS listing. Visit link via SOFTGIT. Third-party; rights bel…（⭐35） `Agent/智能体` `AI应用/产品`
 - ……另有 2 个项目，见 JSON 明细
 
-### 🖼️ 多模态/视觉（4 个）
-- [bilibili/Index-Translate](https://github.com/bilibili/Index-Translate) — A Multilingual, Multimodal Translation Model Family（⭐1,517） `模型/推理/微调`
-- [jev-chat/jev-chat-windows](https://github.com/jev-chat/jev-chat-windows) — JevChat-Windows：聊天窗口旁挂的回复辅助。窗口截图 + 本地离线 OCR 读对方消息 → Jev 判断意图 → 3 条候选一键填入，发送永远手动（⭐802） `模型/推理/微调` `AI应用/产品`
-- [jev-chat/jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac) — 聊天悬浮窗助手（macOS）：屏幕感知 + 本地小模型判断意图与风险，按话术生成回复候选。纯只读。（⭐488） `模型/推理/微调` `AI应用/产品`
+### 🖼️ 多模态/视觉（3 个）
+- [jev-chat/jev-chat-windows](https://github.com/jev-chat/jev-chat-windows) — JevChat-Windows：聊天窗口旁挂的回复辅助。窗口截图 + 本地离线 OCR 读对方消息 → Jev 判断意图 → 3 条候选一键填入，发送永远手动（⭐807） `模型/推理/微调` `AI应用/产品`
+- [jev-chat/jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac) — 聊天悬浮窗助手（macOS）：屏幕感知 + 本地小模型判断意图与风险，按话术生成回复候选。纯只读。（⭐491） `模型/推理/微调` `AI应用/产品`
 - [shapsider/OmniJev](https://github.com/shapsider/OmniJev) — OmniJev — multimodal finite-choice decision interface and MuJoCo embodied workbe…（⭐22）
 
 ### 📚 RAG/知识库（11 个）
-- [Sheltercosmo/jev4pg](https://github.com/Sheltercosmo/jev4pg) — Established strong JEV based natural language to SQL performance and well-covere…（⭐270） `模型/推理/微调`
-- [crow-hq/llm-wiki-v2](https://github.com/crow-hq/llm-wiki-v2) — Turn your documents into a Markdown wiki that answers with citations. Runs local…（⭐212） `模型/推理/微调`
+- [Sheltercosmo/jev4pg](https://github.com/Sheltercosmo/jev4pg) — Established strong JEV based natural language to SQL performance and well-covere…（⭐278） `模型/推理/微调`
+- [crow-hq/llm-wiki-v2](https://github.com/crow-hq/llm-wiki-v2) — Turn your documents into a Markdown wiki you can read, that answers with citatio…（⭐220） `模型/推理/微调`
 - [VectifyAI/jev-doc-search](https://github.com/VectifyAI/jev-doc-search) — Long-document search with Jev and PageIndex（⭐150）
-- [MiaoWuNYA/rikkahub-sillytavern-android](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android) — 安卓AI聊天端:开箱即聊，无损导入酒馆卡，缓存强省用量，Jev 决策，专属RP模式，防空回，主动信息，前端卡支持，高定制主题，QQbot，AI群聊，插件系统，强…（⭐99） `模型/推理/微调` `AI应用/产品`
+- [cdcailf/cjkfold](https://github.com/cdcailf/cjkfold) — Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text ex…（⭐135）
+- [MiaoWuNYA/rikkahub-sillytavern-android](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android) — 安卓AI聊天端:开箱即聊，无损导入酒馆卡，缓存强省用量，Jev 决策，专属RP模式，防空回，主动信息，前端卡支持，高定制主题，QQbot，AI群聊，插件系统，强…（⭐98） `模型/推理/微调` `AI应用/产品`
 - [AbdoslamB/InkDoc](https://github.com/AbdoslamB/InkDoc) — Turn any document into clean, AI-ready Markdown — locally on your machine. Deskt…（⭐54） `多模态/视觉` `模型/推理/微调`
-- [cdcailf/cjkfold](https://github.com/cdcailf/cjkfold) — Fold look-alike CJK glyphs (Kangxi radicals, CJK radical supplements) so text ex…（⭐42）
 - ……另有 5 个项目，见 JSON 明细
-
-### 💬 AI应用/产品（1 个）
-- [Fazmin/AILearningGuide](https://github.com/Fazmin/AILearningGuide) — A desktop app that teaches you how modern AI works by letting you play with it.（⭐35）
 
 ## 四、社区爆发项目（Hacker News 反向捕获，含老项目翻红）
 
 | # | 项目 | 创建日期 | ⭐ Stars | HN Points | 评论 | 简介 |
 |---|---|---|---:|---:|---:|---|
-| 1 | [magnitudedev/magnitude](https://github.com/magnitudedev/magnitude) | 2026-06-12 | 6,718 | [194](https://news.ycombinator.com/item?id=49911995) | 97 | Open source inference engine that tunes its kernels on your hardware to find the fastest way to run each model… |
-| 2 | [anuj0456/OpenArch](https://github.com/anuj0456/OpenArch) | 2026-05-27 | 426 | [140](https://news.ycombinator.com/item?id=49693384) | 33 | PyTorch implementations of modern open-source LLM architectures (Llama, Qwen, DeepSeek, Gemma, GPT-OSS, Kimi, … |
-| 3 | [pizza-bot-app/pizza-bot](https://github.com/pizza-bot-app/pizza-bot) | 2026-06-26 | 487 | [61](https://news.ycombinator.com/item?id=49713894) | 37 | A local-first inbox for long-running AI agents, built with DeepAgents and LangGraph. |
-| 4 | [SamsungLabs/LittleBit](https://github.com/SamsungLabs/LittleBit) | 2025-11-18 | 278 | [90](https://news.ycombinator.com/item?id=50005608) | 26 | Official implementation of LittleBit (NeurIPS 2025) and its follow-up LittleBit-2 (ICML 2026) |
+| 1 | [magnitudedev/magnitude](https://github.com/magnitudedev/magnitude) | 2026-06-12 | 6,734 | [194](https://news.ycombinator.com/item?id=49911995) | 97 | Open source inference engine that tunes its kernels on your hardware to find the fastest way to run each model… |
+| 2 | [pizza-bot-app/pizza-bot](https://github.com/pizza-bot-app/pizza-bot) | 2026-06-26 | 492 | [61](https://news.ycombinator.com/item?id=49713894) | 37 | A local-first inbox for long-running AI agents, built with DeepAgents and LangGraph. |
+| 3 | [SamsungLabs/LittleBit](https://github.com/SamsungLabs/LittleBit) | 2025-11-18 | 280 | [90](https://news.ycombinator.com/item?id=50005608) | 26 | Official implementation of LittleBit (NeurIPS 2025) and its follow-up LittleBit-2 (ICML 2026) |
 
 ## 五、Hugging Face 近 30 天热门新模型
 
 | # | 模型 | 任务 | ❤️ Likes | Downloads | 发布日期 |
 |---|---|---|---:|---:|---|
-| 1 | [convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya) | 文本分类 | 5,577 | 46,160 | 2026-09-18 |
-| 2 | [autotrust/JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) | 多模态理解 | 4,289 | 1,558,117 | 2026-09-30 |
-| 3 | [abenzerps/Qwen-Image-2.1-Uncensored-Quantized](https://huggingface.co/abenzerps/Qwen-Image-2.1-Uncensored-Quantized) | 文生图 | 4,224 | 2,247,929 | 2026-09-20 |
-| 4 | [Qwen/Qwen-Image-2.1](https://huggingface.co/Qwen/Qwen-Image-2.1) | 文生图 | 3,283 | 147,995 | 2026-09-14 |
-| 5 | [prism-ml/Ternary-Bonsai-2-27B-gguf](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf) | 文本生成 | 2,680 | 4,686,252 | 2026-09-16 |
-| 6 | [Cloudflare/clef](https://huggingface.co/Cloudflare/clef) | 多模态理解 | 2,146 | 17,173 | 2026-09-30 |
-| 7 | [google/embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2) | 特征/向量 | 2,122 | 124,930 | 2026-09-14 |
-| 8 | [Comfy-Org/Qwen-Image-2.1](https://huggingface.co/Comfy-Org/Qwen-Image-2.1) | — | 1,106 | 9,400,716 | 2026-09-15 |
-| 9 | [Aleph-Alpha/Kolibri-1](https://huggingface.co/Aleph-Alpha/Kolibri-1) | 文本生成 | 928 | 15,335 | 2026-10-02 |
-| 10 | [Cloudflare/clef-flash](https://huggingface.co/Cloudflare/clef-flash) | 多模态理解 | 809 | 24,809 | 2026-09-30 |
-| 11 | [Viggle/Qwen-Image-2.1-viggle-turbo](https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo) | 文生图 | 726 | 472,230 | 2026-09-22 |
-| 12 | [Qwen/Qwen-Image-2.1-Turbo](https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo) | 文生图 | 720 | 9,665 | 2026-10-09 |
-| 13 | [Venastine-Research/Xing4.0-29B-A4B-GGUF](https://huggingface.co/Venastine-Research/Xing4.0-29B-A4B-GGUF) | 文本生成 | 711 | 58,000 | 2026-09-17 |
-| 14 | [autotrust/JEV-35B](https://huggingface.co/autotrust/JEV-35B) | 文本分类 | 611 | 17,426 | 2026-10-11 |
-| 15 | [orcarouter/OrcaSAQ-2-Cyber-27B-Uncensored-GGUF](https://huggingface.co/orcarouter/OrcaSAQ-2-Cyber-27B-Uncensored-GGUF) | 文本生成 | 519 | 24,458 | 2026-09-26 |
+| 1 | [convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya) | 文本分类 | 5,606 | 47,754 | 2026-09-18 |
+| 2 | [autotrust/JEV-27B-VL](https://huggingface.co/autotrust/JEV-27B-VL) | 多模态理解 | 5,002 | 1,570,992 | 2026-09-30 |
+| 3 | [abenzerps/Qwen-Image-2.1-Uncensored-Quantized](https://huggingface.co/abenzerps/Qwen-Image-2.1-Uncensored-Quantized) | 文生图 | 4,318 | 2,315,771 | 2026-09-20 |
+| 4 | [prism-ml/Ternary-Bonsai-2-27B-gguf](https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf) | 文本生成 | 2,694 | 4,786,442 | 2026-09-16 |
+| 5 | [Cloudflare/clef](https://huggingface.co/Cloudflare/clef) | 多模态理解 | 2,161 | 18,304 | 2026-09-30 |
+| 6 | [Comfy-Org/Qwen-Image-2.1](https://huggingface.co/Comfy-Org/Qwen-Image-2.1) | — | 1,117 | 9,798,941 | 2026-09-15 |
+| 7 | [Aleph-Alpha/Kolibri-1](https://huggingface.co/Aleph-Alpha/Kolibri-1) | 文本生成 | 933 | 16,060 | 2026-10-02 |
+| 8 | [Cloudflare/clef-flash](https://huggingface.co/Cloudflare/clef-flash) | 多模态理解 | 821 | 26,636 | 2026-09-30 |
+| 9 | [Qwen/Qwen-Image-2.1-Turbo](https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo) | 文生图 | 787 | 12,704 | 2026-10-09 |
+| 10 | [autotrust/JEV-35B](https://huggingface.co/autotrust/JEV-35B) | 文本分类 | 776 | 27,970 | 2026-10-11 |
+| 11 | [Viggle/Qwen-Image-2.1-viggle-turbo](https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo) | 文生图 | 731 | 477,981 | 2026-09-22 |
+| 12 | [Venastine-Research/Xing4.0-29B-A4B-GGUF](https://huggingface.co/Venastine-Research/Xing4.0-29B-A4B-GGUF) | 文本生成 | 711 | 59,760 | 2026-09-17 |
+| 13 | [openbmb/MiniCPM-V-4.7-35B-A3B](https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B) | 多模态理解 | 669 | 4,157 | 2026-10-07 |
+| 14 | [orcarouter/OrcaSAQ-2-Cyber-27B-Uncensored-GGUF](https://huggingface.co/orcarouter/OrcaSAQ-2-Cyber-27B-Uncensored-GGUF) | 文本生成 | 526 | 25,403 | 2026-09-26 |
+| 15 | [akatz-ai/MiniMax-H3-Character-Swap-LoRA](https://huggingface.co/akatz-ai/MiniMax-H3-Character-Swap-LoRA) | video-to-video | 466 | 52,021 | 2026-09-25 |
 
 ## 六、Hacker News 社区热议（非 GitHub 链接）
 
 | # | 标题 | Points | 评论 | 链接 |
 |---|---|---:|---:|---|
-| 1 | How to Write with an LLM | 769 | 420 | [讨论](https://news.ycombinator.com/item?id=49747070) · [原文](https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/) |
-| 2 | Revealing the details of how OpenAI agents hacked Hugging Face | 755 | 472 | [讨论](https://news.ycombinator.com/item?id=49849985) · [原文](https://swarmtraces.org/) |
-| 3 | The gap in shared understanding of LLM capability is widening | 716 | 1046 | [讨论](https://news.ycombinator.com/item?id=50047422) · [原文](https://twitter.com/karpathy/status/2109361546505966046) |
-| 4 | Linux support is coming to Snapdragon X2 series | 625 | 273 | [讨论](https://news.ycombinator.com/item?id=49823582) · [原文](https://www.qualcomm.com/news/onq/2026/09/snapdragon-summit-agentic-ai-pcs-linux) |
-| 5 | Pirate Face Rescues LLM Models from Deletion | 569 | 149 | [讨论](https://news.ycombinator.com/item?id=49776699) · [原文](https://pirateface.co/) |
-| 6 | Opus 5.5 agents discover two room-temperature magnetic semiconductor c… | 495 | 340 | [讨论](https://news.ycombinator.com/item?id=49970667) · [原文](https://www.vals.ai/blogs/room-temperature-magnetic-semiconductors) |
-| 7 | A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf] | 426 | 140 | [讨论](https://news.ycombinator.com/item?id=49890226) · [原文](https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf) |
-| 8 | Aleph Alpha Kolibri: How the sovereign German LLM works | 424 | 12 | [讨论](https://news.ycombinator.com/item?id=49943034) · [原文](https://tej.as/blog/aleph-alpha-kolibri) |
-| 9 | There are no "rogue" AI agents | 396 | 269 | [讨论](https://news.ycombinator.com/item?id=49868083) · [原文](https://eoinhiggins.substack.com/p/there-are-no-rogue-ai-agents) |
+| 1 | Containment and monitoring failures are to blame for AI hacking report… | 861 | 498 | [讨论](https://news.ycombinator.com/item?id=50091788) · [原文](https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html) |
+| 2 | How to Write with an LLM | 769 | 420 | [讨论](https://news.ycombinator.com/item?id=49747070) · [原文](https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/) |
+| 3 | Revealing the details of how OpenAI agents hacked Hugging Face | 755 | 472 | [讨论](https://news.ycombinator.com/item?id=49849985) · [原文](https://swarmtraces.org/) |
+| 4 | The gap in shared understanding of LLM capability is widening | 722 | 1059 | [讨论](https://news.ycombinator.com/item?id=50047422) · [原文](https://twitter.com/karpathy/status/2109361546505966046) |
+| 5 | Linux support is coming to Snapdragon X2 series | 625 | 273 | [讨论](https://news.ycombinator.com/item?id=49823582) · [原文](https://www.qualcomm.com/news/onq/2026/09/snapdragon-summit-agentic-ai-pcs-linux) |
+| 6 | Pirate Face Rescues LLM Models from Deletion | 569 | 149 | [讨论](https://news.ycombinator.com/item?id=49776699) · [原文](https://pirateface.co/) |
+| 7 | Opus 5.5 agents discover two room-temperature magnetic semiconductor c… | 495 | 340 | [讨论](https://news.ycombinator.com/item?id=49970667) · [原文](https://www.vals.ai/blogs/room-temperature-magnetic-semiconductors) |
+| 8 | A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf] | 426 | 140 | [讨论](https://news.ycombinator.com/item?id=49890226) · [原文](https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf) |
+| 9 | Aleph Alpha Kolibri: How the sovereign German LLM works | 424 | 12 | [讨论](https://news.ycombinator.com/item?id=49943034) · [原文](https://tej.as/blog/aleph-alpha-kolibri) |
 | 10 | Feds Target AI Critics as "Foreign Agents" | 396 | 457 | [讨论](https://news.ycombinator.com/item?id=49824686) · [原文](https://www.kenklippenstein.com/p/feds-think-ai-critics-are-foreign) |
 
 ## 附录：统计口径说明
 
-- 时间窗口：2026-09-14 ~ 2026-10-14（UTC，30 天）；GitHub 正向 / HN / HF 均取窗口内 created 项目，另含 HN 反向补全的爆发项目
+- 时间窗口：2026-09-15 ~ 2026-10-15（UTC，30 天）；GitHub 正向 / HN / HF 均取窗口内 created 项目，另含 HN 反向补全的爆发项目
 - GitHub：窗口内新建仓库，topic 查询 stars > 20，全站兜底 stars > 100 且经 AIGC 白名单过滤
 - HN：points > 50，经标题相关性过滤，按 objectID 去重；HN 中出现但正向未捕获的 GitHub 仓库，用 core API 反查补全，按创建时间区分为新发布 / 社区爆发
 - HF：likes7d 榜 Top100 中于窗口内创建的模型，按 likes 排序
 - 热度分口径：`heat_score = stars + hn_points*2 + hn_comments`
-- 采集量：GitHub 新发布 310 个 + 社区爆发 4 个 / HN 热议 70 条 / HF 新模型 59 个
+- 采集量：GitHub 新发布 316 个 + 社区爆发 3 个 / HN 热议 62 条 / HF 新模型 61 个
 - 结构化明细：`output/aigc_data.json`
