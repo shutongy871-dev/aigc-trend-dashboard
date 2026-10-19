@@ -851,6 +851,8 @@ function discoveryIntro(title, text) {
   let notice = "";
   if (!a.ready) notice = '<div class="analysis-notice">本期尚无可用的 AI 深度解读，当前展示项目原文和分类初筛。完成模型分析后将补充中文上手指南、演示与共同机制。</div>';
   else if (a.failed) notice = '<div class="analysis-notice">本期部分分析未完成，相关项目保留原文，可在后续更新中重试。</div>';
+  else if (a.model_enabled === false) notice = '<p class="scope-note" style="margin-top:10px">已保留 ' + fmt(a.ready) +
+    ' 个项目的 AI 解读。每日自动解读尚未启用，管理员可在“设置”连接模型。</p>';
   else if (a.initial_review) notice = '<p class="scope-note" style="margin-top:10px">首批 ' + fmt(a.ready) +
     ' 个项目由本次 AI 阅读 README 后解读，其余项目暂展示原文。每日任务将继续补充和更新。</p>';
   return '<div class="discovery-intro"><h2>' + title + '</h2><p>' + text + "</p>" + notice + "</div>";

@@ -188,7 +188,109 @@
         "https://raw.githubusercontent.com/Ebony-Vinyl/dsh-our-free-model/HEAD/docs/images/trendshift-weekly-2026-10-11-first-gold.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "挂载到 dsh 的模型接入插件。",
+          "sources": [
+            "R2",
+            "R7"
+          ]
+        },
+        "summary": {
+          "text": "把公共模型网关接入 dsh，按你的网络出口探测可用模型，并提供本机转发接口。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "value": {
+          "text": "省去逐个适配模型入口的操作；从同一个选择器切换模型和思考档位。",
+          "sources": [
+            "R4",
+            "R9"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "可用模型列表，以及供其他本机工具调用的兼容接口。",
+          "sources": [
+            "R4",
+            "R9"
+          ]
+        },
+        "mechanism": {
+          "text": "动态获取上游模型清单，再区分模型拒绝路由、地区限制与临时网络错误；本机兼容接口把这些差异封装起来。",
+          "sources": [
+            "R4",
+            "R9"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试把“当前可用性”做成模型选择的一等信息，帮助用户在故障时理解为什么不能选某个模型。",
+          "sources": [
+            "R4"
+          ]
+        },
+        "limitations": {
+          "text": "作者说的“不限量”不等于没有速率限制：仍可能返回 429，部分模型会静默推理或出现空响应。",
+          "sources": [
+            "R28"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "先准备 dsh；从本仓库 Release 或源码目录安装，作者明确提醒不要用 npm 上的同名包。",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "在实际使用的 profile 下添加插件并重启一次，具体安装方式以宿主类型为准。",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "在模型选择器中选 Our Free Model 分组；设置页可启用本地转发。",
+            "sources": [
+              "R9"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "在 dsh 选择一个当前网络可用的模型。",
+            "sources": [
+              "R9"
+            ]
+          },
+          "output": {
+            "text": "当前会话使用所选模型，模型选择结果按会话保留。",
+            "sources": [
+              "R9"
+            ]
+          },
+          "steps": [
+            {
+              "text": "刷新模型清单与可用性分组。",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "选择模型及其支持的思考档位。",
+              "sources": [
+                "R9"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "cdc86997f7253e7237b7d163755b66abf8362c1c3ea22149eaaedab05a6efa59",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1383809012,
@@ -278,6 +380,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -381,8 +484,7 @@
           ]
         }
       },
-      "learning_cache_key": "a88638aecdafdf25e92c31b03ffb8e04c233b947f7216b3ee4659dc85fab6586",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "a88638aecdafdf25e92c31b03ffb8e04c233b947f7216b3ee4659dc85fab6586"
     },
     {
       "id": 1410124849,
@@ -466,7 +568,117 @@
         "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/ripple-tank.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "为编程 Agent 提供可视化工作流的技能。",
+          "sources": [
+            "R1",
+            "R8"
+          ]
+        },
+        "summary": {
+          "text": "把抽象技术概念变成能操作的立体示意物，用 SVG、WebGL 或 3D 展示原理。",
+          "sources": [
+            "R1",
+            "R8"
+          ]
+        },
+        "value": {
+          "text": "解释缓存、连接池等概念时，让读者观察部件和数值如何一起变化。",
+          "sources": [
+            "R1",
+            "R6"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "可用于文档的交互图、独立 HTML 或 React 组件；具体交付形式由提问指定。",
+          "sources": [
+            "R6"
+          ]
+        },
+        "mechanism": {
+          "text": "模型先收集真实参数、设计物体和部件清单，再调用几何绘制库；几何审计与浏览器截图检查约束最终图形。",
+          "sources": [
+            "R8"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试把产品中的配额、排队或资源分配做成可操作的说明，让用户先体验规则再阅读文档。",
+          "sources": [
+            "R6",
+            "R8"
+          ]
+        },
+        "limitations": {
+          "text": "这是 Agent 工作流，需要生成和检查过程；示意物表达概念，不等于真实工程仿真。",
+          "sources": [
+            "R1",
+            "R8"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "准备支持该技能的 Agent、Node.js 20.10+；浏览器检查需要 Chrome 或 Chromium。",
+            "sources": [
+              "R9"
+            ]
+          },
+          {
+            "text": "按官方快速开始安装：npx skills add wheresryan22/anatomy -g",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "在 Claude Code 输入 /anatomy explain how a token bucket rate limiter works, interactive；Codex 使用 $anatomy。",
+            "sources": [
+              "R2",
+              "R6"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "解释 token bucket 限流器的工作方式，并可交互。",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "一张展示限流概念的交互解释图。",
+            "sources": [
+              "R2",
+              "R6"
+            ]
+          },
+          "steps": [
+            {
+              "text": "确定要解释的数值与规则。",
+              "sources": [
+                "R8"
+              ]
+            },
+            {
+              "text": "设计部件并构建几何模型。",
+              "sources": [
+                "R8"
+              ]
+            },
+            {
+              "text": "检查连接、遮挡和浏览器画面。",
+              "sources": [
+                "R8"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "3fcc118ea9373bbb536cb42d2f4859bc5706daddf9177a1feca6ba7f847fdd04",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1407950271,
@@ -614,7 +826,112 @@
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/discord-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "为编程 Agent 提供技能、MCP 和命令行工具。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "给游戏改造任务提供一套从引擎识别、最小 Mod 到游戏内验证的 Agent 工作流。",
+          "sources": [
+            "R1",
+            "R3"
+          ]
+        },
+        "value": {
+          "text": "把分散在论坛、代码和素材工具里的改造步骤串起来，并复用前人记录的踩坑经验。",
+          "sources": [
+            "R3",
+            "R4"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "目标游戏的 Mod、相关素材、实际游戏验证记录和可复用的 field note。",
+          "sources": [
+            "R3",
+            "R4",
+            "R6"
+          ]
+        },
+        "mechanism": {
+          "text": "把领域操作封装为技能循环：知识库检索→侦察→代码与素材改造→真实环境验证→经验回写。",
+          "sources": [
+            "R3",
+            "R4"
+          ]
+        },
+        "inspiration": {
+          "text": "可把类似方法用于其他复杂软件扩展：每完成一次项目，都留下带版本、验证方法和故障修复的经验记录。",
+          "sources": [
+            "R4"
+          ]
+        },
+        "limitations": {
+          "text": "“几乎任意游戏”是作者的目标表述；具体路线取决于引擎、版本和已验证经验。",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "按 README 的对应 Agent 安装表接入技能、fal MCP 与 um CLI。",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "提供自己拥有的游戏名称或路径及改造目标，先让 Agent 检索知识库、识别引擎和路线。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "从一个可运行的最小改动开始，在游戏中验证，再打包并记录经验。",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "询问本地某个游戏使用什么引擎、是否已有改造路线。",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "包含游戏改造路线的计划，之后再开发最小 Mod 并验证。",
+            "sources": [
+              "R3",
+              "R5"
+            ]
+          },
+          "steps": [
+            {
+              "text": "检索已有 field notes。",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "侦察引擎与版本并选择路线。",
+              "sources": [
+                "R3",
+                "R5"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "14627bc8757c647d72471e9163a43f894b96b45644a4ac4b8fd66af8988389ca",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1393965829,
@@ -708,7 +1025,116 @@
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "可更换信源与筛选规则的行业资讯网站框架。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "把多来源资讯合并成事件，再按独立来源热度生成行业精选和日报的网站框架。",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "value": {
+          "text": "解决同一件事被多家转述、读者反复看到相同新闻的问题。",
+          "sources": [
+            "R6"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "带中文摘要、事件聚合和日报的行业资讯站。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "先用向量或文字重合度找可能相同的报道，再由模型判断同一事件或后续进展；热度按去重后的独立来源计数，并随时间衰减。",
+          "sources": [
+            "R6"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试建立垂直领域灵感站：用领域标准选材，把多篇报道浓缩成一次值得关注的事件。",
+          "sources": [
+            "R1",
+            "R3",
+            "R6"
+          ]
+        },
+        "limitations": {
+          "text": "原站的信源名单与运营数据未公开；行业价值取决于你补充的信源和筛选标准。",
+          "sources": [
+            "R4"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "准备 Docker、Node.js 24 和 OpenAI 兼容模型 Key；按 README 生成配置后启动 Docker Compose。",
+            "sources": [
+              "R10"
+            ]
+          },
+          {
+            "text": "打开本机 3000 端口的网站和 /admin 后台；将示范源换成行业信源。",
+            "sources": [
+              "R4",
+              "R10"
+            ]
+          },
+          {
+            "text": "在 industry/prompts/ 调整精选提示词与门槛，按部署文档配置自己的站点。",
+            "sources": [
+              "R5",
+              "R10"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "官网和多家媒体报道同一件事。",
+            "sources": [
+              "R6"
+            ]
+          },
+          "output": {
+            "text": "一个聚合事件，而不是重复出现的多条资讯。",
+            "sources": [
+              "R6"
+            ]
+          },
+          "steps": [
+            {
+              "text": "检索可能相关的报道。",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "模型复核事件关系。",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "按独立来源和时间衰减计算热度。",
+              "sources": [
+                "R6"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "7fd3a53b3559de5828b7de755b2db3402be160440e07aace00c0b9d7090d5317",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1378288598,
@@ -1094,6 +1520,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -1200,8 +1627,7 @@
           ]
         }
       },
-      "learning_cache_key": "ef3264e62bf02b01fcfb1644e966ac4332468c4edd1b8ad4f577247e39334874",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "ef3264e62bf02b01fcfb1644e966ac4332468c4edd1b8ad4f577247e39334874"
     },
     {
       "id": 1410929004,
@@ -1297,6 +1723,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -1401,8 +1828,7 @@
           ]
         }
       },
-      "learning_cache_key": "96aefe9462ef16b93f541152c8854e2a16bf27a02ceb30c8c6ef2f06dd88b3f9",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "96aefe9462ef16b93f541152c8854e2a16bf27a02ceb30c8c6ef2f06dd88b3f9"
     },
     {
       "id": 1423101235,
@@ -1584,7 +2010,110 @@
         }
       ],
       "discovery_kind": "application",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "在自己电脑上运行的资产管理与规划应用。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "将净资产、持仓和现金流放在本地管理，并可让 AI 根据这些记录辅助分析。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "value": {
+          "text": "需要统一查看银行、投资、债务和目标时，把结构化资产记录与对话分析放到一起。",
+          "sources": [
+            "R5"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "资产与现金流视图，以及依据自身记录产生的解释和待确认的修改建议卡。",
+          "sources": [
+            "R5"
+          ]
+        },
+        "mechanism": {
+          "text": "本机保存财务记录，AI 从记录出发分析、可搜索网页，并将修改提议做成等待用户确认的卡片。",
+          "sources": [
+            "R2",
+            "R4",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "可借鉴“先出建议卡，再由人确认”的方式，让 AI 参与重要数据操作时保留明确的决策步骤。",
+          "sources": [
+            "R5"
+          ]
+        },
+        "limitations": {
+          "text": "AI 是可选云端能力，需要自己的 Key 和额度；本地保存记录不代表 AI 分析完全离线。",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "准备 Git、Node.js 22+ 和 uv，然后按 README 获取项目。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "macOS/Linux 用 ./start.sh --demo，Windows 用 ./start.ps1 -Demo，先在虚构家庭数据上体验。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "需要 AI 时，用自己的 OpenRouter Key 配置 backend/.env 中的 OPENROUTER_API_KEY；真实数据模式不加 demo 参数。",
+            "sources": [
+              "R4",
+              "R6"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "用项目自带的虚构家庭数据打开资产页面。",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "获得针对记录的解释；涉及修改时先给出确认卡片。",
+            "sources": [
+              "R5"
+            ]
+          },
+          "steps": [
+            {
+              "text": "查看持仓、现金流和财务目标。",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "启用 AI 后，围绕记录发起问题。",
+              "sources": [
+                "R5",
+                "R6"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "df37ddc601e3c7f2310b2982cb62017737027d886366ff106f110ae63cefa6b8",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1401476500,
@@ -1680,7 +2209,113 @@
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/video-en.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "随技能附带页面生成 CLI 的 Agent Skill。",
+          "sources": [
+            "R1",
+            "R3"
+          ]
+        },
+        "summary": {
+          "text": "让 Agent 用图文网页回答复杂问题：模型写 Markdown 草稿，CLI 负责排版和画图。",
+          "sources": [
+            "R1",
+            "R15"
+          ]
+        },
+        "value": {
+          "text": "需要解释架构、流程或比较方案时，把长答案组织成方便阅读和分享的一页。",
+          "sources": [
+            "R1",
+            "R9"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "包含文本、表格、代码与图示的单文件 HTML，可离线打开。",
+          "sources": [
+            "R9",
+            "R16"
+          ]
+        },
+        "mechanism": {
+          "text": "把语言模型的工作缩到结构化 Markdown；模板、面板布局和图形坐标由确定性 CLI 计算，草稿出错则返回具体位置供修正。",
+          "sources": [
+            "R15",
+            "R16"
+          ]
+        },
+        "inspiration": {
+          "text": "可把公司内部技术 FAQ 做成可分享的解释页，用统一渲染器承担布局，让模型专注内容。",
+          "sources": [
+            "R9",
+            "R15",
+            "R16"
+          ]
+        },
+        "limitations": {
+          "text": "作者提供的 token 和速度对比来自其特定样本，不代表所有主题都能达到同样收益。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "准备 Node.js 20+；技能自带 CLI，无需另做 npm install。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "把 README 的安装指引交给 Agent，读取仓库 INSTALL.md 完成对应客户端安装。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "像平时一样提问，例如“解释 TCP 三次握手”，让 Agent 生成页面。",
+            "sources": [
+              "R1",
+              "R15"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "解释 TCP 三次握手。",
+            "sources": [
+              "R1"
+            ]
+          },
+          "output": {
+            "text": "一页包含握手时序和状态转换的 HTML 解释。",
+            "sources": [
+              "R15",
+              "R16"
+            ]
+          },
+          "steps": [
+            {
+              "text": "模型写含 sequence 和 flow 图定义的 Markdown。",
+              "sources": [
+                "R15"
+              ]
+            },
+            {
+              "text": "CLI 计算布局并应用主题。",
+              "sources": [
+                "R15"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "170826dfdf5b873e0359dbc303e83e9eab10820e190b797eef3eb8991d8bfcc3",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1394045721,
@@ -1840,7 +2475,112 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "结合品牌设计流程、参考库与 Python 工具的技能。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "让 Agent 按品牌设计流程提出 Logo 概念，用 SVG 制作并检查，再由你选择方向。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "value": {
+          "text": "把“帮我画个 Logo”变成可比较、可检查的设计过程，包括小尺寸、单色和相似性检查。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "第一步是概念对比与推荐；选定方向后才生成完整 SVG、图标与品牌规范。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "mechanism": {
+          "text": "将设计原则和分阶段工作流写入技能，再用参考库辅助研究、Python 工具检查 SVG 的可读性与应用场景。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "inspiration": {
+          "text": "可将同样的检查点用于其他创作产品：先验证方向，再投入完整交付，降低返工成本。",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "参考库用于研究构造与避免撞形，不能把其中的现成品牌直接复制为自己的 Logo。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "在 Claude Code 通过 README 的 marketplace 命令安装，也可把技能目录复制到项目或个人技能目录。",
+            "sources": [
+              "R5",
+              "R6"
+            ]
+          },
+          {
+            "text": "提供品牌 brief，让 Agent 研究行业惯例并制作可比较的 SVG 概念。",
+            "sources": [
+              "R2",
+              "R3"
+            ]
+          },
+          {
+            "text": "在检查点选择一个方向，再要求完整品牌交付包。",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "提交一个品牌设计 brief。",
+            "sources": [
+              "R2",
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "展示多个概念和推荐，等待用户选方向后再扩展完整品牌包。",
+            "sources": [
+              "R3"
+            ]
+          },
+          "steps": [
+            {
+              "text": "研究行业惯例并生成候选方向。",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "制作 SVG 并检查小尺寸与单色效果。",
+              "sources": [
+                "R2",
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "3513d7bbd1f49febeced4d99fb5f3e26f6829d4aa74983cb8aea68ed8699a784",
+      "learning_model": "session-assistant-readme-review"
     },
     {
       "id": 1389011744,
@@ -2197,6 +2937,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2308,8 +3049,7 @@
           ]
         }
       },
-      "learning_cache_key": "3984e87e2f60bbebff110692ac25060c40d3e29ade5a0f6b9a80995eaabfcf5e",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3984e87e2f60bbebff110692ac25060c40d3e29ade5a0f6b9a80995eaabfcf5e"
     },
     {
       "id": 1416386910,
@@ -52204,12 +52944,13 @@
     "analysis": {
       "model": "doubao-seed-1-6-250615",
       "prompt_version": "discovery-v1",
-      "cached": 4,
+      "cached": 11,
+      "model_enabled": false,
       "generated": 0,
       "failed": 0,
-      "ready": 4,
+      "ready": 11,
       "status": "ready",
-      "generated_at": "2026-10-19 20:20 UTC"
+      "generated_at": "2026-10-19 20:24 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -52241,593 +52982,52 @@
       "composio-community/open-dot",
       "iamlukethedev/Herald-OS"
     ],
-    "clusters": [],
-    "cluster_status": "unavailable",
-    "cluster_cache_key": "c82a8b0d7b19673494952da081158e4c35736e52cef3c49191a059df49f2f10d",
-    "candidates": [
+    "clusters": [
       {
-        "title": "Agent/智能体",
+        "title": "把领域经验写成技能，再用程序检查产物",
+        "mechanism": "这些项目没有重新训练一个专用模型，而是把领域流程、参考资料和检查工具交给通用编程 Agent。模型决定做什么，几何审计、SVG 测试或功能矩阵帮助检查是否做到。关键变化是把一次提示词变成可反复执行、能留下中间产物的工作流程。",
+        "inspiration": "可尝试把团队某项成熟流程做成技能：明确每阶段产物、审核检查点与可执行检查，让经验能被下一次任务复用。",
         "members": [
-          "Ebony-Vinyl/dsh-our-free-model",
-          "yetone/magpie",
-          "wheresryan22/anatomy",
-          "rehan-remade/universal-modder",
-          "KKKKhazix/AIHOT",
-          "zai-org/ZCode",
-          "jev-chat/jev-chat-jarvis",
-          "CopilotKit/OpenDots",
-          "Louis-CFM/coucou",
-          "QingYunA/answer-me-with-html",
-          "omnirush-ai/omnirush-gui",
-          "Jakeschincariol/replica-skill",
-          "onehumanbeing/esp32-iphone-agent",
-          "dzhng/jevgrep",
-          "feder-cr/invisible_playwright_mcp",
-          "Fei2411/DeepSeek-Bot",
-          "nanaism/yomiyasu",
-          "unreallabsai/unreal-agent",
-          "rociiu/talorys",
-          "academa-labs/manimgx",
-          "franzenzenhofer/big-arrow-on-the-screen",
-          "jiwoochris/artex-global",
-          "angusdevgo/Seep-Reverse-Lab",
-          "nano-muse/nanoMuse",
-          "perplexityai/SPACE",
-          "freestylefly/WeChatBridge",
-          "penso/herdr-gpui",
-          "trhhubsd/ARTEX",
-          "mikehasa/golive-skill",
-          "marclou/mailcheap",
-          "goodnight000/api-anything",
-          "jwuthri-cloud/Tracely-ai",
-          "Jakeschincariol/founder-skill",
-          "Harvil1/codeAgent",
-          "LiCinCan/blender-ai-mcp-addon",
-          "outcrawlai/scout",
-          "morluto/awesome-reverse-engineering",
-          "cloudflare/cf",
-          "AgnesAI-Labs/agnes-harness",
-          "elstongun/leviathan",
-          "StartLuxLabs/StartLux-Decision",
-          "AgentMemoryRepo/agentmemoryrepo",
-          "NabilRFG12/Reverse-Engineer-anything",
-          "Zfinix/eleven",
-          "openqodex/openqodex",
-          "nealbridges/VulnHunter",
-          "angel291592/Intent-Router",
-          "richiemcilroy/Tov",
-          "zhuyansen/awesome-claude-video-skills",
-          "yeyuxin777/baoyan-agent-benchmark",
-          "hujjun/mcd-saver-strategist",
-          "strands-labs/strands-decider",
-          "composio-community/open-dot",
-          "wuyoscar/jev-skill",
-          "kydlikebtc/awesome-jev",
-          "lhlGitHub/threejs-architecture-effects",
-          "IsuruMaduranga/harness-engineering-101",
-          "cranebeaker/coop-anything",
-          "Ayzzz123/mcd-coupon-strategist",
-          "iamlukethedev/Herald-OS",
-          "qybaihe/mu",
-          "TannerMidd/pi-pocket",
-          "i12bp8/decomp.wtf",
-          "allenv0/SCM",
-          "reason-machines/reason-network",
-          "xop01/ai_goodpractice",
-          "VITASID57/bluntcore-intimacy-lab",
-          "graygnatconsole/mcp-audit-tool",
-          "cv-cat/catbus",
-          "breakstageaxe61/genspark-claw",
-          "sno-ai/sno-station-skills",
-          "hanzohanzhe/Grandet",
-          "strands-agents/box",
-          "gatewai-dev/framefields",
-          "anteloc/ldraw-nova",
-          "heqiangdiao-wq/AI-Cross-Border-Ecommerce-Agent-Toolkit",
-          "kitlangton/scrawl",
-          "Sixian-Li/plain-backtest",
-          "BootLoops-ai/bootloops",
-          "NB-Corp/gpt-with-taste",
-          "SakanaAI/AI-Scientist-v3",
-          "zhouwei713/luobo-ppt",
-          "malevrigns/agent-jev",
-          "SimonSchubert/omalauncher",
-          "fumingyang2004/Tulpa",
-          "vojtaholik/good-css",
-          "leter/zh-tech-writing",
-          "opensec-git/Pi-Bolt",
-          "mariagorskikh/open-instinct",
-          "openJiuwen-ai/iCode",
-          "nuglifeleoji/Sentry",
-          "Parcha-ai/agentrun",
-          "diggerhq/shipvideo",
-          "RuoJi6/ARTEX",
-          "len5ky/sessiondeck",
-          "XiaoPuOuO/openchatx-mcp",
-          "scaleapi/agentenv-framework",
-          "dualface/ste-zh",
-          "OrgoAI/bops",
-          "NousResearch/hermes-official-plugins",
-          "cosscom/shipyard",
-          "LumaryLabsLLC/muxin",
-          "Graphicle-AI/graphicle",
-          "FengZhenfei/carrel",
-          "justxor/claude-code-pro-course",
-          "Chengjun023/agent-smith",
-          "Simreal-AI/Simreal-MLBench",
-          "hamzafer/claude-code-mods",
-          "aindeev/agent-chrome-relay",
-          "HeyPuter/builder",
-          "KnifeLemon/Droidline",
-          "Hybirdss/Hycli",
-          "mikamikasuki/forest",
-          "EL4CTEO/blender-skills",
-          "Akun-python/autumn-recruitment",
-          "AFK-surf/Comma",
-          "ANDRETRIPOL/OpenGhost",
-          "Devin-AXIS/jev-dsh-decision",
-          "longsurf-ai/openchart",
-          "dagoSte/squadra",
-          "pullboard-dev/pullboard",
-          "ZCodium-project/ZCodium",
-          "MiniMax-AI/OpenAgentCore",
-          "zgcagi/Harness-RSI",
-          "libingzheren/Jev-Mem",
-          "Michael-Jiahao-Zhang/game-the-llm-reviewer",
-          "Fazmin/AILearningGuide",
-          "luobosibing2/dsh-jev-plugin",
-          "disler/durable-pi",
-          "1105216375-alt/resimind",
-          "matank001/clodfarm",
-          "bdg9412/artex-ko-plus",
-          "Remocn/remocn-studio",
-          "LSPosed/dexsql-release",
-          "theNetworkChuck/paperclip-guide",
-          "SouravBeraAkaSpeed/xiryn",
-          "scarletkc/seiso",
-          "pinganbbOvO/ai-companion-kit",
-          "Microqian2th/dsh-codex-effort-slider",
-          "wousp112/awesome-justin-sun-ideas-to-ai-howto",
-          "facebookresearch/swe-sweep",
-          "callstackincubator/codex-mobile-dev-plugin",
-          "ThinkFlowLab/system1-agents",
-          "lawrencewzen/wx-bot",
-          "Promethe-us/awesome-jev",
-          "THUROI0787/absent-author",
-          "uzairansaruzi/p3-stack",
-          "solongate/agent-security",
-          "arcships/rutis",
-          "AgenticsWorks/AgentPeerChat",
-          "aaddrick/building-with-typesafe-jev",
-          "chienbm98/foxprofile",
-          "botbus-io/botbus-protocol",
-          "Cygnux-Labs/Tracekit",
-          "RoversX/ThinkTerm",
-          "sepehr071/awesome-iran-mcp",
-          "midudev/better-claude",
-          "shuyu-labs/transwork",
-          "michaelswissa/jevry",
-          "UditAkhourii/quicksilver",
-          "TimeLovercc/mojito",
-          "Shanghua-Gao/RSI-Jev",
-          "georgeding/Relate",
-          "csr1010/wappy-kit",
-          "Danielxu0208/rsi_eval",
-          "steventsvik/Tellurion",
-          "justxor/deepseek-local-guide-ru",
-          "metaevo-ai/harness-zero",
-          "liyingze07-svg/EffectiveAutoResearch-EAR-",
-          "openpactprotocol/openpactprotocol",
-          "try2love/codex-mobile-bridge",
-          "PerryLink/jevcore",
-          "YuyaoGe/doc2harness",
-          "deeplethe/fde-gym",
-          "AskTheWay/dsh-auto-memory",
-          "Sev7eEn7/dsh-sieve",
-          "ChangWenC/understanding-ladder",
-          "TencentCloud/octop-harness",
-          "dreamscroll-lab/asamana",
-          "adexbn/walk-kcal",
-          "shuxidemosheng/dsh-tool-todo-plus",
-          "kkjiangk/agent-py",
-          "longsurf-ai/endo",
-          "Jakeschincariol/chatgpt-youtube-agent-skill",
-          "ja1chen/actell",
-          "Router0824/OpsPilot-AI",
-          "RayenMlayeh/jevcrawl",
-          "nalinbhardwaj/botscent",
-          "GroundedCore/nexusdesk",
-          "TencentCloud/octop-memory",
-          "TencentCloud/octop-gateway",
-          "JamesBuciaIt3A/Agent-Forge",
-          "2430816465/campus-knowledge-agent",
-          "TencentCloud/octop-browser",
-          "ozynautetu-create/FlowForge-Optima",
-          "kayembemike/plugforge-embedded",
-          "ztt0216/MyAgent",
-          "FibonaAI/fibona-agent",
-          "bodepudimuneendra-netizen/laya-jev-GraphRAG",
-          "VoltEmperorChaos/ai-agent-for-pc",
-          "jaikydota/BullFlow",
-          "rlaope/deepseek-bot",
-          "Hermes-Deck/hermes-deck",
-          "Past-da-king/agent",
-          "duyongan/dots-agent",
-          "Perruer/keelflow",
-          "gonzaroman/IHMT-MEMORY",
-          "BijectiveLabs/trading-research-agents",
-          "cagridursun/agentic-developer-handbook",
-          "lobehub/acceptance",
-          "lmliheng/Adelie",
-          "evaldock/EvalDock",
-          "xsoway/codebase-graph-prd-rules",
-          "Stonewuu/agenteam",
-          "Renaissance-Mind/ShowAI",
-          "tomascupr/reelql",
-          "Kai26-Han/Auro_agent",
-          "ismailperim/briefd",
-          "DEEP-JLU/MemAdapter",
-          "trustabl/agent-opentelemetry-rules",
-          "vfaner/jargus",
-          "Iris-Lux814/light-sleeper",
-          "changdaeoh/sharpening-tax",
-          "Jakeschincariol/x-agent-skill",
-          "aowang-ai/seris",
-          "520huxiangli/Aharou",
-          "fuzhengwei/ToyAgent",
-          "ftxcgwf/mcd-solver",
-          "cromford-ai/cromford",
-          "liaosiliangCodeLife/harness-mate-plat",
-          "ac1261692159/candela",
-          "ShengjieJin/ReSAIL",
-          "ChenneyZhuang/laya-browser-agent",
-          "ssddxg/agentic-rl-forge",
-          "medhiclb/HelixAI",
-          "sagiri942/WAygent",
-          "PatrickStar-cmd/random-signal-agent",
-          "cloudcell/gnosislab",
-          "Little-Fridge/ViewCraft"
+          {
+            "repo": "wheresryan22/anatomy",
+            "sources": [
+              "R8"
+            ],
+            "why": "用 SKILL.md 编排建模流程，用几何审计和浏览器截图检查图形。"
+          },
+          {
+            "repo": "kaankiziltug/logo-design-skill",
+            "sources": [
+              "R2",
+              "R3"
+            ],
+            "why": "将品牌设计原则、参考库与 SVG 测试结合，并在概念阶段设置选择检查点。"
+          },
+          {
+            "repo": "Jakeschincariol/replica-skill",
+            "sources": [
+              "R5",
+              "R6"
+            ],
+            "why": "分阶段技能共享文件，用功能矩阵与截图对比检查应用实现差异。"
+          },
+          {
+            "repo": "rehan-remade/universal-modder",
+            "sources": [
+              "R3",
+              "R4"
+            ],
+            "why": "改造流程从知识库检索开始，以真实游戏验证和经验记录结束。"
+          }
         ],
-        "metrics": {
-          "comparable": true,
-          "recent": 27,
-          "previous": 56,
-          "change_pct": -51.8,
-          "signal": "同类聚集",
-          "members": 239,
-          "undated": 0,
-          "recent_start": "2026-10-12",
-          "previous_start": "2026-10-05",
-          "end_exclusive": "2026-10-19"
-        }
-      },
-      {
-        "title": "图像生成",
-        "members": [
-          "Niko1221/Strata",
-          "ARahim3/DigUp",
-          "kaankiziltug/logo-design-skill",
-          "Arekejoker/qwen21-nsfw-pose-skill",
-          "feder-cr/git-ai",
-          "deeplethe/solid-glass",
-          "Inkloom-art/inkloom",
-          "oil-oil/oil-ui",
-          "Leonxlnx/earshot",
-          "OpenMOSS/MOSS-Image",
-          "amitshekhariitbhu/ai-system-design",
-          "GTKottman/mortiflix-oss",
-          "thesysdev/open-intelligent-ui",
-          "juliobsz/skills",
-          "amitshekhariitbhu/ai-engineering-course",
-          "whaleyxbt/claude-motion",
-          "songconmaisaix31-design/mcpet",
-          "heaven999b/hello-agent-system",
-          "iamumeransari/claude-show-your-work",
-          "SnowSky1/universal-imagegen-agent",
-          "Work-Fisher/ComfyUI-Fisher-Pose",
-          "hitkeeen/blender-ai-addon",
-          "MirroS-Lab/AgentGarten",
-          "kostja94/bricks",
-          "speridlabs/iris-3b",
-          "veda-sparse/Veda-on-ComfyUI",
-          "SyncSo-Inc/syncso",
-          "iamyoki/qwen-image-2.1-skill",
-          "OmniJev/OneJev",
-          "Kai-Jungsthoefel/SOMA",
-          "wildminder/awesome-qwen-image",
-          "GabrieleLozupone/kokon",
-          "Zhou-Yujing114514/deepseek-harness-linux",
-          "arla6ka/design.how",
-          "ashukae/ComfyUI-MangaScreen",
-          "joeseesun/qiaomu-codex-imagegen",
-          "100yenadmin/fish-audio-hermes",
-          "pretend1111/inko-skill",
-          "SimpleJev/JevAny",
-          "AcademiaSD/AcademiaSD_LoRAlab-TrainerStudio",
-          "sgp2hidyk7jm/flux2-flux-2-prompts",
-          "xlba2khlnrdsd8f/seedream5.0-seedream-5.0-api",
-          "twp0wh4xm56p6lc3/flux2-flux-2-gateway",
-          "bx0idu7sqebwpgu8/grokimagine2.0-grok-imagine-2.0-prompts",
-          "cqk4s1t/gptimage2.5-gpt-image-2.5-api",
-          "omnichar/ComfyUI-Omnichar",
-          "PedroMarinhoDev/ComfyUI-Drama3",
-          "ozguradmin/ahenk-turkish-tts",
-          "nj4naiem992lmr/seedream5.0-seedream-5.0-prompts",
-          "hmpg3ugc/gptimage2.5-gpt-image-2.5-prompts",
-          "qh7wn6hrf9tx/qwenimage3.0-qwen-image-3.0-prompts",
-          "pixelartistry/PixelArtistry-Watertight-Meshes",
-          "nmkshs742wz1yrh/nanobananapro-nano-banana-pro-4k",
-          "qr664tnsxq0eyn4v/nanobananapro-nano-banana-pro-gateway",
-          "fjaefshg9/flux2-flux-2-api",
-          "lfzgvaqci0occqg/qwenimage3.0-qwen-image-3.0-gateway",
-          "k2c2gbd1pqdj01wo/grokimagine2.0-grok-imagine-2.0-api",
-          "ArrozDotachi/InvokeAI-Windows-Setup-Guide",
-          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ja",
-          "ga7ycgew/grokimagine2.0-grok-imagine-2.0-2k",
-          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api",
-          "ydfqphoks5738xo/seedream5.0-seedream-5.0-gateway",
-          "ZSeven-W/codex-openpencil",
-          "apimartore3/grok-imagine-2.0-ext-reverse-api-pt",
-          "apimartx/grok-imagine-2.0-ext-reverse-api-ja",
-          "apimartf0n/grok-imagine-1.5-ext-reverse-api-cn",
-          "apimartkjp84/grok-imagine-image-2.0-api-ja",
-          "apimartmr8yx2qg/grok-imagine-1.5-edit-ext-reverse-api-fr",
-          "apimartbnv6wl16d/flux-kontext-ext-reverse-api-de",
-          "apimartjk2mb7hx/gpt-image-2-ext-reverse-api-de",
-          "apimartl/nano-banana-ext-reverse-api-es",
-          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api-cn",
-          "apimarth/gpt-image-2.5-ext-reverse-api-id",
-          "apimarttv/flux-kontext-ext-reverse-api-cn",
-          "apimartogd4o/grok-imagine-1.5-edit-ext-reverse-api-ru",
-          "rhfeiyang/HC-DLM",
-          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-cn",
-          "azle5biyd9td956/z-image-turbo-api-cn",
-          "apimartug3/grok-imagine-1.5-edit-ext-reverse-api-cn",
-          "apimartb1r/nano-banana-ext-reverse-api-id",
-          "apimartoy243w/nano-banana-ext-reverse-api-ja",
-          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ja",
-          "apimartjx02t2cb/gemini-3.1-flash-image-preview-official-api-ja",
-          "gkdh0uepxud4b/gptimage2.5-gpt-image-2.5-4k",
-          "apimartmz0cfw/grok-imagine-1.5-ext-reverse-api-es",
-          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-es",
-          "apimartc/grok-imagine-1.5-ext-reverse-api-fr",
-          "apimartri/nano-banana-2-ext-reverse-api-pt",
-          "apimartlzras0rk/gpt-image-2-official-api-ja",
-          "apimartbv/gemini-3-pro-image-preview-official-api-cn",
-          "apimartlzras0rk/gpt-image-2-official-api-ko",
-          "apimarto5ma0x/nano-banana-2-lite-ext-reverse-api-de",
-          "apimartl/nano-banana-ext-reverse-api-de",
-          "apimarth/gpt-image-2.5-ext-reverse-api-fr",
-          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-de",
-          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-pt",
-          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ko",
-          "apimartpcl9k6o1r/grok-imagine-1.5-edit-ext-reverse-api-ja",
-          "apimartri/nano-banana-2-ext-reverse-api-ru",
-          "apimarts1t/grok-imagine-2.0-ext-reverse-api-cn",
-          "janishar/qwen-image-2.1-studio",
-          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-fr",
-          "apimartg3/gpt-image-2.5-ext-reverse-api-ja",
-          "apimartoh/gemini-3.1-flash-image-preview-official-api-cn",
-          "apimartkjp84/grok-imagine-image-2.0-api-ko",
-          "apimarts7ese/nano-banana-2-ext-reverse-api-es",
-          "apimartpg9/nano-banana-2-ext-reverse-api",
-          "mehmetbulutaktas458-dev/Aozora-Forge",
-          "TKY-27/iris-3b-metal",
-          "apimartx34tmfg46/flux-kontext-ext-reverse-api-ja",
-          "apimartywdtp3/nano-banana-2-ext-reverse-api-ko",
-          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-ru",
-          "apimartyrdf8/nano-banana-pro-ext-reverse-api-ja",
-          "apimartcetp8omuw/gpt-image-2.5-ext-reverse-api-de",
-          "apimartx/grok-imagine-2.0-ext-reverse-api-ko",
-          "angelmariserg-glitch/diffusion-forge-lab",
-          "misCandijay2025/lora-forge-alibaba-cloud",
-          "apimartdgodaeh8/nano-banana-pro-ext-reverse-api-id",
-          "apimartalwi/flux-kontext-ext-reverse-api-fr",
-          "apimartsijw/gpt-image-2-ext-reverse-api-ru",
-          "apimartywdtp3/nano-banana-2-ext-reverse-api-ja",
-          "apimartalwi/flux-kontext-ext-reverse-api-id",
-          "apimartwt9t2ev/nano-banana-ext-reverse-api",
-          "apimartf0n/grok-imagine-1.5-ext-reverse-api",
-          "apimartmr8yx2qg/grok-imagine-1.5-edit-ext-reverse-api-id",
-          "apimartwt9t2ev/nano-banana-ext-reverse-api-cn",
-          "kinzaaliakbar18u-netizen/flux-lora-forge",
-          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ko",
-          "apimartemtc6qfo/grok-imagine-1.5-ext-reverse-api-pt",
-          "apimartf1cox2/nano-banana-2-lite-ext-reverse-api-ru",
-          "apimartyrdf8/nano-banana-pro-ext-reverse-api-ko",
-          "apimartlw69qg/grok-imagine-image-2.0-api-cn",
-          "apimartcetp8omuw/gpt-image-2.5-ext-reverse-api-es",
-          "apimartzcj34v/nano-banana-pro-ext-reverse-api-cn",
-          "apimartkrm4ydj5g/nano-banana-2-lite-ext-reverse-api-id",
-          "apimartbnv6wl16d/flux-kontext-ext-reverse-api-es",
-          "apimartotodeir/flux-kontext-ext-reverse-api-ru",
-          "apimartf90dby1t/grok-imagine-2.0-ext-reverse-api-es",
-          "apimartg583b51/flux-2-max-api-fr",
-          "apimartbv/gemini-3-pro-image-preview-official-api-fr",
-          "apimartoy243w/nano-banana-ext-reverse-api-ko",
-          "apimartt06j/nano-banana-ext-reverse-api-ru",
-          "apimartjk2mb7hx/gpt-image-2-ext-reverse-api-es",
-          "apimartc/grok-imagine-1.5-ext-reverse-api-id",
-          "apimartore3/grok-imagine-2.0-ext-reverse-api-ru",
-          "apimarto5ma0x/nano-banana-2-ext-reverse-api-id",
-          "apimartf1cox2/nano-banana-2-lite-ext-reverse-api-pt",
-          "t9hid1p6ue2a/z-image-turbo-api-ko",
-          "t9hid1p6ue2a/z-image-turbo-api-ja",
-          "apimarttv/flux-kontext-ext-reverse-api",
-          "ThetaCursed/TinyLuma",
-          "apimartkrm4ydj5g/nano-banana-2-lite-ext-reverse-api-fr",
-          "apimartcc2w/nano-banana-pro-ext-reverse-api-ru",
-          "apimarts7ese/nano-banana-2-ext-reverse-api-fr",
-          "azle5biyd9td956/z-image-turbo-api-fr",
-          "apimartg583b51/flux-2-max-api-cn",
-          "apimartzcj34v/nano-banana-pro-ext-reverse-api",
-          "apimartfz7/nano-banana-2-lite-ext-reverse-api-es",
-          "apimartld9qa/grok-imagine-2.0-ext-reverse-api-fr",
-          "apimartb/gpt-image-2.5-ext-reverse-api-cn",
-          "apimartoh/gemini-3.1-flash-image-preview-official-api-fr",
-          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ko",
-          "PedroMarinhoDev/ComfyUI-HunyuanImage3",
-          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ja",
-          "apimartstev/gpt-image-2-official-api-cn",
-          "VectorSpaceLab/InfoVis",
-          "apimart00-12/grok-imagine-2-api-cn",
-          "KuOnoda/AutoRef",
-          "apimart-223/flux-2-api-ja",
-          "apimart-1123/z-image-api-ko",
-          "apimart-2dwad/flux-2-api-fr",
-          "beckettharriman/gimp-openfill",
-          "apimart-ww1/seedream-5-api-cn",
-          "apimart-1sww/qwen-image-3-api-cn",
-          "rakshazi/krea2-prompting",
-          "fth1905-bot/ComfyUI-Civitai-Browser",
-          "apimart-ss223w/seedream-5-api-ko",
-          "pixelsncodes/GesturePortal",
-          "mozophe/ComfyUI-Qwen-Image-2.1-PromptEnhancer-MTP",
-          "apimart-988/nano-banana-2-api-ja",
-          "overflowofedge/ComfyUI-Qwen-Watermark",
-          "barbarabax/sonora-studio",
-          "o-l-l-i/ComfyUI-Olm-SoL-Refiner",
-          "pixelartistry/PixelArtistry-Pixal3D-Multiview",
-          "GStaaaaa/ComfyUI-Gaoshang-Pose"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 12,
-          "previous": 16,
-          "change_pct": -25.0,
-          "signal": "同类聚集",
-          "members": 185,
-          "undated": 0,
-          "recent_start": "2026-10-12",
-          "previous_start": "2026-10-05",
-          "end_exclusive": "2026-10-19"
-        }
-      },
-      {
-        "title": "视频生成",
-        "members": [
-          "yihui-dev/awesome-opus5-5-videos",
-          "lemomo-ai/lemo-opuscar",
-          "edenfunf/reelmimic",
-          "feitangyuan/onetake",
-          "glanderness/BeefTV",
-          "openfilm/openfilm",
-          "Tejashmakwana/motionmaxxing",
-          "alchaincyf/huashu-motion",
-          "shinshin86/mesh-avatar-studio",
-          "Aryanutkarsh/SeeCode",
-          "Leonxlnx/cinetic",
-          "vincentsch/explainroo",
-          "mrsarac/ff-tracking",
-          "fayazara/robot-heads",
-          "liyupi/ai-promo-video-maker",
-          "sitor-ai/frametell",
-          "Atoll92/agent-standup",
-          "FavioVazquez/showtime",
-          "Yzmblog/DMAD",
-          "OneMoh/html-explainer",
-          "Finderchangchang/brewreel",
-          "Rylaispirit/cinematic-video-prompt-skill",
-          "drowzeys/keys-Wasserman-Slate-AI-Studio-powered-by-TensorFold-built-with-integrated-Fish-Audio-Drama3",
-          "Miftahul-Islam-Efaz/Motion-graphics-skill",
-          "ejsyk3xdp3t2o/wan3.0video-wan-3.0-video-api",
-          "iyqhcef3ffn/hailuo2.3-hailuo-2.3-gateway",
-          "ovdtze56q1zgksb4/kling3-kling-3-prompts",
-          "ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
-          "0xS4N4TG/papercut-explainer",
-          "gslsvt43llzsaw/wan3.0video-wan-3.0-video-prompts",
-          "ki0ti51/kling3-kling-3-api",
-          "xcb1lkup/seedance2.0-seedance-2.0-api",
-          "ZeamoxWang/pdmd",
-          "ik29kerqejooyj/hailuo2.3-hailuo-2.3-api",
-          "lshhhhhhh/ai-school-op",
-          "vsm67u54g4j/seedance2.5-seedance-2.5-1080p",
-          "j7ts80q4tkx1ism4/wan3.0video-wan-3.0-video-gateway",
-          "hhad58x5d3nht3a/seedance2.0mini-seedance-2.0-mini-api",
-          "d3qqcegqn5bf1aco/seedance2.5-seedance-2.5-gateway",
-          "xfeqaolq2ovnv/seedance2.5-seedance-2.5-prompts",
-          "n395cux/seedance2.0-seedance-2.0-4k",
-          "tristmeister/HEISS-UI",
-          "liyupi/ai-desktop-outfit-video",
-          "Okohedeki/scroll-studio",
-          "worldbench/Orbia",
-          "tomatoparkdao/omniailab-ai-director",
-          "anisayari/sparky",
-          "sonlovinbot/Muse-animated-short-film",
-          "sepiablue-ai/ComfyUI-H3-X2-Stream",
-          "jakemanger/whatmodel",
-          "orylite/lindyson-ai",
-          "Deen-Media/dgx-monarch",
-          "AI-wan-uncensored-desktop/ai",
-          "ModelTC/LightVAE",
-          "apimart-13e42/veo-3.1-api-ja",
-          "apimart-ww/seedance-2.0-mini-api-cn",
-          "apimart-232ww/wan-3.0-video-api-fr",
-          "apimart-w1/wan-3.0-video-api-cn",
-          "underworldhistory1-ctrl/minimax-h3-higgsfield",
-          "klsoen/opus-js-animations",
-          "vakovalskii/nd-video-studio",
-          "erhanmeydan/kilnframe",
-          "apimart-2wsd2/hailuo-2.3-api-ja",
-          "cvlab-kaist/GRACE",
-          "apimart-32w/seedance-2.0-mini-api-ja",
-          "APImart-23ww/kling-3-api-ko",
-          "apimart-sc/kling-3-api-cn",
-          "vediograph-wuzhijing/videograph-validation",
-          "aashish254/Aniflow",
-          "spicyapi-ai/comfyui-spicyapi"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 4,
-          "previous": 14,
-          "change_pct": -71.4,
-          "signal": "同类聚集",
-          "members": 70,
-          "undated": 0,
-          "recent_start": "2026-10-12",
-          "previous_start": "2026-10-05",
-          "end_exclusive": "2026-10-19"
-        }
-      },
-      {
-        "title": "模型/推理/微调",
-        "members": [
-          "LosaLosSantos/aurelio-finance",
-          "Folkbench/folkbench",
-          "nokia-applied-research/AnyJev",
-          "cobanov/PS5LM",
-          "mw00/project-maya",
-          "Edwardxlai/easyread",
-          "Low-Zi-Hong/ESP32s3-LLM-Cluster",
-          "whirlchat/whirl",
-          "prabanta-dev/janas",
-          "chenxiachan/textfold",
-          "emir/AIKON",
-          "tswawa/WechatVibe",
-          "VecSzn/PolyStrata",
-          "HRuiCcc/RuiC-oc-ferry",
-          "weike-zhang/ai-novel-studio",
-          "AienTech/dossier",
-          "LeoAlecksey/opsdeck",
-          "Yamz-Labs/kyojin",
-          "init-co-jp/diff-tour",
-          "suvamneog/jobradar",
-          "Xuanwo/cida",
-          "robertkarl/UnbiasedStrata",
-          "2022hpsk/SpeakerMemR1",
-          "blendbunjaku/optimaizr",
-          "marcreichel/laya-php",
-          "Dreamer-Toby/STEPQuant",
-          "zero2005x/ipasAI"
-        ],
+        "method": "llm",
         "metrics": {
           "comparable": true,
           "recent": 0,
-          "previous": 6,
+          "previous": 1,
           "change_pct": -100.0,
           "signal": "同类聚集",
-          "members": 27,
+          "members": 4,
           "undated": 0,
           "recent_start": "2026-10-12",
           "previous_start": "2026-10-05",
@@ -52835,71 +53035,42 @@
         }
       },
       {
-        "title": "语音/音乐",
+        "title": "模型写内容结构，渲染工具负责图形与版式",
+        "mechanism": "语言模型负责概念、结构和方案，已有工具负责坐标、绘图或测试。Anatomy 用几何库构建部件，Answer me with HTML 把 Markdown 交给页面 CLI，Logo Skill 用 SVG 与配套检查工具完成品牌产物。它们将创作决策与机械计算分开，具体交付形态则各不相同。",
+        "inspiration": "可探索把固定格式的行业报告变成结构化草稿加确定性渲染器，让模型更多精力用于解释，让程序保证格式与可检查性。",
         "members": [
-          "JohnHeibel/PDoomVideo",
-          "SaarthurR/atticus-mac",
-          "Adolanium/hermes-gadget-sdk",
-          "assafkip/claudemy",
-          "raullenchai/esp32-thinks",
-          "chenkanglin198904/Personal_External_Brain",
-          "nyosegawa/speech.cpp",
-          "christos-antono/NPCTalk",
-          "Sallyn0225/eidolon-sc",
-          "Cuongyd196/cit-voice-studio",
-          "recepyagmur/EnglishPractice",
-          "vahmoh25/Veda",
-          "sahilmahendrakar/paradee",
-          "swax/dub-anything",
-          "phucnguyentvp1/frameweaver",
-          "Sujit273-cpu/rep-forge",
-          "pegainfer-project/pega-omni",
-          "tlack/babytalk",
-          "lintsinghua/paint-mv-skills",
-          "tanviet12/sano-sach-noi",
-          "C4rohan/Lampline",
-          "francordel/myrtia",
-          "lokutor-ai/ito",
-          "agencyenterprise/jev-recipes",
-          "weslocke/ED-Outrider",
-          "VORNEX-01/JARVIS-VORNEX"
+          {
+            "repo": "wheresryan22/anatomy",
+            "sources": [
+              "R8"
+            ],
+            "why": "模型规划物体与部件，kit 提供几何构造、摄像机与审计。"
+          },
+          {
+            "repo": "QingYunA/answer-me-with-html",
+            "sources": [
+              "R15",
+              "R16"
+            ],
+            "why": "模型写 Markdown，CLI 计算面板和图形坐标并报告草稿错误。"
+          },
+          {
+            "repo": "kaankiziltug/logo-design-skill",
+            "sources": [
+              "R2",
+              "R3"
+            ],
+            "why": "模型研究和构思，SVG 工具承担测试页、展示板和图标导出。"
+          }
         ],
+        "method": "llm",
         "metrics": {
           "comparable": true,
-          "recent": 4,
-          "previous": 3,
-          "change_pct": 33.3,
+          "recent": 0,
+          "previous": 1,
+          "change_pct": -100.0,
           "signal": "同类聚集",
-          "members": 26,
-          "undated": 0,
-          "recent_start": "2026-10-12",
-          "previous_start": "2026-10-05",
-          "end_exclusive": "2026-10-19"
-        }
-      },
-      {
-        "title": "RAG/知识库",
-        "members": [
-          "Sheltercosmo/jev4pg",
-          "crow-hq/llm-wiki-v2",
-          "cdcailf/cjkfold",
-          "VectifyAI/jev-doc-search",
-          "MiaoWuNYA/rikkahub-sillytavern-android",
-          "AbdoslamB/InkDoc",
-          "cjxxx222/quizforge",
-          "lattifai/awesome-EmbeddingGemma",
-          "p10node/docflare-ai",
-          "final-bench/ongrid",
-          "OceanOver/Tomechat",
-          "tutuhong2001/LLM-Learning-Notes"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 3,
-          "previous": 3,
-          "change_pct": 0.0,
-          "signal": "同类聚集",
-          "members": 12,
+          "members": 3,
           "undated": 0,
           "recent_start": "2026-10-12",
           "previous_start": "2026-10-05",
@@ -52907,6 +53078,10 @@
         }
       }
     ],
-    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
+    "cluster_status": "ready",
+    "cluster_cache_key": "b5c751e8bce1bebe72a07aae1ccdcc39360e786faa8526568a129e85d09d460d",
+    "candidates": [],
+    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。",
+    "cluster_model": "session-assistant-readme-review"
   }
 }

@@ -214,6 +214,7 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
                 failed += len(chunk)
             log(f"[学习卡] 已处理 {min(start + 3, len(selected))}/{len(selected)}，有效 {generated}")
     return {"model": model, "prompt_version": PROMPT_VERSION, "cached": cached,
+            "model_enabled": bool(call_llm),
             "generated": generated, "failed": failed, "ready": cached + generated,
             "status": "ready" if cached + generated else ("unavailable" if not call_llm else "failed")}
 
