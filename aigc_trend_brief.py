@@ -25,6 +25,7 @@ AIGC 前沿趋势自动简报
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
 import re
@@ -35,6 +36,7 @@ import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
+from project_discovery import extract_evidence, enrich_learning, build_discovery
 
 # --------------------------------------------------------------------------- #
 # 配置区（口径常量，集中管理）
@@ -675,17 +677,18 @@ def _extract_demo_images(key, readme):
     return [u for _, u in scored[:3]]
 
 
-def attach_readme_demos(projects, max_workers=16):
+def attach_readme_demos(projects, max_workers=16, reuse_evidence=False):
     # 输入：项目列表（就地回填 demo_images 字段）
     # 返回值：命中真实素材的项目数
     # 关键行为：多线程抓取 README，解析/打分/排序；失败项目不回填，交由后续 LLM/模板兜底
     if not projects:
         return 0
     def work(p):
+        if reuse_evidence and p.get("evidence"):
+            return p.get("demo_images", []), p["evidence"]
         readme = _fetch_readme(p["full_name"])
-        if not readme:
-            return p["full_name"], []
-        return p["full_name"], _extract_demo_images(p["full_name"], readme)
+        return (_extract_demo_images(p["full_name"], readme) if readme else [],
+                extract_evidence(p, readme))
 
     hit = 0
     done = 0
@@ -695,14 +698,15 @@ def attach_readme_demos(projects, max_workers=16):
             p = futures[fut]
             done += 1
             try:
-                _, imgs = fut.result()
+                imgs, evidence = fut.result()
             except Exception:
-                imgs = []
+                imgs, evidence = [], extract_evidence(p, None)
+            p["evidence"] = evidence
             if imgs:
                 p["demo_images"] = imgs
                 hit += 1
             if done % 40 == 0 or done == len(projects):
-                print(f"[README] 演示素材扫描 {done}/{len(projects)}，命中 {hit}", flush=True)
+                print(f"[README] 资料收集 {done}/{len(projects)}，含素材 {hit}", flush=True)
     print(f"[README] 真实演示素材命中 {hit}/{len(projects)} 个项目", flush=True)
     return hit
 
@@ -1093,6 +1097,42 @@ def render_markdown(projects, hf_models, hn_hot, insights, window, meta):
 # Main
 # --------------------------------------------------------------------------- #
 
+def discovery_llm(system, user):
+    """模型适配器；响应异常统一为 RuntimeError，避免把服务端内容或凭据写入产物。"""
+    try:
+        resp = http_post_json(
+            f"{LLM_BASE_URL.rstrip('/')}/chat/completions",
+            headers={"Authorization": f"Bearer {LLM_API_KEY}"},
+            body={"model": LLM_MODEL, "messages": [
+                {"role": "system", "content": system}, {"role": "user", "content": user}],
+                "temperature": 0.2, "max_tokens": 8000},
+            timeout=120,
+        )
+        content = resp["choices"][0]["message"]["content"]
+        if not isinstance(content, str):
+            raise ValueError("响应为空")
+        return content
+    except Exception:
+        raise RuntimeError("模型请求或响应失败") from None
+
+
+def enrich_discovery(dataset, previous, limit=60, reuse_evidence=False):
+    projects = dataset["github_projects"]
+    attach_readme_demos(projects, reuse_evidence=reuse_evidence)
+    call = discovery_llm if LLM_API_KEY else None
+    analysis = enrich_learning(projects, call, LLM_MODEL,
+                               previous.get("github_projects", []), limit=limit)
+    analysis["generated_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    dataset["discovery"] = build_discovery(projects, dataset["window"], analysis, call,
+                                          previous.get("discovery"))
+    # 旧简介来自过短输入；迁移后页面只使用 learning 或原始资料。
+    for p in projects:
+        for key in ("summary_zh", "abilities_zh", "scene_zh", "audience_zh", "demo_scene"):
+            p.pop(key, None)
+    print(f"[发现] 中文学习卡 {analysis['ready']}/{len(projects)}，"
+          f"机制聚类 {len(dataset['discovery']['clusters'])} 组", flush=True)
+
+
 def main():
     # 输入：无显式参数（从命令行读取 --days、--output-dir）
     # 返回值：无（副作用为生成 .md 简报与 .json 明细两个文件）
@@ -1100,7 +1140,25 @@ def main():
     parser = argparse.ArgumentParser(description="AIGC 前沿趋势自动简报")
     parser.add_argument("--days", type=int, default=WINDOW_DAYS, help="回溯天数")
     parser.add_argument("--output-dir", default="output", help="输出目录")
+    parser.add_argument("--refresh-discovery", action="store_true",
+                        help="复用现有采集数据，只补 README 与学习卡（不改采集日期）")
+    parser.add_argument("--llm-limit", type=int, default=60, help="最多分析的高热度项目数（含缓存）")
     args = parser.parse_args()
+
+    previous = {}
+    existing_path = os.path.join(args.output_dir, "aigc_data.json")
+    if os.path.exists(existing_path):
+        with open(existing_path, encoding="utf-8") as f:
+            previous = json.load(f)
+    if args.refresh_discovery:
+        if not previous:
+            parser.error("--refresh-discovery 需要已有的 aigc_data.json")
+        dataset = copy.deepcopy(previous)
+        enrich_discovery(dataset, previous, args.llm_limit, reuse_evidence=True)
+        with open(existing_path, "w", encoding="utf-8") as f:
+            json.dump(dataset, f, ensure_ascii=False, indent=2)
+        print(f"✅ 学习板块已更新: {existing_path}", flush=True)
+        return
 
     now = datetime.now(timezone.utc)
     start_dt = now - timedelta(days=args.days)
@@ -1127,20 +1185,9 @@ def main():
     projects = finalize_projects(projects)
     hf_models = normalize_hf(raw_hf)
 
-    # 2.5 真实演示素材：扫描各仓库 README 的 demo 图/GIF（不走 core 限流，就地回填 demo_images）
-    attach_readme_demos(projects)
-
-    # 2.6 逐项目能力增强：有 LLM_API_KEY 时回填中文差异能力，并对无图项目生成 demo_scene；无 key 则跳过
-    enrich_project_abilities(projects)
-
-    # 3. 洞察（LLM 优先，失败降级规则；基于新发布项目 + 爆发项目上下文）
+    # 学习卡与机制聚类使用 README；Markdown 热度汇总继续使用可复现统计。
     new_projects = [p for p in projects if p["trend_type"] == "new"]
-    surge_projects = [p for p in projects if p["trend_type"] == "surge"]
-    insights = generate_insights_llm(
-        new_projects[:TOP_N_PROJECTS], surge_projects, hf_models, args.days
-    )
-    if insights is None:
-        insights = generate_insights_rule(new_projects[:TOP_N_PROJECTS])
+    insights = generate_insights_rule(new_projects[:TOP_N_PROJECTS])
 
     # 4. 输出
     os.makedirs(args.output_dir, exist_ok=True)
@@ -1171,6 +1218,14 @@ def main():
         "hf_models": hf_models,
         "hn_hot_stories": hn_hot,
     }
+    enrich_discovery(dataset, previous, args.llm_limit)
+    discovery = dataset["discovery"]
+    if discovery["clusters"]:
+        with open(md_path, "a", encoding="utf-8") as f:
+            f.write("\n## 共同机制观察（README + AI 分析）\n\n")
+            for cluster in discovery["clusters"]:
+                f.write(f"- **{cluster['title']}**：{cluster['mechanism']}\n")
+            f.write("\n" + discovery["scope"] + "\n")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(dataset, f, ensure_ascii=False, indent=2)
 

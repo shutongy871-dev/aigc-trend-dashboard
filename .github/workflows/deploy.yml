@@ -6,6 +6,8 @@ on:
     paths:
       - "render_dashboard.py"
       - "aigc_trend_brief.py"
+      - "project_discovery.py"
+      - "tests/**"
       - "run_daily.sh"
       - "vendor/**"
       - ".github/workflows/deploy.yml"
@@ -53,6 +55,9 @@ jobs:
         run: |
           chmod +x run_daily.sh
           ./run_daily.sh "$WINDOW_DAYS"
+
+      - name: 校验学习卡与趋势口径
+        run: python -m unittest discover -s tests -p 'test_*.py'
 
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5

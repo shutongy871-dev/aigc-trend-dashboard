@@ -48,7 +48,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIGC 前沿趋势看板</title>
+<title>AIGC 前沿趋势看板 · 每天发现值得尝试的 AI</title>
 <style>
   :root {
     --bg: #0a0e1a;
@@ -500,8 +500,52 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   footer { margin-top: 50px; text-align: center; color: var(--text-faint); font-size: 12.5px; }
   footer code { font-family: var(--mono); color: var(--text-dim); background: rgba(255,255,255,.05); padding: 2px 7px; border-radius: 6px; }
 
+  [hidden] { display: none !important; }
+  .tabs { flex-wrap: wrap; max-width: 100%; }
+  .tab { padding: 9px 13px; }
+  .discovery-intro { margin-bottom: 24px; }
+  .discovery-intro h2 { font-size: 25px; letter-spacing: -.025em; margin-bottom: 7px; }
+  .discovery-intro p, .scope-note { color: var(--text-dim); font-size: 13px; line-height: 1.8; }
+  .analysis-notice { border-left: 3px solid var(--warn); background: #fbbf2408; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #dac9a4; }
+  .discovery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .learning-card .card-desc { display: block; overflow: visible; font-size: 15px; color: var(--text); }
+  .learning-card { min-width: 0; }
+  .learning-card p { overflow-wrap: anywhere; }
+  .learning-fact { color: var(--text-dim); font-size: 13px; line-height: 1.8; }
+  .learning-fact strong { color: #bac5f7; display: block; font-size: 12px; margin-bottom: 3px; }
+  .learning-value { border-left: 2px solid var(--accent); padding-left: 12px; }
+  .source-link { display: inline; color: #9dacfa; font-size: 11px; text-decoration: none; margin-left: 5px; }
+  .source-link:hover { text-decoration: underline; }
+  .source-status { font-size: 11px; color: var(--text-faint); }
+  .learning-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .learning-links a { color: #c0caff; font-size: 13px; text-decoration: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 12px; }
+  .learning-links a:hover { background: var(--accent-soft); }
+  .learning-steps { padding-left: 22px; font-size: 13px; color: var(--text-dim); }
+  .learning-steps li { padding: 4px 0 7px; overflow-wrap: anywhere; white-space: pre-wrap; }
+  .evidence-list { font-size: 12px; color: var(--text-dim); }
+  .evidence-list summary { cursor: pointer; color: #a8b6ed; }
+  .evidence-list blockquote { white-space: pre-wrap; overflow-wrap: anywhere; border-left: 2px solid var(--border); margin: 8px 0 15px; padding-left: 12px; max-height: 180px; overflow: auto; }
+  .trend-card h3 { font-size: 19px; }
+  .trend-card p { font-size: 14px; color: var(--text-dim); }
+  .trend-members { list-style: none; font-size: 13px; }
+  .trend-members li { padding: 10px 0; border-top: 1px solid var(--border); }
+  .trend-members a { color: #bcc7ff; text-decoration: none; overflow-wrap: anywhere; }
+  .trend-members p { font-size: 12px; margin-top: 5px; }
+  .trend-bars { display: flex; flex-direction: column; gap: 9px; padding: 14px; border-radius: 10px; background: #0003; }
+  .trend-bar { display: grid; grid-template-columns: 62px 1fr 28px; gap: 10px; align-items: center; font-size: 12px; color: var(--text-dim); }
+  .trend-track { background: #ffffff07; height: 8px; border-radius: 5px; overflow: hidden; }
+  .trend-fill { height: 100%; background: var(--accent); border-radius: 5px; }
+  .trend-fill.prev { background: #586582; }
+  .mini-note { font-size: 11px; color: var(--text-faint); }
+  .demo-run { align-self: flex-start; }
+  .demo-result { border-left: 2px solid var(--good); padding-left: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
   @media (max-width: 560px) {
     .grid { grid-template-columns: 1fr; }
+    .discovery-grid { grid-template-columns: 1fr; }
+    .tab { padding: 8px 10px; font-size: 12px; }
     h1 { font-size: 26px; }
     .wrap { padding: 28px 16px 60px; }
   }
@@ -513,7 +557,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <div class="hero-top">
       <div>
         <h1>AIGC 前沿趋势看板</h1>
-        <div class="subtitle">GitHub 开源项目 · Hugging Face 新模型 · Hacker News 社区热议</div>
+        <div class="subtitle">每天发现值得尝试的 AI：理解它的原理，学会使用，找到下一个灵感。</div>
       </div>
       <div class="hero-actions">
         <div class="window-pill" id="windowPill"></div>
@@ -528,14 +572,17 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
   <div class="toolbar">
     <div class="tabs">
-      <button class="tab active" data-tab="projects">前沿项目</button>
+      <button class="tab active" data-tab="skills">Skill / 工具</button>
+      <button class="tab" data-tab="apps">软件 / 小程序</button>
+      <button class="tab" data-tab="trends">机制与爆发观察</button>
+      <button class="tab" data-tab="projects">全部项目</button>
       <button class="tab" data-tab="models">HF 新模型</button>
       <button class="tab" data-tab="hn">HN 热议</button>
     </div>
     <div class="controls" id="controls">
       <div class="search-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="search" placeholder="搜索项目名 / 简介 / 话题…">
+        <input type="text" id="search" aria-label="搜索项目与原理" placeholder="搜索项目、用途、原理或你想解决的问题…">
       </div>
       <select id="sort">
         <option value="heat">按综合热度</option>
@@ -550,7 +597,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <main id="content"></main>
 
   <footer>
-    由 <code>render_dashboard.py</code> 基于 <code>aigc_trend_brief.py</code> 采集的数据生成 · 数据均来自官方公开 API
+    资料来自 GitHub README、Hugging Face 与 Hacker News · AI 解读附来源，效果示意不代表实测
   </footer>
 </div>
 
@@ -565,7 +612,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <button type="button" class="settings-btn" id="settingsClose" aria-label="关闭设置">✕</button>
   </div>
   <p class="settings-intro" id="settingsIntro">
-    为每日任务启用中文简介、核心能力与 AI 场景示意。此设置由仓库管理员维护，更新后对所有看板访客生效。
+    为每日任务启用 README 深度解读、上手指南、场景演示与共同机制分析。此设置由仓库管理员维护，更新后对所有看板访客生效。
     <span class="settings-repo" id="settingsRepo"></span>
   </p>
   <form id="settingsForm" autocomplete="off">
@@ -620,8 +667,10 @@ const SETTINGS = "__AIGC_SETTINGS__";
 const projects = DASH_DATA.projects || [];
 const hfModels = DASH_DATA.hf_models || [];
 const hnStories = DASH_DATA.hn_hot_stories || [];
+const discovery = DASH_DATA.discovery || {};
+const byRepo = new Map(projects.map(p => [p.full_name, p]));
 
-const state = { tab: "projects", query: "", category: "全部", sort: "heat" };
+const state = { tab: "skills", query: "", category: "全部", sort: "heat" };
 
 /* ---------- 图标 ---------- */
 const ICON = {
@@ -681,12 +730,11 @@ async function copyText(text, btn) {
 function renderHeader() {
   const w = DASH_DATA.window || {};
   document.getElementById("windowPill").textContent = (w.start || "?") + " ~ " + (w.end || "?");
-  const surgeN = projects.filter(p => p.trend_type === "surge").length;
   const stats = [
-    { num: projects.length, cls: "accent", lbl: "GitHub 前沿项目" },
-    { num: hfModels.length, cls: "pink", lbl: "HF 热门新模型" },
-    { num: hnStories.length, cls: "amber", lbl: "HN 社区热议" },
-    { num: surgeN, cls: "", lbl: "老项目翻红" }
+    { num: (discovery.skills_tools || []).length, cls: "accent", lbl: "高 Star 技能与工具" },
+    { num: (discovery.applications || []).length, cls: "pink", lbl: "高 Star 软件与应用" },
+    { num: (discovery.clusters || []).length, cls: "amber", lbl: "共同机制观察" },
+    { num: discovery.analysis?.ready || 0, cls: "", lbl: "已完成 AI 阅读" }
   ];
   document.getElementById("stats").innerHTML = stats.map(s =>
     '<div class="stat"><div class="num ' + s.cls + '">' + fmt(s.num) + '</div><div class="lbl">' + s.lbl + "</div></div>"
@@ -703,304 +751,52 @@ function renderChips() {
     '<button class="chip' + (state.category === c ? " active" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"
   ).join("");
   box.querySelectorAll(".chip").forEach(ch =>
-    ch.addEventListener("click", () => { state.category = ch.dataset.cat; renderProjects(); })
+    ch.addEventListener("click", () => { state.category = ch.dataset.cat; renderChips(); renderProjects(); })
   );
 }
 
 /* ---------- 项目卡片 ---------- */
-function agentCommand(p) {
-  // 通用 Agent（编码/终端型）可直接执行：克隆仓库并进入目录
-  return "git clone " + p.url + ".git && cd " + p.name;
-}
-
-/* 基于真实字段生成中文解释（赛道用途 + 语言 + 新旧 + stars，不臆测未证实的功能） */
-const CAT_PURPOSE = {
-  "视频生成": "用于文本或图像生成视频、动画等创作场景",
-  "图像生成": "用于文生图、图像编辑与扩散模型相关创作",
-  "语音/音乐": "用于语音合成、语音识别或音乐生成",
-  "Agent/智能体": "用于构建可自主执行任务的 AI 智能体与工作流",
-  "RAG/知识库": "用于检索增强生成与知识库问答",
-  "多模态/视觉": "用于图文等多模态理解与视觉任务",
-  "模型/推理/微调": "聚焦大语言模型的训练、推理、量化与微调",
-  "AI应用/产品": "面向终端用户的 AI 应用与产品",
-  "开发工具/框架": "为 AI 开发提供框架、SDK 与工具链支持",
-  "其他AIGC": "属于 AIGC 相关的开源项目"
-};
 function zhDesc(p) {
-  // 优先 LLM 逐项目中文简介；无 key 时用真实英文 description（逐项目不同）；再退回赛道口径
-  if (p.summary_zh) return p.summary_zh;
+  if (p.learning?.summary) return p.learning.summary.text;
   if (p.description) return p.description;
-  const purpose = CAT_PURPOSE[p.category] || CAT_PURPOSE["其他AIGC"];
-  return purpose + "，目前已获得 " + fmt(p.stars) + " 个 stars。";
-}
-
-/* 赛道级能力详解（典型能力，非逐项目实测；具体能力以各项目 README 为准） */
-const CATEGORY_DETAIL = {
-  "视频生成": {
-    abilities: ["输入一段文字描述，直接生成对应画面的视频", "支持图片转视频、首尾帧控制运镜", "可生成数字人、口播、动画等多种形态", "支持多分辨率与时长，便于二次剪辑"],
-    scene: "短视频创作、广告片/宣传片、课程与口播内容批量生产",
-    audience: "内容创作者、营销团队、影视/动画工作室",
-    demo: "video"
-  },
-  "图像生成": {
-    abilities: ["文字生成插画、照片、海报、Logo 等图像", "支持图生图、局部重绘、风格迁移", "可挂载 LoRA 等微调模型控制画风", "批量出图，便于挑选与后期处理"],
-    scene: "电商素材、营销海报、游戏原画、设计灵感探索",
-    audience: "设计师、电商运营、游戏/插画从业者",
-    demo: "image"
-  },
-  "语音/音乐": {
-    abilities: ["文字转自然语音，支持多音色与情感", "语音转文字，用于会议纪要与字幕", "声音克隆与多角色配音", "根据描述生成背景音乐与音效"],
-    scene: "有声书/播客制作、视频配音、智能客服、会议记录",
-    audience: "音视频创作者、教育机构、客服与办公场景",
-    demo: "audio"
-  },
-  "Agent/智能体": {
-    abilities: ["用自然语言下达目标，Agent 自主拆解任务", "自动调用工具、浏览网页、读写文件并执行", "支持多步规划、记忆与失败重试", "多 Agent 可分工协作完成复杂流程"],
-    scene: "自动化办公、数据分析、代码开发、研究调研",
-    audience: "研发团队、运营/分析岗位、自动化爱好者",
-    demo: "agent"
-  },
-  "RAG/知识库": {
-    abilities: ["接入企业文档构建专属知识库", "提问时先检索相关资料再生成答案", "答案可标注来源，降低模型幻觉", "支持向量检索与多种文档格式解析"],
-    scene: "企业问答机器人、客服知识库、制度/合同查询",
-    audience: "企业 IT、知识管理与客服团队",
-    demo: "rag"
-  },
-  "多模态/视觉": {
-    abilities: ["同时理解图像与文本输入", "支持图像描述、视觉问答、OCR 识别", "可识别图表、文档、截图内容", "适用于图文混合的自动化任务"],
-    scene: "票据/文档识别、图像审核、图表理解、无障碍辅助",
-    audience: "企业办公、金融/政务、内容审核团队",
-    demo: "vision"
-  },
-  "模型/推理/微调": {
-    abilities: ["提供大模型的推理部署与加速能力", "支持量化、压缩以降低显存占用", "可用私有数据微调/对齐模型", "提供训练框架与评测工具链"],
-    scene: "私有化部署大模型、领域模型训练、高性能推理服务",
-    audience: "算法工程师、后端/基础设施团队",
-    demo: "model"
-  },
-  "AI应用/产品": {
-    abilities: ["开箱即用的对话助手或垂直场景产品", "提供网页/桌面端界面，无需写代码", "集成常用 AI 能力与工作流", "支持二次配置与团队协作"],
-    scene: "日常写作问答、垂直业务助手、团队效率工具",
-    audience: "终端业务用户、非技术团队",
-    demo: "app"
-  },
-  "开发工具/框架": {
-    abilities: ["封装模型调用、数据处理等通用能力", "提供 SDK / API / 脚手架快速接入 AI", "支持评测、部署、监控等工程环节", "可嵌入现有研发流程与技术栈"],
-    scene: "AI 应用开发底座、模型服务网关、研发效能建设",
-    audience: "研发工程师、平台与架构团队",
-    demo: "tool"
-  },
-  "其他AIGC": {
-    abilities: ["属于 AIGC 相关的开源项目", "具体能力请查看项目 README 与文档", "可克隆到本地按官方说明运行", "社区活跃，值得持续关注"],
-    scene: "以项目官方介绍为准",
-    audience: "对 AIGC 感兴趣的开发者",
-    demo: "generic"
-  }
-};
-
-/* 效果示意渲染（赛道典型输入→输出的可视化示意，非该项目真实产物） */
-const GRADIENTS = [
-  "linear-gradient(135deg,#ff9a6c,#ff5e8a)", "linear-gradient(135deg,#6c8eff,#9b6cff)",
-  "linear-gradient(135deg,#43e97b,#38c6f9)", "linear-gradient(135deg,#fbbf24,#fb7185)",
-  "linear-gradient(135deg,#0ea5e9,#22d3ee)", "linear-gradient(135deg,#a78bfa,#f0abfc)"
-];
-function ioBlock(tag, tagCls, content) {
-  return '<div class="io-chip"><span class="tag-io ' + tagCls + '">' + tag + '</span><span class="c">' + content + "</span></div>";
-}
-const DEMO_RENDERERS = {
-  video: () =>
-    ioBlock("输入", "tag-in", "“夕阳下，一只猫走过海边沙滩，电影感运镜”") +
-    '<div class="film">' + GRADIENTS.slice(0, 4).map((g, i) =>
-      '<div class="frame" style="background:' + g + '">' + (i === 0
-        ? '<span class="play-badge">' + ICON.play + "</span>" : "") + "</div>").join("") + "</div>" +
-    ioBlock("输出", "tag-out", "约 10 秒、1080p 带运镜的视频片段"),
-  image: () =>
-    ioBlock("输入", "tag-in", "“赛博朋克风格的城市夜景，霓虹灯光，高清”") +
-    '<div class="img-grid">' + GRADIENTS.slice(1, 5).map(g =>
-      '<div class="img-tile" style="background:' + g + '"></div>').join("") + "</div>" +
-    ioBlock("输出", "tag-out", "4 张候选概念图，可挑选后精修"),
-  audio: () =>
-    ioBlock("输入", "tag-in", "“欢迎使用本产品，今天为您介绍……”") +
-    '<div class="wave">' + Array.from({ length: 22 }, (_, i) =>
-      '<span style="height:' + (30 + (i * 13) % 70) + '%;animation-delay:' + (i * 0.06) + 's"></span>').join("") + "</div>" +
-    ioBlock("输出", "tag-out", "自然流畅的多情感人声 / 可下载音频"),
-  agent: () =>
-    ioBlock("任务", "tag-in", "“帮我调研近一个月热门的开源 Agent 并汇总成表”") +
-    '<div class="steps">' + ["理解目标并拆解子任务", "检索网页与开源仓库", "提取关键字段并去重", "生成结构化汇总表格"].map((s, i) =>
-      '<div class="step done"><span class="num">' + (i < 3 ? ICON.check : (i + 1)) + "</span>" + s + "</div>").join("") + "</div>" +
-    ioBlock("结果", "tag-out", "无需人工干预，自动产出可交付结果"),
-  rag: () =>
-    ioBlock("提问", "tag-in", "“公司的年假可以跨年使用吗？”") +
-    '<div class="doc-chips"><span class="doc-chip">📄 考勤制度.pdf</span><span class="doc-chip">📄 休假管理办法.docx</span><span class="doc-chip">📄 HR 常见问答</span></div>' +
-    ioBlock("回答", "tag-out", "根据制度第 5 条：年假可申请顺延至次年 Q1……（附来源）"),
-  vision: () =>
-    ioBlock("输入", "tag-in", "一张含表格的发票 / 截图 + “提取金额与日期”") +
-    '<div class="doc-chips"><span class="doc-chip">🔍 图像文字识别</span><span class="doc-chip">🏷️ 内容理解</span></div>' +
-    ioBlock("输出", "tag-out", "结构化字段：金额、日期、商户、类别"),
-  model: () =>
-    ioBlock("输入", "tag-in", "“请用三句话解释什么是向量检索”") +
-    '<div class="terminal"><span class="t-green">▶</span> 加载量化模型 · 显存占用 ↓ 60%<br><span class="t-blue">▶</span> 推理中… 首 token 32ms<br><span class="t-dim">向量检索是把内容转为向量……</span><span class="caret-blink"></span></div>' +
-    ioBlock("输出", "tag-out", "低延迟、低成本的模型推理结果"),
-  app: () =>
-    '<div class="chat-demo">' +
-      '<div class="bubble user">帮我写一份产品发布通知</div>' +
-      '<div class="bubble bot">好的，以下是一版发布通知草稿，你可以补充时间与亮点……</div>' +
-    "</div>" +
-    ioBlock("价值", "tag-out", "打开即用，无需任何代码与部署"),
-  tool: () =>
-    '<div class="terminal"><span class="t-blue">$ npm install</span> &amp;&amp; <span class="t-blue">deploy</span><br>' +
-      '<span class="t-green">✓ 模型网关已就绪</span><br><span class="t-green">✓ 评测 / 监控已接入</span><br>' +
-      '<span class="t-dim">AI 能力已嵌入你的应用</span><span class="caret-blink"></span></div>' +
-    ioBlock("作用", "tag-out", "把复杂 AI 能力封装为简单的接口调用"),
-  generic: () =>
-    ioBlock("说明", "tag-in", "该项目的具体输入输出请参考官方 README") +
-    ioBlock("建议", "tag-out", "克隆后按文档步骤运行即可体验")
-};
-
-/* ---------- 三层演示体系：真实素材 → LLM 场景 → 赛道模板 ---------- */
-let _demoUid = 0;
-
-/* 第 1 层：仓库 README 真实截图 / GIF（主图 + 缩略图，点击灯箱放大） */
-function galleryHTML(imgs, uid) {
-  let h = '<span class="demo-src s-real">项目 README 真实演示素材</span><div class="gallery">' +
-    '<img class="demo-shot" src="' + esc(imgs[0]) + '" alt="项目演示" loading="lazy" ' +
-    'onerror="onDemoImgErr(this,' + uid + ')">';
-  if (imgs.length > 1) {
-    h += '<div class="gal-thumbs">' + imgs.slice(1).map(u =>
-      '<img class="gal-thumb" src="' + esc(u) + '" alt="演示缩略图" loading="lazy" ' +
-      'onerror="onDemoImgErr(this,' + uid + ')">').join("") + "</div>";
-  }
-  return h + "</div>";
-}
-
-/* 第 2 层：LLM 依据真实描述还原的具体使用过程（逐项目差异化文字驱动结构渲染） */
-function sceneHTML(s) {
-  const head = '<span class="demo-src s-llm">AI 依据项目描述还原的使用场景（示意）</span>';
-  const hl = (s.highlights && s.highlights.length)
-    ? '<div class="doc-chips">' + s.highlights.map(x =>
-        '<span class="doc-chip">' + esc(x) + "</span>").join("") + "</div>" : "";
-  if (s.kind === "flow") {
-    let b = head;
-    if (s.input) b += ioBlock("输入", "tag-in", esc(s.input));
-    if (s.steps && s.steps.length)
-      b += '<div class="steps">' + s.steps.map((x, i) =>
-        '<div class="step"><span class="num">' + (i + 1) + "</span>" + esc(x) + "</div>").join("") + "</div>";
-    if (s.output) b += ioBlock("输出", "tag-out", esc(s.output));
-    return b + hl;
-  }
-  if (s.kind === "chat") {
-    let b = head + '<div class="chat-demo">';
-    if (s.input) b += '<div class="bubble user">' + esc(s.input) + "</div>";
-    if (s.output) b += '<div class="bubble bot">' + esc(s.output) + "</div>";
-    return b + "</div>" + hl;
-  }
-  if (s.kind === "terminal") {
-    let b = head + '<div class="terminal">';
-    if (s.input) b += '<span class="t-blue">$</span> ' + esc(s.input) + "<br>";
-    (s.steps || []).forEach(x => { b += '<span class="t-dim">▸</span> ' + esc(x) + "<br>"; });
-    if (s.output) b += '<span class="t-green">✓</span> ' + esc(s.output);
-    return b + '<span class="caret-blink"></span></div>' + hl;
-  }
-  // cards
-  let b = head + '<div class="scene-cards">';
-  if (s.input) b += '<div class="scene-card">' + esc(s.input) + "</div>";
-  (s.highlights || []).forEach(x => { b += '<div class="scene-card">' + esc(x) + "</div>"; });
-  if (s.output) b += '<div class="scene-card">' + esc(s.output) + "</div>";
-  return b + "</div>";
-}
-
-/* 第 3 层：赛道固定模板（诚实标注非真实产物） */
-function tplHTML(demoKey) {
-  return '<span class="demo-src">赛道通用示意（非该项目真实产物）</span>' +
-    (DEMO_RENDERERS[demoKey] || DEMO_RENDERERS.generic)();
-}
-
-/* 组装分层 demo：三层 DOM 均构建，初始只显示应得层；
-   真实图全部加载失败时由 onDemoImgErr 自动降级，无需重渲染。 */
-function demoBox(p) {
-  const uid = ++_demoUid;
-  const d = CATEGORY_DETAIL[p.category] || CATEGORY_DETAIL["其他AIGC"];
-  const imgs = (p.demo_images && p.demo_images.length) ? p.demo_images : null;
-  const scene = (!imgs && p.demo_scene) ? p.demo_scene : null;
-  let layers = "";
-  if (imgs) layers += '<div class="demo-layer" id="dmg-' + uid + '">' + galleryHTML(imgs, uid) + "</div>";
-  if (scene) layers += '<div class="demo-layer" id="dms-' + uid + '" hidden>' + sceneHTML(scene) + "</div>";
-  layers += '<div class="demo-layer" id="dmt-' + uid + '"' + ((imgs || scene) ? " hidden" : "") + ">" +
-    tplHTML(d.demo) + "</div>";
-  return '<div class="demo-box" id="dmbox-' + uid + '">' + layers + "</div>";
-}
-
-/* 真实图加载失败：隐藏单张；整层全部失败 → 落到场景层或模板层 */
-function onDemoImgErr(img, uid) {
-  img.style.display = "none";
-  const gal = document.getElementById("dmg-" + uid);
-  if (!gal) return;
-  const all = gal.querySelectorAll("img");
-  if ([].every.call(all, x => x.style.display === "none")) {
-    gal.hidden = true;
-    const next = document.getElementById("dms-" + uid) || document.getElementById("dmt-" + uid);
-    if (next) next.hidden = false;
-  }
+  return "项目尚未提供简介，展开查看已收集的 README 资料。";
 }
 
 /* 展开面板：连贯的能力说明 + 真实元信息 + 效果示意 */
 function detailPanel(p) {
-  const demo = demoBox(p);
-
-  // 能力区（单一、连贯，不拼凑无关内容）：
-  //  有 LLM 中文能力 -> 逐条要点；
-  //  无 key -> 只展示项目官方描述这一段“项目自述”，不再塞 README/话题等无关句子
-  let abilityHTML, metaHTML;
-  if (p.abilities_zh && p.abilities_zh.length) {
-    abilityHTML = "<ul class=\"ability-list\">" + p.abilities_zh.map(a =>
-      '<li><span class="tick">' + ICON.check + "</span>" + esc(a) + "</li>").join("") + "</ul>";
-    metaHTML =
-      '<div class="meta-grid">' +
-        '<div class="meta-cell"><div class="k">典型使用场景</div><div class="v">' + esc(p.scene_zh || "—") + "</div></div>" +
-        '<div class="meta-cell"><div class="k">适合人群</div><div class="v">' + esc(p.audience_zh || "—") + "</div></div>" +
-      "</div>";
-  } else {
-    abilityHTML =
-      '<div class="self-desc">' +
-        esc(p.description ? p.description : "该项目暂未提供官方描述，可克隆后查看仓库文档了解其能力。") +
-      "</div>" +
-      '<div class="self-note">' + ICON.info + "项目官方描述 · 配置 LLM_API_KEY 后可生成逐项目中文核心能力</div>";
-    metaHTML =
-      '<div class="meta-grid">' +
-        '<div class="meta-cell"><div class="k">主语言</div><div class="v">' + esc(p.language || "未知") + "</div></div>" +
-        '<div class="meta-cell"><div class="k">创建时间</div><div class="v">' + esc(String(p.created_at || "—").slice(0, 10)) + "</div></div>" +
-      "</div>";
-  }
-
-  return (
-    '<div class="detail">' +
-      "<div><h4>✦ 核心能力</h4>" + abilityHTML + "</div>" +
-      metaHTML +
-      '<div><h4>✦ 效果示意</h4><div class="demo">' + demo +
-        '<div class="demo-note">' + ICON.info + "示意图为该赛道典型输入→输出，非此项目真实产物，实际效果以项目为准</div>" +
-      "</div></div>" +
-    "</div>"
-  );
+  const l = p.learning;
+  const sources = (p.evidence || []).map(e =>
+    '<a class="source-link" href="' + safeURL(e.url) + '" target="_blank" rel="noopener">' +
+      esc(e.id + " · " + e.heading) + '</a><blockquote>' + esc(e.text) + "</blockquote>").join("");
+  const steps = l?.how_to?.length
+    ? '<ol class="learning-steps">' + l.how_to.map(s => '<li>' + claimHTML(p, s) + "</li>").join("") + "</ol>"
+    : '<p class="learning-fact">还没有足够资料生成上手步骤，请查看官方使用说明。</p>';
+  return '<div class="detail"><div><h4>怎么用</h4>' + steps + "</div>" +
+    factHTML(p, "适合谁", l?.audience) + factHTML(p, "它为什么能做到", l?.mechanism) +
+    factHTML(p, "可以借鉴的想法", l?.inspiration) + factHTML(p, "使用前留意", l?.limitations) +
+    '<div><h4>输入 → 处理 → 产物</h4>' + learningDemo(p) + "</div>" +
+    '<details class="evidence-list"><summary>查看原始资料 · ' + (p.evidence || []).length +
+    ' 段摘录</summary>' + (sources || '<p>本次未能获取 README，请打开仓库查看。</p>') + "</details></div>";
 }
 function projectCard(p, i) {
-  const cmdLabel = "粘贴到 Agent 中克隆项目";
   const tags = (p.topics || []).slice(0, 4).map(t => '<span class="tag">' + esc(t) + "</span>").join("");
   const hn = p.hn_points
     ? '<span class="metric"><a href="' + esc(p.hn_url) + '" target="_blank" rel="noopener">' + ICON.comment + fmt(p.hn_points) + " / " + fmt(p.hn_comments) + " 评论</a></span>"
     : "";
-  const cmd = agentCommand(p);
   return (
-    '<article class="card" style="animation-delay:' + Math.min(i * 45, 450) + 'ms">' +
+    '<article class="card learning-card" style="animation-delay:' + Math.min(i * 45, 450) + 'ms">' +
       '<div class="card-head"><div class="badges">' +
         '<span class="badge-cat">' + (p.category_emoji || "📦") + " " + esc(p.category || "其他") + "</span>" +
         (p.trend_type === "surge" ? '<span class="badge-surge">社区翻红</span>' : "") +
       "</div>" +
       '<a class="icon-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" title="在 GitHub 打开" aria-label="GitHub 链接">' + ICON.github + "</a></div>" +
       '<div class="card-title">' + esc(p.full_name) + "</div>" +
-      '<div class="card-desc">' + zhDesc(p) + "</div>" +
-      (p.summary_zh && p.description
-        ? '<div class="card-desc-en" title="' + esc(p.description) + '">' + esc(p.description) + "</div>"
-        : "") +
+      '<div class="source-status">' + (p.learning_status === "llm"
+        ? (p.learning_model === "session-assistant-readme-review" ? "本次 AI 阅读 README · 附来源" : "每日 AI 阅读 README · 附来源")
+        : "项目原文 · 待 AI 解读") + "</div>" +
+      '<div class="card-desc">' + esc(zhDesc(p)) + (p.learning?.summary ? refsHTML(p, p.learning.summary.sources) : "") + "</div>" +
+      factHTML(p, "帮你解决什么", p.learning?.value, "learning-value") +
+      factHTML(p, "你能得到什么", p.learning?.outcome) +
       '<div class="metrics">' +
         '<span class="metric">' + ICON.star + fmt(p.stars) + "</span>" +
         '<span class="metric">' + ICON.fork + fmt(p.forks) + "</span>" +
@@ -1008,22 +804,118 @@ function projectCard(p, i) {
         (p.language ? '<span class="metric"><span class="lang-dot"></span>' + esc(p.language) + "</span>" : "") +
       "</div>" +
       (tags ? '<div class="tag-row">' + tags + "</div>" : "") +
-      '<button class="expand-toggle"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">查看能力与效果示意</span></button>' +
+      '<button class="expand-toggle" aria-expanded="false"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">怎么用 · 看演示 · 找灵感</span></button>' +
       detailPanel(p) +
-      '<div class="cmd-box"><span class="prompt-hint">' + cmdLabel + "</span>" +
-        '<span class="cmd-text" title="' + esc(cmd) + '">' + esc(cmd) + "</span>" +
-        '<button class="copy-btn" data-cmd="' + esc(cmd) + '">' + ICON.copy + "复制</button>" +
-      "</div>" +
+      '<div class="learning-links"><a href="' + safeURL(p.url + "#readme") + '" target="_blank" rel="noopener">官方使用说明 ↗</a>' +
+      '<button class="copy-btn" data-cmd="' + esc(learningPrompt(p)) + '">' + ICON.copy + "复制学习提问</button></div>" +
     "</article>"
   );
+}
+function safeURL(value) {
+  try { const u = new URL(value); return ["https:", "http:"].includes(u.protocol) ? esc(u.href) : "#"; }
+  catch (_) { return "#"; }
+}
+function refsHTML(p, ids) {
+  return (ids || []).map(id => {
+    const e = (p.evidence || []).find(e => e.id === id);
+    return e ? '<a class="source-link" href="' + safeURL(e.url) + '" title="' + esc(e.heading + " · " + e.text.slice(0, 240)) +
+      '" target="_blank" rel="noopener">[' + esc(id) + "]</a>" : "";
+  }).join("");
+}
+function claimHTML(p, claim) { return claim ? esc(claim.text) + refsHTML(p, claim.sources) : ""; }
+function factHTML(p, label, claim, cls="") {
+  return claim ? '<div class="learning-fact ' + cls + '"><strong>' + esc(label) + "</strong><p>" +
+    claimHTML(p, claim) + "</p></div>" : "";
+}
+function learningPrompt(p) {
+  return "请阅读 " + p.url + " 的 README 和官方使用文档，结合我的需求解释它能做什么、与相似方案有何区别。" +
+    "先说明运行前提，再指导我完成最小示例；无法确认的功能请明确指出。我的需求是：";
+}
+function learningDemo(p) {
+  const d = p.learning?.demo;
+  if (!d) return '<p class="learning-fact">暂缺可核实的输入输出示例，可从官方文档查看演示。</p>';
+  return '<div class="demo-box"><span class="demo-src s-llm">AI 依据 README 编排的使用流程 · 未实际运行项目</span>' +
+    factHTML(p, "示例输入", d.input) +
+    '<button type="button" class="copy-btn demo-run" aria-expanded="false">展开示例过程与产物</button>' +
+    '<div class="demo-result" hidden>' +
+    '<ol class="learning-steps">' + d.steps.map(c => '<li>' + claimHTML(p, c) + "</li>").join("") + "</ol>" +
+    factHTML(p, "预期产物", d.output) + "</div></div>";
+}
+function matchesQuery(p) {
+  const q = state.query.trim().toLowerCase();
+  return !q || [p.full_name, p.description, p.language, (p.topics || []).join(" "),
+    JSON.stringify(p.learning || {})].join(" ").toLowerCase().includes(q);
+}
+function discoveryIntro(title, text) {
+  const a = discovery.analysis || {};
+  let notice = "";
+  if (!a.ready) notice = '<div class="analysis-notice">本期尚无可用的 AI 深度解读，当前展示项目原文和分类初筛。完成模型分析后将补充中文上手指南、演示与共同机制。</div>';
+  else if (a.failed) notice = '<div class="analysis-notice">本期部分分析未完成，相关项目保留原文，可在后续更新中重试。</div>';
+  else if (a.initial_review) notice = '<p class="scope-note" style="margin-top:10px">首批 ' + fmt(a.ready) +
+    ' 个项目由本次 AI 阅读 README 后解读，其余项目暂展示原文。每日任务将继续补充和更新。</p>';
+  return '<div class="discovery-intro"><h2>' + title + '</h2><p>' + text + "</p>" + notice + "</div>";
+}
+function renderFeatured(kind) {
+  const skills = kind === "skills";
+  const list = (discovery[skills ? "skills_tools" : "applications"] || []).map(n => byRepo.get(n)).filter(p => p && matchesQuery(p));
+  document.getElementById("hint").textContent = "本期样本 · 累计 Stars ≥ " + fmt(discovery.min_stars || 100) + " · 按 Stars 取前 " + (discovery.selection_limit || 12) + " 个 · 当前 " + list.length + " 个";
+  const el = document.getElementById("content");
+  el.className = "";
+  el.innerHTML = discoveryIntro(skills ? "01 / 把新能力放进你的工作流" : "02 / 找到一个能直接体验的 AI 应用",
+    skills ? "高 Star Skill / 工具 · 看它能帮你完成哪一步，如何接入，以及产物是什么。"
+           : "高 Star 软件 / 小程序 · 从真实使用场景出发，理解上手方式与可借鉴的产品设计。") +
+    '<div class="discovery-grid">' + (list.length ? list.map(projectCard).join("") :
+      '<div class="empty">暂无匹配项目，试试其他关键词或查看全部项目。</div>') + "</div>" +
+    '<p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") + "</p>";
+  bindCopy(el); bindExpand(el);
+}
+function metricBars(m) {
+  if (!m.comparable) return '<div class="analysis-notice">采集窗口不足两个完整 7 日，暂不判断增长。</div>';
+  const max = Math.max(m.recent, m.previous, 1);
+  const bar = (label, n, cls) => '<div class="trend-bar"><span>' + label + '</span><div class="trend-track"><div class="trend-fill ' +
+    cls + '" style="width:' + (n / max * 100) + '%"></div></div><strong>' + fmt(n) + "</strong></div>";
+  return '<div class="trend-bars">' + bar("前 7 日", m.previous, "prev") + bar("近 7 日", m.recent, "") +
+    '<span class="mini-note">新建仓库数 · ' + esc(m.previous_start) + " 至 " + esc(m.end_exclusive) + "（不含末日）</span>" +
+    '<span class="mini-note">' + (m.change_pct === null ? "前期为 0，不计算增长百分比" :
+      "样本内环比 " + (m.change_pct > 0 ? "+" : "") + m.change_pct + "%") + "</span></div>";
+}
+function renderTrends() {
+  const el = document.getElementById("content");
+  const q = state.query.trim().toLowerCase();
+  const clusters = (discovery.clusters || []).filter(c => !q || JSON.stringify(c).toLowerCase().includes(q));
+  document.getElementById("hint").textContent = "至少 3 个项目支持同一机制 · 原理由 AI 归纳 · 数量按创建日期计算";
+  el.className = "";
+  let body = "";
+  if (discovery.clusters?.length) {
+    body = clusters.map(c => '<article class="card trend-card"><div class="badges"><span class="badge-cat">' +
+      esc(c.metrics.signal) + '</span><span class="mini-note">' + c.members.length + ' 个项目 · AI 机制分析</span></div><h3>' +
+      esc(c.title) + '</h3><p>' + esc(c.mechanism) + "</p>" + metricBars(c.metrics) +
+      (c.inspiration ? '<div class="learning-fact learning-value"><strong>值得尝试的想法</strong><p>' + esc(c.inspiration) + "</p></div>" : "") +
+      '<ul class="trend-members">' + c.members.map(m => {
+        const p = byRepo.get(m.repo);
+        return p ? '<li><a href="' + safeURL(p.url) + '" target="_blank" rel="noopener">' + esc(m.repo) +
+          ' ↗</a><p>' + esc(m.why) + refsHTML(p, m.sources) + "</p></li>" : "";
+      }).join("") + "</ul></article>").join("");
+  } else {
+    body = (discovery.candidates || []).filter(c => !q || JSON.stringify(c).toLowerCase().includes(q)).map(c =>
+      '<article class="card trend-card"><span class="source-status">标签初筛 · 尚未验证共同机制</span><h3>' + esc(c.title) +
+      '</h3><p>' + c.members.length + " 个候选项目。属于同一赛道，是否使用相同底层原理仍需逐项阅读。</p>" +
+      metricBars(c.metrics) + '<ul class="trend-members">' + c.members.slice(0, 4).map(n => {
+        const p = byRepo.get(n); return p ? '<li><a href="' + safeURL(p.url) + '" target="_blank" rel="noopener">' + esc(n) + " ↗</a></li>" : "";
+      }).join("") + "</ul></article>").join("");
+  }
+  el.innerHTML = discoveryIntro("03 / 哪些原理正在长出更多产品",
+    "跨项目阅读，寻找同一个技术机制的不同应用，再用两个完整 7 日的样本检验是否在加速涌现。") +
+    (!discovery.clusters?.length ? '<p class="scope-note">本期尚未形成至少 3 个项目支撑的机制分组。以下只作为继续研究的候选方向。</p><br>' : "") +
+    '<div class="discovery-grid">' + (body || '<div class="empty">暂无符合条件的机制观察。</div>') +
+    '</div><p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") +
+    ' “样本内加速”要求近 7 日至少 3 个、前 7 日至少 2 个，且数量至少翻倍。</p>';
 }
 function renderProjects() {
   const q = state.query.trim().toLowerCase();
   let list = projects.filter(p => {
     if (state.category !== "全部" && p.category !== state.category) return false;
-    if (!q) return true;
-    const hay = [p.full_name, p.description, p.language, (p.topics || []).join(" ")].join(" ").toLowerCase();
-    return hay.includes(q);
+    return matchesQuery(p);
   });
   const sorters = {
     heat: (a, b) => b.heat_score - a.heat_score,
@@ -1095,7 +987,7 @@ function renderHN() {
 
 /* ---------- 复制绑定 ---------- */
 function bindCopy(root) {
-  root.querySelectorAll(".copy-btn").forEach(btn =>
+  root.querySelectorAll(".copy-btn[data-cmd]").forEach(btn =>
     btn.addEventListener("click", () => copyText(btn.dataset.cmd, btn))
   );
 }
@@ -1117,24 +1009,18 @@ function bindExpand(root) {
     const isOpen = detail.classList.toggle("open");
     btn.classList.toggle("open", isOpen);
     const label = btn.querySelector(".expand-label");
-    if (label) label.textContent = isOpen ? "收起能力与效果示意" : "查看能力与效果示意";
+    btn.setAttribute("aria-expanded", String(isOpen));
+    if (label) label.textContent = isOpen ? "收起学习指南" : "怎么用 · 看演示 · 找灵感";
+  });
+  root.addEventListener("click", e => {
+    const btn = e.target.closest?.(".demo-run");
+    if (!btn) return;
+    const result = btn.nextElementSibling;
+    result.hidden = !result.hidden;
+    btn.setAttribute("aria-expanded", String(!result.hidden));
+    btn.textContent = result.hidden ? "展开示例过程与产物" : "收起示例";
   });
 }
-
-/* ---------- 灯箱：点击真实素材放大（document 委托一次，重渲染不失效） ---------- */
-const lightbox = document.createElement("div");
-lightbox.className = "lightbox";
-lightbox.innerHTML = '<img alt="演示大图">';
-document.body.appendChild(lightbox);
-lightbox.addEventListener("click", () => lightbox.classList.remove("open"));
-document.addEventListener("keydown", e => { if (e.key === "Escape") lightbox.classList.remove("open"); });
-document.addEventListener("click", (e) => {
-  const t = e.target;
-  if (t && t.closest && t.closest(".demo-shot, .gal-thumb")) {
-    lightbox.querySelector("img").src = t.currentSrc || t.src;
-    lightbox.classList.add("open");
-  }
-});
 
 /* ---------- 视图切换 ---------- */
 function switchTab(tab) {
@@ -1145,6 +1031,12 @@ function switchTab(tab) {
   controls.style.display = "flex";
   sortSel.style.display = tab === "projects" ? "" : "none";
   renderChips();
+  renderCurrent();
+}
+function renderCurrent() {
+  const tab = state.tab;
+  if (tab === "skills" || tab === "apps") renderFeatured(tab);
+  if (tab === "trends") renderTrends();
   if (tab === "projects") renderProjects();
   if (tab === "models") renderModels();
   if (tab === "hn") renderHN();
@@ -1155,9 +1047,7 @@ document.querySelectorAll(".tab").forEach(t =>
 );
 document.getElementById("search").addEventListener("input", e => {
   state.query = e.target.value;
-  if (state.tab === "projects") renderProjects();
-  else if (state.tab === "models") renderModels();
-  else renderHN();
+  renderCurrent();
 });
 document.getElementById("sort").addEventListener("change", e => { state.sort = e.target.value; renderProjects(); });
 
@@ -1204,8 +1094,8 @@ document.getElementById("sort").addEventListener("change", e => { state.sort = e
     dialog.showModal();
     keyInput.focus();
   });
-  closeButton.addEventListener("click", () => { if (!busy) dialog.close(); });
-  dialog.addEventListener("cancel", e => { if (busy) e.preventDefault(); });
+  closeButton.addEventListener("click", () => { if (!busy) { clearCredentials(); dialog.close(); } });
+  dialog.addEventListener("cancel", e => { if (busy) e.preventDefault(); else clearCredentials(); });
   dialog.addEventListener("close", resetForm);
   window.addEventListener("pagehide", clearCredentials);
   window.addEventListener("pageshow", e => { if (e.persisted) clearCredentials(); });
@@ -1362,8 +1252,7 @@ document.getElementById("sort").addEventListener("change", e => { state.sort = e
 })();
 
 renderHeader();
-renderChips();
-renderProjects();
+switchTab("skills");
 </script>
 </body>
 </html>
@@ -1376,6 +1265,7 @@ def build_payload(data: dict) -> dict:
         "projects": data.get("github_projects", []),
         "hf_models": data.get("hf_models", []),
         "hn_hot_stories": data.get("hn_hot_stories", []),
+        "discovery": data.get("discovery", {}),
     }
 
 
