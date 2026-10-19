@@ -189,6 +189,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -289,8 +290,7 @@
           ]
         }
       },
-      "learning_cache_key": "cdc86997f7253e7237b7d163755b66abf8362c1c3ea22149eaaedab05a6efa59",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "cdc86997f7253e7237b7d163755b66abf8362c1c3ea22149eaaedab05a6efa59"
     },
     {
       "id": 1383809012,
@@ -569,6 +569,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -677,8 +678,7 @@
           ]
         }
       },
-      "learning_cache_key": "3fcc118ea9373bbb536cb42d2f4859bc5706daddf9177a1feca6ba7f847fdd04",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3fcc118ea9373bbb536cb42d2f4859bc5706daddf9177a1feca6ba7f847fdd04"
     },
     {
       "id": 1407950271,
@@ -827,6 +827,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -930,8 +931,7 @@
           ]
         }
       },
-      "learning_cache_key": "14627bc8757c647d72471e9163a43f894b96b45644a4ac4b8fd66af8988389ca",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "14627bc8757c647d72471e9163a43f894b96b45644a4ac4b8fd66af8988389ca"
     },
     {
       "id": 1393965829,
@@ -1026,6 +1026,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -1133,8 +1134,7 @@
           ]
         }
       },
-      "learning_cache_key": "7fd3a53b3559de5828b7de755b2db3402be160440e07aace00c0b9d7090d5317",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "7fd3a53b3559de5828b7de755b2db3402be160440e07aace00c0b9d7090d5317"
     },
     {
       "id": 1378288598,
@@ -2011,6 +2011,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -2112,8 +2113,7 @@
           ]
         }
       },
-      "learning_cache_key": "df37ddc601e3c7f2310b2982cb62017737027d886366ff106f110ae63cefa6b8",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "df37ddc601e3c7f2310b2982cb62017737027d886366ff106f110ae63cefa6b8"
     },
     {
       "id": 1401476500,
@@ -2210,6 +2210,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2314,8 +2315,7 @@
           ]
         }
       },
-      "learning_cache_key": "170826dfdf5b873e0359dbc303e83e9eab10820e190b797eef3eb8991d8bfcc3",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "170826dfdf5b873e0359dbc303e83e9eab10820e190b797eef3eb8991d8bfcc3"
     },
     {
       "id": 1394045721,
@@ -2476,6 +2476,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2579,8 +2580,7 @@
           ]
         }
       },
-      "learning_cache_key": "3513d7bbd1f49febeced4d99fb5f3e26f6829d4aa74983cb8aea68ed8699a784",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3513d7bbd1f49febeced4d99fb5f3e26f6829d4aa74983cb8aea68ed8699a784"
     },
     {
       "id": 1389011744,
@@ -52950,7 +52950,7 @@
       "failed": 0,
       "ready": 11,
       "status": "ready",
-      "generated_at": "2026-10-19 20:24 UTC"
+      "generated_at": "2026-10-19 20:29 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -53081,7 +53081,6 @@
     "cluster_status": "ready",
     "cluster_cache_key": "b5c751e8bce1bebe72a07aae1ccdcc39360e786faa8526568a129e85d09d460d",
     "candidates": [],
-    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。",
-    "cluster_model": "session-assistant-readme-review"
+    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
   }
 }
