@@ -20,10 +20,13 @@ from __future__ import annotations
 import argparse
 import json
 import os
-import sys
 import glob
+import re
+from pathlib import Path
 
 DATA_TOKEN = '"__AIGC_DASHBOARD_DATA__"'
+SETTINGS_TOKEN = '"__AIGC_SETTINGS__"'
+CRYPTO_TOKEN = "<!-- __SODIUM_SCRIPTS__ -->"
 
 
 def find_latest_data(output_dir: str) -> str:
@@ -108,6 +111,55 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
   .subtitle { color: var(--text-dim); margin-top: 8px; font-size: 14.5px; }
+  .hero-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .settings-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    font: inherit; font-size: 13px; color: var(--text); cursor: pointer;
+    padding: 9px 14px; background: var(--bg-soft); border: 1px solid var(--border-strong); border-radius: 10px;
+  }
+  .settings-btn:hover { border-color: var(--accent); }
+  .settings-btn:focus-visible, .settings-dialog input:focus-visible, .settings-dialog summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 3px;
+  }
+  .settings-btn:disabled { opacity: .5; cursor: wait; }
+  body:has(.settings-dialog[open]) { overflow: hidden; }
+  .settings-dialog {
+    margin: auto; width: min(580px, calc(100vw - 32px)); max-height: calc(100dvh - 32px);
+    padding: 26px; overflow-y: auto; overscroll-behavior: contain;
+    color: var(--text); background: #111729; border: 1px solid var(--border-strong);
+    border-radius: 20px; box-shadow: 0 24px 90px #0009; font-family: var(--sans);
+  }
+  .settings-dialog::backdrop { background: #050810bb; backdrop-filter: blur(5px); }
+  .settings-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .settings-heading h2 { font-size: 21px; letter-spacing: -.02em; }
+  .settings-intro { font-size: 13px; color: var(--text-dim); margin: 10px 0 18px; }
+  .settings-repo { display: block; color: #b9c3ff; overflow-wrap: anywhere; margin-top: 3px; }
+  .settings-dialog fieldset { border: 0; padding: 0; min-width: 0; }
+  .settings-field { display: block; margin: 14px 0; }
+  .settings-field > span { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .settings-dialog input:not([type="checkbox"]) {
+    width: 100%; min-width: 0; color: var(--text); background: #090e1b;
+    border: 1px solid var(--border-strong); border-radius: 9px; padding: 11px 12px; font: inherit; font-size: 13px;
+  }
+  .settings-dialog input::placeholder { color: var(--text-faint); }
+  .settings-help { font-size: 12px; line-height: 1.7; color: var(--text-dim); margin: 7px 0; }
+  .settings-dialog a { color: #b9c3ff; text-underline-offset: 3px; }
+  .settings-dialog details { border-top: 1px solid var(--border); padding-top: 12px; margin-top: 14px; }
+  .settings-dialog summary { cursor: pointer; font-size: 13px; color: var(--text-dim); }
+  .settings-auth { margin-top: 18px; padding-top: 4px; border-top: 1px solid var(--border); }
+  .settings-check { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; margin: 18px 0; cursor: pointer; }
+  .settings-check input { margin-top: 5px; accent-color: var(--accent); }
+  .settings-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; }
+  .settings-primary { background: var(--accent); border-color: var(--accent); color: #0a0e1a; font-weight: 700; }
+  .settings-status { margin-top: 16px; padding: 12px; border-radius: 10px; background: var(--accent-soft); font-size: 13px; white-space: pre-line; }
+  .settings-status[data-state="error"] { background: #fb718518; color: #fda4af; }
+  .settings-status[data-state="success"] { background: #4ade8012; color: #8ff0b0; }
+  .settings-status[data-state="warning"] { color: #fcd68a; }
+  @media (max-width: 560px) {
+    .settings-dialog { padding: 20px; }
+    .settings-actions { flex-wrap: wrap; }
+    .settings-dialog input:not([type="checkbox"]) { font-size: 16px; }
+  }
   .window-pill {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--accent-soft); color: #c4ccff;
@@ -463,7 +515,13 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         <h1>AIGC 前沿趋势看板</h1>
         <div class="subtitle">GitHub 开源项目 · Hugging Face 新模型 · Hacker News 社区热议</div>
       </div>
-      <div class="window-pill" id="windowPill"></div>
+      <div class="hero-actions">
+        <div class="window-pill" id="windowPill"></div>
+        <button class="settings-btn" id="settingsOpen" type="button" aria-haspopup="dialog">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="currentColor"/><circle cx="15" cy="17" r="3" fill="currentColor"/></svg>
+          设置
+        </button>
+      </div>
     </div>
     <div class="stats" id="stats"></div>
   </header>
@@ -501,8 +559,64 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <span id="toastText">已复制</span>
 </div>
 
+<dialog class="settings-dialog" id="settingsDialog" aria-labelledby="settingsTitle" aria-describedby="settingsIntro">
+  <div class="settings-heading">
+    <h2 id="settingsTitle">每日更新设置</h2>
+    <button type="button" class="settings-btn" id="settingsClose" aria-label="关闭设置">✕</button>
+  </div>
+  <p class="settings-intro" id="settingsIntro">
+    为每日任务启用中文简介、核心能力与 AI 场景示意。此设置由仓库管理员维护，更新后对所有看板访客生效。
+    <span class="settings-repo" id="settingsRepo"></span>
+  </p>
+  <form id="settingsForm" autocomplete="off">
+    <fieldset id="settingsFields">
+      <label class="settings-field">
+        <span>LLM API Key</span>
+        <input id="llmKey" type="password" required autocomplete="off" spellcheck="false" maxlength="4096" placeholder="粘贴你的模型服务 API Key">
+      </label>
+      <p class="settings-help">Key 在本机加密后存入 GitHub Secrets，用于云端每日生成；网页不会回显已有 Key。</p>
+      <details>
+        <summary>模型与接口地址（可选）</summary>
+        <p class="settings-help">首次使用默认连接火山方舟。已有自定义配置时，留空会保留原配置；更换服务商时请同时填写以下两项。</p>
+        <label class="settings-field">
+          <span>模型名称 / 接入点 ID</span>
+          <input id="llmModel" type="text" autocomplete="off" spellcheck="false" maxlength="200" placeholder="默认 doubao-seed-1-6-250615">
+        </label>
+        <label class="settings-field">
+          <span>OpenAI 兼容接口 Base URL</span>
+          <input id="llmBaseUrl" type="url" autocomplete="off" spellcheck="false" maxlength="500" placeholder="默认 https://ark.cn-beijing.volces.com/api/v3">
+        </label>
+        <p class="settings-help">填到 /v1 或 /api/v3 即可，不要包含 /chat/completions。</p>
+      </details>
+      <div class="settings-auth">
+        <label class="settings-field">
+          <span>GitHub 授权令牌</span>
+          <input id="githubToken" type="password" required autocomplete="off" spellcheck="false" maxlength="512" placeholder="仅用于本次保存，完成后清空">
+        </label>
+        <p class="settings-help">
+          <a id="createTokenLink" target="_blank" rel="noopener noreferrer">创建授权令牌 ↗</a>：
+          选择上方仓库，将 <strong>Secrets</strong> 设为 <strong>Read and write</strong>；
+          如需立即更新，再将 <strong>Actions</strong> 设为 <strong>Read and write</strong>。
+        </p>
+      </div>
+      <label class="settings-check">
+        <input id="updateNow" type="checkbox" checked>
+        <span>保存后立即更新看板<br><small class="settings-help">云端生成完成后刷新网页查看，通常需要几分钟。</small></span>
+      </label>
+      <div class="settings-actions">
+        <a id="settingsNativeLink" target="_blank" rel="noopener noreferrer">也可在 GitHub 直接设置 ↗</a>
+        <button type="submit" class="settings-btn settings-primary" id="settingsSave">保存到每日任务</button>
+      </div>
+    </fieldset>
+  </form>
+  <p id="settingsStatus" class="settings-status" role="status" aria-live="polite" hidden></p>
+  <p class="settings-help" id="settingsProgressLink" hidden><a id="settingsActionsLink" target="_blank" rel="noopener noreferrer">查看云端运行进度 ↗</a></p>
+</dialog>
+
+<!-- __SODIUM_SCRIPTS__ -->
 <script>
 const DASH_DATA = "__AIGC_DASHBOARD_DATA__";
+const SETTINGS = "__AIGC_SETTINGS__";
 const projects = DASH_DATA.projects || [];
 const hfModels = DASH_DATA.hf_models || [];
 const hnStories = DASH_DATA.hn_hot_stories || [];
@@ -1047,6 +1161,206 @@ document.getElementById("search").addEventListener("input", e => {
 });
 document.getElementById("sort").addEventListener("change", e => { state.sort = e.target.value; renderProjects(); });
 
+/* 管理员设置：凭据只留在本次表单/请求内；GitHub 收到的 secret 值已用仓库公钥加密。
+   使用 libsodium crypto_box_seal（GitHub 要求的 sealed box），不自行实现密码算法。 */
+(() => {
+  const dialog = document.getElementById("settingsDialog");
+  const form = document.getElementById("settingsForm");
+  const fields = document.getElementById("settingsFields");
+  const closeButton = document.getElementById("settingsClose");
+  const saveButton = document.getElementById("settingsSave");
+  const status = document.getElementById("settingsStatus");
+  const progressLink = document.getElementById("settingsProgressLink");
+  const keyInput = document.getElementById("llmKey");
+  const tokenInput = document.getElementById("githubToken");
+  const repoPath = SETTINGS.repository.split("/").map(encodeURIComponent).join("/");
+  const repoURL = "https://github.com/" + repoPath;
+  const apiRoot = "https://api.github.com/repos/" + repoPath;
+  let busy = false;
+
+  document.getElementById("settingsRepo").textContent = SETTINGS.repository;
+  document.getElementById("settingsNativeLink").href = repoURL + "/settings/secrets/actions";
+  document.getElementById("settingsActionsLink").href = repoURL + "/actions/workflows/deploy.yml";
+  document.getElementById("createTokenLink").href = "https://github.com/settings/personal-access-tokens/new";
+
+  function notify(message, state = "") {
+    status.textContent = message; // 不显示 API 原始错误，防止服务端回显凭据。
+    status.dataset.state = state;
+    status.hidden = false;
+  }
+  function clearCredentials() {
+    keyInput.value = "";
+    tokenInput.value = "";
+  }
+  function resetForm() {
+    form.reset();
+    clearCredentials();
+    dialog.querySelector("details").open = false;
+    status.hidden = true;
+    progressLink.hidden = true;
+  }
+  document.getElementById("settingsOpen").addEventListener("click", () => {
+    resetForm();
+    dialog.showModal();
+    keyInput.focus();
+  });
+  closeButton.addEventListener("click", () => { if (!busy) dialog.close(); });
+  dialog.addEventListener("cancel", e => { if (busy) e.preventDefault(); });
+  dialog.addEventListener("close", resetForm);
+  window.addEventListener("pagehide", clearCredentials);
+  window.addEventListener("pageshow", e => { if (e.persisted) clearCredentials(); });
+
+  async function githubRequest(path, token, method = "GET", body) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    try {
+      const response = await fetch(apiRoot + path, {
+        method,
+        headers: {
+          Accept: "application/vnd.github+json",
+          Authorization: "Bearer " + token,
+          "X-GitHub-Api-Version": "2022-11-28",
+          ...(body ? { "Content-Type": "application/json" } : {})
+        },
+        body: body ? JSON.stringify(body) : undefined,
+        signal: controller.signal,
+        credentials: "omit",
+        cache: "no-store",
+        redirect: "error",
+        referrerPolicy: "no-referrer"
+      });
+      if (!response.ok) {
+        const errors = {
+          401: "GitHub 授权令牌无效或已过期，请重新创建。",
+          403: "GitHub 拒绝访问，请检查令牌的仓库范围与权限，或稍后重试。",
+          404: "无法访问目标仓库或工作流，请确认令牌已选择此仓库，并授予对应权限。",
+          422: "GitHub 未接受配置，请检查仓库公钥权限或工作流是否已启用。",
+          429: "GitHub 请求过于频繁，请稍后重试。"
+        };
+        throw new Error(errors[response.status] || "GitHub 服务暂不可用，请稍后重试。");
+      }
+      return method === "GET" ? await response.json() : null;
+    } catch (error) {
+      if (error.name === "AbortError" || error instanceof TypeError) {
+        throw new Error("连接 GitHub 超时或受网络限制。本次请求状态未确认，请到 GitHub 检查后再重试。");
+      }
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  async function cryptoReady() {
+    const sodium = window.sodium;
+    if (!sodium || !sodium.ready) throw new Error("加密组件未加载，请刷新页面后重试。");
+    let timer;
+    try {
+      await Promise.race([
+        sodium.ready,
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(new Error("加密组件启动超时，请刷新页面后重试。")), 15000);
+        })
+      ]);
+    } finally {
+      clearTimeout(timer);
+    }
+    return sodium;
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (busy || !form.reportValidity()) return;
+    let key = keyInput.value.trim();
+    let token = tokenInput.value.trim();
+    let model = document.getElementById("llmModel").value.trim();
+    let baseURL = document.getElementById("llmBaseUrl").value.trim();
+    if (!key || !token || /\s/.test(key) || /\s/.test(token)) {
+      notify("请填写两项凭据，并检查是否误带了空格或换行。", "error");
+      return;
+    }
+    if (baseURL) {
+      try {
+        const url = new URL(baseURL);
+        if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash ||
+            /\/chat\/completions\/?$/.test(url.pathname)) throw new Error();
+        baseURL = url.href.replace(/\/+$/, "");
+      } catch {
+        notify("接口地址须使用 HTTPS，且不能包含账号、查询参数或 /chat/completions。", "error");
+        return;
+      }
+    }
+    const updateNow = document.getElementById("updateNow").checked;
+    const saved = [];
+    busy = true;
+    fields.disabled = true;
+    closeButton.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    saveButton.textContent = "正在保存…";
+    progressLink.hidden = true;
+    try {
+      notify("正在验证 GitHub 授权并获取仓库加密公钥…");
+      const sodium = await cryptoReady();
+      const publicKey = await githubRequest("/actions/secrets/public-key", token);
+      if (typeof publicKey.key !== "string" || typeof publicKey.key_id !== "string") {
+        throw new Error("GitHub 返回的加密公钥不完整，尚未提交配置。");
+      }
+      const decodedKey = sodium.from_base64(publicKey.key, sodium.base64_variants.ORIGINAL);
+      if (decodedKey.length !== sodium.crypto_box_PUBLICKEYBYTES) {
+        throw new Error("GitHub 返回的加密公钥格式无效，尚未提交配置。");
+      }
+      const values = [["LLM_API_KEY", key]];
+      if (model) values.push(["LLM_MODEL", model]);
+      if (baseURL) values.push(["LLM_BASE_URL", baseURL]);
+      const encrypted = values.map(([name, value]) => {
+        const bytes = sodium.from_string(value);
+        try {
+          return [name, sodium.to_base64(sodium.crypto_box_seal(bytes, decodedKey), sodium.base64_variants.ORIGINAL)];
+        } finally {
+          sodium.memzero(bytes);
+        }
+      });
+      key = ""; model = ""; baseURL = ""; values.length = 0;
+      clearCredentials();
+      for (const [name, ciphertext] of encrypted) {
+        notify("正在保存 " + name + "…");
+        await githubRequest("/actions/secrets/" + name, token, "PUT", {
+          encrypted_value: ciphertext,
+          key_id: publicKey.key_id
+        });
+        saved.push(name);
+      }
+      if (updateNow) {
+        notify("配置已保存，正在启动云端更新…");
+        try {
+          await githubRequest("/actions/workflows/deploy.yml/dispatches", token, "POST", {
+            ref: "main", inputs: { days: String(DASH_DATA.window.days || 30) }
+          });
+          notify("已保存，云端更新已启动。\n生成并部署完成后，刷新看板查看中文内容。", "success");
+        } catch (error) {
+          notify("配置已保存，但立即更新未确认成功。\n" + error.message +
+            "\n可到运行记录确认或手动触发；每日任务仍会使用已保存的配置。", "warning");
+        }
+        progressLink.hidden = false;
+      } else {
+        notify("已保存到云端每日任务。\n下次运行时将使用新配置，当前网页内容保持到下一次发布。", "success");
+      }
+    } catch (error) {
+      const prefix = saved.length
+        ? "已保存 " + saved.join("、") + "，其余配置未完成。请检查后重试。\n"
+        : "未确认配置保存成功。\n";
+      notify(prefix + error.message, "error");
+    } finally {
+      key = ""; token = ""; model = ""; baseURL = "";
+      clearCredentials();
+      busy = false;
+      fields.disabled = false;
+      closeButton.disabled = false;
+      form.removeAttribute("aria-busy");
+      saveButton.textContent = "保存到每日任务";
+    }
+  });
+})();
+
 renderHeader();
 renderChips();
 renderProjects();
@@ -1065,21 +1379,38 @@ def build_payload(data: dict) -> dict:
     }
 
 
+def build_html(data: dict, repository: str) -> str:
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+        raise ValueError("仓库格式须为 owner/repository")
+    vendor = Path(__file__).resolve().parent / "vendor"
+    # 固定版本、随仓库分发：设置页无需从第三方 CDN 加载可执行脚本。
+    crypto_scripts = "\n".join(
+        "<script>\n" + (vendor / name).read_text(encoding="utf-8") + "\n</script>"
+        for name in ("libsodium-0.7.15.js", "libsodium-wrappers-0.7.15.js")
+    )
+    payload_json = json.dumps(build_payload(data), ensure_ascii=False).replace("</", "<\\/")
+    settings_json = json.dumps({"repository": repository})
+    # 数据最后插入，项目 description 内的模板标记不能影响页面脚本。
+    return (HTML_TEMPLATE.replace(CRYPTO_TOKEN, crypto_scripts)
+            .replace(SETTINGS_TOKEN, settings_json)
+            .replace(DATA_TOKEN, payload_json))
+
+
 def main():
     parser = argparse.ArgumentParser(description="AIGC 趋势看板生成器")
     parser.add_argument("--data", help="指定数据 JSON；缺省优先取固定名 aigc_data.json")
     parser.add_argument("--output-dir", default="output", help="输出目录")
     parser.add_argument("--out", help="显式指定输出文件路径（部署时可直接产出 index.html）")
+    parser.add_argument("--repo", default=os.environ.get(
+        "GITHUB_REPOSITORY", "shutongy871-dev/aigc-trend-dashboard"),
+        help="设置面板管理的 GitHub 仓库（owner/repository）")
     args = parser.parse_args()
 
     data_path = args.data or find_latest_data(args.output_dir)
     with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    payload_json = json.dumps(build_payload(data), ensure_ascii=False)
-    # JSON 内不含 </script> 的安全转义，防止内嵌脚本被提前闭合
-    payload_json = payload_json.replace("</", "<\\/")
-    html = HTML_TEMPLATE.replace(DATA_TOKEN, payload_json)
+    html = build_html(data, args.repo)
 
     if args.out:
         out_path = args.out

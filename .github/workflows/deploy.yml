@@ -1,6 +1,14 @@
 name: 每日采集并部署看板
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "render_dashboard.py"
+      - "aigc_trend_brief.py"
+      - "run_daily.sh"
+      - "vendor/**"
+      - ".github/workflows/deploy.yml"
   # UTC 01:05 = 北京时间 09:05（定时任务为尽力而为，偶发延迟属正常）
   schedule:
     - cron: "5 1 * * *"
@@ -38,10 +46,13 @@ jobs:
       - name: 采集数据并渲染看板
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          # GITHUB_TOKEN 由运行时自动注入，用于提升 GitHub API 速率上限
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3' }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL || 'doubao-seed-1-6-250615' }}
+          GITHUB_TOKEN: ${{ github.token }}
+          WINDOW_DAYS: ${{ github.event.inputs.days || '30' }}
         run: |
           chmod +x run_daily.sh
-          ./run_daily.sh "${{ github.event.inputs.days || '30' }}"
+          ./run_daily.sh "$WINDOW_DAYS"
 
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
