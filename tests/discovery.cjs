@@ -45,10 +45,20 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await page.evaluate(() => typeof window.sodium), "undefined");
     assert.equal(await page.locator(".tab.active").getAttribute("data-tab"), "skills");
     assert.equal(await page.locator(".learning-card").count(), 12);
+    const bilingual = page.locator(".learning-card").filter({ hasText: "Ebony-Vinyl/dsh-our-free-model" });
+    assert.equal(await bilingual.locator(".source-status").count(), 0);
+    assert.equal(await bilingual.locator(".card-desc p").count(), 2);
+    assert.equal(await bilingual.locator(".card-desc p").nth(0).getAttribute("lang"), "zh-CN");
+    assert.equal(await bilingual.locator(".card-desc p").nth(1).getAttribute("lang"), "en");
+    const download = bilingual.getByRole("button", { name: "复制给 Agent 下载", exact: true });
+    assert((await download.getAttribute("data-cmd")).includes("Ebony-Vinyl/dsh-our-free-model"));
+    assert((await download.getAttribute("data-cmd")).includes("安全风险"));
+    assert.equal(await page.locator(".expand-label").filter({ hasText: /怎么用|找灵感/ }).count(), 0);
     const card = page.locator(".learning-card").filter({ hasText: "wheresryan22/anatomy" });
     assert((await card.innerText()).includes("立体示意物"));
     await card.locator(".expand-toggle").click();
     assert.equal(await card.locator(".expand-toggle").getAttribute("aria-expanded"), "true");
+    assert.equal(await card.locator(".expand-label").innerText(), "收起详情");
     assert(await card.locator(".detail").isVisible());
     assert(!(await card.locator(".demo-result").isVisible()));
     await card.locator(".demo-run").click();
@@ -77,6 +87,8 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     await page.screenshot({ path: path.join(temp, "trends-desktop.png"), fullPage: true, animations: "disabled" });
     await page.getByRole("button", { name: "全部项目", exact: true }).click();
     assert((await page.locator(".card").count()) > 12);
+    assert.equal(await page.getByRole("button", { name: "复制给 Agent 下载", exact: true }).count(),
+      await page.locator(".learning-card").count());
     await page.locator("#sort").selectOption("stars");
     await page.locator(".chip").filter({ hasText: /^Agent\/智能体$/ }).click();
     assert.equal(await page.locator(".chip.active").innerText(), "Agent/智能体");

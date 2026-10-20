@@ -457,6 +457,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .analysis-notice { border-left: 3px solid var(--warn); background: #fbbf2408; padding: 12px 16px; margin: 14px 0; font-size: 13px; color: #dac9a4; }
   .discovery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
   .learning-card .card-desc { display: block; overflow: visible; font-size: 15px; color: var(--text); }
+  .learning-card .card-desc p + p { margin-top: 10px; }
   .learning-card { min-width: 0; }
   .learning-card p { overflow-wrap: anywhere; }
   .learning-fact { color: var(--text-dim); font-size: 13px; line-height: 1.8; }
@@ -649,6 +650,17 @@ function zhDesc(p) {
   if (p.description) return p.description;
   return "项目尚未提供简介，展开查看已收集的 README 资料。";
 }
+function descriptionHTML(p) {
+  const parts = String(zhDesc(p)).trim()
+    .replace(/([。！？；])\s+(?=[A-Za-z])/g, "$1\u0000")
+    .replace(/([.!?;])\s+(?=[\u3400-\u9fff])/g, "$1\u0000")
+    .split("\u0000").map(x => x.trim()).filter(Boolean);
+  const refs = p.learning?.summary ? refsHTML(p, p.learning.summary.sources) : "";
+  return parts.map((part, index) => {
+    const lang = /[\u3400-\u9fff]/.test(part) ? "zh-CN" : "en";
+    return '<p lang="' + lang + '">' + esc(part) + (index === parts.length - 1 ? refs : "") + "</p>";
+  }).join("");
+}
 
 /* 展开面板：连贯的能力说明 + 真实元信息 + 效果示意 */
 function detailPanel(p) {
@@ -659,7 +671,7 @@ function detailPanel(p) {
   const steps = l?.how_to?.length
     ? '<ol class="learning-steps">' + l.how_to.map(s => '<li>' + claimHTML(p, s) + "</li>").join("") + "</ol>"
     : '<p class="learning-fact">还没有足够资料生成上手步骤，请查看官方使用说明。</p>';
-  return '<div class="detail"><div><h4>怎么用</h4>' + steps + "</div>" +
+  return '<div class="detail"><div><h4>上手步骤</h4>' + steps + "</div>" +
     factHTML(p, "适合谁", l?.audience) + factHTML(p, "它为什么能做到", l?.mechanism) +
     factHTML(p, "可以借鉴的想法", l?.inspiration) + factHTML(p, "使用前留意", l?.limitations) +
     '<div><h4>输入 → 处理 → 产物</h4>' + learningDemo(p) + "</div>" +
@@ -679,10 +691,7 @@ function projectCard(p, i) {
       "</div>" +
       '<a class="icon-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" title="在 GitHub 打开" aria-label="GitHub 链接">' + ICON.github + "</a></div>" +
       '<div class="card-title">' + esc(p.full_name) + "</div>" +
-      '<div class="source-status">' + (p.learning_status === "llm"
-        ? (p.learning_model === "session-assistant-readme-review" ? "本次 AI 阅读 README · 附来源" : "每日 AI 阅读 README · 附来源")
-        : "项目原文 · 待 AI 解读") + "</div>" +
-      '<div class="card-desc">' + esc(zhDesc(p)) + (p.learning?.summary ? refsHTML(p, p.learning.summary.sources) : "") + "</div>" +
+      '<div class="card-desc">' + descriptionHTML(p) + "</div>" +
       factHTML(p, "帮你解决什么", p.learning?.value, "learning-value") +
       factHTML(p, "你能得到什么", p.learning?.outcome) +
       '<div class="metrics">' +
@@ -692,10 +701,10 @@ function projectCard(p, i) {
         (p.language ? '<span class="metric"><span class="lang-dot"></span>' + esc(p.language) + "</span>" : "") +
       "</div>" +
       (tags ? '<div class="tag-row">' + tags + "</div>" : "") +
-      '<button class="expand-toggle" aria-expanded="false"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">怎么用 · 看演示 · 找灵感</span></button>' +
+      '<button class="expand-toggle" aria-expanded="false"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">查看详情</span></button>' +
       detailPanel(p) +
       '<div class="learning-links"><a href="' + safeURL(p.url + "#readme") + '" target="_blank" rel="noopener">官方使用说明 ↗</a>' +
-      '<button class="copy-btn" data-cmd="' + esc(learningPrompt(p)) + '">' + ICON.copy + "复制学习提问</button></div>" +
+      '<button class="copy-btn" data-cmd="' + esc(downloadPrompt(p)) + '">' + ICON.copy + "复制给 Agent 下载</button></div>" +
     "</article>"
   );
 }
@@ -715,9 +724,10 @@ function factHTML(p, label, claim, cls="") {
   return claim ? '<div class="learning-fact ' + cls + '"><strong>' + esc(label) + "</strong><p>" +
     claimHTML(p, claim) + "</p></div>" : "";
 }
-function learningPrompt(p) {
-  return "请阅读 " + p.url + " 的 README 和官方使用文档，结合我的需求解释它能做什么、与相似方案有何区别。" +
-    "先说明运行前提，再指导我完成最小示例；无法确认的功能请明确指出。我的需求是：";
+function downloadPrompt(p) {
+  return "请帮我下载并安装这个 GitHub 项目：" + p.url + "\n" +
+    "先阅读官方 README，确认运行环境和安全风险，再按项目官方步骤下载、安装并完成最小可运行验证。" +
+    "不要使用仓库未推荐的第三方安装包；如果需要 API Key、付费服务或高风险系统权限，请先询问我。";
 }
 function learningDemo(p) {
   const d = p.learning?.demo;
@@ -900,7 +910,7 @@ function bindExpand(root) {
     btn.classList.toggle("open", isOpen);
     const label = btn.querySelector(".expand-label");
     btn.setAttribute("aria-expanded", String(isOpen));
-    if (label) label.textContent = isOpen ? "收起学习指南" : "怎么用 · 看演示 · 找灵感";
+    if (label) label.textContent = isOpen ? "收起详情" : "查看详情";
   });
   root.addEventListener("click", e => {
     const btn = e.target.closest?.(".demo-run");
