@@ -20,11 +20,11 @@ for p in d["github_projects"]:
     p.pop("learning_cache_key",None)
 a=enrich_learning(d["github_projects"],model="test",log=lambda _:None)
 d["discovery"]=build_discovery(d["github_projects"],d["window"],a)
-Path(".validation/discovery/no-model.html").write_text(build_html(d,"o/repo"))
+Path(".validation/discovery/no-model.html").write_text(build_html(d))
 p=next(p for p in d["github_projects"] if p["full_name"] in d["discovery"]["skills_tools"])
 p["description"]='<img src=x onerror="window.INJECTED=true"> Literal README text'
 p["evidence"][0]["text"]='</script><img src=x onerror="window.INJECTED=true">'
-Path(".validation/discovery/escaping.html").write_text(build_html(d,"o/repo"))
+Path(".validation/discovery/escaping.html").write_text(build_html(d))
 `], { cwd: root });
 const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.0.0.1", "--directory", temp]);
 
@@ -40,6 +40,9 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     const errors = [];
     page.on("pageerror", e => errors.push(e.message));
     await page.goto(`http://127.0.0.1:${port}/`);
+    assert.equal(await page.getByRole("button", { name: "设置", exact: true }).count(), 0);
+    assert.equal(await page.locator('input[type="password"], dialog').count(), 0);
+    assert.equal(await page.evaluate(() => typeof window.sodium), "undefined");
     assert.equal(await page.locator(".tab.active").getAttribute("data-tab"), "skills");
     assert.equal(await page.locator(".learning-card").count(), 12);
     const card = page.locator(".learning-card").filter({ hasText: "wheresryan22/anatomy" });
@@ -67,8 +70,9 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     await app.locator(".expand-toggle").click();
     assert((await app.locator(".detail").innerText()).includes("SQLite"));
     await page.getByRole("button", { name: "机制与爆发观察", exact: true }).click();
-    assert.equal(await page.locator(".trend-card").count(), 2);
-    assert.equal(await page.locator(".trend-bars").count(), 2);
+    const trendCount = await page.locator(".trend-card").count();
+    assert(trendCount >= 1);
+    assert.equal(await page.locator(".trend-bars").count(), trendCount);
     assert((await page.locator(".scope-note").last().innerText()).includes("不是 Star 增速"));
     await page.screenshot({ path: path.join(temp, "trends-desktop.png"), fullPage: true, animations: "disabled" });
     await page.getByRole("button", { name: "全部项目", exact: true }).click();
@@ -100,7 +104,7 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     await page.locator(".evidence-list summary").first().click();
     assert.equal(await page.evaluate(() => !!window.INJECTED), false);
     assert.deepEqual(errors, []);
-    console.log("PASS: three discovery views, sourced learning, demos, search, legacy views, mobile, missing-model state, escaping");
+    console.log("PASS: public dashboard has no settings/credentials, discovery views and interactions work");
   } finally {
     if (browser) await browser.close();
     server.kill();

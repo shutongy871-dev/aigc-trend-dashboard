@@ -7,9 +7,8 @@ on:
       - "render_dashboard.py"
       - "aigc_trend_brief.py"
       - "project_discovery.py"
-      - "tests/**"
       - "run_daily.sh"
-      - "vendor/**"
+      - "tests/**"
       - ".github/workflows/deploy.yml"
   # UTC 01:05 = 北京时间 09:05（定时任务为尽力而为，偶发延迟属正常）
   schedule:

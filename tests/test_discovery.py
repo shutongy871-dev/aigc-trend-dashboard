@@ -191,10 +191,13 @@ class ClusterTests(unittest.TestCase):
 
     def test_html_data_cannot_terminate_script(self):
         data = {"github_projects": [{**project(), "description": '</script><img src=x onerror="alert(1)">'}]}
-        html = build_html(data, "o/repo")
+        html = build_html(data)
         self.assertIn(r'<\/script><img', html)
         self.assertNotIn('</script><img src=x', html)
         self.assertNotIn("赛道通用示意", html)
+        self.assertNotIn("GitHub 授权令牌", html)
+        self.assertNotIn("LLM_API_KEY", html)
+        self.assertNotIn("libsodium", html)
 
 
 if __name__ == "__main__":
