@@ -278,6 +278,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -381,8 +382,7 @@
           ]
         }
       },
-      "learning_cache_key": "a88638aecdafdf25e92c31b03ffb8e04c233b947f7216b3ee4659dc85fab6586",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "a88638aecdafdf25e92c31b03ffb8e04c233b947f7216b3ee4659dc85fab6586"
     },
     {
       "id": 1410124849,
@@ -467,6 +467,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -575,8 +576,7 @@
           ]
         }
       },
-      "learning_cache_key": "3fcc118ea9373bbb536cb42d2f4859bc5706daddf9177a1feca6ba7f847fdd04",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3fcc118ea9373bbb536cb42d2f4859bc5706daddf9177a1feca6ba7f847fdd04"
     },
     {
       "id": 1407950271,
@@ -725,6 +725,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -828,8 +829,7 @@
           ]
         }
       },
-      "learning_cache_key": "14627bc8757c647d72471e9163a43f894b96b45644a4ac4b8fd66af8988389ca",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "14627bc8757c647d72471e9163a43f894b96b45644a4ac4b8fd66af8988389ca"
     },
     {
       "id": 1393965829,
@@ -924,6 +924,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -1031,8 +1032,7 @@
           ]
         }
       },
-      "learning_cache_key": "7fd3a53b3559de5828b7de755b2db3402be160440e07aace00c0b9d7090d5317",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "7fd3a53b3559de5828b7de755b2db3402be160440e07aace00c0b9d7090d5317"
     },
     {
       "id": 1379574728,
@@ -1536,6 +1536,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -1640,8 +1641,7 @@
           ]
         }
       },
-      "learning_cache_key": "96aefe9462ef16b93f541152c8854e2a16bf27a02ceb30c8c6ef2f06dd88b3f9",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "96aefe9462ef16b93f541152c8854e2a16bf27a02ceb30c8c6ef2f06dd88b3f9"
     },
     {
       "id": 1401476500,
@@ -1738,6 +1738,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -1842,8 +1843,7 @@
           ]
         }
       },
-      "learning_cache_key": "170826dfdf5b873e0359dbc303e83e9eab10820e190b797eef3eb8991d8bfcc3",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "170826dfdf5b873e0359dbc303e83e9eab10820e190b797eef3eb8991d8bfcc3"
     },
     {
       "id": 1407873347,
@@ -1929,6 +1929,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -2030,8 +2031,7 @@
           ]
         }
       },
-      "learning_cache_key": "df37ddc601e3c7f2310b2982cb62017737027d886366ff106f110ae63cefa6b8",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "df37ddc601e3c7f2310b2982cb62017737027d886366ff106f110ae63cefa6b8"
     },
     {
       "id": 1389011744,
@@ -2295,6 +2295,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2398,8 +2399,7 @@
           ]
         }
       },
-      "learning_cache_key": "3513d7bbd1f49febeced4d99fb5f3e26f6829d4aa74983cb8aea68ed8699a784",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3513d7bbd1f49febeced4d99fb5f3e26f6829d4aa74983cb8aea68ed8699a784"
     },
     {
       "id": 1393689296,
@@ -2653,6 +2653,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "session-assistant-readme-review",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2764,8 +2765,7 @@
           ]
         }
       },
-      "learning_cache_key": "3984e87e2f60bbebff110692ac25060c40d3e29ade5a0f6b9a80995eaabfcf5e",
-      "learning_model": "session-assistant-readme-review"
+      "learning_cache_key": "3984e87e2f60bbebff110692ac25060c40d3e29ade5a0f6b9a80995eaabfcf5e"
     },
     {
       "id": 1416386910,
@@ -52523,7 +52523,7 @@
       "failed": 0,
       "ready": 9,
       "status": "ready",
-      "generated_at": "2026-10-20 05:56 UTC"
+      "generated_at": "2026-10-20 10:04 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
