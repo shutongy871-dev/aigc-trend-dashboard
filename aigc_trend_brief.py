@@ -1106,12 +1106,17 @@ def discovery_llm(system, user):
             body={"model": LLM_MODEL, "messages": [
                 {"role": "system", "content": system}, {"role": "user", "content": user}],
                 "temperature": 0.2, "max_tokens": 8000,
+                "reasoning": {"effort": "none"},
+                "provider": {"require_parameters": True},
                 "response_format": {"type": "json_object"}},
             timeout=120,
         )
-        content = resp["choices"][0]["message"]["content"]
-        if not isinstance(content, str):
-            raise ValueError("响应为空")
+        choice = resp["choices"][0]
+        content = choice["message"]["content"]
+        if not isinstance(content, str) or not content.strip():
+            model = re.sub(r"[^a-zA-Z0-9_./:-]", "", str(resp.get("model", "")))[:100]
+            finish = re.sub(r"[^a-zA-Z0-9_./:-]", "", str(choice.get("finish_reason", "")))[:40]
+            raise ValueError(f"响应为空 (model={model or 'unknown'}, finish={finish or 'unknown'})")
         return content
     except Exception as exc:
         # 不记录请求头、响应正文或模型输出，只保留可定位的异常类型与服务端错误摘要。

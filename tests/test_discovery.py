@@ -1,7 +1,9 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 
+import aigc_trend_brief
 from project_discovery import (
     extract_evidence, evidence_key, enrich_learning, parse_json, validate_learning,
     growth_metrics, select_featured, validate_clusters, build_discovery,
@@ -73,6 +75,26 @@ class EvidenceTests(unittest.TestCase):
 
 
 class ModelTests(unittest.TestCase):
+    def test_openrouter_request_disables_reasoning_and_requires_parameters(self):
+        seen = {}
+
+        def respond(*args, **kwargs):
+            seen.update(kwargs["body"])
+            return {"model": "free/model", "choices": [
+                {"finish_reason": "stop", "message": {"content": '{"items":[]}'}}]}
+
+        with patch.object(aigc_trend_brief, "http_post_json", respond):
+            self.assertEqual(aigc_trend_brief.discovery_llm("system", "user"), '{"items":[]}')
+        self.assertEqual(seen["reasoning"], {"effort": "none"})
+        self.assertEqual(seen["provider"], {"require_parameters": True})
+
+    def test_empty_model_response_reports_safe_routing_metadata(self):
+        response = {"model": "free/model", "choices": [
+            {"finish_reason": "length", "message": {"content": None}}]}
+        with patch.object(aigc_trend_brief, "http_post_json", return_value=response):
+            with self.assertRaisesRegex(RuntimeError, r"model=free/model, finish=length"):
+                aigc_trend_brief.discovery_llm("system", "user")
+
     def test_parse_json_repairs_only_invalid_string_escapes(self):
         parsed = parse_json(r'{"text":"Windows C:\users\demo and \q","valid":"line\nnext"}')
         self.assertEqual(parsed["text"], r"Windows C:\users\demo and \q")
