@@ -70,6 +70,8 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await card.locator(".demo-run").count(), 0);
     assert.equal(await card.locator(".detail h4").first().innerText(), "使用演示");
     assert.equal(await card.locator(".detail").getByText("上手步骤", { exact: true }).count(), 0);
+    assert.equal(await card.getByText("AI 依据 README 编排的使用流程 · 未实际运行项目", { exact: true }).count(), 0);
+    assert.equal(await card.getByText("示例输入", { exact: true }).count(), 0);
     assert.equal(await card.locator(".demo-stage-title").innerText(), "处理过程");
     assert((await card.locator(".demo-result").innerText()).includes("限流"));
     await card.locator(".evidence-list summary").click();

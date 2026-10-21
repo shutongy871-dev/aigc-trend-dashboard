@@ -748,8 +748,7 @@ function downloadPrompt(p) {
 function learningDemo(p) {
   const d = p.learning?.demo;
   if (!d) return '<p class="learning-fact">暂缺可核实的使用演示，请查看官方使用说明。</p>';
-  return '<div class="demo-box"><span class="demo-src s-llm">AI 依据 README 编排的使用流程 · 未实际运行项目</span>' +
-    factHTML(p, "示例输入", d.input) +
+  return '<div class="demo-box"><p class="learning-fact">' + claimHTML(p, d.input) + "</p>" +
     '<div class="demo-result">' +
     '<strong class="demo-stage-title">处理过程</strong>' +
     '<ol class="learning-steps">' + d.steps.map(c => '<li>' + claimHTML(p, c) + "</li>").join("") + "</ol>" +

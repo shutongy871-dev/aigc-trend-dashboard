@@ -200,6 +200,8 @@ class ClusterTests(unittest.TestCase):
         self.assertNotIn("libsodium", html)
         self.assertNotIn("项目原文 · 待 AI 解读", html)
         self.assertNotIn("你能得到什么", html)
+        self.assertNotIn("AI 依据 README 编排的使用流程 · 未实际运行项目", html)
+        self.assertNotIn("示例输入", html)
         self.assertIn("复制给 Agent 下载", html)
 
 
