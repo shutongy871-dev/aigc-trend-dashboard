@@ -1154,7 +1154,7 @@
         "https://raw.githubusercontent.com/browser-use/jev-ultrafast/HEAD/docs/demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1329849289,
@@ -1248,7 +1248,7 @@
         "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1383809012,
@@ -1337,7 +1337,7 @@
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/agents-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1410124849,
@@ -1421,7 +1421,115 @@
         "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/ripple-tank.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "Anatomy is a Claude skill that generates interactive isometric illustrations of real-world machines and complex systems.",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "summary": {
+          "text": "A skill that creates detailed, interactive isometric figures explaining technical concepts through physical analogies.",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "value": {
+          "text": "Generates polished SVGs with optional WebGL shaders and 3D effects for visual explanations.",
+          "sources": [
+            "R1",
+            "D0"
+          ]
+        },
+        "audience": {
+          "text": "Developers, educators, and technical communicators who need visual explanations of complex systems.",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "用户可以通过对话生成详细的等轴测插图，用于文档、演示或解释技术概念。",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "mechanism": {
+          "text": "技能使用 SKILL.md 定义的工作流：收集真实数据、设计物理对象、构建几何模型、渲染并验证。kit/iso-kit 提供等轴测相机、固体库和渲染引擎。",
+          "sources": [
+            "R8",
+            "R9"
+          ]
+        },
+        "inspiration": {
+          "text": "将抽象概念转化为可触摸的物理实体——例如令牌桶限流器变成实际的锁机制，压力容器变成实际的压力表。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "非图表库（无坐标轴/系列），仅支持机器/工具/家具类对象，3D模式处于beta阶段，渲染速度较慢。",
+          "sources": [
+            "R10"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：在 Claude Code 中添加技能",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "前提：已安装 Claude Code 或兼容的 Agent Skills 平台",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "操作：运行 npx skills add wheresryan22/anatomy -g 或指定目标代理如 -a claude-code",
+            "sources": [
+              "R2"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "输入：'/anatomy explain how a token bucket rate limiter works, interactive'",
+            "sources": [
+              "R2",
+              "R6"
+            ]
+          },
+          "output": {
+            "text": "生成的等轴测插图展示了令牌桶限流器的工作原理，包括各组件的布局和交互逻辑。",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "调用 /anatomy 命令并描述要解释的概念",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "系统生成对应的等轴测插图",
+              "sources": [
+                "R4"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "c86da9fdd2a078918a7524db466d61c1f885d8d0b07eb10dcf0c1b62698683b8",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1333165619,
@@ -1514,7 +1622,107 @@
         "https://raw.githubusercontent.com/dataelement/dsh-desktop/HEAD/docs/images/wechat-group-20260815.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "DSH Desktop 是基于 DeepSeek Harness 框架开发的桌面级 AI 代理应用。",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "summary": {
+          "text": "DeepSeek Harness 桌面版，提供本地 AI 代理运行环境、项目管理和 PPTX 导出功能。",
+          "sources": [
+            "R1",
+            "R4"
+          ]
+        },
+        "value": {
+          "text": "将远程 Harness 体验封装为本地桌面应用，支持多模型、工作空间管理和自动化部署。",
+          "sources": [
+            "R4"
+          ]
+        },
+        "audience": {
+          "text": "需要本地 AI 代理能力的研究人员、开发者和团队成员。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "用户可以直接在桌面上启动 AI 代理，管理多个项目和工作空间，并导出为 PPTX 演示文稿。",
+          "sources": [
+            "R4",
+            "R5"
+          ]
+        },
+        "mechanism": {
+          "text": "应用内置 DeepSeek Harness 本地运行，支持多种模型提供商，通过原生目录选择器管理项目工作区。",
+          "sources": [
+            "R4",
+            "R10"
+          ]
+        },
+        "inspiration": {
+          "text": "深度学习研究人员希望拥有一个类似 Hugging Face Spaces 的本地桌面界面来快速实验 AI 代理。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "早期预览版本，可能与社区插件不兼容；部分功能仍在迭代中。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：从官方网站下载稳定版或预览版",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "操作：运行安装脚本或手动安装包，然后启动 DSH Desktop。",
+            "sources": [
+              "R2"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "npx skills add dataelement/dsh-desktop -g",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "桌面应用启动，显示 DeepSeek Harness 控制面板和项目列表。",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "执行安装命令",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "启动应用",
+              "sources": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "8a4b9185dc61055838fd4ff7cec70763a90485394500ef41ef77aaedbff3c20d",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1316527318,
@@ -2753,8 +2961,114 @@
         "https://raw.githubusercontent.com/trycompai/crm/HEAD/docs/images/product-shot.png",
         "https://raw.githubusercontent.com/trycompai/crm/HEAD/docs/images/landing-agents.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "research",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "research",
+        "kind_reason": {
+          "text": "Comp AI CRM 是一个面向 AI 代理的开源 CRM 系统，强调智能体优先的设计理念。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "AI 驱动的客户关系管理系统，智能体负责记账、决策和任务跟踪，而非传统 CRM 的查单模式。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "实现智能体自主管理客户信息和业务流程，减少人工干预。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "企业数字化转型、需要 AI 辅助管理客户关系的组织。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "智能体能够独立处理客户查询、更新记录并维护业务知识库，无需人工介入。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "基于 eve（Vercel 可靠性框架）构建的持久化智能体，结合 tRPC API 和 NestJS 后端，智能体拥有自己的工作队列和状态管理。",
+          "sources": [
+            "R4",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "将 CRM 从‘人为查询数据库’重构为‘由智能体维护的知识库’，类似于人类秘书的角色但更高效。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "架构复杂，需要 Bun/Docker 环境；依赖特定的模型接口和数据源配置。",
+          "sources": [
+            "R7",
+            "R8"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：启动 CRM 后进入智能体工作区",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "前提：配置好 AI 模型访问权限和数据来源（内部 CRM 数据或外部 API）。",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "操作：使用智能体工具（如 read_crm_history, schedule_recheck）与 CRM 交互。",
+            "sources": [
+              "R4"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "chat",
+          "input": {
+            "text": "/crm explain how a customer contact record is managed autonomously",
+            "sources": [
+              "R4"
+            ]
+          },
+          "output": {
+            "text": "智能体输出关于客户联系人记录的管理建议，包括更新、提醒和分析。",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "发送提示给智能体",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "智能体生成管理报告",
+              "sources": [
+                "R4"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "13c99ff78fc5d6f09f255787907089b9153ceb6090d6b483bbf833c0397b973a",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1318187016,
@@ -2856,7 +3170,7 @@
         "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1375069862,
@@ -2937,8 +3251,72 @@
         "https://raw.githubusercontent.com/jaredpalmer/kev/HEAD/docs/kev-family.png",
         "https://raw.githubusercontent.com/jaredpalmer/kev/HEAD/docs/playground.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "research",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "research",
+        "kind_reason": {
+          "text": "Family of small decision models built on Qwen3.5/3.8 architectures, designed for local training and deployment.",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "Small Jev-like decision models you can train and run yourself. The TypeSafe Python SDK works against a Kev server unchanged.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "Four sizes: Kev-0.8B, Kev-4B, Kev-9B, Kev-27B with varying accuracy metrics.",
+          "sources": [
+            "R4"
+          ]
+        },
+        "audience": {
+          "text": "Researchers, ML engineers, and developers wanting to deploy custom decision models locally.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "Local deployment of high-performance decision models with calibrated probabilities and support for Yes/No, Multiple-Choice, and Rating questions.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "Each checkpoint is a rank-16 LoRA adapter combined with a small pointer head on a Qwen base model, processing state and questions independently per row.",
+          "sources": [
+            "R18"
+          ]
+        },
+        "inspiration": {
+          "text": "Small Jev-like decision models based on the Jev architecture described in 'Jev's Architecture Unmasked' — enabling drop-in replacement for existing Jev systems.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "Calibration limited to single temperature; knowledge benchmarks show lower accuracy than Jev (e.g., MMLU-Pro 0.59 vs 0.84); fine-tuning can degrade specific tasks like date arithmetic.",
+          "sources": [
+            "R24"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "前置",
+            "sources": [
+              "D0",
+              "R2"
+            ]
+          }
+        ],
+        "demo": null
+      },
+      "learning_cache_key": "66dfb0f16545f38519e0fa0120f4cbf98c7d1443a8d3c4d09ca38888babd08c3",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1319154759,
@@ -3040,7 +3418,7 @@
         "https://raw.githubusercontent.com/FareedKhan-dev/kimi-k3-in-c/HEAD/docs/images/preset_ladder.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1397016507,
@@ -3132,7 +3510,7 @@
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/discord-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1327088798,
@@ -3229,7 +3607,7 @@
         "https://raw.githubusercontent.com/deeplethe/utopia/assets/assets/star-history.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1393965829,
@@ -3323,7 +3701,7 @@
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1378288598,
@@ -3397,7 +3775,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1379574728,
@@ -3516,7 +3894,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1351879111,
@@ -3606,7 +3984,7 @@
         "https://raw.githubusercontent.com/Human-Agent-Society/reef/HEAD/docs/assets/loop-animation-light.svg"
       ],
       "discovery_kind": "research",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1349601607,
@@ -3689,7 +4067,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1390273274,
@@ -3778,7 +4156,7 @@
         "https://media.skillry.dev/opus-5-5/moritzkremb-466494/preview.webp"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1334586481,
@@ -4045,7 +4423,7 @@
         "https://raw.githubusercontent.com/mizorewww/laya-mlx/main/docs/assets/snake-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1342935078,
@@ -4138,7 +4516,7 @@
         "https://github.com/edward821220.png?s=128"
       ],
       "discovery_kind": "research",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1336502227,
@@ -4224,7 +4602,7 @@
         "https://raw.githubusercontent.com/CopilotKit/OpenBot/HEAD/assets/architecture-dark.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1326531152,
@@ -4928,7 +5306,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1396117711,
@@ -5002,7 +5380,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1391438314,
@@ -5105,7 +5483,7 @@
         "https://raw.githubusercontent.com/Louis-CFM/coucou/HEAD/docs/media/hub-statistics.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1332080070,
@@ -5184,7 +5562,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1371757322,
@@ -5258,7 +5636,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1342461518,
@@ -5348,7 +5726,7 @@
         "https://raw.githubusercontent.com/ApodexAI/FrontierAgent/star-history/assets/star-history/star-history-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1346870728,
@@ -5430,7 +5808,7 @@
         "https://raw.githubusercontent.com/monid-ai/monid/HEAD/assets/monid-compile.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1331261687,
@@ -5522,7 +5900,7 @@
         "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/computer-panel.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1410929004,
@@ -5798,7 +6176,7 @@
         "https://raw.githubusercontent.com/slvDev/esp32-ai/HEAD/media/esp32-ple-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1333111893,
@@ -6265,7 +6643,7 @@
         "https://raw.githubusercontent.com/elie222/rakazo/HEAD/docs/readme-hero.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1325096132,
@@ -6344,7 +6722,7 @@
         "https://raw.githubusercontent.com/eternityspring/shuohao-skills/HEAD/skills/novel-characters/assets/report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1389011744,
@@ -7449,7 +7827,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1336933337,
@@ -8094,7 +8472,7 @@
         "https://raw.githubusercontent.com/onecli/onecli/HEAD/assets/onecli-flow-light.gif"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1403115747,
@@ -8180,7 +8558,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1342930695,
@@ -8278,7 +8656,7 @@
         "https://raw.githubusercontent.com/nateherkai/scroll-craft/HEAD/media/perkform.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1375615157,
@@ -8379,7 +8757,7 @@
         "https://raw.githubusercontent.com/Oldcircle/geo-sleuth/HEAD/docs/cases/desert/thumb.jpg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1379137016,
@@ -8455,7 +8833,7 @@
         }
       ],
       "discovery_kind": "application",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1337955304,
@@ -8542,7 +8920,7 @@
         "https://raw.githubusercontent.com/wang2122/sprix-sage-router/HEAD/docs/assets/progress-aware-utility-gap.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1354887280,
@@ -8621,7 +8999,7 @@
         "https://raw.githubusercontent.com/NVlabs/SoL-Pi/star-history/star-history-dark.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1416386910,
@@ -8710,7 +9088,7 @@
         "https://raw.githubusercontent.com/Arekejoker/qwen21-nsfw-pose-skill/HEAD/references/pose_examples/01_seaside.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1330702515,
@@ -95444,18 +95822,20 @@
       "prompt_version": "discovery-v2-json",
       "cached": 24,
       "model_enabled": true,
-      "generated": 0,
-      "failed": 3,
-      "ready": 24,
-      "attempted": 3,
-      "first_attempted": 2,
-      "retried": 1,
-      "queued": 986,
+      "generated": 4,
+      "failed": 41,
+      "ready": 28,
+      "attempted": 45,
+      "first_attempted": 40,
+      "retried": 5,
+      "queued": 944,
       "failure_reasons": [
-        "RuntimeError: 模型请求失败: 响应为空 (model=liquid/lfm-2.5-2.6b:free, finish=error)"
+        "JSONDecodeError: Unterminated string starting at: line 236 column 17 (char 6274)",
+        "响应结构未通过校验: genspark-ai/genoffice, FareedKhan-dev/kimi-k3-in-c",
+        "RuntimeError: 模型请求失败: HTTP 429: "
       ],
       "status": "ready",
-      "generated_at": "2026-10-21 13:10 UTC"
+      "generated_at": "2026-10-21 13:18 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -95489,41 +95869,31 @@
     ],
     "clusters": [
       {
-        "title": "MCP 驱动的工具与环境集成",
-        "mechanism": "利用 Model Context Protocol (MCP) 作为标准化通道，将大语言模型与外部工具、数据源、终端或浏览器 UI 连接起来，实现自动化工作流、数据查询或任务执行。",
-        "inspiration": "可以探索如何将 MCP 用于更复杂的多模态数据集成，或者构建统一的 MCP 网关来管理多个工具服务器，实现工具的动态发现与组合。",
+        "title": "插件化挂载与运行时注入",
+        "mechanism": "多个项目采用插件/模块可独立加载、挂载到统一运行时的架构，使组件可灵活组合、热插拔，而非硬编码在单一流程中。共同点是：把模型、工具、UI、路由等拆成可插拔单元，由运行时负责加载、编排和生命周期管理。",
+        "inspiration": "可探索：插件热重载与跨平台运行时抽象（如 cua 的 SDK 统一 VM/容器/云运行时）是否可泛化为通用 agent 运行时标准。",
         "members": [
           {
-            "repo": "miuuyy/codex-chatgpt-web",
+            "repo": "deepseek-ai/deepseek-harness",
             "sources": [
-              "R1",
               "R2"
             ],
-            "why": "通过 MCP 将 ChatGPT 连接到 Codex 的任务文件、终端和工具，实现 Full Harness 自动化工作流执行。"
+            "why": "everything-is-a-plugin 架构，每个组件作为独立插件加载到挂挂载器，支持灵活组合。"
           },
           {
-            "repo": "google/artemis",
+            "repo": "Ebony-Vinyl/dsh-our-free-model",
             "sources": [
-              "R3",
-              "R11"
+              "R9"
             ],
-            "why": "利用 MCP 将自然语言测试请求转化为执行计划，并在真实 Android 设备上驱动 UI 交互，收集日志和截图进行诊断。"
+            "why": "插件模式下直接挂载模型资源，绕过传统 API 调用链路，无需 API Key 即可使用模型。"
           },
           {
-            "repo": "Ryze-AI-Adgent/open-seo-mcp-skills",
+            "repo": "dataelement/dsh-desktop",
             "sources": [
-              "R2",
-              "R3"
+              "R4",
+              "R10"
             ],
-            "why": "作为 MCP 服务器，将 Google Search Console、GA4 和广告数据作为第一等工具暴露给 LLM 应用，实现直接查询。"
-          },
-          {
-            "repo": "totec448-spec/chat-on-steroids",
-            "sources": [
-              "R1",
-              "R2"
-            ],
-            "why": "通过 MCP 连接本地工具，浏览器扩展观察并自动化 ChatGPT 浏览器 UI 并本地记录对话，支持多 Agent 工作流。"
+            "why": "应用内置 DeepSeek Harness 本地运行，将插件式运行时嵌入桌面应用，支持多种模型提供商。"
           }
         ],
         "method": "llm",
@@ -95533,7 +95903,7 @@
           "previous": 0,
           "change_pct": null,
           "signal": "同类聚集",
-          "members": 4,
+          "members": 3,
           "undated": 0,
           "recent_start": "2026-10-14",
           "previous_start": "2026-10-07",
@@ -95541,37 +95911,34 @@
         }
       },
       {
-        "title": "插件化架构与资源挂载",
-        "mechanism": "采用“一切皆插件”的架构模式，将组件（如 TUI、模型、功能面板）作为独立插件加载到核心运行时（如 DSH/Harness）中，实现灵活组合、热插拔和资源直接挂载，绕过传统 API 调用链路。",
-        "inspiration": "可以探索插件间的依赖管理和生命周期编排，或者将插件化架构应用于更复杂的分布式系统，实现更细粒度的资源隔离与组合。",
+        "title": "会话级分级任务协议与治理门控",
+        "mechanism": "项目在会话内定义从脑暴→计划→执行→验收的显式任务协议，并叠加红队门、审计端点和打卡制，把“怎么做”结构化、可测量、可回溯。共同点是：把 agent 的行为过程固化为带治理的步骤序列，而非自由生成。",
+        "inspiration": "可探索：分级协议能否外化为团队级治理框架，结合审计日志实现跨会话的合规追溯。",
         "members": [
           {
-            "repo": "deepseek-ai/deepseek-harness",
+            "repo": "yjh051108/dsh-routing-suite",
             "sources": [
-              "R2"
+              "R2",
+              "R3",
+              "R4",
+              "R8"
             ],
-            "why": "核心设计为 'everything-is-a-plugin' 架构，每个组件可作为独立插件加载到挂载器中，实现灵活组合。"
+            "why": "提供会话级两级任务协议（脑暴选择题对齐→北极星定稿→规格化计划→按规格注入→打卡制→组收官→终验）+ 红队门 + 审计端点。"
           },
           {
-            "repo": "Ebony-Vinyl/dsh-our-free-model",
+            "repo": "miqdadbadjuber/anti-slop",
             "sources": [
-              "R9"
+              "R1",
+              "R18"
             ],
-            "why": "作为插件直接挂载模型资源，绕过传统 API 调用链路，实现无需登录和 API Key 的免费模型使用。"
+            "why": "三层规则（Hard Gate、Purpose Gate、Quality Locks）在动作前评估意图、工具使用和输出特征，控制 agent 行为边界。"
           },
           {
-            "repo": "ccch1mneyyy/dsh-TUI",
+            "repo": "microsoft/skill-recorder",
             "sources": [
-              "R17"
+              "R3"
             ],
-            "why": "作为 DSH 官方首推的 TUI 插件，负责交互和呈现，会话日志是事实来源。"
-          },
-          {
-            "repo": "omdsh-dev/DSH-better-sidebar",
-            "sources": [
-              "R2"
-            ],
-            "why": "作为 DSH 的插件，提供上下文感知的侧边栏面板，支持实时目录监控、全局搜索和拖放上传。"
+            "why": "录制屏幕活动，分析阶段重构为意图和步骤序列，最终生成可执行的 Skill 文件，把手工操作固化为结构化技能。"
           }
         ],
         "method": "llm",
@@ -95581,7 +95948,7 @@
           "previous": 0,
           "change_pct": null,
           "signal": "同类聚集",
-          "members": 4,
+          "members": 3,
           "undated": 0,
           "recent_start": "2026-10-14",
           "previous_start": "2026-10-07",
@@ -95590,7 +95957,7 @@
       }
     ],
     "cluster_status": "ready",
-    "cluster_cache_key": "38f6d3edf9dbf171fa5d80da9877f790c984abea19576d7c6f444fd051bb9275",
+    "cluster_cache_key": "e88702440146b73fb47f4ddba4773cc7a4de461128cab5240647cf662263f7ee",
     "candidates": [],
     "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
   }
