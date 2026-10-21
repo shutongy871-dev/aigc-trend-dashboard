@@ -155,6 +155,13 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
     """按热度预算分析；缓存随公共证据/模型/提示词变化失效，不缓存失败响应。"""
     prior = {p["full_name"]: p for p in previous}
     pending, cached, generated, failed = [], 0, 0, 0
+    failure_reasons = []
+
+    def remember_failure(reason):
+        reason = re.sub(r"\s+", " ", str(reason))[:300]
+        if reason and reason not in failure_reasons and len(failure_reasons) < 5:
+            failure_reasons.append(reason)
+
     for p in projects:
         p["discovery_kind"] = fallback_kind(p)
         p["learning_status"] = "pending"
@@ -212,16 +219,19 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
                         failed += 1
                         invalid.append(p["full_name"])
                 if invalid:
+                    remember_failure("响应结构未通过校验: " + ", ".join(invalid))
                     log(f"[学习卡] 返回结构未通过校验: {', '.join(invalid)}")
             except (ValueError, TypeError, KeyError, RuntimeError) as exc:
                 for p in chunk:
                     p["learning_status"] = "analysis_failed"
                 failed += len(chunk)
+                remember_failure(f"{type(exc).__name__}: {exc}")
                 log(f"[学习卡] 批次失败 ({type(exc).__name__}): {exc}")
             log(f"[学习卡] 已处理 {min(start + 3, len(selected))}/{len(selected)}，有效 {generated}")
     return {"model": model, "prompt_version": PROMPT_VERSION, "cached": cached,
             "model_enabled": bool(call_llm),
             "generated": generated, "failed": failed, "ready": cached + generated,
+            "failure_reasons": failure_reasons,
             "status": "ready" if cached + generated else ("unavailable" if not call_llm else "failed")}
 
 

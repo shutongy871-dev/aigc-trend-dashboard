@@ -99,10 +99,20 @@ class ModelTests(unittest.TestCase):
             ps = [project()]
             result = enrich_learning(ps, lambda *_: response, "model", log=lambda _: None)
             self.assertEqual(result["failed"], 1)
+            self.assertTrue(result["failure_reasons"])
             self.assertNotIn("learning_cache_key", ps[0])
         ps = [project()]
         enrich_learning(ps, None, "model", log=lambda _: None)
         self.assertEqual(ps[0]["learning_status"], "pending")
+
+    def test_failure_reason_is_bounded_and_deduplicated(self):
+        ps = [project(f"owner/tool-{i}") for i in range(6)]
+        result = enrich_learning(
+            ps, lambda *_: (_ for _ in ()).throw(RuntimeError("service denied " + "x" * 500)),
+            "model", log=lambda _: None,
+        )
+        self.assertEqual(len(result["failure_reasons"]), 1)
+        self.assertLessEqual(len(result["failure_reasons"][0]), 300)
 
     def test_new_high_rank_not_starved_by_old_cache(self):
         old = project("owner/old", stars=100)
