@@ -65,10 +65,11 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await card.locator(".expand-toggle").getAttribute("aria-expanded"), "true");
     assert.equal(await card.locator(".expand-label").innerText(), "收起演示");
     assert(await card.locator(".detail").isVisible());
-    assert(!(await card.locator(".demo-result").isVisible()));
-    await card.locator(".demo-run").click();
     assert(await card.locator(".demo-result").isVisible());
-    assert.equal(await page.locator("#toast.show").count(), 0, "演示按钮不能触发复制");
+    assert.equal(await card.locator(".demo-run").count(), 0);
+    assert.equal(await card.locator(".detail h4").first().innerText(), "使用演示");
+    assert.equal(await card.locator(".detail").getByText("上手步骤", { exact: true }).count(), 0);
+    assert.equal(await card.locator(".demo-stage-title").innerText(), "处理过程");
     assert((await card.locator(".demo-result").innerText()).includes("限流"));
     await card.locator(".evidence-list summary").click();
     assert(await card.locator("blockquote").first().isVisible());
@@ -107,7 +108,7 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     await page.setViewportSize({ width: 390, height: 844 });
     const mobile = page.locator(".learning-card").filter({ hasText: "wheresryan22/anatomy" });
     await mobile.locator(".expand-toggle").click();
-    await mobile.locator(".demo-run").click();
+    assert(await mobile.locator(".demo-result").isVisible());
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({ path: path.join(temp, "skills-mobile.png"), fullPage: true, animations: "disabled" });
     await page.goto(`http://127.0.0.1:${port}/no-model.html`);

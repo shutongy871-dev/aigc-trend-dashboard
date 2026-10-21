@@ -497,8 +497,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .trend-fill { height: 100%; background: var(--accent); border-radius: 5px; }
   .trend-fill.prev { background: #586582; }
   .mini-note { font-size: 11px; color: var(--text-faint); }
-  .demo-run { align-self: flex-start; }
   .demo-result { border-left: 2px solid var(--good); padding-left: 12px; }
+  .demo-stage-title { display: block; color: #bac5f7; font-size: 12px; margin: 12px 0 4px; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
@@ -686,13 +686,9 @@ function detailPanel(p) {
   const sources = (p.evidence || []).map(e =>
     '<a class="source-link" href="' + safeURL(e.url) + '" target="_blank" rel="noopener">' +
       esc(e.id + " · " + e.heading) + '</a><blockquote>' + esc(e.text) + "</blockquote>").join("");
-  const steps = l?.how_to?.length
-    ? '<ol class="learning-steps">' + l.how_to.map(s => '<li>' + claimHTML(p, s) + "</li>").join("") + "</ol>"
-    : '<p class="learning-fact">还没有足够资料生成上手步骤，请查看官方使用说明。</p>';
-  return '<div class="detail"><div><h4>上手步骤</h4>' + steps + "</div>" +
+  return '<div class="detail"><div><h4>使用演示</h4>' + learningDemo(p) + "</div>" +
     factHTML(p, "适合谁", l?.audience) + factHTML(p, "它为什么能做到", l?.mechanism) +
     factHTML(p, "可以借鉴的想法", l?.inspiration) + factHTML(p, "使用前留意", l?.limitations) +
-    '<div><h4>输入 → 处理 → 产物</h4>' + learningDemo(p) + "</div>" +
     '<details class="evidence-list"><summary>查看原始资料 · ' + (p.evidence || []).length +
     ' 段摘录</summary>' + (sources || '<p>本次未能获取 README，请打开仓库查看。</p>') + "</details></div>";
 }
@@ -752,11 +748,11 @@ function downloadPrompt(p) {
 }
 function learningDemo(p) {
   const d = p.learning?.demo;
-  if (!d) return '<p class="learning-fact">暂缺可核实的输入输出示例，可从官方文档查看演示。</p>';
+  if (!d) return '<p class="learning-fact">暂缺可核实的使用演示，请查看官方使用说明。</p>';
   return '<div class="demo-box"><span class="demo-src s-llm">AI 依据 README 编排的使用流程 · 未实际运行项目</span>' +
     factHTML(p, "示例输入", d.input) +
-    '<button type="button" class="copy-btn demo-run" aria-expanded="false">展开示例过程与产物</button>' +
-    '<div class="demo-result" hidden>' +
+    '<div class="demo-result">' +
+    '<strong class="demo-stage-title">处理过程</strong>' +
     '<ol class="learning-steps">' + d.steps.map(c => '<li>' + claimHTML(p, c) + "</li>").join("") + "</ol>" +
     factHTML(p, "预期产物", d.output) + "</div></div>";
 }
@@ -917,14 +913,6 @@ function bindExpand(root) {
     const label = btn.querySelector(".expand-label");
     btn.setAttribute("aria-expanded", String(isOpen));
     if (label) label.textContent = isOpen ? "收起演示" : "查看演示";
-  });
-  root.addEventListener("click", e => {
-    const btn = e.target.closest?.(".demo-run");
-    if (!btn) return;
-    const result = btn.nextElementSibling;
-    result.hidden = !result.hidden;
-    btn.setAttribute("aria-expanded", String(!result.hidden));
-    btn.textContent = result.hidden ? "展开示例过程与产物" : "收起示例";
   });
 }
 
