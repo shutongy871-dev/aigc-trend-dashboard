@@ -701,7 +701,7 @@ function projectCard(p, i) {
         (p.language ? '<span class="metric"><span class="lang-dot"></span>' + esc(p.language) + "</span>" : "") +
       "</div>" +
       (tags ? '<div class="tag-row">' + tags + "</div>" : "") +
-      '<button class="expand-toggle" aria-expanded="false"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">查看详情</span></button>' +
+      '<button class="expand-toggle" aria-expanded="false"><span class="chev">' + ICON.chevron + '</span><span class="expand-label">查看演示</span></button>' +
       detailPanel(p) +
       '<div class="learning-links"><a href="' + safeURL(p.url + "#readme") + '" target="_blank" rel="noopener">官方使用说明 ↗</a>' +
       '<button class="copy-btn" data-cmd="' + esc(downloadPrompt(p)) + '">' + ICON.copy + "复制给 Agent 下载</button></div>" +
@@ -910,7 +910,7 @@ function bindExpand(root) {
     btn.classList.toggle("open", isOpen);
     const label = btn.querySelector(".expand-label");
     btn.setAttribute("aria-expanded", String(isOpen));
-    if (label) label.textContent = isOpen ? "收起详情" : "查看详情";
+    if (label) label.textContent = isOpen ? "收起演示" : "查看演示";
   });
   root.addEventListener("click", e => {
     const btn = e.target.closest?.(".demo-run");

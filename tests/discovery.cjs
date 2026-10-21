@@ -58,7 +58,7 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert((await card.innerText()).includes("立体示意物"));
     await card.locator(".expand-toggle").click();
     assert.equal(await card.locator(".expand-toggle").getAttribute("aria-expanded"), "true");
-    assert.equal(await card.locator(".expand-label").innerText(), "收起详情");
+    assert.equal(await card.locator(".expand-label").innerText(), "收起演示");
     assert(await card.locator(".detail").isVisible());
     assert(!(await card.locator(".demo-result").isVisible()));
     await card.locator(".demo-run").click();
