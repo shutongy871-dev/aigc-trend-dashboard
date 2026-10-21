@@ -100,9 +100,49 @@ def fallback_kind(project):
     return "other"
 
 
+def _repair_invalid_json_escapes(text):
+    """把 JSON 字符串内模型生成的非法反斜杠转义还原为普通文本。"""
+    out = []
+    in_string = False
+    i = 0
+    while i < len(text):
+        char = text[i]
+        if not in_string:
+            out.append(char)
+            if char == '"':
+                in_string = True
+            i += 1
+            continue
+        if char == '"':
+            out.append(char)
+            in_string = False
+            i += 1
+            continue
+        if char != "\\":
+            out.append(char)
+            i += 1
+            continue
+        following = text[i + 1:i + 2]
+        if following in {'"', "\\", "/", "b", "f", "n", "r", "t"}:
+            out.append(text[i:i + 2])
+            i += 2
+        elif following == "u" and re.fullmatch(r"[0-9a-fA-F]{4}", text[i + 2:i + 6]):
+            out.append(text[i:i + 6])
+            i += 6
+        else:
+            out.append("\\\\")
+            i += 1
+    return "".join(out)
+
+
 def parse_json(text):
     text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text.strip())
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        if "escape" not in exc.msg.lower():
+            raise
+        return json.loads(_repair_invalid_json_escapes(text))
 
 
 def evidence_key(project, model):

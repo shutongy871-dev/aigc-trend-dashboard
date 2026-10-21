@@ -3,7 +3,7 @@ import json
 import unittest
 
 from project_discovery import (
-    extract_evidence, evidence_key, enrich_learning, validate_learning,
+    extract_evidence, evidence_key, enrich_learning, parse_json, validate_learning,
     growth_metrics, select_featured, validate_clusters, build_discovery,
 )
 from render_dashboard import build_html
@@ -73,6 +73,13 @@ class EvidenceTests(unittest.TestCase):
 
 
 class ModelTests(unittest.TestCase):
+    def test_parse_json_repairs_only_invalid_string_escapes(self):
+        parsed = parse_json(r'{"text":"Windows C:\users\demo and \q","valid":"line\nnext"}')
+        self.assertEqual(parsed["text"], r"Windows C:\users\demo and \q")
+        self.assertEqual(parsed["valid"], "line\nnext")
+        with self.assertRaises(json.JSONDecodeError):
+            parse_json('{"text": missing}')
+
     def test_cache_reuse_and_evidence_change(self):
         calls = []
 
