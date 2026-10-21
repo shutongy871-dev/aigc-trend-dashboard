@@ -111,6 +111,12 @@ class ModelTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, r"model=free/model, finish=length"):
                 aigc_trend_brief.discovery_llm("system", "user")
 
+    def test_api_error_object_is_reported_without_response_dump(self):
+        response = {"error": {"code": 404, "message": "No endpoints support this schema"}}
+        with patch.object(aigc_trend_brief, "http_post_json", return_value=response):
+            with self.assertRaisesRegex(RuntimeError, r"code=404.*No endpoints"):
+                aigc_trend_brief.discovery_llm("system", "user")
+
     def test_parse_json_repairs_only_invalid_string_escapes(self):
         parsed = parse_json(r'{"text":"Windows C:\users\demo and \q","valid":"line\nnext"}')
         self.assertEqual(parsed["text"], r"Windows C:\users\demo and \q")

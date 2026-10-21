@@ -1209,6 +1209,11 @@ def discovery_llm(system, user):
                 }},
             timeout=120,
         )
+        if not isinstance(resp.get("choices"), list) or not resp["choices"]:
+            error = resp.get("error") if isinstance(resp.get("error"), dict) else {}
+            code = re.sub(r"[^a-zA-Z0-9_./:-]", "", str(error.get("code", "")))[:40]
+            detail = re.sub(r"\s+", " ", str(error.get("message", "响应缺少 choices")))[:220]
+            raise ValueError(f"API 错误 (code={code or 'unknown'}): {detail}")
         choice = resp["choices"][0]
         content = choice["message"]["content"]
         if not isinstance(content, str) or not content.strip():
