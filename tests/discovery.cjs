@@ -44,7 +44,12 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await page.locator('input[type="password"], dialog').count(), 0);
     assert.equal(await page.evaluate(() => typeof window.sodium), "undefined");
     assert.equal(await page.locator(".tab.active").getAttribute("data-tab"), "skills");
+    assert.equal(await page.locator(".tab").first().innerText(), "全部项目");
+    assert.equal(await page.locator('.tab[data-tab="trends"]').count(), 0);
+    assert.equal(await page.locator(".discovery-intro").count(), 0);
+    assert.equal(await page.locator("#hint").isVisible(), false);
     assert.equal(await page.locator(".learning-card").count(), 12);
+    assert.equal(await page.locator(".learning-card .badge-cat").first().innerText(), "🧩 Skill / 工具");
     const bilingual = page.locator(".learning-card").filter({ hasText: "Ebony-Vinyl/dsh-our-free-model" });
     assert.equal(await bilingual.locator(".source-status").count(), 0);
     assert.equal(await bilingual.locator(".card-desc p").count(), 2);
@@ -75,11 +80,12 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     await page.locator("#search").fill("");
     await page.getByRole("button", { name: "软件 / 小程序", exact: true }).click();
     assert.equal(await page.locator(".learning-card").count(), 12);
+    assert.equal(await page.locator(".learning-card .badge-cat").first().innerText(), "📱 软件 / 应用");
     assert((await page.locator("#content").innerText()).includes("yetone/magpie"));
     const app = page.locator(".learning-card").filter({ hasText: "ARahim3/DigUp" });
     await app.locator(".expand-toggle").click();
     assert((await app.locator(".detail").innerText()).includes("SQLite"));
-    await page.getByRole("button", { name: "机制与爆发观察", exact: true }).click();
+    await page.getByRole("button", { name: /趋势总结.*机制与爆发观察/ }).click();
     const trendCount = await page.locator(".trend-card").count();
     assert(trendCount >= 1);
     assert.equal(await page.locator(".trend-bars").count(), trendCount);
@@ -105,8 +111,8 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     await page.screenshot({ path: path.join(temp, "skills-mobile.png"), fullPage: true, animations: "disabled" });
     await page.goto(`http://127.0.0.1:${port}/no-model.html`);
-    assert((await page.locator(".analysis-notice").innerText()).includes("尚无可用的 AI"));
-    await page.getByRole("button", { name: "机制与爆发观察", exact: true }).click();
+    assert.equal(await page.locator(".analysis-notice").count(), 0);
+    await page.getByRole("button", { name: /趋势总结.*机制与爆发观察/ }).click();
     assert((await page.locator("#content").innerText()).includes("尚未验证共同机制"));
     await page.goto(`http://127.0.0.1:${port}/escaping.html`);
     assert((await page.locator(".card-desc").first().innerText()).includes("<img"));

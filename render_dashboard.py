@@ -170,6 +170,17 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .chip:hover { border-color: var(--border-strong); color: var(--text); }
   .chip.active { background: var(--accent-soft); border-color: rgba(124,140,255,.5); color: #c4ccff; }
   .result-hint { color: var(--text-faint); font-size: 13px; }
+  .result-hint:empty { display: none; }
+  .summary-nav {
+    width: 100%; margin: 0 0 22px; padding: 15px 18px; cursor: pointer;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px;
+    text-align: left; color: var(--text); background: rgba(255,255,255,.025);
+    border: 1px solid var(--border); border-radius: 12px; font-family: var(--sans);
+  }
+  .summary-nav:hover, .summary-nav.active { border-color: rgba(251,191,36,.5); background: rgba(251,191,36,.055); }
+  .summary-nav-kicker { color: var(--warn); font-size: 12px; font-weight: 700; }
+  .summary-nav strong { font-size: 14px; }
+  .summary-nav small { color: var(--text-dim); font-size: 12px; }
 
   /* 卡片网格 */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; align-items: start; }
@@ -495,6 +506,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     .grid { grid-template-columns: 1fr; }
     .discovery-grid { grid-template-columns: 1fr; }
     .tab { padding: 8px 10px; font-size: 12px; }
+    .summary-nav { grid-template-columns: 1fr auto; }
+    .summary-nav-kicker { grid-column: 1 / -1; }
     h1 { font-size: 26px; }
     .wrap { padding: 28px 16px 60px; }
   }
@@ -517,10 +530,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
   <div class="toolbar">
     <div class="tabs">
+      <button class="tab" data-tab="projects">全部项目</button>
       <button class="tab active" data-tab="skills">Skill / 工具</button>
       <button class="tab" data-tab="apps">软件 / 小程序</button>
-      <button class="tab" data-tab="trends">机制与爆发观察</button>
-      <button class="tab" data-tab="projects">全部项目</button>
       <button class="tab" data-tab="models">HF 新模型</button>
       <button class="tab" data-tab="hn">HN 热议</button>
     </div>
@@ -538,6 +550,12 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     <div class="chips" id="chips"></div>
     <div class="result-hint" id="hint"></div>
   </div>
+
+  <button class="summary-nav" id="summaryNav" type="button">
+    <span class="summary-nav-kicker">趋势总结</span>
+    <strong>机制与爆发观察</strong>
+    <small>查看共同原理与近期变化 →</small>
+  </button>
 
   <main id="content"></main>
 
@@ -623,7 +641,7 @@ function renderHeader() {
     { num: (discovery.skills_tools || []).length, cls: "accent", lbl: "高 Star 技能与工具" },
     { num: (discovery.applications || []).length, cls: "pink", lbl: "高 Star 软件与应用" },
     { num: (discovery.clusters || []).length, cls: "amber", lbl: "共同机制观察" },
-    { num: discovery.analysis?.ready || 0, cls: "", lbl: "已完成 AI 阅读" }
+    { num: projects.length, cls: "", lbl: "本期收录项目" }
   ];
   document.getElementById("stats").innerHTML = stats.map(s =>
     '<div class="stat"><div class="num ' + s.cls + '">' + fmt(s.num) + '</div><div class="lbl">' + s.lbl + "</div></div>"
@@ -678,15 +696,18 @@ function detailPanel(p) {
     '<details class="evidence-list"><summary>查看原始资料 · ' + (p.evidence || []).length +
     ' 段摘录</summary>' + (sources || '<p>本次未能获取 README，请打开仓库查看。</p>') + "</details></div>";
 }
-function projectCard(p, i) {
+function projectCard(p, i, featuredKind="") {
   const tags = (p.topics || []).slice(0, 4).map(t => '<span class="tag">' + esc(t) + "</span>").join("");
+  const badge = featuredKind === "skills" ? "🧩 Skill / 工具"
+    : featuredKind === "apps" ? "📱 软件 / 应用"
+    : (p.category_emoji || "📦") + " " + (p.category || "其他");
   const hn = p.hn_points
     ? '<span class="metric"><a href="' + esc(p.hn_url) + '" target="_blank" rel="noopener">' + ICON.comment + fmt(p.hn_points) + " / " + fmt(p.hn_comments) + " 评论</a></span>"
     : "";
   return (
     '<article class="card learning-card" style="animation-delay:' + Math.min(i * 45, 450) + 'ms">' +
       '<div class="card-head"><div class="badges">' +
-        '<span class="badge-cat">' + (p.category_emoji || "📦") + " " + esc(p.category || "其他") + "</span>" +
+        '<span class="badge-cat">' + esc(badge) + "</span>" +
         (p.trend_type === "surge" ? '<span class="badge-surge">社区翻红</span>' : "") +
       "</div>" +
       '<a class="icon-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" title="在 GitHub 打开" aria-label="GitHub 链接">' + ICON.github + "</a></div>" +
@@ -744,27 +765,13 @@ function matchesQuery(p) {
   return !q || [p.full_name, p.description, p.language, (p.topics || []).join(" "),
     JSON.stringify(p.learning || {})].join(" ").toLowerCase().includes(q);
 }
-function discoveryIntro(title, text) {
-  const a = discovery.analysis || {};
-  let notice = "";
-  if (!a.ready) notice = '<div class="analysis-notice">本期尚无可用的 AI 深度解读，当前展示项目原文和分类初筛。完成模型分析后将补充中文上手指南、演示与共同机制。</div>';
-  else if (a.failed) notice = '<div class="analysis-notice">本期部分分析未完成，相关项目保留原文，可在后续更新中重试。</div>';
-  else if (a.model_enabled === false) notice = '<p class="scope-note" style="margin-top:10px">本期已保留 ' + fmt(a.ready) +
-    ' 个项目的 AI 解读，其余项目暂展示原文。</p>';
-  else if (a.initial_review) notice = '<p class="scope-note" style="margin-top:10px">首批 ' + fmt(a.ready) +
-    ' 个项目由本次 AI 阅读 README 后解读，其余项目暂展示原文。每日任务将继续补充和更新。</p>';
-  return '<div class="discovery-intro"><h2>' + title + '</h2><p>' + text + "</p>" + notice + "</div>";
-}
 function renderFeatured(kind) {
   const skills = kind === "skills";
   const list = (discovery[skills ? "skills_tools" : "applications"] || []).map(n => byRepo.get(n)).filter(p => p && matchesQuery(p));
-  document.getElementById("hint").textContent = "本期样本 · 累计 Stars ≥ " + fmt(discovery.min_stars || 100) + " · 按 Stars 取前 " + (discovery.selection_limit || 12) + " 个 · 当前 " + list.length + " 个";
+  document.getElementById("hint").textContent = "";
   const el = document.getElementById("content");
   el.className = "";
-  el.innerHTML = discoveryIntro(skills ? "01 / 把新能力放进你的工作流" : "02 / 找到一个能直接体验的 AI 应用",
-    skills ? "高 Star Skill / 工具 · 看它能帮你完成哪一步，如何接入，以及产物是什么。"
-           : "高 Star 软件 / 小程序 · 从真实使用场景出发，理解上手方式与可借鉴的产品设计。") +
-    '<div class="discovery-grid">' + (list.length ? list.map(projectCard).join("") :
+  el.innerHTML = '<div class="discovery-grid">' + (list.length ? list.map((p, i) => projectCard(p, i, kind)).join("") :
       '<div class="empty">暂无匹配项目，试试其他关键词或查看全部项目。</div>') + "</div>" +
     '<p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") + "</p>";
   bindCopy(el); bindExpand(el);
@@ -804,8 +811,7 @@ function renderTrends() {
         const p = byRepo.get(n); return p ? '<li><a href="' + safeURL(p.url) + '" target="_blank" rel="noopener">' + esc(n) + " ↗</a></li>" : "";
       }).join("") + "</ul></article>").join("");
   }
-  el.innerHTML = discoveryIntro("03 / 哪些原理正在长出更多产品",
-    "跨项目阅读，寻找同一个技术机制的不同应用，再用两个完整 7 日的样本检验是否在加速涌现。") +
+  el.innerHTML = '<div class="discovery-intro"><h2>趋势总结 / 机制与爆发观察</h2><p>跨项目阅读共同原理，并用两个完整 7 日的样本观察近期变化。</p></div>' +
     (!discovery.clusters?.length ? '<p class="scope-note">本期尚未形成至少 3 个项目支撑的机制分组。以下只作为继续研究的候选方向。</p><br>' : "") +
     '<div class="discovery-grid">' + (body || '<div class="empty">暂无符合条件的机制观察。</div>') +
     '</div><p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") +
@@ -926,6 +932,7 @@ function bindExpand(root) {
 function switchTab(tab) {
   state.tab = tab;
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
+  document.getElementById("summaryNav").classList.toggle("active", tab === "trends");
   const controls = document.getElementById("controls");
   const sortSel = document.getElementById("sort");
   controls.style.display = "flex";
@@ -945,6 +952,7 @@ function renderCurrent() {
 document.querySelectorAll(".tab").forEach(t =>
   t.addEventListener("click", () => switchTab(t.dataset.tab))
 );
+document.getElementById("summaryNav").addEventListener("click", () => switchTab("trends"));
 document.getElementById("search").addEventListener("input", e => {
   state.query = e.target.value;
   renderCurrent();
