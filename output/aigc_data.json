@@ -974,7 +974,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1316470719,
@@ -1077,7 +1077,7 @@
         "https://raw.githubusercontent.com/hypit-ai/hypit/HEAD/docs/public/agentsky-light.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1373655162,
@@ -95452,10 +95452,10 @@
       "retried": 1,
       "queued": 986,
       "failure_reasons": [
-        "JSONDecodeError: Unterminated string starting at: line 1 column 421 (char 420)"
+        "RuntimeError: 模型请求失败: 响应为空 (model=liquid/lfm-2.5-2.6b:free, finish=error)"
       ],
       "status": "ready",
-      "generated_at": "2026-10-21 12:58 UTC"
+      "generated_at": "2026-10-21 13:10 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
