@@ -92809,10 +92809,10 @@
       "failed": 3,
       "ready": 0,
       "failure_reasons": [
-        "JSONDecodeError: Invalid \\uXXXX escape: line 1 column 5720 (char 5719)"
+        "RuntimeError: 模型请求失败: 响应为空"
       ],
       "status": "failed",
-      "generated_at": "2026-10-21 10:03 UTC"
+      "generated_at": "2026-10-21 10:07 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
