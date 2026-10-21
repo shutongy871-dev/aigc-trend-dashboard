@@ -61,6 +61,7 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await page.locator(".expand-label").filter({ hasText: /怎么用|找灵感/ }).count(), 0);
     const card = page.locator(".learning-card").filter({ hasText: "wheresryan22/anatomy" });
     assert((await card.innerText()).includes("立体示意物"));
+    assert.equal(await card.getByText("你能得到什么", { exact: true }).count(), 0);
     await card.locator(".expand-toggle").click();
     assert.equal(await card.locator(".expand-toggle").getAttribute("aria-expanded"), "true");
     assert.equal(await card.locator(".expand-label").innerText(), "收起演示");

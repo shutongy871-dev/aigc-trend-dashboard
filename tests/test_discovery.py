@@ -199,6 +199,7 @@ class ClusterTests(unittest.TestCase):
         self.assertNotIn("LLM_API_KEY", html)
         self.assertNotIn("libsodium", html)
         self.assertNotIn("项目原文 · 待 AI 解读", html)
+        self.assertNotIn("你能得到什么", html)
         self.assertIn("复制给 Agent 下载", html)
 
 

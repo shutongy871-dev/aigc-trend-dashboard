@@ -669,7 +669,6 @@ function projectCard(p, i, featuredKind="") {
       '<div class="card-title">' + esc(p.full_name) + "</div>" +
       '<div class="card-desc">' + descriptionHTML(p) + "</div>" +
       factHTML(p, "帮你解决什么", p.learning?.value, "learning-value") +
-      factHTML(p, "你能得到什么", p.learning?.outcome) +
       '<div class="metrics">' +
         '<span class="metric">' + ICON.star + fmt(p.stars) + "</span>" +
         '<span class="metric">' + ICON.fork + fmt(p.forks) + "</span>" +
