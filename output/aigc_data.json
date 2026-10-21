@@ -381,7 +381,7 @@
         "https://raw.githubusercontent.com/trycua/cua/HEAD/img/card-cua-lume.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1385946301,
@@ -463,7 +463,7 @@
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/terminal-monitor.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1331135699,
@@ -555,7 +555,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1316470719,
@@ -658,7 +658,7 @@
         "https://raw.githubusercontent.com/hypit-ai/hypit/HEAD/docs/public/agentsky-light.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1373655162,
@@ -735,7 +735,7 @@
         "https://raw.githubusercontent.com/browser-use/jev-ultrafast/HEAD/docs/demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1329849289,
@@ -829,7 +829,7 @@
         "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1383809012,
@@ -918,7 +918,7 @@
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/agents-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1410124849,
@@ -1002,7 +1002,7 @@
         "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/ripple-tank.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1333165619,
@@ -1095,7 +1095,7 @@
         "https://raw.githubusercontent.com/dataelement/dsh-desktop/HEAD/docs/images/wechat-group-20260815.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1316527318,
@@ -1176,7 +1176,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1421825221,
@@ -1256,7 +1256,7 @@
         "https://raw.githubusercontent.com/deepseek-ai/DeepInfer/HEAD/doc/images/decode_pareto.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1407950271,
@@ -1312,7 +1312,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1312807575,
@@ -1387,7 +1387,7 @@
         "https://raw.githubusercontent.com/miuuyy/codex-chatgpt-web/HEAD/assets/readme/download-windows.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1423101235,
@@ -1484,7 +1484,7 @@
         "https://raw.githubusercontent.com/Gathin23/cleanyourtv/HEAD/docs/focus-1-fancode.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1333399642,
@@ -1572,7 +1572,7 @@
         "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-1-prompt.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1318768894,
@@ -1653,7 +1653,7 @@
         "https://raw.githubusercontent.com/trycompai/crm/HEAD/docs/images/landing-agents.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1318187016,
@@ -1755,7 +1755,7 @@
         "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1375069862,
@@ -1837,7 +1837,7 @@
         "https://raw.githubusercontent.com/jaredpalmer/kev/HEAD/docs/playground.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1319154759,
@@ -1939,7 +1939,7 @@
         "https://raw.githubusercontent.com/FareedKhan-dev/kimi-k3-in-c/HEAD/docs/images/preset_ladder.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1397016507,
@@ -2031,7 +2031,7 @@
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/discord-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1327088798,
@@ -2128,7 +2128,7 @@
         "https://raw.githubusercontent.com/deeplethe/utopia/assets/assets/star-history.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1393965829,
@@ -2222,7 +2222,7 @@
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1378288598,
@@ -2296,7 +2296,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1379574728,
@@ -2415,7 +2415,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1351879111,
@@ -2505,7 +2505,7 @@
         "https://raw.githubusercontent.com/Human-Agent-Society/reef/HEAD/docs/assets/loop-animation-light.svg"
       ],
       "discovery_kind": "research",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1349601607,
@@ -2588,7 +2588,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1390273274,
@@ -2677,7 +2677,7 @@
         "https://media.skillry.dev/opus-5-5/moritzkremb-466494/preview.webp"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1334586481,
@@ -2760,7 +2760,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1377211520,
@@ -2850,7 +2850,7 @@
         "https://raw.githubusercontent.com/mizorewww/laya-mlx/main/docs/assets/snake-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1342935078,
@@ -2943,7 +2943,7 @@
         "https://github.com/edward821220.png?s=128"
       ],
       "discovery_kind": "research",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1336502227,
@@ -3029,7 +3029,7 @@
         "https://raw.githubusercontent.com/CopilotKit/OpenBot/HEAD/assets/architecture-dark.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1326531152,
@@ -3121,7 +3121,7 @@
         "https://raw.githubusercontent.com/miqdadbadjuber/anti-slop/HEAD/assets/compare/ui/w-design.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1350978527,
@@ -3221,7 +3221,7 @@
         "https://raw.githubusercontent.com/Ryze-AI-Adgent/open-seo-mcp-skills/1b852d098cfd1366e8e78e7e4879b77e95e0974e/ghs-toplight.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1339742577,
@@ -3304,7 +3304,7 @@
         "https://raw.githubusercontent.com/amagine-ai/Amagine3D/HEAD/docs/assets/readme/examples/example-03.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1338470635,
@@ -3386,7 +3386,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1396117711,
@@ -3460,7 +3460,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1391438314,
@@ -3563,7 +3563,7 @@
         "https://raw.githubusercontent.com/Louis-CFM/coucou/HEAD/docs/media/hub-statistics.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1332080070,
@@ -3642,7 +3642,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1371757322,
@@ -3716,7 +3716,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1342461518,
@@ -3806,7 +3806,7 @@
         "https://raw.githubusercontent.com/ApodexAI/FrontierAgent/star-history/assets/star-history/star-history-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1346870728,
@@ -3888,7 +3888,7 @@
         "https://raw.githubusercontent.com/monid-ai/monid/HEAD/assets/monid-compile.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1331261687,
@@ -3980,7 +3980,7 @@
         "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/computer-panel.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1410929004,
@@ -4075,7 +4075,7 @@
         "https://raw.githubusercontent.com/ARahim3/DigUp/HEAD/docs/demo.gif"
       ],
       "discovery_kind": "application",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1310057619,
@@ -4146,7 +4146,7 @@
         "https://raw.githubusercontent.com/slvDev/esp32-ai/HEAD/media/esp32-ple-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1333111893,
@@ -4237,7 +4237,7 @@
         "https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/HEAD/screenshots/qq-group.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1342876750,
@@ -4305,7 +4305,7 @@
         "https://raw.githubusercontent.com/totec448-spec/chat-on-steroids/HEAD/docs/images/workspace.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1332781509,
@@ -4394,7 +4394,7 @@
         "https://raw.githubusercontent.com/elie222/rakazo/HEAD/docs/readme-hero.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1325096132,
@@ -4473,7 +4473,7 @@
         "https://raw.githubusercontent.com/eternityspring/shuohao-skills/HEAD/skills/novel-characters/assets/report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1389011744,
@@ -4576,7 +4576,7 @@
         "https://raw.githubusercontent.com/lemomo-ai/lemo-opuscar/HEAD/docs/frames/satellite-briefing.jpg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1326893710,
@@ -4665,7 +4665,7 @@
         "https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/HEAD/docs/screenshots/changes-tree.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1316443307,
@@ -4757,7 +4757,7 @@
         "https://raw.githubusercontent.com/microsoft/skill-recorder/HEAD/docs/images/library.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1354059245,
@@ -4847,7 +4847,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1401476500,
@@ -4943,7 +4943,7 @@
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/video-en.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1329272295,
@@ -5027,7 +5027,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1336933337,
@@ -5107,7 +5107,7 @@
         "https://raw.githubusercontent.com/yetone/cumora/HEAD/website/assets/mobile-screenshot.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1349122168,
@@ -5196,7 +5196,7 @@
         "https://raw.githubusercontent.com/ZJU-REAL/Easel/HEAD/assets/readme/showcase/culture-mt-cards-strip.jpg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1388867993,
@@ -92802,14 +92802,14 @@
   "discovery": {
     "analysis": {
       "model": "openrouter/free",
-      "prompt_version": "discovery-v1",
+      "prompt_version": "discovery-v2-json",
       "cached": 0,
       "model_enabled": true,
       "generated": 0,
-      "failed": 59,
+      "failed": 3,
       "ready": 0,
       "status": "failed",
-      "generated_at": "2026-10-21 07:37 UTC"
+      "generated_at": "2026-10-21 09:56 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -92843,7 +92843,7 @@
     ],
     "clusters": [],
     "cluster_status": "unavailable",
-    "cluster_cache_key": "9e926b0f52d81d55d7a89f33b83b18bd1612899d74407fdac3d1d60a4a117900",
+    "cluster_cache_key": "8e07465ac85946fd7538dc140845fa897d66da8791dcf26bc7e5a0705e115e45",
     "candidates": [
       {
         "title": "Agent/智能体",
