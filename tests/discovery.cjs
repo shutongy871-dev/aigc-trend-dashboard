@@ -40,6 +40,8 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     const errors = [];
     page.on("pageerror", e => errors.push(e.message));
     await page.goto(`http://127.0.0.1:${port}/`);
+    assert.equal(await page.title(), "生成式 AI 及其应用生态趋势看板");
+    assert.equal(await page.locator("h1").innerText(), "生成式 AI 及其应用生态趋势看板");
     assert.equal(await page.getByRole("button", { name: "设置", exact: true }).count(), 0);
     assert.equal(await page.locator('input[type="password"], dialog').count(), 0);
     assert.equal(await page.evaluate(() => typeof window.sodium), "undefined");
