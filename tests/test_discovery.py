@@ -74,6 +74,92 @@ class EvidenceTests(unittest.TestCase):
         self.assertIsNone(validate_learning(raw, [{"id": "D0"}]))
 
 
+class TranslationTests(unittest.TestCase):
+    def test_technical_terms_are_protected_and_cleaned(self):
+        source = aigc_trend_brief._prepare_translation_source(
+            "Fine-tuning large language models with retrieval-augmented generation, "
+            "Transformers, prompt engineering, and vector embeddings.")
+        self.assertIn("LLM", source)
+        self.assertIn("RAG", source)
+        self.assertIn("Transformer", source)
+        cleaned = aigc_trend_brief._clean_translation(
+            "使用变形器、快速工程、载体集成和AI Agent构建RAG管道.")
+        self.assertEqual(
+            cleaned, "使用Transformer、提示词工程、向量嵌入和AI 智能体构建RAG工作流。")
+        self.assertEqual(aigc_trend_brief._translation_source_language("日本語のツール"), "ja")
+        self.assertEqual(aigc_trend_brief._translation_source_language("한국어 도구"), "ko")
+        self.assertEqual(aigc_trend_brief._translation_source_language("русский проект"), "ru")
+
+    def test_translation_is_cached_without_overwriting_source(self):
+        projects = [project(), {**project("o/chinese"), "description": "中文项目简介"}]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects, translator=lambda text: "用于图表的智能体技能")
+        self.assertEqual(projects[0]["description"], "Agent skill for charts")
+        self.assertEqual(projects[0]["description_zh"], "用于图表的智能体技能")
+        self.assertEqual(projects[1]["description_zh"], "中文项目简介")
+        self.assertEqual(result["translated"], 1)
+        self.assertEqual(result["existing_zh"], 1)
+
+        previous = copy.deepcopy(projects)
+        current = [project()]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            current, previous, translator=lambda _: self.fail("缓存命中时不应重复翻译"))
+        self.assertEqual(current[0]["description_zh"], "用于图表的智能体技能")
+        self.assertEqual(result["cached"], 1)
+
+    def test_batch_translator_is_used_when_available(self):
+        calls = []
+
+        def translate(_):
+            self.fail("存在批量接口时不应逐条翻译")
+
+        def translate_many(texts):
+            calls.append(texts)
+            return ["中文简介"] * len(texts)
+
+        translate.translate_many = translate_many
+        projects = [project(f"o/{index}") for index in range(3)]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects, translator=translate)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(result["translated"], 3)
+
+    def test_translation_failure_keeps_original_fallback_available(self):
+        def fail(_):
+            raise RuntimeError("offline model failed")
+
+        projects = [project()]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects, translator=fail, fallback_translator=None)
+        self.assertNotIn("description_zh", projects[0])
+        self.assertEqual(projects[0]["description"], "Agent skill for charts")
+        self.assertEqual(result["failed"], 1)
+
+    def test_non_english_description_uses_keyless_fallback(self):
+        projects = [{**project(), "description": "日本語のAIツール"}]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects,
+            translator=lambda _: self.fail("日文不应交给英中模型"),
+            fallback_translator=lambda _: "日语人工智能工具",
+        )
+        self.assertEqual(projects[0]["description_zh"], "日语人工智能工具")
+        self.assertEqual(projects[0]["translation_provider"], "mymemory")
+        self.assertEqual(result["translated"], 1)
+
+    def test_non_english_does_not_reuse_english_model_cache(self):
+        old = {**project(), "description": "한국어 AI 도구", "description_zh": "旧误译",
+               "translation_provider": "argos"}
+        old["translation_cache_key"] = aigc_trend_brief.translation_cache_key(old["description"])
+        current = [{**project(), "description": old["description"]}]
+        aigc_trend_brief.enrich_translated_descriptions(
+            current, previous=[old],
+            translator=lambda _: self.fail("韩文不应交给英中模型"),
+            fallback_translator=lambda _: "韩语人工智能工具",
+        )
+        self.assertEqual(current[0]["description_zh"], "韩语人工智能工具")
+        self.assertEqual(current[0]["translation_provider"], "mymemory")
+
+
 class ModelTests(unittest.TestCase):
     def test_openrouter_request_minimizes_reasoning_and_requires_parameters(self):
         seen = {}
@@ -280,9 +366,15 @@ class ClusterTests(unittest.TestCase):
         self.assertEqual(len(d["candidates"]), 1)
 
     def test_html_data_cannot_terminate_script(self):
-        data = {"github_projects": [{**project(), "description": '</script><img src=x onerror="alert(1)">'}]}
+        data = {"github_projects": [{
+            **project(),
+            "description": '</script><img src=x onerror="alert(1)">',
+            "description_zh": "中文机翻简介",
+        }]}
         html = build_html(data)
         self.assertIn(r'<\/script><img', html)
+        self.assertIn("中文机翻简介", html)
+        self.assertLess(html.index("if (p.description_zh)"), html.index("if (p.description)"))
         self.assertNotIn('</script><img src=x', html)
         self.assertNotIn("赛道通用示意", html)
         self.assertNotIn("GitHub 授权令牌", html)

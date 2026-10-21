@@ -20,6 +20,8 @@ for p in d["github_projects"]:
     p.pop("learning_cache_key",None)
 a=enrich_learning(d["github_projects"],model="test",log=lambda _:None)
 d["discovery"]=build_discovery(d["github_projects"],d["window"],a)
+p=next(p for p in d["github_projects"] if p["full_name"]=="Ebony-Vinyl/dsh-our-free-model")
+p["description_zh"]="无需模型调用也能展示的中文机翻简介"
 Path(".validation/discovery/no-model.html").write_text(build_html(d))
 p=next(p for p in d["github_projects"] if p["full_name"] in d["discovery"]["skills_tools"])
 p["description"]='<img src=x onerror="window.INJECTED=true"> Literal README text'
@@ -54,9 +56,9 @@ const server = spawn("python3", ["-u", "-m", "http.server", "0", "--bind", "127.
     assert.equal(await page.locator(".learning-card .badge-cat").first().innerText(), "🧩 Skill / 工具");
     const bilingual = page.locator(".learning-card").filter({ hasText: "Ebony-Vinyl/dsh-our-free-model" });
     assert.equal(await bilingual.locator(".source-status").count(), 0);
-    assert.equal(await bilingual.locator(".card-desc p").count(), 2);
+    assert.equal(await bilingual.locator(".card-desc p").count(), 1);
     assert.equal(await bilingual.locator(".card-desc p").nth(0).getAttribute("lang"), "zh-CN");
-    assert.equal(await bilingual.locator(".card-desc p").nth(1).getAttribute("lang"), "en");
+    assert((await bilingual.locator(".card-desc").innerText()).includes("中文机翻简介"));
     const download = bilingual.getByRole("button", { name: "复制给 Agent 下载", exact: true });
     assert((await download.getAttribute("data-cmd")).includes("Ebony-Vinyl/dsh-our-free-model"));
     assert((await download.getAttribute("data-cmd")).includes("安全风险"));
