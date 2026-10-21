@@ -87,6 +87,22 @@ class ModelTests(unittest.TestCase):
             self.assertEqual(aigc_trend_brief.discovery_llm("system", "user"), '{"items":[]}')
         self.assertEqual(seen["reasoning"], {"effort": "none"})
         self.assertEqual(seen["provider"], {"require_parameters": True})
+        response_format = seen["response_format"]
+        self.assertEqual(response_format["type"], "json_schema")
+        self.assertEqual(response_format["json_schema"]["schema"]["required"], ["items"])
+
+    def test_cluster_request_uses_groups_schema(self):
+        seen = {}
+
+        def respond(*args, **kwargs):
+            seen.update(kwargs["body"])
+            return {"model": "free/model", "choices": [
+                {"finish_reason": "stop", "message": {"content": '{"groups":[]}'}}]}
+
+        with patch.object(aigc_trend_brief, "http_post_json", respond):
+            aigc_trend_brief.discovery_llm("system", "输出对象 {groups:[...]}。")
+        schema = seen["response_format"]["json_schema"]["schema"]
+        self.assertEqual(schema["required"], ["groups"])
 
     def test_empty_model_response_reports_safe_routing_metadata(self):
         response = {"model": "free/model", "choices": [

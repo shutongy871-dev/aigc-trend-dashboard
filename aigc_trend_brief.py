@@ -1097,9 +1097,104 @@ def render_markdown(projects, hf_models, hn_hot, insights, window, meta):
 # Main
 # --------------------------------------------------------------------------- #
 
+def _claim_schema():
+    return {
+        "type": ["object", "null"],
+        "properties": {
+            "text": {"type": "string"},
+            "sources": {"type": "array", "items": {"type": "string"}},
+        },
+        "required": ["text", "sources"],
+        "additionalProperties": False,
+    }
+
+
+def _learning_response_schema():
+    claim = _claim_schema()
+    return {
+        "type": "object",
+        "properties": {
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "repo": {"type": "string"},
+                        "kind": {"type": "string", "enum": ["skill_tool", "application", "research", "other"]},
+                        "kind_reason": claim,
+                        "summary": claim,
+                        "value": claim,
+                        "audience": claim,
+                        "how_to": {"type": "array", "items": claim},
+                        "outcome": claim,
+                        "mechanism": claim,
+                        "inspiration": claim,
+                        "limitations": claim,
+                        "demo": {
+                            "type": ["object", "null"],
+                            "properties": {
+                                "kind": {"type": "string", "enum": ["flow", "chat", "terminal", "cards"]},
+                                "input": claim,
+                                "steps": {"type": "array", "items": claim},
+                                "output": claim,
+                            },
+                            "required": ["kind", "input", "steps", "output"],
+                            "additionalProperties": False,
+                        },
+                    },
+                    "required": [
+                        "repo", "kind", "kind_reason", "summary", "value", "audience", "how_to",
+                        "outcome", "mechanism", "inspiration", "limitations", "demo",
+                    ],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["items"],
+        "additionalProperties": False,
+    }
+
+
+def _cluster_response_schema():
+    return {
+        "type": "object",
+        "properties": {
+            "groups": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title": {"type": "string"},
+                        "mechanism": {"type": "string"},
+                        "inspiration": {"type": "string"},
+                        "members": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "repo": {"type": "string"},
+                                    "why": {"type": "string"},
+                                    "sources": {"type": "array", "items": {"type": "string"}},
+                                },
+                                "required": ["repo", "why", "sources"],
+                                "additionalProperties": False,
+                            },
+                        },
+                    },
+                    "required": ["title", "mechanism", "inspiration", "members"],
+                    "additionalProperties": False,
+                },
+            },
+        },
+        "required": ["groups"],
+        "additionalProperties": False,
+    }
+
+
 def discovery_llm(system, user):
-    """模型适配器；要求 JSON 对象，让免费路由只选择支持结构化输出的模型。"""
+    """模型适配器；按学习卡/聚类任务要求严格 JSON Schema。"""
     try:
+        schema = _cluster_response_schema() if "输出对象 {groups:" in user else _learning_response_schema()
         resp = http_post_json(
             f"{LLM_BASE_URL.rstrip('/')}/chat/completions",
             headers={"Authorization": f"Bearer {LLM_API_KEY}"},
@@ -1108,7 +1203,10 @@ def discovery_llm(system, user):
                 "temperature": 0.2, "max_tokens": 8000,
                 "reasoning": {"effort": "none"},
                 "provider": {"require_parameters": True},
-                "response_format": {"type": "json_object"}},
+                "response_format": {
+                    "type": "json_schema",
+                    "json_schema": {"name": "discovery", "strict": True, "schema": schema},
+                }},
             timeout=120,
         )
         choice = resp["choices"][0]
