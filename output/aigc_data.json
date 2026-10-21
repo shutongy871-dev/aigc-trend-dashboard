@@ -95,6 +95,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -197,8 +198,7 @@
           ]
         }
       },
-      "learning_cache_key": "c95e800485bf9b7461cc8303bb83ede88c5fc0bd1cb8c60a9ff17f8c8488a3f4",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "c95e800485bf9b7461cc8303bb83ede88c5fc0bd1cb8c60a9ff17f8c8488a3f4"
     },
     {
       "id": 1375382253,
@@ -292,6 +292,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -395,8 +396,7 @@
           ]
         }
       },
-      "learning_cache_key": "1976770982aaa02f97a490c570f4460370f513ae8599912080abe2a863555d9c",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "1976770982aaa02f97a490c570f4460370f513ae8599912080abe2a863555d9c"
     },
     {
       "id": 1385896447,
@@ -490,6 +490,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -598,8 +599,7 @@
           ]
         }
       },
-      "learning_cache_key": "247fd05cf7049b3b0de529227269b5adc3cd7bff295a38967b2121cfd3ab0c18",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "247fd05cf7049b3b0de529227269b5adc3cd7bff295a38967b2121cfd3ab0c18"
     },
     {
       "id": 925270205,
@@ -700,7 +700,107 @@
         "https://raw.githubusercontent.com/trycua/cua/HEAD/img/card-cua-lume.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "真实交付形态是 SDK、CLI、Driver、沙箱与评测基准等可复用开发工具/框架，面向 agent 开发者与研究者，而非面向普通用户的桌面软件",
+          "sources": [
+            "D0",
+            "R1",
+            "R7"
+          ]
+        },
+        "summary": {
+          "text": "Cua Spaces 给你的 agent 提供 Mac 及你自己机器上的完整桌面；本仓库还包含用于桌面自动化的 Cua Driver、本地 VM 工具 Lume、CUA-S1 决策模型，以及评估电脑使用 agent 的 Cua Bench",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "把「电脑使用」从演示变成可工程化的平台：提供真实桌面、沙箱、自动化驱动与评测基准，让 agent 能在代码、API 与图形界面之间跨层完成任务，并支持训练、评测与数据生成",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "audience": null,
+        "outcome": {
+          "text": "获得一个可编程的桌面/沙箱环境：agent 能读写文件、执行 shell、截屏、注入键盘鼠标输入，并可被 Cua Bench 评测、用于训练与数据生成",
+          "sources": [
+            "R7",
+            "R4"
+          ]
+        },
+        "mechanism": {
+          "text": "cua-spacesd 在 Space 内暴露进程、文件、截图与输入接口；Cua Driver 在操作系统层面驱动原生应用与浏览器，支持后台交付（不移动指针/不抢焦点）；SDK 统一抽象本地 VM、gVisor 容器与云运行时， readiness 由运行时与端口探测判定，SDK 内不带 agent 层",
+          "sources": [
+            "R3",
+            "R2",
+            "R7"
+          ]
+        },
+        "inspiration": {
+          "text": "可以做一个「个人 AI 桌面助理」：把 Chrome、Slack 等已登录应用通过 Teleport 搬进隔离的 Space，让 agent 在不干扰你的情况下代为处理邮件或表格，你随时从 agent 手中接手光标（Multiplayer）继续操作",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "Cua Spaces 需 macOS 26+；Windows/Linux 平台支持有限且部分功能有边界；Spaces 个人免费但 Pro $18/月、Teams $30/ Seat 月费；沙箱与 Space 功能依赖是否内置 cua-spacesd 镜像",
+          "sources": [
+            "R3",
+            "R4"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：在 macOS/Linux 上运行 `curl -fsSL https://cua.ai/install.sh | sh` 安装 cua CLI，或按需下载 Cua Spaces 桌面应用（macOS 26+）",
+            "sources": [
+              "R3",
+              "R7"
+            ]
+          },
+          {
+            "text": "前提：macOS 26 或更高版本（Spaces），或支持的 Windows/Linux；网络访问；可选本地 GPU",
+            "sources": [
+              "R3",
+              "R7"
+            ]
+          },
+          {
+            "text": "操作：运行 `cua sb create ubuntu --name dev` 创建 gVisor 容器沙箱，再用 `cua sb exec dev uname -a` 执行命令，或用 Python SDK 的 `Sandbox.ephemeral(Image.linux(), local=True)` 编程驱动",
+            "sources": [
+              "R7"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "agent 收到指令：计算 6×7 并验证 Calculator 显示 42",
+            "sources": [
+              "R4"
+            ]
+          },
+          "output": {
+            "text": "agent 报告 Calculator 显示 42，验证通过",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "通过 CLI、MCP 或 SDK 连接 Cua Driver",
+              "sources": [
+                "R4"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "4f49699020cfa014360e0ce7a154ce135bdeb1a43a8fb82ebc103198aa2bface",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1385946301,
@@ -782,7 +882,7 @@
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/terminal-monitor.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1331135699,
@@ -874,7 +974,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1316470719,
@@ -977,7 +1077,7 @@
         "https://raw.githubusercontent.com/hypit-ai/hypit/HEAD/docs/public/agentsky-light.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1373655162,
@@ -1054,7 +1154,7 @@
         "https://raw.githubusercontent.com/browser-use/jev-ultrafast/HEAD/docs/demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1329849289,
@@ -1148,7 +1248,7 @@
         "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1383809012,
@@ -1237,7 +1337,7 @@
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/agents-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1410124849,
@@ -1321,7 +1421,7 @@
         "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/ripple-tank.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1333165619,
@@ -1414,7 +1514,7 @@
         "https://raw.githubusercontent.com/dataelement/dsh-desktop/HEAD/docs/images/wechat-group-20260815.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1316527318,
@@ -1494,8 +1594,126 @@
           "text": "Every turn runs through a central core, which can use a variety of models and harnesses\nto generate the response. A Postgres persistence layer holds user data, session history,\nand other durable state. The agent has a small, fixed tool surface; one of those tools is\n`execute`, which runs commands in the scope's own isolated sandbox — its durable computer,\nwhere installed tools stay installed. The web UI and admin panel share one service; the portal and optional built-in\nauth broker share another. These modules communicate with core over its HTTP API.\nSee [combined services](docs/combined-services.md) for configuration and migration;\nSlack is an optional in-process plugin that core starts\nand supervises through a direct service client.\n\nThe core runs TypeScript directly on Node and uses Fastify for HTTP. The Slack plugin\nuses Bolt; the web UI builds with Vite and renders with Lit.\n\nThe core itself is generic. Everything specific to one company — org config, custom tools\nand skills, sandbox image, infrastructure — lives in a **deployment directory** that the\n[`qm` CLI](./cli/README.md) validates and deploys. Every substrate (harness, session\nstore, sandbox, memory) sits behind an interface. Memory can also be routed by scope to\n[external providers](./docs/memory-providers.md) while retaining the built-in notebook."
         }
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "QM 是一个完整的、可部署的多智能体协作应用系统，具备独立的 Web 管理面板、Slack 插件、核心 API 和持久化层，而非单纯的库或框架。它直接提供“在 Slack 和 Web 上运行”的完整解决方案。",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "summary": {
+          "text": "**A multiplayer agent harness for work. In Slack and on the web.** Run it in your own cloud, with your own models and keys.",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "价值：解决了个人 AI 助理在扩展到全公司时面临的复杂性问题。通过提供开箱即用的多用户隔离、协作空间、权限管理和多平台支持，降低了企业级 AI 部署的门槛，并避免了对单一模型供应商的锁定。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "audience": {
+          "text": "适合希望将 AI 智能体从个人助理升级为团队协作工具的初创公司、工程团队和产品经理。需要理解多租户、权限隔离和 Slack 集成的开发者。",
+          "sources": [
+            "R2",
+            "R4",
+            "R5"
+          ]
+        },
+        "outcome": {
+          "text": "产物：一个可运行的、支持多用户的协作智能体平台。用户可以搜索内部资料、构建内部应用、按计划处理邮件、在共享频道中跟踪项目并发布更新。",
+          "sources": [
+            "R4",
+            "R5"
+          ]
+        },
+        "mechanism": {
+          "text": "独特机制：通过“作用域”概念实现个人与共享空间的隔离与协作。每个作用域拥有独立的沙箱、内存、文件、权限和定时任务。核心是通用的，但所有公司特定配置（如自定义工具、技能、沙箱镜像）都存储在部署目录中，通过 qm CLI 验证和部署。技能可以按作用域授权共享，并通过管理网关推广到整个组织。后台工作（定时任务、监控、Webhook）在用户离线时依然运行。",
+          "sources": [
+            "R2",
+            "R4",
+            "R7"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：将 QM 的“作用域隔离”概念应用于企业知识管理，为每个部门构建独立的 AI 工作区，同时允许跨部门共享特定技能和数据，实现安全的联邦式 AI 协作平台。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "limitations": {
+          "text": "作者称每个员工和房间都有独立的内存、文件和权限，但未提供大规模部署下的性能基准或资源消耗数据。项目依赖 Postgres 和 Node.js，对基础设施有一定要求。目前主要面向初创公司设计，大型企业的复杂组织架构适配可能需要额外定制。",
+          "sources": [
+            "R2",
+            "R7"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：阅读部署指南，或通过第三方托管版快速体验。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "前提：拥有自己的云环境、模型和 API 密钥，或使用内置的 Pi 和 Claude Code 驱动。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "操作：在本地开发环境设置 DATABASE_URL 和 SESSION_STORE=postgres，运行 npm run dev-instance:web 启动 Web 实例，或 npm run dev-instance:slack 启动 Slack 插件。",
+            "sources": [
+              "R6"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "架构图输入：Postgres 数据库、核心 API、Agent 循环（Pi/Claude Code）、按作用域隔离的沙箱。",
+            "sources": [
+              "R6"
+            ]
+          },
+          "output": {
+            "text": "输出：通过 HTTP API 与核心交互的 Web 管理面板和 Slack 插件，以及每个作用域独立的沙箱执行环境。",
+            "sources": [
+              "R6"
+            ]
+          },
+          "steps": [
+            {
+              "text": "核心 API 接收请求，通过策略和调度器分发给 Agent 循环。",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "Agent 循环调用 execute 工具，在对应作用域的隔离沙箱中执行命令。",
+              "sources": [
+                "R6",
+                "R7"
+              ]
+            },
+            {
+              "text": "结果通过 Postgres 持久化，并经由 HTTP API 返回给 Web UI 或 Slack 插件。",
+              "sources": [
+                "R7"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "9a7ae9f4c736c4e6e69c770eb2a35493425dcf47490258c3d810466bc2f5346f",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1421825221,
@@ -1575,7 +1793,122 @@
         "https://raw.githubusercontent.com/deepseek-ai/DeepInfer/HEAD/doc/images/decode_pareto.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "DeepInfer 是一个高性能的推理框架（skill_tool），它提供了一套可复用的工具、优化内核和并行策略，用于高效运行 DeepSeek 模型。它本身不是一个直接面向最终用户的应用程序，而是为其他服务提供推理能力的底层组件。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "summary": {
+          "text": "DeepInfer is the high-performance inference framework that powers DeepSeek's large-scale production services. This open-source release provides offline inference with the core feat",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "价值：为 DeepSeek 模型提供了一个高性能、可扩展的推理解决方案，支持大规模生产服务。通过优化的内核和并行策略，显著提升了推理速度和效率，降低了部署成本。",
+          "sources": [
+            "R2",
+            "R7"
+          ]
+        },
+        "audience": {
+          "text": "适合需要在生产环境中部署和运行 DeepSeek 模型的 AI 工程师、推理优化开发者和高性能计算研究人员。需要理解 CUDA、并行策略和内核优化的高级用户。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "outcome": {
+          "text": "产物：一个可用于生产环境的高性能离线推理引擎，能够以极低的延迟和高吞吐量运行 DeepSeek-V4.1-Flash 模型，生成文本、结构化输出等。",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "mechanism": {
+          "text": "独特机制：提供了多种高级并行策略，如注意力数据并行（DP）、平衡上下文并行（CP）、MoE 专家并行（EP）和 EPLB。通过 DSpark 和置信度调度验证加速解码。采用异步调度实现零开销批处理调度，并支持批处理不变性推理和确定性采样，确保结果在不同批处理组合下保持一致。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：将 DeepInfer 的异步调度和批处理不变性思想应用于边缘计算设备，实现低延迟、高吞吐的本地大模型推理服务，适用于需要隐私保护的智能客服或文档分析场景。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "限制：仅支持 Linux 系统，且对 GCC、Python 和 CUDA 版本有严格要求。目前主要针对 DeepSeek 模型优化，对其他模型架构的支持可能有限。性能基准测试需要特定的硬件配置（如 SM100 GPU），普通用户难以复现。",
+          "sources": [
+            "R4",
+            "R7"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：从 GitHub 仓库获取构建和运行指南。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "前提：Linux 系统、GCC >= 13.0、Python 3.12、CUDA 13（NVIDIA）或 CANN 9.2（Ascend）。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "操作：创建 Python 3.12 环境，运行 ./build.sh 构建，然后运行 python examples/offline_inference.py 执行推理。",
+            "sources": [
+              "R5"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "输入：Linux 环境、GCC 13.0+、Python 3.12、CUDA 13、NVIDIA GPU，以及 DeepSeek-V4.1-Flash 模型权重。",
+            "sources": [
+              "R5",
+              "R6"
+            ]
+          },
+          "output": {
+            "text": "输出：通过运行 python examples/offline_inference.py 生成的模型推理结果。",
+            "sources": [
+              "R6"
+            ]
+          },
+          "steps": [
+            {
+              "text": "步骤 1：创建并激活 Python 3.12 环境，设置 DEEPINFER_ACCELERATOR=nvidia。",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "步骤 2：运行 ./build.sh 编译框架。",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "步骤 3：运行 python examples/offline_inference.py 进行离线推理，首次运行会自动下载模型权重。",
+              "sources": [
+                "R6"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "38bc2c4b168ed9e47174dea061de6affe0122c8bbd224dd1bc6df69b67143334",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1407950271,
@@ -1630,8 +1963,124 @@
           "text": "We will preserve the public release history of this collection. Corrections and revisions will be recorded as new versions, with previously released versions remaining accessible. \n\nTo cite the individual manuscript, use the BibTeX block in its directory."
         }
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "research",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "research",
+        "kind_reason": {
+          "text": "openai/math 是一个研究项目，其主要交付物是数学手稿、证明和形式化验证文件（research）。它不是为了直接运行或部署的应用程序，也不是一个可复用的软件工具，而是展示和记录 AI 模型在数学研究领域能力的成果集合。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "summary": {
+          "text": "This repository contains mathematical manuscripts and supporting proof artifacts produced by an internal OpenAI model.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "价值：展示了 AI 在高级数学推理和研究中的巨大潜力，为数学界提供了一个庞大的、可探索的 AI 生成研究成果库，可能加速新定理的发现和现有证明的简化。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "audience": {
+          "text": "适合数学研究人员、AI 伦理研究者、以及对 AI 生成内容验证感兴趣的学者。需要具备数学背景和 Lean 证明经验的用户。",
+          "sources": [
+            "R3",
+            "R4"
+          ]
+        },
+        "outcome": {
+          "text": "产物：一个包含 719 篇手稿、372 个数学家族的目录，以及相应的推理摘要、形式化证明（Lean）和版本历史，为数学研究提供了一个由 AI 辅助生成的庞大知识库。",
+          "sources": [
+            "R3",
+            "R4"
+          ]
+        },
+        "mechanism": {
+          "text": "独特机制：通过让 AI 模型在大量开放数学问题上进行长时间的“思考”计算（平均每个结果使用三小时 ChatGPT Pro 计算），生成潜在的证明和论证。然后将这些输出整理成家族和手稿，并对部分结果进行 Lean 形式化验证，形成一个多层次的验证和知识库。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：构建一个 AI 辅助的数学研究平台，类似 GitHub Copilot for Math，它不仅能生成证明草稿，还能自动将关键步骤形式化为 Lean 代码，并提供可视化推理追踪，帮助数学家快速验证和迭代想法。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "limitations": {
+          "text": "限制：约 42% 的结果有形式化证明，其余结果可能包含错误或未完成的论证。手稿由未发布的内部 OpenAI 模型生成，其推理过程和结论可能需要人类专家的进一步审查和验证。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：阅读仓库的 README 和 overview.pdf，了解手稿的组织结构。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "前提：需要数学背景来理解手稿内容，可能需要安装 Lean 交互式定理证明器以验证形式化证明。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "操作：使用 CONTENTS.md 导航到感兴趣的家族，下载对应的 PDF 或源文件进行阅读和研究。",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "chat",
+          "input": {
+            "text": "输入：一个开放的数学研究问题，或一个已有的数学猜想。",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "输出：包含数学证明、推理摘要、以及可能的形式化 Lean 证明的手稿 PDF。",
+            "sources": [
+              "R3",
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "步骤 1：阅读 overview.pdf 了解 372 个数学家族的分类和描述。",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "步骤 2：通过 CONTENTS.md 查找特定手稿及其支持材料。",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "步骤 3：在 preprints/ 目录中查看 PDF 和源文件，或在 lean/ 目录中查看形式化证明。",
+              "sources": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "d3dd817802b7c936985ce2cb264031894407d1e8d3d26b219c1b8628076aceb8",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1312807575,
@@ -1706,7 +2155,117 @@
         "https://raw.githubusercontent.com/miuuyy/codex-chatgpt-web/HEAD/assets/readme/download-windows.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "开发工具/框架 - 提供本地AI模型在Codex中的原生集成能力，支持完整工作流",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "ChatGPT Web (包括Pro版本)作为Codex中的原生模型，支持上下文、工具、流式传输和图像处理，无需使用Codex配额。Full Harness模式将ChatGPT连接到当前任务的文件、终端、工具和审批，通过MCP实现。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "可复用技能/开发工具/框架",
+          "sources": [
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "需要本地AI编码助手或开发者的项目",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "获得无配额限制的本地AI模型访问权限，可与现有任务保持上下文同步",
+          "sources": [
+            "R1"
+          ]
+        },
+        "mechanism": {
+          "text": "通过MCP将ChatGPT与Codex任务文件、终端、工具和审批系统连接，实现自动化工作流执行",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "inspiration": {
+          "text": "可以尝试构建一个本地AI代码助手，集成工具调用和上下文管理，类似于Codex Native2模式",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "需要账户权限，模型可用性取决于账户类型；部分高级模型仅限付费账户",
+          "sources": [
+            "R1"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：打开Launcher并登录ChatGPT浏览器",
+            "sources": [
+              "D0"
+            ]
+          },
+          {
+            "text": "前提：拥有Codex账户且有工作空间权限",
+            "sources": [
+              "R1"
+            ]
+          },
+          {
+            "text": "操作：安装模型，选择以'Web'结尾的模型（Luna/Think或高级模式），启用Automatic模式进行全链路操作",
+            "sources": [
+              "R2"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "Codex任务文件 + 工具列表（如文件、终端、工具）",
+            "sources": [
+              "R1"
+            ]
+          },
+          "output": {
+            "text": "工具调用结果与Codex任务状态同步的实时反馈",
+            "sources": [
+              "R1"
+            ]
+          },
+          "steps": [
+            {
+              "text": "启动Full Harness模式",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "选择模型并配置Automatic模式",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "发送指令并观察工具调用和响应",
+              "sources": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "7e79863bbff16efd8deff2d8a7aa6f6789de29d399d896575fab14942de14394",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1423101235,
@@ -1803,7 +2362,125 @@
         "https://raw.githubusercontent.com/Gathin23/cleanyourtv/HEAD/docs/focus-1-fancode.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "为Android/Google TV设备提供轻量级家控界面，移除制造商预装包",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "通过Wi-Fi上的Android TV设备使用Claude Code等AI助手，自动清理21+品牌电视的预装应用，重建Apple TV风格的家控界面，并支持一键恢复",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "可直接操作的应用",
+          "sources": [
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "想要简化智能电视体验的用户、开发者",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "获得Apple TV风格的家控界面，移除广告和预装应用，支持快速恢复",
+          "sources": [
+            "R1",
+            "R3"
+          ]
+        },
+        "mechanism": {
+          "text": "利用ADB工具在TV上运行debloat脚本，替换原厂应用列表，安装自定义launcher，并通过主题系统定制界面",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "inspiration": {
+          "text": "可以尝试为个人智能电视构建一个开源的家控解决方案，将AI助手与TV硬件深度集成，实现一键清理和自定义布局",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "不支持根权限，某些品牌（如TCL、Samsung）不支持此类改装；Fire TV仅支持半部去除",
+          "sources": [
+            "R5"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：在同一Wi-Fi下连接TV和电脑",
+            "sources": [
+              "R1"
+            ]
+          },
+          {
+            "text": "前提：电脑具备Shell访问权限，AI助手支持多模型",
+            "sources": [
+              "R1"
+            ]
+          },
+          {
+            "text": "操作：运行PROMPT.md填写TV型号，接受USB调试授权，完成Full Harness设置，创建Tunnel连接器，验证运行状态",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "Xiaomi TV 4A (Android TV 14)",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "显示Apple TV风格的家控界面，包含专属应用栏和动态标签页",
+            "sources": [
+              "R3"
+            ]
+          },
+          "steps": [
+            {
+              "text": "在TV上按Build七次进入开发者选项",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "开启USB调试",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "在电脑上运行PROMPT.md并填写型号",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "创建Tunnel连接器并验证运行",
+              "sources": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "40864923b2c962582e9bfc27b4c83c58351f54309670baf0d74e10b72d50b63a",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1333399642,
@@ -1890,8 +2567,113 @@
         "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/artemis-ui-showcase-en.png",
         "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-1-prompt.png"
       ],
-      "discovery_kind": "application",
-      "learning_status": "pending"
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "将自然语言指令转化为可靠的Android自动化，集成MCP与AI代码助手",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "ARTEMIS将自然语言指令转化为可靠的Android自动化，支持跨应用自动化、多模态定位、IDE诊断和Flash执行，AndroidWorld Benchmark中达99%+任务完成率",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "开发工具/框架",
+          "sources": [
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "移动测试工程师、AI辅助开发者、自动化测试团队",
+          "sources": [
+            "R11"
+          ]
+        },
+        "outcome": {
+          "text": "获得结构化的测试执行报告和性能指标分析",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "通过MCP将测试请求转化为执行计划，在真实设备上驱动UI交互，并收集日志和截图进行诊断",
+          "sources": [
+            "R3",
+            "R11"
+          ]
+        },
+        "inspiration": {
+          "text": "可以尝试构建一个自主测试工作流平台，让AI助手自动规划并执行复杂的移动端测试任务，类似于Antigravity × ARTEMIS的协作模式",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "需要Android设备或Emulator支持USB调试；某些高级功能可能受设备性能限制",
+          "sources": [
+            "R12"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：输入测试场景描述给Antigravity",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "前提：已安装Android设备或Emulator，且USB调试开启",
+            "sources": [
+              "R12"
+            ]
+          },
+          {
+            "text": "操作：生成测试计划，执行自主测试，生成最终报告",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "驾驶路线规划与YouTube播放",
+            "sources": [
+              "R1"
+            ]
+          },
+          "output": {
+            "text": "完成的导航路线和YouTube视频播放结果",
+            "sources": [
+              "R1"
+            ]
+          },
+          "steps": [
+            {
+              "text": "输入测试目标（如导航路线和音乐播放）",
+              "sources": [
+                "R1"
+              ]
+            },
+            {
+              "text": "Artemis自动生成测试计划并执行",
+              "sources": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "de7b11695cdf9c595822ba7193311c49f16fc8f8c2191a6519fd932ce39ab61a",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1318768894,
@@ -1972,7 +2754,7 @@
         "https://raw.githubusercontent.com/trycompai/crm/HEAD/docs/images/landing-agents.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1318187016,
@@ -2074,7 +2856,7 @@
         "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1375069862,
@@ -2156,7 +2938,7 @@
         "https://raw.githubusercontent.com/jaredpalmer/kev/HEAD/docs/playground.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1319154759,
@@ -2258,7 +3040,7 @@
         "https://raw.githubusercontent.com/FareedKhan-dev/kimi-k3-in-c/HEAD/docs/images/preset_ladder.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1397016507,
@@ -2350,7 +3132,7 @@
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/discord-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1327088798,
@@ -2447,7 +3229,7 @@
         "https://raw.githubusercontent.com/deeplethe/utopia/assets/assets/star-history.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1393965829,
@@ -2541,7 +3323,7 @@
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1378288598,
@@ -2615,7 +3397,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1379574728,
@@ -2734,7 +3516,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1351879111,
@@ -2824,7 +3606,7 @@
         "https://raw.githubusercontent.com/Human-Agent-Society/reef/HEAD/docs/assets/loop-animation-light.svg"
       ],
       "discovery_kind": "research",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1349601607,
@@ -2907,7 +3689,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1390273274,
@@ -2996,7 +3778,7 @@
         "https://media.skillry.dev/opus-5-5/moritzkremb-466494/preview.webp"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1334586481,
@@ -3078,8 +3860,102 @@
           "text": "- **三行为带 + weak 内路由**：spec（计划-集体）/ react（执行者）/ mixed（陷阱，回避）/ weak（模型自分类）\n- **按模型选 persona**：Pro=spec 句+few-shot（区分度 +5.0）；Flash=neutral+classify（+5.7）\n- **近距离引导**：每轮用户消息后注入固定引导（缓存 92-94% 命中），路由 96% + 收敛 100% + 反稀释\n- **单任务三锚**（persona 静态）：回顾 + 收敛 + 反跑题 —— 开放任务完成率 0% → 100%\n- **plan-mode 保留**：只替换 persona section，plan 边界不失忆\n- **AI 自优化工具**：`dev_router_status` / `dev_router_mode` / `dev_mode_subagent`"
         }
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "仓库交付形态为可复用技能/开发工具：三件套（injector 运行时注入器、preset 思维模式路由预设、graded 分级模式插件）均为可安装的 DSH 插件与预设，含安装脚本、组件 README 与架构文档，属于可复用技能/开发工具。",
+          "sources": [
+            "D0",
+            "R2",
+            "R3",
+            "R7"
+          ]
+        },
+        "summary": {
+          "text": "作者称该仓库装齐三件套：运行时注入器（免重启运行时管理层）+ 任务感知推理模式路由预设（P1-P23 实测）+ 分级任务协议（脑暴出题→规格化计划→打卡制→组收官→终验，含红队门与审计端点）。DSH Target 为 >=0.1.0-rc.6 <0.2.0，官方处于 developer preview。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "面向需要把 AI agent 会话从\"自由对话\"约束到结构化工作流的开发者，提供可安装的插件式路由方案；graded 模式额外提供会话级两级任务协议与审计端点，用于长程任务勤勉度观测与对抗。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "audience": {
+          "text": "使用 DSH 框架做 agent 开发的开发者、需要会话级任务治理的工程团队。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "outcome": {
+          "text": "获得一套可安装的 agent 会话路由与分级任务治理工具包，含注入器、路由预设与 graded 模式插件，支持按模型 persona 路由、近距离引导、单任务三锚、会话级任务协议与审计端点。",
+          "sources": [
+            "R2",
+            "R7",
+            "R8"
+          ]
+        },
+        "mechanism": {
+          "text": "injector 提供 dev_* 工具全家桶（注入/热重载/卸载/侧挂转正/路由自愈）；preset 按模型 persona（spec/react/mixed/weak）路由并保留 plan-mode；graded 提供会话级两级任务协议（脑暴选择题对齐→北极星定稿→规格化计划→按规格注入→打卡制→组收官→终验）+ 红队门 + 审计端点，并公开研究位（懈怠观测、协议 vs 无协议对比、测量脚本）。",
+          "sources": [
+            "R2",
+            "R3",
+            "R4",
+            "R8"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：一个面向企业级 agent 协作的会话治理平台，把自由对话升级为带角色路由、任务协议链、红队门和审计端点的结构化工作流，让长程 agent 任务可观测、可度量、可对抗偷懒行为。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "limitations": {
+          "text": "DSH 官方处于 developer preview，会有破坏性变更；graded 发布物版本为 v0.0.1-rc1，仅提供插件包，未随主仓库发布完整源码；作者称 router-pro 规划中未随 v0.3.0 发布。",
+          "sources": [
+            "R5",
+            "R7"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：`git clone https://github.com/yjh051108/dsh-routing-suite.git` 后执行 `.\\install.ps1` 一键安装；或手动 `dsh plugin --profile web add .\\injector` 装注入器，再复制 preset 目录到 `~/.dsh/.agent-presets/router-standard` 或 `router-spec`，重启 DSH。",
+            "sources": [
+              "R6"
+            ]
+          },
+          {
+            "text": "前提：本地已安装 DSH（>=0.1.0-rc.6 <0.2.0），PATH 中有 dsh CLI（或 npx '@deepseek-ai/dsh'）；Windows PowerShell 环境。",
+            "sources": [
+              "R5",
+              "R6"
+            ]
+          },
+          {
+            "text": "操作：一键安装后在新会话选择 Router Standard / Router Spec (experimental)；graded 模式通过 `dsh plugin --profile web add graded/dsh-external-dsh-graded-mode-0.0.1-rc1.tgz` 安装。",
+            "sources": [
+              "R5",
+              "R7"
+            ]
+          },
+          {
+            "text": "验证：安装后查看 `dev_router_status` / `dev_router_mode` 等自优化工具确认路由生效；graded 模式可用 `node scripts/measure.mjs 你的会话.jsonl` 复算指标。",
+            "sources": [
+              "R8"
+            ]
+          }
+        ],
+        "demo": null
+      },
+      "learning_cache_key": "0f260078de472098dbb196a1f21306b89bbd13daabc181df8d961c995e6559a6",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1377211520,
@@ -3169,7 +4045,7 @@
         "https://raw.githubusercontent.com/mizorewww/laya-mlx/main/docs/assets/snake-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1342935078,
@@ -3262,7 +4138,7 @@
         "https://github.com/edward821220.png?s=128"
       ],
       "discovery_kind": "research",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1336502227,
@@ -3348,7 +4224,7 @@
         "https://raw.githubusercontent.com/CopilotKit/OpenBot/HEAD/assets/architecture-dark.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1326531152,
@@ -3439,8 +4315,118 @@
         "https://raw.githubusercontent.com/miqdadbadjuber/anti-slop/HEAD/assets/compare/ui/w-antislop.webp",
         "https://raw.githubusercontent.com/miqdadbadjuber/anti-slop/HEAD/assets/compare/ui/w-design.webp"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "discovery_kind": "research",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "research",
+        "kind_reason": {
+          "text": "Provides rule-based filters to remove low-quality content generated by AI coding agents.",
+          "sources": [
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "Rulebook for AI coding agents to eliminate generic UI designs, filler copy, and AI-shaped code patterns.",
+          "sources": [
+            "R1",
+            "R18"
+          ]
+        },
+        "value": {
+          "text": "Higher code quality by filtering out non-value AI artifacts",
+          "sources": [
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "AI coding agent developers and teams integrating large language models into software development workflows",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "Filtered code and UI without generic AI artifacts while preserving functional logic",
+          "sources": [
+            "R18"
+          ]
+        },
+        "mechanism": {
+          "text": "Three-tier rule system (Hard Gate, Purpose-Gate, Quality Locks) that evaluates intent, tool usage, and output characteristics before allowing actions.",
+          "sources": [
+            "R1",
+            "R18"
+          ]
+        },
+        "inspiration": {
+          "text": "Anti Slop: Rules for AI Coding Agents – a dedicated rulebook for filtering AI-generated code and UI elements.",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "Cannot independently generate high-quality direction; requires human-defined design guidelines (DESIGN.md) for complete solutions.",
+          "sources": [
+            "R18"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "Install the anti-slop tool via npx antislop-ai",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "Answer prompts to select desired skills for the agent",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "Configure the agent to apply the rules during coding sessions",
+            "sources": [
+              "R7"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "Apply anti-slop rules to a coding task",
+            "sources": [
+              "R1"
+            ]
+          },
+          "output": {
+            "text": "Code stripped of generic AI patterns while retaining functional logic",
+            "sources": [
+              "R18"
+            ]
+          },
+          "steps": [
+            {
+              "text": "Install antislop-ai",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "Select relevant skills (security, performance, readability)",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "Run the filter on existing code output",
+              "sources": [
+                "R7"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "35d54c7e4002381207e8f99d7a0f8dc1a5b5fa116845c0cc7c0cf4959303923a",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1350978527,
@@ -3539,8 +4525,119 @@
       "demo_images": [
         "https://raw.githubusercontent.com/Ryze-AI-Adgent/open-seo-mcp-skills/1b852d098cfd1366e8e78e7e4879b77e95e0974e/ghs-toplight.png"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "Provides a free SEO MCP server with open-source skills for analyzing search engine data directly from Google platforms.",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "summary": {
+          "text": "Free SEO MCP server offering keyword research, rank tracking, site audits, backlink analysis, competitor gap detection, and AI visibility reporting using real GSC/GA4 data.",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "value": {
+          "text": "Zero-cost access to authentic ranking and traffic data compared to paid alternatives",
+          "sources": [
+            "R3"
+          ]
+        },
+        "audience": {
+          "text": "SEO professionals using Claude or similar LLM interfaces for content and strategy tasks",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "Access to real-time indexing status, click-through rate anomalies, decaying pages, and competitive gaps",
+          "sources": [
+            "R6"
+          ]
+        },
+        "mechanism": {
+          "text": "MCP server exposes Google Search Console, GA4, and advertising data as first-class tools within LLM applications, enabling direct querying of SEO metrics.",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "inspiration": {
+          "text": "This takes the opposite approach to paid SEO tools — free code with real data instead of estimated metrics.",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "Requires connected accounts (Search Console, GA4, ads); no markup on API calls; dependent on external data provider availability.",
+          "sources": [
+            "R8"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "Add Ryze MCP connector via claude mcp add ryze --transport http https://connector.get-ryze.ai/mcp",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "Install the open-seo-mcp-skills as a Claude Code plugin",
+            "sources": [
+              "R5"
+            ]
+          },
+          {
+            "text": "Invoke integrated MCP skills for SEO analysis",
+            "sources": [
+              "R4"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "Run an SEO audit on a target website",
+            "sources": [
+              "R4"
+            ]
+          },
+          "output": {
+            "text": "Comprehensive SEO audit including indexation status, click-through rate anomalies, and prioritized improvement recommendations",
+            "sources": [
+              "R6"
+            ]
+          },
+          "steps": [
+            {
+              "text": "Connect Ryze MCP server",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "Invoke seo-audit skill on the specified domain",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "Receive detailed report on indexation, CTR anomalies, and quick wins",
+              "sources": [
+                "R6"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "ce41954f5cba24248e32dff6e435cef8109639146247d401abe96a4f10bb3027",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1339742577,
@@ -3622,8 +4719,134 @@
         "https://raw.githubusercontent.com/amagine-ai/Amagine3D/HEAD/docs/assets/readme/examples/example-02.gif",
         "https://raw.githubusercontent.com/amagine-ai/Amagine3D/HEAD/docs/assets/readme/examples/example-03.gif"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "Amagine3D 是一个可复用的 3D 能力层与开发框架，提供 Agent 驱动的 CAD 生成流水线，而非独立交付的终端应用。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "Amagine3D 是 Amagine 正在开发的开源 3D 能力层，用于硬件创建。输入产品描述与参考图片、补充关键尺寸，即可围绕内部组件设计外壳与装配结构，并生成可编辑的源码，按需导出 STEP、STL、3MF 文件。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "将自然语言需求、参考图与尺寸转化为可打印的智能硬件外壳与装配结构，同时保留 Python/build123d 可编辑源码与真实 STEP 导出，避免传统 CAD 重复建模。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "硬件开发者、3D设计师、产品经理，希望用自然语言快速生成可打印外壳与装配结构的人。",
+          "sources": [
+            "R7",
+            "R8"
+          ]
+        },
+        "outcome": {
+          "text": "完整的 build123d 源码、STEP、STL、3MF 文件，以及包含壁厚/干涉/装配检查的报告；参数可调，修改后回写源码并重建几何。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "mechanism": {
+          "text": "3D-native Agent 架构：将请求转为不可变意图与可变语义场景，自主内循环反复读取几何、规划修改、运行量测与干涉检查，通过后由提交阶段存档为新版本；几何基于 build123d 的 loft/extrusion/revolution/sweep/BRep 特征构建，导出真实 STEP 与带颜色区域的 3MF。",
+          "sources": [
+            "R2",
+            "R4"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试为已有的开源硬件项目（如 BUSY Bar）生成定制外壳，或将内部组件库与自然语言描述结合，快速验证产品外观与装配可行性。",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "需要 Node.js 22.19+、Python 3.10–3.13、npm、现代桌面浏览器及 OpenAI Responses 兼容 API 密钥；首次启动需等待 .venv 准备与依赖安装。",
+          "sources": [
+            "R7",
+            "R8"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "克隆仓库并进入目录，安装依赖（Node.js 22.19+、npm）",
+            "sources": [
+              "R8"
+            ]
+          },
+          {
+            "text": "复制 .env.example 为 .env 并配置 OpenAI 兼容 API 密钥",
+            "sources": [
+              "R8"
+            ]
+          },
+          {
+            "text": "运行 npm run dev，打开 http://127.0.0.1:6160 开始使用",
+            "sources": [
+              "R8"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "产品描述、参考图片、关键尺寸、已有几何体",
+            "sources": [
+              "R1",
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "build123d 源码、STEP、STL、3MF 文件及检查报告",
+            "sources": [
+              "R2",
+              "R3"
+            ]
+          },
+          "steps": [
+            {
+              "text": "Agent 将需求转为不可变意图与可变语义场景",
+              "sources": [
+                "R2",
+                "R4"
+              ]
+            },
+            {
+              "text": "自主内循环：读取模型→规划修改→运行检查→分析结果",
+              "sources": [
+                "R2",
+                "R4"
+              ]
+            },
+            {
+              "text": "量测壁厚、干涉、运动路径、打印朝向与板件匹配",
+              "sources": [
+                "R2",
+                "R4"
+              ]
+            },
+            {
+              "text": "提交版本，导出 STEP/STL/3MF 并保存项目",
+              "sources": [
+                "R2",
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "abfbbc310ddce37e800f6cf4a13fec84a8a92a6d62fc60c3947eb7c1d1df269d",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1338470635,
@@ -3705,7 +4928,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1396117711,
@@ -3779,7 +5002,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1391438314,
@@ -3882,7 +5105,7 @@
         "https://raw.githubusercontent.com/Louis-CFM/coucou/HEAD/docs/media/hub-statistics.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1332080070,
@@ -3961,7 +5184,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1371757322,
@@ -4035,7 +5258,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1342461518,
@@ -4125,7 +5348,7 @@
         "https://raw.githubusercontent.com/ApodexAI/FrontierAgent/star-history/assets/star-history/star-history-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1346870728,
@@ -4207,7 +5430,7 @@
         "https://raw.githubusercontent.com/monid-ai/monid/HEAD/assets/monid-compile.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1331261687,
@@ -4299,7 +5522,7 @@
         "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/computer-panel.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1410929004,
@@ -4393,8 +5616,118 @@
       "demo_images": [
         "https://raw.githubusercontent.com/ARahim3/DigUp/HEAD/docs/demo.gif"
       ],
-      "discovery_kind": "application",
-      "learning_status": "pending"
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "可复用技能/开发工具/框架，因为 README 明确说「Everything runs on your computer」且是桌面应用，属于本地文件检索工具类技能/框架。",
+          "sources": [
+            "D0"
+          ]
+        },
+        "summary": {
+          "text": "基于 Google DeepMind EmbeddingGemma 2 的本地文件语义检索工具，支持 Mac/Windows/Linux，可搜索照片、PDF、文档、录音、视频和代码。作者称「Search the files on your computer by what's in them」。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "把大语言模型嵌入能力落地到本地文件系统检索，解决「不知道文件名但知道内容」的痛点；端侧运行、隐私优先、零账号零遥测。",
+          "sources": [
+            "R1",
+            "R3"
+          ]
+        },
+        "audience": {
+          "text": "需要本地文件语义检索的开发者、隐私敏感用户、Mac/Windows/Linux 用户。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "用户能在本地任意文件类型中按语义描述找到目标文件，无需上传云端。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "mechanism": {
+          "text": "读取用户选择的文件夹中的图片、PDF、文档、音频、视频，通过 EmbeddingGemma 2（在 llama.cpp 中以 8-bit 构建运行）生成向量存入 SQLite 索引；搜索时用模型文本部分生成查询向量，与所有索引向量做最近邻匹配，同时保留精确关键词匹配作为 boost。Mac 用 SwiftUI + macOS 原生框架，Windows/Linux 用 Tauri + PDFium/ffmpeg/ stb。",
+          "sources": [
+            "R8"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：做一个面向个人工作流的「文件语义搜索引擎」，让用户在任何应用里用自然语言描述想找的文件内容（比如「租合同中关于宠物的条款」），自动跨图片/PDF/文档/录音/视频定位到具体位置，且全程本地运行不上传。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "仅读取用户选择的文件夹，不读取密钥、证书、密码文件、隐藏目录、云同步目录；首次索引耗时较长（大库可能数小时）；Windows 安装包未签名，需手动允许；仅支持 Mac/Windows/Linux 三平台；作者称模型下载约 865 MB。",
+          "sources": [
+            "R6",
+            "R4"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：下载对应平台安装包（Mac DMG / Windows .exe / Linux .deb 或 AppImage），安装后从菜单栏或快捷键唤起；前提：Apple Silicon Mac + macOS 14+，或 64-bit Windows 10/11，或 Ubuntu 22.04+/Debian 12+/Mint 21+；操作：选择要搜索的文件夹（首次会显示预计耗时），用 ⇧⑨Space（Mac）/ Ctrl+Shift+Space（Win/Linux）在任何应用中描述想找的内容，结果按类型跳转（PDF 到页码、视频到时刻、代码到行号）。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "入口：Homebrew cask 安装 `brew install --cask arahim3/tap/digup`；前提：Homebrew + Apple Silicon Mac + macOS 14+；操作：安装后选择文件夹，按快捷键描述内容，模型首次下载约 865 MB 一次性。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "入口：从 Releases 下载对应平台安装包并运行；前提：对应平台系统要求；操作：安装后选择文件夹，用快捷键描述内容搜索，结果按类型跳转打开。",
+            "sources": [
+              "R4"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "选择文件夹，输入「the clause about pets in the lease」",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "PDF 跳转到包含宠物条款的页面。",
+            "sources": [
+              "R5"
+            ]
+          },
+          "steps": [
+            {
+              "text": "1. 选择文件夹（PDF 等）",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "2. 描述「the clause about pets in the lease」",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "3. 搜索结果跳转到 PDF 页面",
+              "sources": [
+                "R5"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "1f8f2de7ea503ab9968bb73e81892f83a1ef66dea8ac536180c0ac0c70bac001",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1310057619,
@@ -4465,7 +5798,7 @@
         "https://raw.githubusercontent.com/slvDev/esp32-ai/HEAD/media/esp32-ple-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1333111893,
@@ -4556,7 +5889,117 @@
         "https://raw.githubusercontent.com/ccch1mneyyy/dsh-TUI/HEAD/screenshots/qq-group.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "可复用技能/开发工具/框架，README 明确说是 DSH 的 TUI 插件，npm 一键安装，属于终端 UI 插件类开发工具。",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "DSH 官方首推的 TUI 插件，提供像素鲸鱼宠物、启动引导、流式思考、双 Esc 回退、上下文进度条和 TPS 仪表等终端界面。作者称「DSH 官方首推的 TUI 插件」。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "为 DSH（DeepSeek Harness）提供官方推荐的高性能低开销终端交互界面，降低终端使用门槛。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "DSH 用户、终端重度用户、喜欢像素风界面的开发者。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "DSH 用户获得带像素鲸鱼宠物、流式思考展示、任务完成通知等增强的终端交互体验。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "TUI 负责交互和呈现，会话日志是事实来源；DSH 服务拥有模型、工具和持久化；长会话渲染按可见窗口 O(n) 处理。模块边界和持久化位置见 architecture 文档。",
+          "sources": [
+            "R17"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：做一个面向 AI Agent 终端交互的「主题皮肤插件市场」，每个插件提供不同视觉风格（像素风、极简风等）和交互增强（任务完成通知、上下文进度条），让同一套 Agent 框架在不同终端有不同体验。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "注入插件上下文无独立显示；Ctrl+V 依赖平台剪贴板工具；拖拽文件恢复仅限单文件 OSC 8 URI；后台会话随进程退出停止；/thinking 不持久化；极简模式不压缩上下文可能导致超长会话爆 context limit；状态栏费用估算含子代理用量但平台账单为准。",
+          "sources": [
+            "R18"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：npm 一键安装 `dsh-tui`，或下载 Windows x64 安装包运行；前提：Node.js 和 deepseek-harness 已安装；操作：安装后启用插件即可，卸载不留补丁。",
+            "sources": [
+              "R7",
+              "R8"
+            ]
+          },
+          {
+            "text": "入口：npm 安装；前提：Node.js 和 deepseek-harness；操作：`npm i -D dsh-tui` 后启用插件，首次运行有四步引导向导（API key / 语言主题 / 模型工作区 / 快捷键）。",
+            "sources": [
+              "R8"
+            ]
+          },
+          {
+            "text": "入口：下载 Windows 安装包运行；前提：Windows 系统；操作：下载 `dsh-tui-setup-win-x64.exe` 运行，免管理员、完全离线、无预装 Node 或 DSH。",
+            "sources": [
+              "R7"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "chat",
+          "input": {
+            "text": "在 DSH 中启动 dsh-TUI 并进入聊天",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "终端出现像素鲸鱼宠物、流式 Markdown 输出、任务完成通知。",
+            "sources": [
+              "R2"
+            ]
+          },
+          "steps": [
+            {
+              "text": "1. npm 安装 dsh-tui",
+              "sources": [
+                "R8"
+              ]
+            },
+            {
+              "text": "2. 启用插件",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "3. 进入聊天界面，看到像素鲸鱼宠物和流式思考",
+              "sources": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "f6c510365de39950277e3e23a28e2960d32089c26295414785c98011ced1aed0",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1342876750,
@@ -4624,7 +6067,116 @@
         "https://raw.githubusercontent.com/totec448-spec/chat-on-steroids/HEAD/docs/images/workspace.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "可复用技能/开发工具/框架，README 明确说是「independent beta」「open-source workspace」，通过 MCP 连接本地工具，属于开发工具/工作流框架。",
+          "sources": [
+            "D0"
+          ]
+        },
+        "summary": {
+          "text": "跨平台的 ChatGPT 本地 MCP 工作台，支持 Chrome 集成、Goal、Compact & Resume 和持久化多 Agent 工作流。作者称「Cross-platform local MCP capabilities for ChatGPT」。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "让 ChatGPT 能直接读写本地文件、运行终端、管理多 Worker 任务并保持上下文，适合需要长期编码和团队分工的用户。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "使用 ChatGPT 进行编码和授权的开发者、需要多 Agent 分工的用户。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "ChatGPT 能直接操作本地文件和终端，支持多 Worker 分工、Goal 跟踪、Compact & Resume 续传。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "mechanism": {
+          "text": "通过 MCP 连接本地工具，浏览器扩展观察并自动化 ChatGPT 浏览器 UI 并本地记录对话；Worker 保持各自上下文，Goal 跟踪未完成工作，Loop 在 brief 内继续，Compact & Resume 把会话和 worker 历史带入新聊天。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "inspiration": {
+          "text": "可尝试的产品想法：做一个「AI 编码工作台」，把 ChatGPT 从对话工具变成能直接操作本地文件的多 Agent 工作平台，支持任务拆分、Worker 上下文保持、中途修正和断点续传，让 AI 助手真正成为可编排的工作流引擎。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": {
+          "text": "作者称独立 beta，使用风险自担；不绕过使用限制或安全控制；浏览器集成不是公开 ChatGPT automation API；MCP 可用不等于所有浏览器自动化权限；Linux 需要 Secret Service keyring；macOS 未签名未公证需验证校验和；Windows 未发布者签名。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：安装 CoS 应用 → Settings → Setup，七步引导；前提：ChatGPT 账号/workspace 可创建自定义 MCP 应用；操作：安装后按步骤配置浏览器扩展、共享文件夹、连接 OpenAI Tunnel 和 API Key。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "入口：Settings → Setup；前提：ChatGPT account/workspace 可创建 custom MCP apps；操作：浏览器扩展加载，共享文件夹，创建 tunnel 和 restricted API key，在 ChatGPT Plugins 中添加自定义 MCP server。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "入口：安装应用；前提：Windows 10/11、macOS 13+、Linux；操作：安装后连接浏览器扩展、共享文件夹、配置 MCP server。",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "在 ChatGPT 中发送一个需要修改多个文件的编码任务",
+            "sources": [
+              "R1"
+            ]
+          },
+          "output": {
+            "text": "ChatGPT 直接编辑本地文件、运行测试、保持终端打开并按工具结果继续。",
+            "sources": [
+              "R1"
+            ]
+          },
+          "steps": [
+            {
+              "text": "1. 安装 CoS 并配置 MCP server",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "2. 共享工作文件夹并设置权限",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "3. 在 ChatGPT 中发送任务，CoS 自动读写文件、运行终端",
+              "sources": [
+                "R1"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "7b525ca4267209d4944c1240b44285896e0d6c57f7fe50dc6320c25aecf172b6",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1332781509,
@@ -4713,7 +6265,7 @@
         "https://raw.githubusercontent.com/elie222/rakazo/HEAD/docs/readme-hero.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1325096132,
@@ -4792,7 +6344,7 @@
         "https://raw.githubusercontent.com/eternityspring/shuohao-skills/HEAD/skills/novel-characters/assets/report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1389011744,
@@ -4895,7 +6447,116 @@
         "https://raw.githubusercontent.com/lemomo-ai/lemo-opuscar/HEAD/docs/frames/satellite-briefing.jpg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "A skill that generates short film styles using Claude Opus 5.5, providing 51 distinct film styles with accompanying demo films created entirely in code.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "51 film styles, each with a style prompt and a complete demo film produced via code",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "Developers and creators who want to build AI-generated short films with consistent visual styles without requiring video generation models.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "可生成的 51 种影片风格及配套的纯代码短片",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "通过 Claude Opus 5.5 的风格提示词驱动，自动生成每种风格的短片，并提供完整的导演指南和技术实现文档。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "inspiration": {
+          "text": "Claude Opus 5.5 训练的 51 种影片风格，每种都配有一支完全用代码制作的短片（包括 OPUSCAR 98 和 Evidence Films）",
+          "sources": [
+            "D0"
+          ]
+        },
+        "limitations": {
+          "text": "其他 AI 模型可能无法准确复现这些风格；该工具仅支持 Claude Opus 5.5 模型。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：在 Claude Code 插件市场中添加 lemo-opuscar 技能",
+            "sources": [
+              "R6"
+            ]
+          },
+          {
+            "text": "前置：使用 Claude Opus 5.5 模型进行最佳效果",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "操作：选择一个现有风格或创建自定义风格，然后生成短片",
+            "sources": [
+              "R2"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "选择 'watercolor' 风格创作关于家庭咖啡农场的 45 秒电影，或使用 'LiDAR Survey' 风格描绘旧矿区",
+            "sources": [
+              "R8"
+            ]
+          },
+          "output": {
+            "text": "一支符合指定风格的短片（如水彩风格的咖啡农场故事或 LiDAR 扫描的矿区纪录片）",
+            "sources": [
+              "R8"
+            ]
+          },
+          "steps": [
+            {
+              "text": "输入想要的风格名称（如 watercolor 或 LiDAR Survey）",
+              "sources": [
+                "R8"
+              ]
+            },
+            {
+              "text": "系统会根据风格索引生成对应的短片脚本和视觉指导",
+              "sources": [
+                "R8"
+              ]
+            },
+            {
+              "text": "运行生成流程得到完整的短片输出",
+              "sources": [
+                "R8"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "e508807e0d4ecdfdbbaa56f1c5be4f5e659d87f225e2a88785be275e55357c3d",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1326893710,
@@ -4983,8 +6644,110 @@
         "https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/HEAD/docs/screenshots/files-menu-openwith.png",
         "https://raw.githubusercontent.com/omdsh-dev/DSH-better-sidebar/HEAD/docs/screenshots/changes-tree.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面，内置文件渲染编辑/终端/侧边对话/Git/子代理页面",
+          "sources": [
+            "D0"
+          ]
+        },
+        "summary": {
+          "text": "双工作站面板，结合原生右侧边栏与自绘底部面板，提供文件管理、Git 控制台、侧边聊天等功能",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "增强型 DSH 界面，支持第三方扩展插件注册新侧边栏页面，包含文件渲染、终端、侧边对话、Git 和子代理页面",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "DSH 用户希望提升工作空间交互性和协作能力的人员",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "获得包含多标签页、多视图窗口、Git 状态颜色、全局搜索和拖拽上传等功能的增强侧边栏工作区",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "提供上下文感知的侧边栏面板，支持实时目录监控、全局搜索、拖放上传、多选批量操作以及底部工作区面板",
+          "sources": [
+            "R2"
+          ]
+        },
+        "inspiration": {
+          "text": "开放的侧边栏底座，允许第三方开发者注册新的侧边栏页面，同时内置多种交互组件",
+          "sources": [
+            "D0"
+          ]
+        },
+        "limitations": {
+          "text": "依赖特定 DSH 版本兼容性；某些高级功能（如 dsh-context 诊断）需要额外插件安装",
+          "sources": [
+            "R5"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：通过 DSH 插件管理器安装 dsh-better-sidebar 插件",
+            "sources": [
+              "R6"
+            ]
+          },
+          {
+            "text": "前置：确保 DSH 版本为 0.2.1-rc.1+ 或匹配的插件版本",
+            "sources": [
+              "R6"
+            ]
+          },
+          {
+            "text": "操作：执行命令 'dsh plugin --profile web add dsh-better-sidebar@latest' 并硬刷新浏览器",
+            "sources": [
+              "R6"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "调用 dsh-plugin 安装命令并启动 DSH 界面",
+            "sources": [
+              "R6"
+            ]
+          },
+          "output": {
+            "text": "侧边栏出现可定制的底部面板，包含文件树、Git 状态、终端和多视图工作区",
+            "sources": [
+              "R2"
+            ]
+          },
+          "steps": [
+            {
+              "text": "运行安装命令 'dsh plugin --profile web add dsh-better-sidebar@latest'",
+              "sources": [
+                "R6"
+              ]
+            },
+            {
+              "text": "重启浏览器以加载新插件",
+              "sources": [
+                "R6"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "53419b4a3796b7d0b142c525dd2ba8a2279cdf2c5795217d58c7dc8b8bc9db3c",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1316443307,
@@ -5075,8 +6838,117 @@
         "https://raw.githubusercontent.com/microsoft/skill-recorder/HEAD/docs/images/recorder.png",
         "https://raw.githubusercontent.com/microsoft/skill-recorder/HEAD/docs/images/library.png"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "桌面应用记录用户的工作会话，将其转化为意图+顺序步骤，可用于构建可重复的 AI 技能或自动化",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "将一次手工操作记录为结构化的技能或自动化，支持在 Microsoft Autopilots 中重复执行",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "将单次工作流转换为可复用的 Skill 或 Automation，减少重复劳动时间",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "希望将手工流程自动化为可复用 AI 技能的开发者和 Power User",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "生成的 Skill 或 Automation 可以在后续任务中被调用，替代手工重复操作",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "录制屏幕活动（点击、应用切换、命令行输出），分析阶段使用 GitHub Copilot CLI 将行为重构为明确的意图和步骤序列，最终生成可执行的 Skill 文件（SKILL.md）",
+          "sources": [
+            "R3"
+          ]
+        },
+        "inspiration": {
+          "text": "将一次手工操作记录为清晰的意图+步骤列表，再转化为 AI 可执行的 Skill",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "首次安装可能需要数分钟；所有处理均在本地设备上发生，保护机制会扫描敏感信息",
+          "sources": [
+            "R7"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：从官方发布页面获取最新版本的 Skill Recorder 应用",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "前置：需要 GitHub Copilot 账户和 Copilot CLI 支持",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "操作：按下 ⌘⇧R 启动录制，完成任务后点击 Analyze 生成意图和步骤列表，最后创建 Skill 或 Automation",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "cards",
+          "input": {
+            "text": "录制一个简单的任务（如打开文件并保存），然后点击 Analyze 查看生成的意图和步骤",
+            "sources": [
+              "R7"
+            ]
+          },
+          "output": {
+            "text": "一份结构化的技能描述（SKILL.md），包含明确的步骤和意图，可直接部署到 AI 工作流中",
+            "sources": [
+              "R7"
+            ]
+          },
+          "steps": [
+            {
+              "text": "启动录制并执行任务",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "分析生成的意图和步骤列表",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "创建 Skill 或 Automation",
+              "sources": [
+                "R7"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "db60b79d1d3720d5e8421e39eff6e23e17bdb02be9c8e881d4bf0cd8c5fb51c5",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1354059245,
@@ -5166,7 +7038,125 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "Long-term memory runtime for AI agents that solves the problem of agents forgetting everything learned during a session through local ranked retrieval and sleep-time consolidation.",
+          "sources": [
+            "D0",
+            "R2",
+            "R3"
+          ]
+        },
+        "summary": {
+          "text": "agent-memory is a runtime that enables AI agents to retain their entire session context without relying on external databases. It combines a local retrieval engine (BM25 + vector s",
+          "sources": [
+            "R2",
+            "R4",
+            "R5"
+          ]
+        },
+        "value": {
+          "text": "Agents maintain persistent context across multiple turns without external storage dependencies.",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "audience": {
+          "text": "AI developers building agents that need long-term memory persistence, researchers studying agent memory architectures, and teams working on agent-assisted coding environments.",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "outcome": {
+          "text": "Agent retains all learned information across sessions, eliminating context loss problems.",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "mechanism": {
+          "text": "Local ranked retrieval (BM25 + vector search) over markdown files as single source of truth, combined with a sleep-time pass that consolidates and forgets values by value.",
+          "sources": [
+            "R2",
+            "R3",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "Could inspire building an agent that maintains a persistent knowledge base across multi-turn conversations without external database calls, similar to how Claude Code and Codex share a common store.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "Requires local storage (no cloud dependency), limited to markdown files as primary data source, and no built-in API integration beyond the local store.",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：克隆仓库并初始化存储",
+            "sources": [
+              "R8"
+            ]
+          },
+          {
+            "text": "前置：确保 Python 3.12 或更高版本，并安装依赖包",
+            "sources": [
+              "R8"
+            ]
+          },
+          {
+            "text": "操作：使用 mem record 记录记忆，然后通过 mem recall 查询",
+            "sources": [
+              "R9"
+            ]
+          },
+          {
+            "text": "验证：运行 mem rebuild 确认索引完整性",
+            "sources": [
+              "R9"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "为什么文件而不是数据库",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "包含一行摘要、文件路径和分数的 L0 列表（例如：'为什么文件而不是数据库' -> ['为什么文件而不是数据库', '~10条匹配项', '0.92', '2026-10-07']）",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "L0 列表",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "打开需要的部分",
+              "sources": [
+                "R4"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "fbd115b105e12ccdcd5d3c9b86b72e8f09baab2239a61a25bab18efa118bc27d",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1401476500,
@@ -5261,8 +7251,121 @@
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/plain-vs-skill.png",
         "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/video-en.png"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "一个 AI 代理技能，能够将硬问题回答成可读的一页 HTML 页面，而非传统的长文本解释。",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "Answer me with HTML 是一个基于命令行的技能，允许 AI 代理以单页 HTML 形式生成结构化、可阅读的回答。它将模型草稿转换为包含图表、代码块和表格的 HTML 输出。",
+          "sources": [
+            "R1",
+            "R15"
+          ]
+        },
+        "value": {
+          "text": "减少了约 8 倍的输出 token 数量（从 4,893 降至 612），并使响应时间缩短约 2.6 倍。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "开发者希望为 AI 代理集成快速生成报告；研究人员测试生成效率；以及任何需要简洁技术文档的团队。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "生成的 HTML 页面包含结构化的内容（如序列图、状态变化、代码片段），比原始文本更易于阅读和分享。",
+          "sources": [
+            "R15"
+          ]
+        },
+        "mechanism": {
+          "text": "模型首先编写 Markdown 草稿，然后 CLI 将其转换为带有图表、表格和代码块的 HTML，支持多语言输出（中文、英文、日文）。",
+          "sources": [
+            "R15",
+            "R16"
+          ]
+        },
+        "inspiration": {
+          "text": "可以作为 Claude Code、Codex、Cursor 等代理插件的扩展，提供即时的可读性报告功能。",
+          "sources": [
+            "R4",
+            "R9"
+          ]
+        },
+        "limitations": {
+          "text": "需要安装 CLI 或手动设置技能；依赖特定模型能力；复杂图表可能无法完美渲染。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：安装 CLI 或在代理中添加技能",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "前置：Node.js 20 或更高版本（用于 CLI 版本）",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "操作：调用 mem record 创建记忆，然后 mem recall 获取 HTML 输出",
+            "sources": [
+              "R9"
+            ]
+          },
+          {
+            "text": "验证：检查生成的 HTML 是否完整且符合预期",
+            "sources": [
+              "R15"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "解释 TCP 三次握手",
+            "sources": [
+              "R15"
+            ]
+          },
+          "output": {
+            "text": "单页 HTML 包含序列图、状态转移和注释，展示三次握手的完整流程",
+            "sources": [
+              "R15"
+            ]
+          },
+          "steps": [
+            {
+              "text": "生成 HTML 页面",
+              "sources": [
+                "R15"
+              ]
+            },
+            {
+              "text": "查看页面内容",
+              "sources": [
+                "R15"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "3eb18b9cd6e29071b3f1c69d5a4a390407749d3a61bc363ffe17c3204281d248",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1329272295,
@@ -5346,7 +7449,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1336933337,
@@ -5425,8 +7528,116 @@
         "https://raw.githubusercontent.com/yetone/cumora/HEAD/website/assets/product-screenshot.png",
         "https://raw.githubusercontent.com/yetone/cumora/HEAD/website/assets/mobile-screenshot.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending"
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "提供跨平台团队协作和AI代理集成能力",
+          "sources": [
+            "D0"
+          ]
+        },
+        "summary": {
+          "text": "Where agent teams gather. Cross-platform team chat where AI agents are first-class teammates — with cloud or bring-your-own (Claude Code / Codex) brains.",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "支持AI代理在团队中协同工作，实现人类与AI的双向协作",
+          "sources": [
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "开发者、团队负责人、AI工程师",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "构建跨平台的 AI 团队协作工作流",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "Agent pods 在云端运行或本地 BYOA模式，通过 OpenAI Responses API 执行多轮工具调用",
+          "sources": [
+            "R3"
+          ]
+        },
+        "inspiration": {
+          "text": "agent teams gather 的概念，类似 Slack 但集成了 AI 代理",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "Android 尚未发布，BYOA 模式需要特定 provider 支持",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：访问 cumora.ai 网站或安装桌面应用",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "前置：设置 OPENAI_API_KEY 和 Postgres/Redis 数据库",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "操作：使用 Web 界面或 CLI 启动 agent teams",
+            "sources": [
+              "R2"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "chat",
+          "input": {
+            "text": "创建新 agent team 和邀请人类成员",
+            "sources": [
+              "R2"
+            ]
+          },
+          "output": {
+            "text": "团队已建立，开始协作",
+            "sources": [
+              "R2"
+            ]
+          },
+          "steps": [
+            {
+              "text": "创建新团队",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "邀请人类成员",
+              "sources": [
+                "R2"
+              ]
+            },
+            {
+              "text": "配置 AI 代理",
+              "sources": [
+                "R2"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "d0eea61a19451784ade634dc98033effab9d25487d0d7771103367eb0144ce41",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1349122168,
@@ -5514,8 +7725,117 @@
         "https://raw.githubusercontent.com/ZJU-REAL/Easel/HEAD/assets/readme/showcase/spatialladder-cards-strip.jpg",
         "https://raw.githubusercontent.com/ZJU-REAL/Easel/HEAD/assets/readme/showcase/culture-mt-cards-strip.jpg"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "提供完整的社媒内容创作和发布工作流",
+          "sources": [
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "Easel 是一个面向社交媒体创作者的开源内容工作台。它把 OpenClaw Agent、账号画像、内容技能和真实的媒体工具接在一起，让 Agent 不只回答“应该怎么做”，而是直接把内容做出来并归档，且可实现直接/按需发布。",
+          "sources": [
+            "R1",
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "帮助社媒创作者发现热点、策划内容、创作多媒体、发布到多个平台",
+          "sources": [
+            "R4"
+          ]
+        },
+        "audience": {
+          "text": "社媒运营人员、小红书/抖音/知乎/B站等平台用户",
+          "sources": [
+            "R4"
+          ]
+        },
+        "outcome": {
+          "text": "生成多平台的内容产物并进行发布",
+          "sources": [
+            "R4"
+          ]
+        },
+        "mechanism": {
+          "text": "五层工作流（发现-策划-创作-发布-归因），Agent 贯穿整个链路",
+          "sources": [
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "一个 Agent 贯穿完整链路：发现热点、评估选题、规划日历、生成文案与视觉、制作视频、发布和归因在同一个工作流中完成",
+          "sources": [
+            "R5"
+          ]
+        },
+        "limitations": {
+          "text": "自动发布可能被小红书等平台检测，需要人工审核；部分平台支持有限",
+          "sources": [
+            "R4"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：easel web [--port 7860] 启动 Web 工作台",
+            "sources": [
+              "R15"
+            ]
+          },
+          {
+            "text": "前置：安装 Easel 包，配置账号和平台适配",
+            "sources": [
+              "R15"
+            ]
+          },
+          {
+            "text": "操作：通过 Web 界面或 CLI 使用技能来完成内容创作",
+            "sources": [
+              "R15"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "easel skill quality-gate -i \"帮我检查这条小红书文案\"",
+            "sources": [
+              "R15"
+            ]
+          },
+          "output": {
+            "text": "文案质量评估报告",
+            "sources": [
+              "R15"
+            ]
+          },
+          "steps": [
+            {
+              "text": "运行技能命令",
+              "sources": [
+                "R15"
+              ]
+            },
+            {
+              "text": "Agent 分析文案",
+              "sources": [
+                "R15"
+              ]
+            },
+            {
+              "text": "生成质量评分报告",
+              "sources": [
+                "R15"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "93d4b809aed1ac20e96d7529934191b8031254b4dfa670e4cd7fb3bf2aa22423",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1388867993,
@@ -93122,14 +95442,20 @@
     "analysis": {
       "model": "openrouter/free",
       "prompt_version": "discovery-v2-json",
-      "cached": 0,
+      "cached": 3,
       "model_enabled": true,
-      "generated": 3,
-      "failed": 0,
-      "ready": 3,
-      "failure_reasons": [],
+      "generated": 21,
+      "failed": 35,
+      "ready": 24,
+      "failure_reasons": [
+        "响应结构未通过校验: Niko1221/Strata, guillaumemeyer/watermarks-remover",
+        "RuntimeError: 模型请求失败: 响应为空 (model=dots-studio/dots-3-note-preview:free, finish=length)",
+        "JSONDecodeError: Expecting property name enclosed in double quotes: line 56 column 6 (char 1774)",
+        "JSONDecodeError: Expecting value: line 1 column 1413 (char 1412)",
+        "JSONDecodeError: Unterminated string starting at: line 1 column 4134 (char 4133)"
+      ],
       "status": "ready",
-      "generated_at": "2026-10-21 10:21 UTC"
+      "generated_at": "2026-10-21 10:54 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -93140,1114 +95466,122 @@
       "wheresryan22/anatomy",
       "deepseek-ai/DeepInfer",
       "miuuyy/codex-chatgpt-web",
+      "google/artemis",
       "genspark-ai/genoffice",
       "FareedKhan-dev/kimi-k3-in-c",
       "rehan-remade/universal-modder",
       "KKKKhazix/AIHOT",
-      "XiaoDuoYa/codex-with-chatgpt",
-      "CopilotKit/OpenBot"
+      "XiaoDuoYa/codex-with-chatgpt"
     ],
     "applications": [
       "deepseek-ai/deepseek-harness",
       "NandhaKishorM/laya",
       "Ebony-Vinyl/dsh-our-free-model",
       "dataelement/dsh-desktop",
+      "yc-software/qm",
       "Gathin23/cleanyourtv",
-      "google/artemis",
       "jev-chat/jev-chat-jarvis",
-      "ARahim3/DigUp",
-      "omnirush-ai/omnirush-gui",
-      "software-mansion-labs/goldie",
-      "DSH-APP/DSHA",
-      "kuafuai/andee"
+      "Ryze-AI-Adgent/open-seo-mcp-skills",
+      "omdsh-dev/DSH-better-sidebar",
+      "microsoft/skill-recorder",
+      "QingYunA/answer-me-with-html",
+      "ZJU-REAL/Easel"
     ],
-    "clusters": [],
-    "cluster_status": "no_supported_groups",
-    "cluster_cache_key": "2e1577d9e381c2a0297acb473f117f93dd3005df2cf3c2072250d71a9294b3f2",
-    "candidates": [
+    "clusters": [
       {
-        "title": "Agent/智能体",
+        "title": "MCP 驱动的工具与环境集成",
+        "mechanism": "利用 Model Context Protocol (MCP) 作为标准化通道，将大语言模型与外部工具、数据源、终端或浏览器 UI 连接起来，实现自动化工作流、数据查询或任务执行。",
+        "inspiration": "可以探索如何将 MCP 用于更复杂的多模态数据集成，或者构建统一的 MCP 网关来管理多个工具服务器，实现工具的动态发现与组合。",
         "members": [
-          "deepseek-ai/deepseek-harness",
-          "Ebony-Vinyl/dsh-our-free-model",
-          "trycua/cua",
-          "guillaumemeyer/watermarks-remover",
-          "browser-use/jev-ultrafast",
-          "lexmount/moli",
-          "yetone/magpie",
-          "wheresryan22/anatomy",
-          "dataelement/dsh-desktop",
-          "yc-software/qm",
-          "google/artemis",
-          "genspark-ai/genoffice",
-          "rehan-remade/universal-modder",
-          "deeplethe/utopia",
-          "KKKKhazix/AIHOT",
-          "zai-org/ZCode",
-          "jev-chat/jev-chat-jarvis",
-          "Human-Agent-Society/reef",
-          "XiaoDuoYa/codex-with-chatgpt",
-          "yjh051108/dsh-routing-suite",
-          "CopilotKit/OpenBot",
-          "Ryze-AI-Adgent/open-seo-mcp-skills",
-          "CopilotKit/OpenDots",
-          "Louis-CFM/coucou",
-          "dmmulroy/anti-slop",
-          "CopilotKit/openmuse",
-          "ApodexAI/FrontierAgent",
-          "monid-ai/monid",
-          "milind-soni/OpenMausBot",
-          "ccch1mneyyy/dsh-TUI",
-          "totec448-spec/chat-on-steroids",
-          "elie222/rakazo",
-          "eternityspring/shuohao-skills",
-          "omdsh-dev/DSH-better-sidebar",
-          "microsoft/skill-recorder",
-          "tigerless-labs/agent-memory",
-          "QingYunA/answer-me-with-html",
-          "Leonxlnx/unlazy",
-          "yetone/cumora",
-          "ZJU-REAL/Easel",
-          "ShawnPana/phone-harness",
-          "onecli/onecli",
-          "Jakeschincariol/replica-skill",
-          "omnirush-ai/omnirush-gui",
-          "wang2122/sprix-sage-router",
-          "NVlabs/SoL-Pi",
-          "vercel-labs/fx",
-          "onehumanbeing/esp32-iphone-agent",
-          "fuxicodex/Fuxi",
-          "anthropics/commerce-agents",
-          "Nanako0129/sepia",
-          "hardbeat920/monocode",
-          "EvoMap/AutoResearch",
-          "HarnessRouter/harnessrouter",
-          "QwenLM/Qwen-MM-Plugins",
-          "mcncarl/jianying-headless",
-          "lennney/stop-that-shit",
-          "bowenliang123/dsh-context",
-          "dzhng/jevgrep",
-          "typesafe-ai/skills",
-          "Pinvou/pinvou-agent",
-          "duty1g/x64dbg-mcp-server",
-          "software-mansion-labs/goldie",
-          "redhat-et/ripwire",
-          "Player-YN/BrowserKitten",
-          "nanaism/yomiyasu",
-          "NanmiCoder/dsh-agent-teams",
-          "VictorTaelin/OptMem",
-          "dream-num/univer-workspace",
-          "aliyun/ai-agent-handbook",
-          "xmanrui/dsh-im",
-          "AhmadHassan-BTed/AutoSwarm-Shadow-Adapter",
-          "unreallabsai/unreal-agent",
-          "rociiu/talorys",
-          "cbrock84/headcount",
-          "nano-muse/nanoMuse",
-          "memorax-ai/memorax-code",
-          "academa-labs/manimgx",
-          "jiwoochris/artex-global",
-          "DSH-APP/DSHA",
-          "kuafuai/andee",
-          "franzenzenhofer/big-arrow-on-the-screen",
-          "soumatheusgomes/vibe-coding-toolkit",
-          "AMAP-ML/LongHorizon-Harness",
-          "perplexityai/SPACE",
-          "angusdevgo/Seep-Reverse-Lab",
-          "TokenRhythm/NeoHorse",
-          "jtydhr88/screenwriting-skills",
-          "elysia395/dsh-wallpaper-engine",
-          "aoci-spec/aoci-code",
-          "krishhgg/Insomnia",
-          "hardenrun/aif",
-          "archestra-ai/OpenAPPA",
-          "Binaryify/open-kimi-ppt-skill",
-          "penso/herdr-gpui",
-          "egoist/waku",
-          "jundizhou/easy-stock",
-          "freestylefly/WeChatBridge",
-          "boyang-hu/website-rebuild-skill",
-          "Derpyu520/qq-bridge",
-          "trhhubsd/ARTEX",
-          "iAmCorey/Wake",
-          "alexgreensh/attention-span",
-          "agentconnect-md/agentconnect",
-          "brayonpi/hexstellar",
-          "changexbc/workbuddy-switch",
-          "LodyAI/Lody",
-          "petergyang/human-review",
-          "youngyangyang04/llm-master",
-          "2akouwu/reverify",
-          "mikehasa/golive-skill",
-          "Clearailhc/clearai-dsh",
-          "SaladDay/pi-from-scratch",
-          "marclou/mailcheap",
-          "feder-cr/invisible_playwright_mcp",
-          "awlevin/typesafe-computer-use",
-          "0xsline/awesome-deepseek-harness",
-          "ant-research/AntOmniEvo",
-          "Spielewoy/autoprompt-skill",
-          "vercel-labs/eve-software-factory-template",
-          "flizzywine/dsh-tavern",
-          "jwuthri-cloud/Tracely-ai",
-          "kharmanskyi/open-steps",
-          "Dpro-at/Tel-Agent",
-          "perplexityai/numbat",
-          "fy-agent/fyagent",
-          "undefined-ui/second-brain-os",
-          "kyky2347/ALTA",
-          "OpenSparX/MasterAgent",
-          "ovobrowsersupport/ovobrowser",
-          "Harvil1/codeAgent",
-          "morluto/awesome-reverse-engineering",
-          "StartLuxLabs/StartLux-Decision",
-          "okf-memory/okf-agent-memory",
-          "ruc-datalab/EvoOntology",
-          "qiz029/dscode",
-          "20000419/fauxnix",
-          "wangmiaozero/pi-harness",
-          "browser-use/macos-harness",
-          "outcrawlai/scout",
-          "MaxHu-xuan/task-state-guard",
-          "davidondrej/cloudroom-core",
-          "LiCinCan/blender-ai-mcp-addon",
-          "sodiumsun/agenttrail",
-          "alikon-art/DeterminFlow",
-          "dondai44423/donsetch",
-          "Electricitysheep/dsh-handbook",
-          "karanb192/itr-wala",
-          "rome-os/rome",
-          "lobehub/awesome-rsi",
-          "juspay/xyne-spaces",
-          "XHToken/Spark-X2.6",
-          "Zfinix/eleven",
-          "simonlin1212/vibe-astock",
-          "openqodex/openqodex",
-          "Aisland-SJL/dsh-worktable",
-          "mikehasa/agentacct",
-          "keli-wen/agy-staff",
-          "ethanplusai/codex-on-crack",
-          "sno-ai/sno-station",
-          "jamro/tiny-engineer",
-          "AmazingAng/old-coder",
-          "angel291592/Intent-Router",
-          "nightly-labs/openbot",
-          "Ayzzz123/mcd-coupon-strategist",
-          "LivXue/dsh-plugin-shop",
-          "whitelonng/dshcode",
-          "agents-universe/agents-universe",
-          "ganeshmshetty/openclip",
-          "logicrw/awesome-jev-projects",
-          "decionis/agent-safe-pipeline",
-          "EverMind-AI/SkillCorpus",
-          "teng-lin/weread-omni",
-          "lencx/Minke",
-          "markfulton/ai-employees",
-          "pizza-bot-app/pizza-bot",
-          "AnotiaWang/awesome-decision-models",
-          "Agenta-AI/awesome-ai-agent-platforms",
-          "LinklyAI/best-skills",
-          "jzjzzzzzzz/agent-me",
-          "emo-xiaoyu/harness-mix",
-          "KimGLee/Cambium",
-          "atria-asi/Atria-Dawn",
-          "criptogus/HermesOffice",
-          "Nehanth/pooled",
-          "AbdelStark/awesome-typesafe-jev",
-          "kydlikebtc/awesome-jev",
-          "kitlangton/scrawl",
-          "agentpit-io/hunter-community",
-          "qunqin24/Pulse",
-          "Xu123-Bob/Baize",
-          "HRuiCcc/RuiC-card-skill",
-          "deerwork-ai/deer-workflow",
-          "hanzohanzhe/Grandet",
-          "only-cli/oc",
-          "sno-ai/sno-station-skills",
-          "lajosdeme/mole",
-          "qybaihe/mu",
-          "KitionAI/kition",
-          "Innei/lody-ios",
-          "0sec-labs/0",
-          "shinthink/blitzstrike",
-          "wanshuiyin/HERO-Anti-OverDefense",
-          "tudoumashu/ai-memory-skillpack",
-          "OnlyTerp/opengrok",
-          "V1ki/dsh-plugin-subscriptions",
-          "Agent-Field/CodeAF",
-          "xbsheng/atguigu-note",
-          "aerovato/operator-memory",
-          "Merit-Systems/OpenInstinct",
-          "SheberDavid/v4-flash-godmode-opencode-go",
-          "Jaxton07/percho",
-          "FuRongJun-1999/dsh-memory",
-          "Sidiora-Labs/hyperfide",
-          "clavia-labs/tardigrade",
-          "RuoJi6/ARTEX",
-          "zj-unicom-ai/UniEmployee",
-          "Eurekaleo/awesome-ai-for-games",
-          "Apeireth/Apeireth",
-          "Dominic789654/awesome-deepseek-harness",
-          "dragonked2/alphacode",
-          "useagenthq/useagent",
-          "jiabaobei/memory-bridge",
-          "CHENG-LIANG1/real-company-interview-ai-coding-projects",
-          "martian56/redcell",
-          "shengsheng90/DSH-taskboard",
-          "humanfia/humanize",
-          "himovo/movo",
-          "AFK-surf/Comma",
-          "zorost/AI-Engineering-Lab",
-          "libukai/awesome-deepseek-harness",
-          "FengZhenfei/carrel",
-          "AlgoNoRhythm/Flare",
-          "Simreal-AI/Simreal-MLBench",
-          "rollroyces/py-idp",
-          "toolclub/dsh-agent-team-gui",
-          "See-Sol-Lab/DeepSeekGUI",
-          "dshplugin/dsh-plugin-hub",
-          "RomanSlack/jev-drone",
-          "pinganbbOvO/ai-companion-kit",
-          "wevm/frog",
-          "longsurf-ai/openchart",
-          "i3T4AN/KADATH",
-          "abacusai/abacusai-bot",
-          "Innate-Labs/Noobi.ai",
-          "HezaoHezao/poirot",
-          "pullboard-dev/pullboard",
-          "Nwflower/dsh-chat-import",
-          "bennyjo/phil",
-          "panaversity/ksor",
-          "libingzheren/Jev-Mem",
-          "SodaMem/SodaMem",
-          "orbi-build/orbi",
-          "converge-ai-labs/agent-foundation",
-          "Fazmin/AILearningGuide",
-          "hewzhew/dsh-agent-rp",
-          "Sidiora-Labs/centra-gideon-agent",
-          "hirotomasato/yowes",
-          "LSPosed/dexsql-release",
-          "bdg9412/artex-ko-plus",
-          "OpenMOSS/OpenETA",
-          "1173591564/Dynamics-memory",
-          "matank001/clodfarm",
-          "Remocn/remocn-studio",
-          "agentsea/nautilo",
-          "FeatherHunter/dsh-mattpocock-skills-deck",
-          "Shellishack/infinite-pokemon",
-          "bradeGithub/DSH-Plugins-Marketplace",
-          "tshemsedinov/reslop",
-          "bojieli/agentreach",
-          "shuyu-labs/transwork",
-          "ueboxai/uebox",
-          "Omni-Scientist/OmniScientist",
-          "eighttrigrams/us-vs-them",
-          "memoket/memoket-kite",
-          "oooscoos/Benzi",
-          "RoversX/ThinkTerm",
-          "callstackincubator/codex-mobile-dev-plugin",
-          "yuyuanweb/ai-ppt-generator",
-          "slow-stack/mneme",
-          "cocode-agency/cocode",
-          "AIpRoBuilder/FlowX",
-          "ZSeven-W/rish-app",
-          "Prism-Shadow/deepseek-harness-book",
-          "bgts-ai-org/bgts-context-engine",
-          "TensorHub-ORG/Coomi",
-          "bybit-exchange/kaas",
-          "sunyuzheng/lizheng-open-context",
-          "apowerb/apowerb",
-          "krishagarwal314/CodeJury",
-          "agent-for-dummys/Agent-For-Dummies",
-          "wanmol/goal-flow",
-          "liyupi/yu-ai-learn",
-          "849879772/recruitops-agent",
-          "microsoft/ArgusAgent",
-          "Cygnux-Labs/Tracekit",
-          "zhoujinjian/ai-testing-guide",
-          "ArihantDeva/heimdall",
-          "runta-dev/errand",
-          "oc8-ai/oc8",
-          "justxor/deepseek-local-guide-ru",
-          "fengzhizi715/YoloWebAgentStarter",
-          "lordx64/pentestkit",
-          "makifbaysal/tasktrooper",
-          "JEen-wang/Adaptive-rag",
-          "888newstep/ai-agent-platform",
-          "deepmemteam/deepmem",
-          "ashishsinha1602/schemagate",
-          "vstorm-co/agenticos",
-          "Eleven617/mall-ai-after-sales-platform",
-          "Omni-Scientist/Awesome-AI-Scientist",
-          "libnyx/LT2MD",
-          "malevrigns/atlas-agent-control-plane",
-          "BkashJEE/hermes-bot-forge",
-          "tntexploding/StruInfo",
-          "libenxier-beep/codex-memories",
-          "rafmacalaba/armada",
-          "kkjiangk/agent-py",
-          "z15114664687-dot/hr-onboarding-agent",
-          "IvenKooLab/loci",
-          "shangguanyunji663/Aegis-agent",
-          "zero11924065-dev/VetarAI",
-          "harryopo/tdsf-terminal-agent",
-          "GGBond121211/CodeInsight",
-          "vigorlee/eidra-agent",
-          "GroundedCore/nexusdesk",
-          "sunmughan/meta-automation",
-          "Sega757/Sovereign-Agent-Swarm",
-          "Sega757/Fast-AtomRAG-Core",
-          "enowdev/antares",
-          "HyxiaoGe/fusion",
-          "Router0824/OpsPilot-AI",
-          "melocream/awesome-llm-study",
-          "RayenMlayeh/jevcrawl",
-          "jaikydota/BullFlow",
-          "12errh/zen-proxy",
-          "beniedev/moonbite",
-          "shauryagangrade/awesome-ai-prompts",
-          "Hao0321/ai-short-drama",
-          "2430816465/campus-knowledge-agent",
-          "zeronezer/bidcraft",
-          "GregorBiswanger/featherspec",
-          "JiahongXu88/PaperTeam",
-          "FareedKhan-dev/agentic-knowledge-graph",
-          "langhost/langhost",
-          "zjy1346/OpenThesis",
-          "Git-on-my-level/self-improving-agent-ecosystem",
-          "deequoique/stashseek",
-          "SuperGODOG/ai-agent-interview-240",
-          "Xwh630/ai-agent-handbook",
-          "zeroaihub/Java-Agent-Study",
-          "ozynautetu-create/FlowForge-Optima",
-          "OmniJev/PlayJev",
-          "genoskietv/AdalFlow-Optimizer",
-          "SYuan03/benchboard",
-          "EricSun0218/OpenGameAgent",
-          "richardChenzhihui/OfficeBuddy",
-          "lna-lab/distill-kura",
-          "cporter202/ai-apis-you-can-ship-today",
-          "Queena34/StudyPilot",
-          "bodepudimuneendra-netizen/laya-jev-GraphRAG",
-          "ikhsan3adi/gemini-web2api",
-          "km1994/AIGC-Interview-Book",
-          "Yts1919/dsh-vision-complete",
-          "duyongan/dots-agent",
-          "laruence/wechatian",
-          "vyact/vyact",
-          "kyungseo/learnstead",
-          "stormwther18/HYSET",
-          "pinkbubblebubble/awesome-rsi",
-          "Past-da-king/agent",
-          "kasumaputu6633/visbridge-mcp",
-          "Lilly-Protocol/agentlily-runtime",
-          "Perruer/keelflow",
-          "ruvnet/dream-machine",
-          "BijectiveLabs/trading-research-agents",
-          "Navinspire-ia/navin",
-          "saghosh8/AI-For-DevOps",
-          "TDK-99/SnapplAI",
-          "cagridursun/agentic-developer-handbook",
-          "Lingikaushikreddy/Settlement-Village",
-          "fabricioctelles/jump-skills",
-          "tradertanmay/ai-agents-zero-to-hero",
-          "tomascupr/reelql",
-          "tayyabimam1/awesome-ai-agent-stack",
-          "Gen-Verse/DFM-Plans",
-          "irraz/vulnerator-ai",
-          "chetannada/Namaste-AI",
-          "vrajpal-jhala/langgraph-harness",
-          "Mohamed-Elgaraihy/Modawen_Agent-For-Wordpress",
-          "susyimes/species-public",
-          "JoasASantos/NeuroPurple",
-          "lawrencewzen/pi-vlm-proxy",
-          "Kaiden118/RunSleuth-Evidence-Grounded-ML-Training-Failure-Diagnosis-and-Repair-Verification",
-          "s0lda/hadron",
-          "weidutech/PentestPi",
-          "maddness/agent-research-radar",
-          "mchittineni/ultimate-ai-engineering-guide",
-          "kissshhot/Awesome-OPD",
-          "wundercorp/loki",
-          "Dicklesworthstone/dwarf_fortress_mcp",
-          "cromford-ai/cromford",
-          "LuxorLabs/jardinero",
-          "liaosiliangCodeLife/harness-mate-plat",
-          "khordoo/jev-reflex-autonomy-lab",
-          "cobusgreyling/Muse-Glimmer",
-          "Cyrax321/CONTINUUM",
-          "xiayiyang831xyy/AITC-Studio",
-          "ac1261692159/candela",
-          "ShengjieJin/ReSAIL",
-          "cloudcell/gnosislab",
-          "Little-Fridge/ViewCraft",
-          "JustVugg/anybridge"
+          {
+            "repo": "miuuyy/codex-chatgpt-web",
+            "sources": [
+              "R1",
+              "R2"
+            ],
+            "why": "通过 MCP 将 ChatGPT 连接到 Codex 的任务文件、终端和工具，实现 Full Harness 自动化工作流执行。"
+          },
+          {
+            "repo": "google/artemis",
+            "sources": [
+              "R3",
+              "R11"
+            ],
+            "why": "利用 MCP 将自然语言测试请求转化为执行计划，并在真实 Android 设备上驱动 UI 交互，收集日志和截图进行诊断。"
+          },
+          {
+            "repo": "Ryze-AI-Adgent/open-seo-mcp-skills",
+            "sources": [
+              "R2",
+              "R3"
+            ],
+            "why": "作为 MCP 服务器，将 Google Search Console、GA4 和广告数据作为第一等工具暴露给 LLM 应用，实现直接查询。"
+          },
+          {
+            "repo": "totec448-spec/chat-on-steroids",
+            "sources": [
+              "R1",
+              "R2"
+            ],
+            "why": "通过 MCP 连接本地工具，浏览器扩展观察并自动化 ChatGPT 浏览器 UI 并本地记录对话，支持多 Agent 工作流。"
+          }
         ],
-        "metrics": {
-          "comparable": true,
-          "recent": 9,
-          "previous": 21,
-          "change_pct": -57.1,
-          "signal": "同类聚集",
-          "members": 413,
-          "undated": 0,
-          "recent_start": "2026-10-14",
-          "previous_start": "2026-10-07",
-          "end_exclusive": "2026-10-21"
-        }
-      },
-      {
-        "title": "图像生成",
-        "members": [
-          "Niko1221/Strata",
-          "miuuyy/codex-chatgpt-web",
-          "trycompai/crm",
-          "miqdadbadjuber/anti-slop",
-          "amagine-ai/Amagine3D",
-          "s1dashu/ip-as-logo-skill",
-          "ARahim3/DigUp",
-          "kaankiziltug/logo-design-skill",
-          "nateherkai/scroll-craft",
-          "Oldcircle/geo-sleuth",
-          "Arekejoker/qwen21-nsfw-pose-skill",
-          "yanliudesign/mono-color-skill",
-          "shadcn-ui/lint",
-          "Appllama/appllama-skills",
-          "chengyi-ai/native-subtitle-quote-image",
-          "xzf-thu/VoiceMem",
-          "AIMixer/ComfyUI_MiniMaxH3_Director",
-          "deeplethe/solid-glass",
-          "Inkloom-art/inkloom",
-          "Leonxlnx/earshot",
-          "oil-oil/oil-ui",
-          "achimala/dream-loop",
-          "feder-cr/git-ai",
-          "Anionex/agent-vision-toolkit",
-          "OpenMOSS/MOSS-Image",
-          "ysr666/dsh-vision-router",
-          "Pan-Chera/Multi-Agent-CAD",
-          "kgoedecke/doop",
-          "worldbench/DiffusionOPSD",
-          "whitecircle/halo",
-          "wangzhishou/OneBox",
-          "thesysdev/open-intelligent-ui",
-          "amitshekhariitbhu/ai-system-design",
-          "calmrocks/ai-engineer-notebooks",
-          "shanliuling/dsh-image-gen",
-          "GTKottman/mortiflix-oss",
-          "youart-open-source/awesome-gpt-image-2-5-prompts",
-          "Sidiora-Labs/Paxeer-X-Network",
-          "amitshekhariitbhu/ai-engineering-course",
-          "Luisacaotica/ComfyUI-MiniMaxH3Mod",
-          "op7418/guizang-yingzao-skill",
-          "modelscope/ms-cookbook",
-          "BaYue-SYJ/shuixian-prompts",
-          "wnby/photo-relic-editorial",
-          "cocofhu/grasp",
-          "six-nut/PocketMen-with-you",
-          "Blueforcer/ComfyUI-DLSS5-Enhancer",
-          "yuyuanweb/ai-picture-editor",
-          "duckyshell/ComfyUI-MiniMaxH3-Prompt-Writer",
-          "tettethu/VibeGame",
-          "heaven999b/hello-agent-system",
-          "Sateezg/codex-bridge",
-          "Saganaki22/ComfyUI-VDN-H3",
-          "Work-Fisher/ComfyUI-Fisher-Pose",
-          "SnowSky1/universal-imagegen-agent",
-          "WSL043/dsh-codex-subscription",
-          "filliptm/ComfyUI-FL-YuE2",
-          "hitkeeen/blender-ai-addon",
-          "astropuzzo/ComfyUI-MiniMax-H3-Image-Studio",
-          "MirroS-Lab/AgentGarten",
-          "speridlabs/iris-3b",
-          "veda-sparse/Veda-on-ComfyUI",
-          "iamyoki/qwen-image-2.1-skill",
-          "bamboostrip/Handwriting-simulator",
-          "KaiWU5/Awesome-AI4AI",
-          "OmniJev/OneJev",
-          "GENEXIS-AI/gpt-image-skill",
-          "Kai-Jungsthoefel/SOMA",
-          "GabrieleLozupone/kokon",
-          "inikolax/remiqora",
-          "ZSeven-W/dsh-crew",
-          "Vieeeeeee/wibi-style",
-          "sIlENtbuffER/Generative-Models",
-          "wildminder/awesome-qwen-image",
-          "ralksta/ComfyUI-Photoshoot",
-          "ashukae/ComfyUI-MangaScreen",
-          "zylwithxy/HRDiT",
-          "apimart-66/ai-api-aggregator",
-          "Buffalo2024/Rulora",
-          "Zhou-Yujing114514/deepseek-harness-linux",
-          "apimart-API-Gateway/grok-image-api",
-          "DenRakEiw/scumble",
-          "amirmushichge/brand-system-skill",
-          "apimart-66/openai-compatible-api-migration-kit",
-          "apimart-awesome-ai-api-proxy/nano-banana-pro-api",
-          "Konohamaru04/ComfyUI-NVIDIA-DLSS-Frame-Interpolation",
-          "apimart-API-Gateway/grok-imagine-api",
-          "sa-san10/rimochan-nyamuru-manga-forge",
-          "ZinYY/AdaFlash",
-          "joeseesun/qiaomu-codex-imagegen",
-          "apimart-awesome-ai-api-proxy/nano-banana-pro-prompts",
-          "dacnay816y62-hub/fantasy-qiqiguaiguai-skill",
-          "100yenadmin/fish-audio-hermes",
-          "kwhi6693-web/photo-abstract-editorial",
-          "T-Crypt/berth",
-          "chanon/comfyui-obvpm",
-          "SimpleJev/JevAny",
-          "Jit-Roy/WeeLLM",
-          "To3akaRin/VLMForge",
-          "jiahuiqu17/paper-signal",
-          "callirra-ai/gpt-image-2-5-prompt-atlas",
-          "Stormycry-cryp/dsh-AuthInOne",
-          "mingzitaichangduozaishuhoumian/chat2claude",
-          "henryhyw/slidepoise",
-          "AcademiaSD/AcademiaSD_LoRAlab-TrainerStudio",
-          "shixinnt/codex-image-context-runtime",
-          "Saganaki22/ComfyUI-Breeze-TTS-2",
-          "sgp2hidyk7jm/flux2-flux-2-prompts",
-          "omnichar/ComfyUI-Omnichar",
-          "oil-oil/dsh-vision",
-          "xlba2khlnrdsd8f/seedream5.0-seedream-5.0-api",
-          "AbrahamPaulJ/nightmare-mobile",
-          "ozguradmin/ahenk-turkish-tts",
-          "PedroMarinhoDev/ComfyUI-Drama3",
-          "twp0wh4xm56p6lc3/flux2-flux-2-gateway",
-          "bx0idu7sqebwpgu8/grokimagine2.0-grok-imagine-2.0-prompts",
-          "cqk4s1t/gptimage2.5-gpt-image-2.5-api",
-          "jplenio/ComfyUI-MiniMax-Music-Production-Toolkit",
-          "GuiYi-Xi/infinite-atelier",
-          "swping999/scene-card-studio",
-          "Sega757/meta-core",
-          "Sega757/Adaptive-AtomRAG",
-          "nj4naiem992lmr/seedream5.0-seedream-5.0-prompts",
-          "ZSeven-W/codex-openpencil",
-          "hmpg3ugc/gptimage2.5-gpt-image-2.5-prompts",
-          "qh7wn6hrf9tx/qwenimage3.0-qwen-image-3.0-prompts",
-          "pixelartistry/PixelArtistry-Watertight-Meshes",
-          "AmazingDraw/AmazingDraw",
-          "nmkshs742wz1yrh/nanobananapro-nano-banana-pro-4k",
-          "qr664tnsxq0eyn4v/nanobananapro-nano-banana-pro-gateway",
-          "fjaefshg9/flux2-flux-2-api",
-          "lfzgvaqci0occqg/qwenimage3.0-qwen-image-3.0-gateway",
-          "nevertoday/xxd-panel-028",
-          "k2c2gbd1pqdj01wo/grokimagine2.0-grok-imagine-2.0-api",
-          "ArrozDotachi/InvokeAI-Windows-Setup-Guide",
-          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ja",
-          "ga7ycgew/grokimagine2.0-grok-imagine-2.0-2k",
-          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api",
-          "YeamimHossainSajid/CodeMonk",
-          "ydfqphoks5738xo/seedream5.0-seedream-5.0-gateway",
-          "apimartore3/grok-imagine-2.0-ext-reverse-api-pt",
-          "apimartx/grok-imagine-2.0-ext-reverse-api-ja",
-          "apimartf0n/grok-imagine-1.5-ext-reverse-api-cn",
-          "apimartkjp84/grok-imagine-image-2.0-api-ja",
-          "apimartmr8yx2qg/grok-imagine-1.5-edit-ext-reverse-api-fr",
-          "apimartjk2mb7hx/gpt-image-2-ext-reverse-api-de",
-          "apimartbnv6wl16d/flux-kontext-ext-reverse-api-de",
-          "apimartl/nano-banana-ext-reverse-api-es",
-          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api-cn",
-          "apimarth/gpt-image-2.5-ext-reverse-api-id",
-          "apimarttv/flux-kontext-ext-reverse-api-cn",
-          "apimartogd4o/grok-imagine-1.5-edit-ext-reverse-api-ru",
-          "rhfeiyang/HC-DLM",
-          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-cn",
-          "azle5biyd9td956/z-image-turbo-api-cn",
-          "apimartug3/grok-imagine-1.5-edit-ext-reverse-api-cn",
-          "apimartb1r/nano-banana-ext-reverse-api-id",
-          "apimartoy243w/nano-banana-ext-reverse-api-ja",
-          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ja",
-          "coleygroup/shepherd2",
-          "apimartjx02t2cb/gemini-3.1-flash-image-preview-official-api-ja",
-          "gkdh0uepxud4b/gptimage2.5-gpt-image-2.5-4k",
-          "apimartmz0cfw/grok-imagine-1.5-ext-reverse-api-es",
-          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-es",
-          "apimartc/grok-imagine-1.5-ext-reverse-api-fr",
-          "apimartri/nano-banana-2-ext-reverse-api-pt",
-          "apimartlzras0rk/gpt-image-2-official-api-ja",
-          "apimartbv/gemini-3-pro-image-preview-official-api-cn",
-          "apimartlzras0rk/gpt-image-2-official-api-ko",
-          "apimarto5ma0x/nano-banana-2-lite-ext-reverse-api-de",
-          "apimartl/nano-banana-ext-reverse-api-de",
-          "apimarth/gpt-image-2.5-ext-reverse-api-fr",
-          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-de",
-          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ko",
-          "DandreYang/local-image-gen",
-          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-pt",
-          "apimartpcl9k6o1r/grok-imagine-1.5-edit-ext-reverse-api-ja",
-          "apimartri/nano-banana-2-ext-reverse-api-ru",
-          "apimarts1t/grok-imagine-2.0-ext-reverse-api-cn",
-          "janishar/qwen-image-2.1-studio",
-          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-fr",
-          "apimartg3/gpt-image-2.5-ext-reverse-api-ja",
-          "apimartoh/gemini-3.1-flash-image-preview-official-api-cn",
-          "apimartkjp84/grok-imagine-image-2.0-api-ko",
-          "apimartpg9/nano-banana-2-ext-reverse-api",
-          "apimarts7ese/nano-banana-2-ext-reverse-api-es",
-          "mehmetbulutaktas458-dev/Aozora-Forge",
-          "Saganaki22/ComfyUI-Hyperflow",
-          "TKY-27/iris-3b-metal",
-          "apimartx34tmfg46/flux-kontext-ext-reverse-api-ja",
-          "apimartywdtp3/nano-banana-2-ext-reverse-api-ko",
-          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-ru",
-          "angelmariserg-glitch/diffusion-forge-lab",
-          "misCandijay2025/lora-forge-alibaba-cloud",
-          "KingHsp/vram-sage-training",
-          "njgymb/diffusers-sculptor",
-          "R0650N/spirit-flux-refiner",
-          "nrodriguez1997/lora-docker-aliyun-pipeline",
-          "kinzaaliakbar18u-netizen/flux-lora-forge",
-          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ko",
-          "apimartlw69qg/grok-imagine-image-2.0-api-cn",
-          "Anil-matcha/Nano-Banana-2.1-API",
-          "dataPro-lgtm/fde-interview-fieldbook",
-          "apimartg583b51/flux-2-max-api-fr",
-          "apimartbv/gemini-3-pro-image-preview-official-api-fr",
-          "Tranz007/ux-skills",
-          "t9hid1p6ue2a/z-image-turbo-api-ko",
-          "t9hid1p6ue2a/z-image-turbo-api-ja",
-          "ThetaCursed/TinyLuma",
-          "chyp3r/KACHOW-Teknofest-2026",
-          "dlazy-ai/ecommerce-skills",
-          "alexw5702-afk/krea2-anypaint",
-          "apimartg583b51/flux-2-max-api-cn",
-          "azle5biyd9td956/z-image-turbo-api-fr",
-          "whmc76/ComfyUI-NVIDIA-RTX-VSR-Pro",
-          "sparklingcoffee777/ComfyUI-Anima-2.9B-loraPatch",
-          "sunxin-ai/dsh-design-qa",
-          "apimartoh/gemini-3.1-flash-image-preview-official-api-fr",
-          "tamanitomo/tamanitomo",
-          "PedroMarinhoDev/ComfyUI-HunyuanImage3",
-          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ko",
-          "hiroki-abe-58/ComfyUI-DBS",
-          "Greninja9257/LabLLM",
-          "sunyifeng11111/sun-felt-wechat-illustrator",
-          "See-Sol-Lab/Picxel",
-          "Icbears/minimax-h3-v100-patch",
-          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ja",
-          "VectorSpaceLab/InfoVis",
-          "apimartstev/gpt-image-2-official-api-cn",
-          "lzs0594/dreamy-motion-editorial",
-          "nickotmazgin/fluentvoice-pro",
-          "HECer/ComfyUI-DLSS5",
-          "HoppouAI/Breeze-TTS-2.cpp",
-          "KuOnoda/AutoRef",
-          "aaalll12322/ComfyUI-MiniMaxH3-SolAttn-V100",
-          "sjh9714/krea2-wildcards",
-          "jiemianduan/image-to-prompt",
-          "rakshazi/krea2-prompting",
-          "shanliuling/meme-sticker",
-          "YogurtJ/pivane",
-          "apimart00-12/grok-imagine-2-api-cn",
-          "apimart-223/flux-2-api-ja",
-          "apimart-2dwad/flux-2-api-fr",
-          "apimart-1123/z-image-api-ko",
-          "fengyungithub/dsh-short-video-studio",
-          "beckettharriman/gimp-openfill",
-          "piskie-dev/piskie",
-          "Encephos/markdown-link-resolver",
-          "wu529778790/freeimg.shenzjd.com",
-          "wwjjqq888888-pixel/nanfeng-h3-comfyui",
-          "0toshigami/orbis-pictus",
-          "apimart-ww1/seedream-5-api-cn",
-          "AtlasCloudAI/awesome-gpt-image-2.5-prompts",
-          "apimart-1sww/qwen-image-3-api-cn",
-          "mozophe/ComfyUI-Qwen-Image-2.1-PromptEnhancer-MTP",
-          "fth1905-bot/ComfyUI-Civitai-Browser",
-          "fry-haha/image-words",
-          "walkinglabs/hands-on-world-models",
-          "apimart-ss223w/seedream-5-api-ko",
-          "Technicalflight/image-prompt-reverse",
-          "pixelsncodes/GesturePortal",
-          "Mr9esx/Pixoma",
-          "apimart-988/nano-banana-2-api-ja",
-          "overflowofedge/ComfyUI-Qwen-Watermark",
-          "DevNullInc/RenegadeCMM",
-          "barbarabax/sonora-studio",
-          "T8mars/Comfyui-SenseNova-U1.5-Wrapper-T8",
-          "Neon-Sparks/ComfyUI-NeonsStyleExplorer",
-          "T8mars/comfyui-fireredaudio-T8",
-          "mirzayasirabdullahbaig07/AURA-Alpaca-AI-Project",
-          "windforce19820520-ai/visual-ontology-constraint-engine",
-          "TheLocalLab/ComfyUI-SongScribe",
-          "o-l-l-i/ComfyUI-Olm-SoL-Refiner",
-          "Saganaki22/FireRedTTS3-ComfyUI",
-          "petrel-cn/prompt-generator",
-          "MengXinSu/LocalDream-Operit-Plugin",
-          "yanfei0725/dsh-qwen-paint",
-          "Ornn8/bside-olivia-community"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 10,
-          "previous": 14,
-          "change_pct": -28.6,
-          "signal": "同类聚集",
-          "members": 278,
-          "undated": 0,
-          "recent_start": "2026-10-14",
-          "previous_start": "2026-10-07",
-          "end_exclusive": "2026-10-21"
-        }
-      },
-      {
-        "title": "视频生成",
-        "members": [
-          "hypit-ai/hypit",
-          "yihui-dev/awesome-opus5-5-videos",
-          "lemomo-ai/lemo-opuscar",
-          "feitangyuan/onetake",
-          "Vincentwei1021/anything2explainer",
-          "LearnPrompt/awesome-seedance",
-          "coldteadotai/pr-lens",
-          "edenfunf/reelmimic",
-          "Vincentwei1021/video-talkcraft",
-          "openfilm/openfilm",
-          "glanderness/BeefTV",
-          "ant-research/4DAnyone",
-          "NikoDemon80/ComfyUI-H3-Motion-Context",
-          "scenario-labs/skills",
-          "Bingeljell/image-to-3dlab",
-          "Junchao-cs/SolarWM",
-          "Aryanutkarsh/SeeCode",
-          "alesha-pro/tools",
-          "vincentsch/explainroo",
-          "scenario-labs/blender-plugin",
-          "Yzw202011/OmniSpace",
-          "Carasibana/ComfyUI-H3-FaceRefine",
-          "Mr-funny/hbg-classical-poem-silk-video",
-          "sitor-ai/frametell",
-          "liyupi/ai-promo-video-maker",
-          "apiframe-ai/seedance-2.0-api",
-          "seesee75-commits/ComfyUI-MiniMaxH3-Director",
-          "MirroS-Lab/HarnessEval-W",
-          "SkyNotSilent/awesome-MiniMax-H3-cases",
-          "JGRFW/comfyui-AICG3D",
-          "FavioVazquez/showtime",
-          "benjiyaya/Calliope",
-          "LynnReal-AI/LynnReal-Omni",
-          "Luciole-Studio/Misaka-Agent",
-          "hasso5703/dgx-spark-qwen38",
-          "BeatAPI/BeatDesign",
-          "Yzmblog/DMAD",
-          "BeatAPI/awesome-minimax-h3-prompts",
-          "suihe1/short-drama-production",
-          "OneMoh/html-explainer",
-          "Heroesjouney/AIMovieStudiov2",
-          "Zzz1phyrf/ComfyUI-H3-LongVideo",
-          "vanzll/DiffusionART",
-          "Saganaki22/ComfyUI-sol-attn",
-          "Rylaispirit/cinematic-video-prompt-skill",
-          "drowzeys/Imagination-Studio-by-keys-Wasserman",
-          "apimart-api-ai-Aggregator/seedance-2.0-api",
-          "karuvanan/MiniMax-H3-Director-Cut-Studio",
-          "Shuo-Liang-0111/RA-Bench",
-          "apimart-api-ai-Aggregator/seedance-2.5-api",
-          "rookiestar28/ComfyUI-MiniMaxH3-Studio",
-          "notivn/AIEV",
-          "j955229/ComfyUI-MiniMax-H3-Motion-Director",
-          "Saganaki22/ComfyUI-Viggle-Animate-H3",
-          "unknowlei/minimax-h3-opencode-skills",
-          "agent-next/video-agent",
-          "ruashots/open-h3-ir",
-          "Rimcat-JA/blockvideo",
-          "htobty/ReadyLLM",
-          "ejsyk3xdp3t2o/wan3.0video-wan-3.0-video-api",
-          "iyqhcef3ffn/hailuo2.3-hailuo-2.3-gateway",
-          "ovdtze56q1zgksb4/kling3-kling-3-prompts",
-          "ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
-          "saihhold-zhao/polox_ai",
-          "MajoorWaldi/ComfyUI-Majoor-OmniCam",
-          "0xS4N4TG/papercut-explainer",
-          "SupercmoHQ/superCMO-skills",
-          "gslsvt43llzsaw/wan3.0video-wan-3.0-video-prompts",
-          "ki0ti51/kling3-kling-3-api",
-          "xcb1lkup/seedance2.0-seedance-2.0-api",
-          "ZeamoxWang/pdmd",
-          "lshhhhhhh/ai-school-op",
-          "chiphoton/DeepSeek-Harness-Video-Director",
-          "delaprada/Mask-Forcing",
-          "ik29kerqejooyj/hailuo2.3-hailuo-2.3-api",
-          "ausboss/ComfyUI-AusBoss",
-          "hhad58x5d3nht3a/seedance2.0mini-seedance-2.0-mini-api",
-          "j7ts80q4tkx1ism4/wan3.0video-wan-3.0-video-gateway",
-          "vsm67u54g4j/seedance2.5-seedance-2.5-1080p",
-          "d3qqcegqn5bf1aco/seedance2.5-seedance-2.5-gateway",
-          "xfeqaolq2ovnv/seedance2.5-seedance-2.5-prompts",
-          "n395cux/seedance2.0-seedance-2.0-4k",
-          "mkamranr/reelforge",
-          "imbutus/ComfyUI-MiniMaxDirector",
-          "XRSPACE-Inc/perxona-connect-kit",
-          "xixihhhh/ai-short-drama-skill",
-          "tristmeister/HEISS-UI",
-          "chiphoton/MiniMax-H3-Codex-Drama",
-          "worldbench/awesome-agentic-world-model",
-          "liyupi/ai-desktop-outfit-video",
-          "Cripacx/mediagen",
-          "maosika-ai/reshot",
-          "Okohedeki/scroll-studio",
-          "tomatoparkdao/omniailab-ai-director",
-          "PotionUI/PotionUI",
-          "worldbench/Orbia",
-          "guangjun5952/minimax-h3-broll-generator",
-          "jnMetaCode/openshorts",
-          "anisayari/sparky",
-          "animede/Realtime_Narration_Video",
-          "LaplaceYoung/dsh-directorx",
-          "sonlovinbot/Muse-animated-short-film",
-          "liyupi/niulai-video-generator",
-          "ethanfel/ComfyUI-H3-Prompt-IDE",
-          "mini-yifan/open-source-video-gen-skill",
-          "ZenHG/ComfyUI-H3-Latent-Relay",
-          "ruashots/ComfyUI-OpenH3-IR",
-          "buqi-code/buqi-minimax-h3-multigpu",
-          "supElement/ComfyUI_MinimaxH3_AutoContext",
-          "sepiablue-ai/ComfyUI-H3-X2-Stream",
-          "aashish254/Aniflow",
-          "jakemanger/whatmodel",
-          "appautomaton/mlx-h3",
-          "Backboard-io/Backboard-Desktop",
-          "webkubor/museav-cli",
-          "akatz-ai/h3-relay",
-          "orylite/lindyson-ai",
-          "Deen-Media/dgx-monarch",
-          "AI-KSK/aiksk-minimax-h3-local-prompt",
-          "ModelTC/LightVAE",
-          "sadekxD/cardstock-diorama-myth",
-          "b3b41020/free-multimodal-proxy",
-          "lcy362/free-short-video-studio",
-          "IvenKooLab/comfy-agent",
-          "apimart-13e42/veo-3.1-api-ja",
-          "BeatAPI/awesome-seedance-2-5-prompts",
-          "JerrIsTheBesta/AI-Short-Drama-Studio",
-          "apimart-ww/seedance-2.0-mini-api-cn",
-          "klsoen/opus-js-animations",
-          "erhanmeydan/kilnframe",
-          "apimart-232ww/wan-3.0-video-api-fr",
-          "underworldhistory1-ctrl/minimax-h3-higgsfield",
-          "apimart-w1/wan-3.0-video-api-cn",
-          "cvlab-kaist/GRACE",
-          "vakovalskii/nd-video-studio",
-          "apimart-2wsd2/hailuo-2.3-api-ja",
-          "L-Trunks/ai-film-skills",
-          "ZhuYichuan/infinite-canvas",
-          "siyuan-liu31/minimax-h3-video-studio",
-          "EvolvingLMMs-Lab/MacOS-H3-Speedrun",
-          "vediograph-wuzhijing/videograph-validation",
-          "apimart-32w/seedance-2.0-mini-api-ja",
-          "APImart-23ww/kling-3-api-ko",
-          "bo961386926/manga-studio",
-          "Anil-matcha/awesome-uncensored-ai-video-models",
-          "fanchengchen1-collab/super-director",
-          "apimart-sc/kling-3-api-cn",
-          "Anil-matcha/awesome-minimax-h3-prompts",
-          "wubin1836/ai-hive-agent-skills",
-          "travelmapworld/avatar-speak-pro-download",
-          "spicyapi-ai/comfyui-spicyapi",
-          "GravityVerseYield47/flux-ai-works"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 1,
-          "previous": 8,
-          "change_pct": -87.5,
-          "signal": "同类聚集",
-          "members": 152,
-          "undated": 0,
-          "recent_start": "2026-10-14",
-          "previous_start": "2026-10-07",
-          "end_exclusive": "2026-10-21"
-        }
-      },
-      {
-        "title": "语音/音乐",
-        "members": [
-          "QwenAudio/qwen-audio-agent",
-          "kajisho5/ffmpeg-skill",
-          "leemysw/yovoice",
-          "Tencent-Hunyuan/AuK",
-          "maxrave-dev/kotlin-footguns",
-          "HanyuanWang/LiveStream-Agent-Studio",
-          "autonomous-ai/openharness",
-          "ThinkOffApp/CarWatch",
-          "NoizAI/HelixWorld",
-          "tornikegomareli/Talkify",
-          "Code-Amadeus/Amadeus",
-          "Johnson-Durui/Companion-Space",
-          "TaoLiveAIGC/TLive-Omni",
-          "assafkip/claudemy",
-          "allmodels-io/hermes-speech",
-          "chenkanglin198904/Personal_External_Brain",
-          "sobranie2406/modureader",
-          "nyosegawa/speech.cpp",
-          "nari-labs/nari-qwen3-tts",
-          "christos-antono/NPCTalk",
-          "callebtc/sayit",
-          "Sallyn0225/eidolon-sc",
-          "Verlintas/BetterAIChat",
-          "Cuongyd196/cit-voice-studio",
-          "mat-nolen/tldr-radio",
-          "ShadowSafin/AndroLLM",
-          "sahilmahendrakar/paradee",
-          "Quor-a/ZorvAI",
-          "vahmoh25/Veda",
-          "recepyagmur/EnglishPractice",
-          "jaredrhod/backtalk",
-          "PolinniZhong/omi-read-aloud",
-          "PolinniZhong/dsh-omi-voice",
-          "swax/dub-anything",
-          "NguyenSiTrung/VieNeuTTSApp",
-          "ayutaz/sanoTTS-jp",
-          "jceronch1/Clonar-voz",
-          "NanmiCoder/creator-pipeline",
-          "phucnguyentvp1/frameweaver",
-          "wiringai/mod_earshot",
-          "wavtechyukky/LeapSinger",
-          "shikki841/inaudio",
-          "Sujit273-cpu/rep-forge",
-          "lzynb0206/WeChat-iLink-Multimodal-Bot",
-          "xujialiu/Zotero-OpenReader",
-          "JJosephph/ms-edge-tts-gui",
-          "webkubor/reel-kit",
-          "pegainfer-project/pega-omni",
-          "tlack/babytalk",
-          "Mudb0y/openevv",
-          "stronghamjji/PersoDub",
-          "lintsinghua/paint-mv-skills",
-          "C4rohan/Lampline",
-          "team-telnyx/medical-pronunciation-dictionary",
-          "franciscocarloserra/ttslibre",
-          "tanviet12/sano-sach-noi",
-          "SueliHora/fofoca",
-          "gonzalo-cordova-pou/voice-ai-benchmarks",
-          "synrise25/rss-pod",
-          "alenisaw/awesome-kaz-models",
-          "zanbinxu/shuting",
-          "lokutor-ai/ito",
-          "1624318455/dsh-plugin-tts",
-          "francordel/myrtia",
-          "loudreader/loudkit",
-          "vincenzo-afk/MAYA",
-          "agencyenterprise/jev-recipes",
-          "ictinnovations/asterisk-ai-voice-agent",
-          "saravanaspar/F.R.I.D.A.Y",
-          "weslocke/ED-Outrider",
-          "fitnessgymlife/Awesome-ki-audio-automation-de",
-          "VORNEX-01/JARVIS-VORNEX",
-          "Tahirpathan-AiLab/Athena_RAG_Intelligence",
-          "qishuilalala/dsh-voice-mode"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 4,
-          "previous": 2,
-          "change_pct": 100.0,
-          "signal": "样本内加速",
-          "members": 74,
-          "undated": 0,
-          "recent_start": "2026-10-14",
-          "previous_start": "2026-10-07",
-          "end_exclusive": "2026-10-21"
-        }
-      },
-      {
-        "title": "模型/推理/微调",
-        "members": [
-          "NandhaKishorM/laya",
-          "deepseek-ai/DeepInfer",
-          "jaredpalmer/kev",
-          "FareedKhan-dev/kimi-k3-in-c",
-          "mizorewww/laya-mlx",
-          "bojieli/ai-infra-book",
-          "yibie/awesome-jev",
-          "Folkbench/folkbench",
-          "datawhalechina/zero-to-sglang",
-          "nokia-applied-research/AnyJev",
-          "mw00/project-maya",
-          "panxunying/ai-coding-welfare",
-          "zachahn/vomit",
-          "YeonwooSung/llm-architecture-from-scratch",
-          "peonist-ai/halogen-flash-server",
-          "LosaLosSantos/aurelio-finance",
-          "patchy631/time-to-first-token",
-          "Edwardxlai/easyread",
-          "receptron/laya",
-          "xinxuxin/keystone-bench",
-          "gufo-org/gufo",
-          "aigclink/geolook",
-          "cobanov/PS5LM",
-          "whirlchat/whirl",
-          "OmniJev/awesome-jev-gallery",
-          "Han-1413141/dsh-cost-meter",
-          "amitshekhariitbhu/llm-inference-engineering",
-          "liyupi/ai-model-world",
-          "udaysharmadev/Not-Ai",
-          "Dreamer-Toby/STEPQuant",
-          "FoShmily/ai-paper-system",
-          "ForeverBlue816/PrismQuant",
-          "antonkarasbiz/littleaibox",
-          "Trunks820/Yuntu",
-          "Oeditus/yoke",
-          "NiuTrans/RL-without-Tears",
-          "iamarxs/AnyWorld",
-          "ruvnet/ai-text-watermark",
-          "1667-ai/1667",
-          "shyringo/deepseek-v4-flash-0731-in-c",
-          "Bifrostapi/ai-api-examples",
-          "zero2005x/ipasAI",
-          "Tahirpathan-AiLab/Evaan_Personal_Intelligence_Engine",
-          "shyringo/qwen3.8-flash-next-in-c",
-          "shyringo/qwen3.8-27b-in-c"
-        ],
-        "metrics": {
-          "comparable": true,
-          "recent": 1,
-          "previous": 0,
-          "change_pct": null,
-          "signal": "同类聚集",
-          "members": 45,
-          "undated": 0,
-          "recent_start": "2026-10-14",
-          "previous_start": "2026-10-07",
-          "end_exclusive": "2026-10-21"
-        }
-      },
-      {
-        "title": "RAG/知识库",
-        "members": [
-          "Tencent/WeMM-Embedding",
-          "crow-hq/llm-wiki-v2",
-          "jsdhwfmax/EvalForge",
-          "cdcailf/cjkfold",
-          "Sreehari05055/thesys-core",
-          "VectifyAI/jev-doc-search",
-          "aru-labs/lossless-memory",
-          "salikhussain71-code/PAKGOV-RAG-project",
-          "MiaoWuNYA/rikkahub-sillytavern-android",
-          "fyfsxkh/TokBrain",
-          "Soren-ABT/dsh-knowledge",
-          "lichuang/semquery",
-          "huihuijiangqiang/moshu",
-          "AI4CharityPL/kancelaria-lex",
-          "AbdoslamB/InkDoc",
-          "arnsri33/embedflow",
-          "unitedrhino/docling",
-          "cjxxx222/quizforge",
-          "lattifai/awesome-EmbeddingGemma",
-          "axem-solutions/shaide",
-          "shengjidaguai-china/xiaoguan",
-          "p10node/docflare-ai",
-          "noyce6983981-max/ocr-vlm-local-retrieval",
-          "paulknysh/raggy",
-          "OceanOver/Tomechat"
-        ],
+        "method": "llm",
         "metrics": {
           "comparable": true,
           "recent": 0,
-          "previous": 5,
-          "change_pct": -100.0,
+          "previous": 0,
+          "change_pct": null,
           "signal": "同类聚集",
-          "members": 25,
+          "members": 4,
+          "undated": 0,
+          "recent_start": "2026-10-14",
+          "previous_start": "2026-10-07",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      {
+        "title": "插件化架构与资源挂载",
+        "mechanism": "采用“一切皆插件”的架构模式，将组件（如 TUI、模型、功能面板）作为独立插件加载到核心运行时（如 DSH/Harness）中，实现灵活组合、热插拔和资源直接挂载，绕过传统 API 调用链路。",
+        "inspiration": "可以探索插件间的依赖管理和生命周期编排，或者将插件化架构应用于更复杂的分布式系统，实现更细粒度的资源隔离与组合。",
+        "members": [
+          {
+            "repo": "deepseek-ai/deepseek-harness",
+            "sources": [
+              "R2"
+            ],
+            "why": "核心设计为 'everything-is-a-plugin' 架构，每个组件可作为独立插件加载到挂载器中，实现灵活组合。"
+          },
+          {
+            "repo": "Ebony-Vinyl/dsh-our-free-model",
+            "sources": [
+              "R9"
+            ],
+            "why": "作为插件直接挂载模型资源，绕过传统 API 调用链路，实现无需登录和 API Key 的免费模型使用。"
+          },
+          {
+            "repo": "ccch1mneyyy/dsh-TUI",
+            "sources": [
+              "R17"
+            ],
+            "why": "作为 DSH 官方首推的 TUI 插件，负责交互和呈现，会话日志是事实来源。"
+          },
+          {
+            "repo": "omdsh-dev/DSH-better-sidebar",
+            "sources": [
+              "R2"
+            ],
+            "why": "作为 DSH 的插件，提供上下文感知的侧边栏面板，支持实时目录监控、全局搜索和拖放上传。"
+          }
+        ],
+        "method": "llm",
+        "metrics": {
+          "comparable": true,
+          "recent": 0,
+          "previous": 0,
+          "change_pct": null,
+          "signal": "同类聚集",
+          "members": 4,
           "undated": 0,
           "recent_start": "2026-10-14",
           "previous_start": "2026-10-07",
@@ -94255,6 +95589,9 @@
         }
       }
     ],
+    "cluster_status": "ready",
+    "cluster_cache_key": "38f6d3edf9dbf171fa5d80da9877f790c984abea19576d7c6f444fd051bb9275",
+    "candidates": [],
     "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
   }
 }
