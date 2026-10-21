@@ -203,6 +203,10 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(result["retried"], 1)
         self.assertEqual(result["queued"], 2)
         self.assertEqual(set(selected), {p["full_name"] for p in fresh} | {"owner/retry-0"})
+        self.assertEqual(
+            {p["full_name"] for p in projects if p["learning_status"] == "analysis_failed"},
+            {"owner/retry-1", "owner/retry-2"},
+        )
 
     def test_keep_session_provenance_without_remote_model(self):
         old = project()

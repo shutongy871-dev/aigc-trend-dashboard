@@ -234,6 +234,10 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=90, lo
     if remaining:
         selected_retry += retry_pending[len(selected_retry):len(selected_retry) + remaining]
     selected = selected_first + selected_retry
+    selected_retry_names = {p["full_name"] for p in selected_retry}
+    for p in retry_pending:
+        if p["full_name"] not in selected_retry_names:
+            p["learning_status"] = "analysis_failed"
     if call_llm:
         for start in range(0, len(selected), 3):
             chunk = selected[start:start + 3]
