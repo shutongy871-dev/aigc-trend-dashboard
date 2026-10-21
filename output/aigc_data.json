@@ -701,6 +701,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -799,8 +800,7 @@
           ]
         }
       },
-      "learning_cache_key": "4f49699020cfa014360e0ce7a154ce135bdeb1a43a8fb82ebc103198aa2bface",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "4f49699020cfa014360e0ce7a154ce135bdeb1a43a8fb82ebc103198aa2bface"
     },
     {
       "id": 1385946301,
@@ -974,7 +974,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1316470719,
@@ -1077,7 +1077,7 @@
         "https://raw.githubusercontent.com/hypit-ai/hypit/HEAD/docs/public/agentsky-light.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1373655162,
@@ -1154,7 +1154,7 @@
         "https://raw.githubusercontent.com/browser-use/jev-ultrafast/HEAD/docs/demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1329849289,
@@ -1248,7 +1248,7 @@
         "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1383809012,
@@ -1337,7 +1337,7 @@
         "https://raw.githubusercontent.com/yetone/magpie/HEAD/site/public/img/agents-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1410124849,
@@ -1421,7 +1421,7 @@
         "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/ripple-tank.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1333165619,
@@ -1514,7 +1514,7 @@
         "https://raw.githubusercontent.com/dataelement/dsh-desktop/HEAD/docs/images/wechat-group-20260815.png"
       ],
       "discovery_kind": "application",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1316527318,
@@ -1596,6 +1596,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -1712,8 +1713,7 @@
           ]
         }
       },
-      "learning_cache_key": "9a7ae9f4c736c4e6e69c770eb2a35493425dcf47490258c3d810466bc2f5346f",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "9a7ae9f4c736c4e6e69c770eb2a35493425dcf47490258c3d810466bc2f5346f"
     },
     {
       "id": 1421825221,
@@ -1794,6 +1794,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -1907,8 +1908,7 @@
           ]
         }
       },
-      "learning_cache_key": "38bc2c4b168ed9e47174dea061de6affe0122c8bbd224dd1bc6df69b67143334",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "38bc2c4b168ed9e47174dea061de6affe0122c8bbd224dd1bc6df69b67143334"
     },
     {
       "id": 1407950271,
@@ -1965,6 +1965,7 @@
       ],
       "discovery_kind": "research",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "research",
         "kind_reason": {
@@ -2079,8 +2080,7 @@
           ]
         }
       },
-      "learning_cache_key": "d3dd817802b7c936985ce2cb264031894407d1e8d3d26b219c1b8628076aceb8",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "d3dd817802b7c936985ce2cb264031894407d1e8d3d26b219c1b8628076aceb8"
     },
     {
       "id": 1312807575,
@@ -2156,6 +2156,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2264,8 +2265,7 @@
           ]
         }
       },
-      "learning_cache_key": "7e79863bbff16efd8deff2d8a7aa6f6789de29d399d896575fab14942de14394",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "7e79863bbff16efd8deff2d8a7aa6f6789de29d399d896575fab14942de14394"
     },
     {
       "id": 1423101235,
@@ -2363,6 +2363,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -2479,8 +2480,7 @@
           ]
         }
       },
-      "learning_cache_key": "40864923b2c962582e9bfc27b4c83c58351f54309670baf0d74e10b72d50b63a",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "40864923b2c962582e9bfc27b4c83c58351f54309670baf0d74e10b72d50b63a"
     },
     {
       "id": 1333399642,
@@ -2569,6 +2569,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -2672,8 +2673,7 @@
           ]
         }
       },
-      "learning_cache_key": "de7b11695cdf9c595822ba7193311c49f16fc8f8c2191a6519fd932ce39ab61a",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "de7b11695cdf9c595822ba7193311c49f16fc8f8c2191a6519fd932ce39ab61a"
     },
     {
       "id": 1318768894,
@@ -2754,7 +2754,7 @@
         "https://raw.githubusercontent.com/trycompai/crm/HEAD/docs/images/landing-agents.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1318187016,
@@ -2856,7 +2856,7 @@
         "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1375069862,
@@ -2938,7 +2938,7 @@
         "https://raw.githubusercontent.com/jaredpalmer/kev/HEAD/docs/playground.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1319154759,
@@ -3040,7 +3040,7 @@
         "https://raw.githubusercontent.com/FareedKhan-dev/kimi-k3-in-c/HEAD/docs/images/preset_ladder.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1397016507,
@@ -3132,7 +3132,7 @@
         "https://raw.githubusercontent.com/rehan-remade/universal-modder/HEAD/docs/media/discord-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1327088798,
@@ -3229,7 +3229,7 @@
         "https://raw.githubusercontent.com/deeplethe/utopia/assets/assets/star-history.svg"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1393965829,
@@ -3323,7 +3323,7 @@
         "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1378288598,
@@ -3397,7 +3397,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1379574728,
@@ -3516,7 +3516,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1351879111,
@@ -3606,7 +3606,7 @@
         "https://raw.githubusercontent.com/Human-Agent-Society/reef/HEAD/docs/assets/loop-animation-light.svg"
       ],
       "discovery_kind": "research",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1349601607,
@@ -3689,7 +3689,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1390273274,
@@ -3778,7 +3778,7 @@
         "https://media.skillry.dev/opus-5-5/moritzkremb-466494/preview.webp"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1334586481,
@@ -3862,6 +3862,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -3954,8 +3955,7 @@
         ],
         "demo": null
       },
-      "learning_cache_key": "0f260078de472098dbb196a1f21306b89bbd13daabc181df8d961c995e6559a6",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "0f260078de472098dbb196a1f21306b89bbd13daabc181df8d961c995e6559a6"
     },
     {
       "id": 1377211520,
@@ -4045,7 +4045,7 @@
         "https://raw.githubusercontent.com/mizorewww/laya-mlx/main/docs/assets/snake-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1342935078,
@@ -4138,7 +4138,7 @@
         "https://github.com/edward821220.png?s=128"
       ],
       "discovery_kind": "research",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1336502227,
@@ -4224,7 +4224,7 @@
         "https://raw.githubusercontent.com/CopilotKit/OpenBot/HEAD/assets/architecture-dark.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1326531152,
@@ -4317,6 +4317,7 @@
       ],
       "discovery_kind": "research",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "research",
         "kind_reason": {
@@ -4425,8 +4426,7 @@
           ]
         }
       },
-      "learning_cache_key": "35d54c7e4002381207e8f99d7a0f8dc1a5b5fa116845c0cc7c0cf4959303923a",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "35d54c7e4002381207e8f99d7a0f8dc1a5b5fa116845c0cc7c0cf4959303923a"
     },
     {
       "id": 1350978527,
@@ -4527,6 +4527,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -4636,8 +4637,7 @@
           ]
         }
       },
-      "learning_cache_key": "ce41954f5cba24248e32dff6e435cef8109639146247d401abe96a4f10bb3027",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "ce41954f5cba24248e32dff6e435cef8109639146247d401abe96a4f10bb3027"
     },
     {
       "id": 1339742577,
@@ -4721,6 +4721,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -4845,8 +4846,7 @@
           ]
         }
       },
-      "learning_cache_key": "abfbbc310ddce37e800f6cf4a13fec84a8a92a6d62fc60c3947eb7c1d1df269d",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "abfbbc310ddce37e800f6cf4a13fec84a8a92a6d62fc60c3947eb7c1d1df269d"
     },
     {
       "id": 1338470635,
@@ -4928,7 +4928,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1396117711,
@@ -5002,7 +5002,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1391438314,
@@ -5105,7 +5105,7 @@
         "https://raw.githubusercontent.com/Louis-CFM/coucou/HEAD/docs/media/hub-statistics.png"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1332080070,
@@ -5184,7 +5184,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1371757322,
@@ -5258,7 +5258,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1342461518,
@@ -5348,7 +5348,7 @@
         "https://raw.githubusercontent.com/ApodexAI/FrontierAgent/star-history/assets/star-history/star-history-light.svg"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1346870728,
@@ -5430,7 +5430,7 @@
         "https://raw.githubusercontent.com/monid-ai/monid/HEAD/assets/monid-compile.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1331261687,
@@ -5522,7 +5522,7 @@
         "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/computer-panel.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1410929004,
@@ -5618,6 +5618,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -5726,8 +5727,7 @@
           ]
         }
       },
-      "learning_cache_key": "1f8f2de7ea503ab9968bb73e81892f83a1ef66dea8ac536180c0ac0c70bac001",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "1f8f2de7ea503ab9968bb73e81892f83a1ef66dea8ac536180c0ac0c70bac001"
     },
     {
       "id": 1310057619,
@@ -5798,7 +5798,7 @@
         "https://raw.githubusercontent.com/slvDev/esp32-ai/HEAD/media/esp32-ple-demo.gif"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1333111893,
@@ -5890,6 +5890,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -5998,8 +5999,7 @@
           ]
         }
       },
-      "learning_cache_key": "f6c510365de39950277e3e23a28e2960d32089c26295414785c98011ced1aed0",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "f6c510365de39950277e3e23a28e2960d32089c26295414785c98011ced1aed0"
     },
     {
       "id": 1342876750,
@@ -6068,6 +6068,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -6175,8 +6176,7 @@
           ]
         }
       },
-      "learning_cache_key": "7b525ca4267209d4944c1240b44285896e0d6c57f7fe50dc6320c25aecf172b6",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "7b525ca4267209d4944c1240b44285896e0d6c57f7fe50dc6320c25aecf172b6"
     },
     {
       "id": 1332781509,
@@ -6265,7 +6265,7 @@
         "https://raw.githubusercontent.com/elie222/rakazo/HEAD/docs/readme-hero.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1325096132,
@@ -6344,7 +6344,7 @@
         "https://raw.githubusercontent.com/eternityspring/shuohao-skills/HEAD/skills/novel-characters/assets/report.webp"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1389011744,
@@ -6448,6 +6448,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -6555,8 +6556,7 @@
           ]
         }
       },
-      "learning_cache_key": "e508807e0d4ecdfdbbaa56f1c5be4f5e659d87f225e2a88785be275e55357c3d",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "e508807e0d4ecdfdbbaa56f1c5be4f5e659d87f225e2a88785be275e55357c3d"
     },
     {
       "id": 1326893710,
@@ -6646,6 +6646,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -6746,8 +6747,7 @@
           ]
         }
       },
-      "learning_cache_key": "53419b4a3796b7d0b142c525dd2ba8a2279cdf2c5795217d58c7dc8b8bc9db3c",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "53419b4a3796b7d0b142c525dd2ba8a2279cdf2c5795217d58c7dc8b8bc9db3c"
     },
     {
       "id": 1316443307,
@@ -6840,6 +6840,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -6947,8 +6948,7 @@
           ]
         }
       },
-      "learning_cache_key": "db60b79d1d3720d5e8421e39eff6e23e17bdb02be9c8e881d4bf0cd8c5fb51c5",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "db60b79d1d3720d5e8421e39eff6e23e17bdb02be9c8e881d4bf0cd8c5fb51c5"
     },
     {
       "id": 1354059245,
@@ -7039,6 +7039,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -7155,8 +7156,7 @@
           ]
         }
       },
-      "learning_cache_key": "fbd115b105e12ccdcd5d3c9b86b72e8f09baab2239a61a25bab18efa118bc27d",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "fbd115b105e12ccdcd5d3c9b86b72e8f09baab2239a61a25bab18efa118bc27d"
     },
     {
       "id": 1401476500,
@@ -7253,6 +7253,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -7364,8 +7365,7 @@
           ]
         }
       },
-      "learning_cache_key": "3eb18b9cd6e29071b3f1c69d5a4a390407749d3a61bc363ffe17c3204281d248",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "3eb18b9cd6e29071b3f1c69d5a4a390407749d3a61bc363ffe17c3204281d248"
     },
     {
       "id": 1329272295,
@@ -7449,7 +7449,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "learning_status": "pending"
     },
     {
       "id": 1336933337,
@@ -7530,6 +7530,7 @@
       ],
       "discovery_kind": "skill_tool",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "skill_tool",
         "kind_reason": {
@@ -7636,8 +7637,7 @@
           ]
         }
       },
-      "learning_cache_key": "d0eea61a19451784ade634dc98033effab9d25487d0d7771103367eb0144ce41",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "d0eea61a19451784ade634dc98033effab9d25487d0d7771103367eb0144ce41"
     },
     {
       "id": 1349122168,
@@ -7727,6 +7727,7 @@
       ],
       "discovery_kind": "application",
       "learning_status": "llm",
+      "learning_model": "openrouter/free",
       "learning": {
         "kind": "application",
         "kind_reason": {
@@ -7834,8 +7835,7 @@
           ]
         }
       },
-      "learning_cache_key": "93d4b809aed1ac20e96d7529934191b8031254b4dfa670e4cd7fb3bf2aa22423",
-      "learning_model": "openrouter/free"
+      "learning_cache_key": "93d4b809aed1ac20e96d7529934191b8031254b4dfa670e4cd7fb3bf2aa22423"
     },
     {
       "id": 1388867993,
@@ -7921,7 +7921,7 @@
         }
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1327214801,
@@ -8002,7 +8002,7 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "analysis_failed"
     },
     {
       "id": 1175900220,
@@ -95442,20 +95442,20 @@
     "analysis": {
       "model": "openrouter/free",
       "prompt_version": "discovery-v2-json",
-      "cached": 3,
+      "cached": 24,
       "model_enabled": true,
-      "generated": 21,
-      "failed": 35,
+      "generated": 0,
+      "failed": 3,
       "ready": 24,
+      "attempted": 3,
+      "first_attempted": 2,
+      "retried": 1,
+      "queued": 986,
       "failure_reasons": [
-        "响应结构未通过校验: Niko1221/Strata, guillaumemeyer/watermarks-remover",
-        "RuntimeError: 模型请求失败: 响应为空 (model=dots-studio/dots-3-note-preview:free, finish=length)",
-        "JSONDecodeError: Expecting property name enclosed in double quotes: line 56 column 6 (char 1774)",
-        "JSONDecodeError: Expecting value: line 1 column 1413 (char 1412)",
-        "JSONDecodeError: Unterminated string starting at: line 1 column 4134 (char 4133)"
+        "JSONDecodeError: Unterminated string starting at: line 1 column 421 (char 420)"
       ],
       "status": "ready",
-      "generated_at": "2026-10-21 10:54 UTC"
+      "generated_at": "2026-10-21 12:58 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
