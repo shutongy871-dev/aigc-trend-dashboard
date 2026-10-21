@@ -92809,10 +92809,10 @@
       "failed": 3,
       "ready": 0,
       "failure_reasons": [
-        "响应结构未通过校验: deepseek-ai/deepseek-harness, NandhaKishorM/laya, Ebony-Vinyl/dsh-our-free-model"
+        "RuntimeError: 模型请求失败: HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
       ],
       "status": "failed",
-      "generated_at": "2026-10-21 10:14 UTC"
+      "generated_at": "2026-10-21 10:17 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
