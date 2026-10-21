@@ -93,8 +93,112 @@
           "text": "```bibtex\n@misc{deepseek-harness2026,\n  title={DeepSeek Harness: Everything is a Plugin},\n  author={DeepSeek-AI},\n  year={2026},\n  publisher={GitHub},\n  howpublished={\\url{https://github.com/deepseek-ai/deepseek-harness}},\n}\n```"
         }
       ],
-      "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "基于 everything-is-a-plugin 架构的开放源代码智能体挂载器，支持多种 LLM 集成",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "DeepSeek Harness 是由 DeepSeek AI 开发的开源智能体挂载器，以 'everything-is-a-plugin' 架构设计，支持 Cordis 底层计算框架，提供统一的插件加载机制。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "Open-source agent harness with pluggable architecture supporting multiple LLMs via Cordis",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "AI 工程师、研究人员、开发者",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "本地智能体挂载界面可访问，支持多模型集成",
+          "sources": [
+            "R5"
+          ]
+        },
+        "mechanism": {
+          "text": "everything-is-a-plugin 架构，每个组件可作为独立插件加载到挂载器中，实现灵活组合",
+          "sources": [
+            "R2"
+          ]
+        },
+        "inspiration": {
+          "text": "Cordis 的 spatiotemporal composability 设计理念，实现模块化计算框架",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "开发者预告会出现兼容性破坏变更，未来版本可能导致 API 不兼容",
+          "sources": [
+            "R3"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：运行 npx @deepseek-ai/dsh web 启动 Web UI",
+            "sources": [
+              "R5"
+            ]
+          },
+          {
+            "text": "前提：安装 Node.js",
+            "sources": [
+              "R5"
+            ]
+          },
+          {
+            "text": "操作：克隆仓库 → pnpm install → pnpm run build → pnpm dsh web",
+            "sources": [
+              "R6"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "npx @deepseek-ai/dsh web",
+            "sources": [
+              "R5"
+            ]
+          },
+          "output": {
+            "text": "Web UI 界面",
+            "sources": [
+              "R5"
+            ]
+          },
+          "steps": [
+            {
+              "text": "启动 Web UI",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "访问 http://127.0.0.1:3080",
+              "sources": [
+                "R5"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "c95e800485bf9b7461cc8303bb83ede88c5fc0bd1cb8c60a9ff17f8c8488a3f4",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1375382253,
@@ -186,8 +290,113 @@
         "https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/laya_vs_jev_full.png",
         "https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/laya_benchmark.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "analysis_failed"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "多语言非自回归决策引擎，支持长文档处理（最大 8192 token）",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "Laya 是一个多语言非自回归决策引擎，能够在单次前向传播中完成类型化决策（选择、评分、是/否判断），适用于长文档场景。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "多语言支持、长文档处理能力（8192 token）",
+          "sources": [
+            "D0",
+            "R1"
+          ]
+        },
+        "audience": {
+          "text": "NLP 工程师、决策系统开发者",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "获取针对任意文本的类型化决策结果",
+          "sources": [
+            "R1"
+          ]
+        },
+        "mechanism": {
+          "text": "Router 在单次前向传播中同时评估所有候选检查点，通过路由策略动态选择最优模型路径",
+          "sources": [
+            "R1"
+          ]
+        },
+        "inspiration": {
+          "text": "System 1 决策引擎的快速多语言推理设计，强调单次前向传播的效率",
+          "sources": [
+            "R1"
+          ]
+        },
+        "limitations": null,
+        "how_to": [
+          {
+            "text": "入口：使用 Python SDK 调用 router.predict() 函数",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "前提：Python 3.10 或更高版本",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "操作：导入 laya 库，实例化 Router，传入状态和问题查询",
+            "sources": [
+              "R3"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "python -c \"from laya import Router; r = Router(); print(r.predict(state, questions))\"",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "决策结果",
+            "sources": [
+              "R3"
+            ]
+          },
+          "steps": [
+            {
+              "text": "创建 Router 实例",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "传入 state 和 questions 字典",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "调用 predict 方法获取答案",
+              "sources": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "1976770982aaa02f97a490c570f4460370f513ae8599912080abe2a863555d9c",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1385896447,
@@ -279,8 +488,118 @@
         "https://raw.githubusercontent.com/Ebony-Vinyl/dsh-our-free-model/HEAD/docs/images/trendshift-daily-laurel-gold.svg",
         "https://raw.githubusercontent.com/Ebony-Vinyl/dsh-our-free-model/HEAD/docs/images/trendshift-weekly-2026-10-11-first-gold.svg"
       ],
-      "discovery_kind": "skill_tool",
-      "learning_status": "analysis_failed"
+      "discovery_kind": "application",
+      "learning_status": "llm",
+      "learning": {
+        "kind": "application",
+        "kind_reason": {
+          "text": "Dsh 插件解决方案，提供无需认证即可使用前沿 LLM 的免费访问通道",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "dsh-our-free-model 是一个插件，允许在 Dsh 中无需登录、注册或填写 API Key 的情况下使用 DeepSeek V4.1 Flash 等前沿模型，完全免费且无额度限制。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "免费访问高端模型",
+          "sources": [
+            "D0",
+            "R2"
+          ]
+        },
+        "audience": {
+          "text": "普通用户、开发者、AI 爱好者",
+          "sources": [
+            "R2"
+          ]
+        },
+        "outcome": {
+          "text": "获得对 DeepSeek V4.1 Flash 等模型的即时访问权限",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "插件模式下直接挂载模型资源，绕过传统 API 调用链路",
+          "sources": [
+            "R9"
+          ]
+        },
+        "inspiration": {
+          "text": "开箱即用的 AI 工具趋势，降低使用门槛并提供免费高端模型访问",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "依赖第三方打包版本，可能与官方发布不一致；部分功能受限于社区维护",
+          "sources": [
+            "R28"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：在 Dsh 插件管理器中添加插件",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "前提：已安装 Dsh 环境",
+            "sources": [
+              "R7"
+            ]
+          },
+          {
+            "text": "操作：使用命令 dsh plugin --profile web add /绝对路径/dsh-our-free-model",
+            "sources": [
+              "R7"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "dsh plugin --profile web add /path/to/dsh-our-free-model",
+            "sources": [
+              "R7"
+            ]
+          },
+          "output": {
+            "text": "插件成功安装",
+            "sources": [
+              "R7"
+            ]
+          },
+          "steps": [
+            {
+              "text": "打开 Dsh 插件管理器",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "选择 web profile",
+              "sources": [
+                "R7"
+              ]
+            },
+            {
+              "text": "添加插件路径",
+              "sources": [
+                "R7"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "247fd05cf7049b3b0de529227269b5adc3cd7bff295a38967b2121cfd3ab0c18",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 925270205,
@@ -92805,19 +93124,16 @@
       "prompt_version": "discovery-v2-json",
       "cached": 0,
       "model_enabled": true,
-      "generated": 0,
-      "failed": 3,
-      "ready": 0,
-      "failure_reasons": [
-        "RuntimeError: 模型请求失败: HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
-      ],
-      "status": "failed",
-      "generated_at": "2026-10-21 10:17 UTC"
+      "generated": 3,
+      "failed": 0,
+      "ready": 3,
+      "failure_reasons": [],
+      "status": "ready",
+      "generated_at": "2026-10-21 10:21 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
     "skills_tools": [
-      "Ebony-Vinyl/dsh-our-free-model",
       "trycua/cua",
       "guillaumemeyer/watermarks-remover",
       "yetone/magpie",
@@ -92828,9 +93144,13 @@
       "FareedKhan-dev/kimi-k3-in-c",
       "rehan-remade/universal-modder",
       "KKKKhazix/AIHOT",
-      "XiaoDuoYa/codex-with-chatgpt"
+      "XiaoDuoYa/codex-with-chatgpt",
+      "CopilotKit/OpenBot"
     ],
     "applications": [
+      "deepseek-ai/deepseek-harness",
+      "NandhaKishorM/laya",
+      "Ebony-Vinyl/dsh-our-free-model",
       "dataelement/dsh-desktop",
       "Gathin23/cleanyourtv",
       "google/artemis",
@@ -92839,14 +93159,11 @@
       "omnirush-ai/omnirush-gui",
       "software-mansion-labs/goldie",
       "DSH-APP/DSHA",
-      "kuafuai/andee",
-      "elysia395/dsh-wallpaper-engine",
-      "krishhgg/Insomnia",
-      "penso/herdr-gpui"
+      "kuafuai/andee"
     ],
     "clusters": [],
-    "cluster_status": "unavailable",
-    "cluster_cache_key": "8e07465ac85946fd7538dc140845fa897d66da8791dcf26bc7e5a0705e115e45",
+    "cluster_status": "no_supported_groups",
+    "cluster_cache_key": "2e1577d9e381c2a0297acb473f117f93dd3005df2cf3c2072250d71a9294b3f2",
     "candidates": [
       {
         "title": "Agent/智能体",
