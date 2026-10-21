@@ -191,10 +191,11 @@ def validate_learning(raw, evidence):
     return result
 
 
-def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, log=print):
+def enrich_learning(projects, call_llm=None, model="", previous=(), limit=90, log=print):
     """按热度预算分析；缓存随公共证据/模型/提示词变化失效，不缓存失败响应。"""
     prior = {p["full_name"]: p for p in previous}
-    pending, cached, generated, failed = [], 0, 0, 0
+    first_pending, retry_pending = [], []
+    cached, generated, failed = 0, 0, 0
     failure_reasons = []
 
     def remember_failure(reason):
@@ -216,12 +217,23 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
                      learning_model=source_model, discovery_kind=valid["kind"])
             cached += 1
         elif any(e["id"].startswith("R") for e in p.get("evidence", [])):
-            pending.append(p)
+            target = retry_pending if old.get("learning_status") == "analysis_failed" else first_pending
+            target.append(p)
         else:
             p["learning_status"] = "insufficient_evidence"
-    pending.sort(key=lambda p: (-p.get("stars", 0), p["full_name"]))
-    priority = {p["full_name"] for p in sorted(projects, key=lambda p: (-p.get("stars", 0), p["full_name"]))[:max(0, limit)]}
-    selected = [p for p in pending if p["full_name"] in priority]
+    first_pending.sort(key=lambda p: (-p.get("stars", 0), p["full_name"]))
+    retry_pending.sort(key=lambda p: (-p.get("stars", 0), p["full_name"]))
+    limit = max(0, limit)
+    retry_budget = min(len(retry_pending), max(1, limit // 6)) if first_pending and limit else min(len(retry_pending), limit)
+    selected_first = first_pending[:max(0, limit - retry_budget)]
+    selected_retry = retry_pending[:retry_budget]
+    remaining = limit - len(selected_first) - len(selected_retry)
+    if remaining:
+        selected_first += first_pending[len(selected_first):len(selected_first) + remaining]
+        remaining = limit - len(selected_first) - len(selected_retry)
+    if remaining:
+        selected_retry += retry_pending[len(selected_retry):len(selected_retry) + remaining]
+    selected = selected_first + selected_retry
     if call_llm:
         for start in range(0, len(selected), 3):
             chunk = selected[start:start + 3]
@@ -271,6 +283,9 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
     return {"model": model, "prompt_version": PROMPT_VERSION, "cached": cached,
             "model_enabled": bool(call_llm),
             "generated": generated, "failed": failed, "ready": cached + generated,
+            "attempted": len(selected), "first_attempted": len(selected_first),
+            "retried": len(selected_retry),
+            "queued": len(first_pending) + len(retry_pending) - len(selected),
             "failure_reasons": failure_reasons,
             "status": "ready" if cached + generated else ("unavailable" if not call_llm else "failed")}
 

@@ -184,6 +184,26 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(result["generated"], 1)
         self.assertEqual(len(seen), 1)
 
+    def test_daily_budget_advances_new_projects_and_reserves_retries(self):
+        fresh = [project(f"owner/new-{i}", stars=500 - i) for i in range(5)]
+        retries = [project(f"owner/retry-{i}", stars=1000 - i) for i in range(3)]
+        previous = copy.deepcopy(retries)
+        for item in previous:
+            item["learning_status"] = "analysis_failed"
+        projects = fresh + retries
+        selected = []
+
+        def reply(_, prompt):
+            repos = [p["full_name"] for p in projects if f'"repo": "{p["full_name"]}"' in prompt]
+            selected.extend(repos)
+            return json.dumps({"items": [{**learning(), "repo": repo} for repo in repos]})
+
+        result = enrich_learning(projects, reply, "model", previous, limit=6, log=lambda _: None)
+        self.assertEqual(result["first_attempted"], 5)
+        self.assertEqual(result["retried"], 1)
+        self.assertEqual(result["queued"], 2)
+        self.assertEqual(set(selected), {p["full_name"] for p in fresh} | {"owner/retry-0"})
+
     def test_keep_session_provenance_without_remote_model(self):
         old = project()
         old.update(learning=learning(), learning_model="session",

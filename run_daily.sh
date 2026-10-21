@@ -9,7 +9,7 @@ cd "$(dirname "$0")"
 
 DAYS="${1:-30}"
 PY="${PYTHON:-python3}"
-LLM_LIMIT="${LLM_LIMIT:-60}"
+LLM_LIMIT="${LLM_LIMIT:-90}"
 
 if [[ "${REFRESH_DISCOVERY:-false}" == "true" && -f output/aigc_data.json ]]; then
   echo "==> [1/2] 复用已采集资料，更新学习解读"

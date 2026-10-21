@@ -1261,7 +1261,7 @@ def main():
     parser.add_argument("--output-dir", default="output", help="输出目录")
     parser.add_argument("--refresh-discovery", action="store_true",
                         help="复用现有采集数据，只补 README 与学习卡（不改采集日期）")
-    parser.add_argument("--llm-limit", type=int, default=60, help="最多分析的高热度项目数（含缓存）")
+    parser.add_argument("--llm-limit", type=int, default=90, help="本轮最多尝试分析的项目数")
     args = parser.parse_args()
 
     previous = {}
