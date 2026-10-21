@@ -75,7 +75,7 @@ class EvidenceTests(unittest.TestCase):
 
 
 class ModelTests(unittest.TestCase):
-    def test_openrouter_request_disables_reasoning_and_requires_parameters(self):
+    def test_openrouter_request_minimizes_reasoning_and_requires_parameters(self):
         seen = {}
 
         def respond(*args, **kwargs):
@@ -85,7 +85,7 @@ class ModelTests(unittest.TestCase):
 
         with patch.object(aigc_trend_brief, "http_post_json", respond):
             self.assertEqual(aigc_trend_brief.discovery_llm("system", "user"), '{"items":[]}')
-        self.assertEqual(seen["reasoning"], {"effort": "none"})
+        self.assertEqual(seen["reasoning"], {"effort": "minimal"})
         self.assertEqual(seen["provider"], {"require_parameters": True})
         response_format = seen["response_format"]
         self.assertEqual(response_format["type"], "json_schema")

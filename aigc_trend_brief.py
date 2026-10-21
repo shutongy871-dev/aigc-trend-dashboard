@@ -1208,7 +1208,7 @@ def discovery_llm(system, user):
             body={"model": LLM_MODEL, "messages": [
                 {"role": "system", "content": system}, {"role": "user", "content": user}],
                 "temperature": 0.2, "max_tokens": 8000,
-                "reasoning": {"effort": "none"},
+                "reasoning": {"effort": "minimal"},
                 "provider": {"require_parameters": True},
                 "response_format": {
                     "type": "json_schema",
