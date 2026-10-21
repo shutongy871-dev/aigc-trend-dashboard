@@ -10,7 +10,7 @@ import json
 import re
 from datetime import date, datetime, timedelta, timezone
 
-PROMPT_VERSION = "discovery-v1"
+PROMPT_VERSION = "discovery-v2-json"
 MIN_STARS = 100
 KINDS = {"skill_tool", "application", "research", "other"}
 SECTION_RE = re.compile(
@@ -187,16 +187,18 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
                 "缺资料不可以克隆仓库代替使用教程。inspiration 必须明确写成可尝试的产品想法，"
                 "不能冒充已实现功能。demo 只是来源支持的输入→处理→输出示意，不是实际运行。"
                 "不能只改写简介；说明独特机制、解决什么问题、产物是什么。"
-                "输出数组，每项字段：repo,kind,kind_reason,summary,value,audience,how_to,"
+                "输出对象 {items:[...]}，items 每项字段：repo,kind,kind_reason,summary,value,audience,how_to,"
                 "outcome,mechanism,inspiration,limitations,demo。summary 必须引用 README 的 R 开头证据。"
                 "demo 为 {kind:flow|chat|terminal|cards,input:事实字段,steps:[事实字段],output:事实字段}"
                 " 或 null。其余未知字段用 null。以下为资料：\n" +
                 json.dumps(payload, ensure_ascii=False)
             )
             try:
-                rows = parse_json(call_llm(SYSTEM, prompt))
+                response = parse_json(call_llm(SYSTEM, prompt))
+                rows = response.get("items") if isinstance(response, dict) else None
                 if not isinstance(rows, list):
-                    raise ValueError("项目分析不是数组")
+                    raise ValueError("项目分析缺少 items 数组")
+                invalid = []
                 for p in chunk:
                     matches = [r for r in rows if isinstance(r, dict) and r.get("repo") == p["full_name"]]
                     valid = validate_learning(matches[0], p["evidence"]) if len(matches) == 1 else None
@@ -208,10 +210,14 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=60, lo
                     else:
                         p["learning_status"] = "analysis_failed"
                         failed += 1
-            except (ValueError, TypeError, KeyError, RuntimeError):
+                        invalid.append(p["full_name"])
+                if invalid:
+                    log(f"[学习卡] 返回结构未通过校验: {', '.join(invalid)}")
+            except (ValueError, TypeError, KeyError, RuntimeError) as exc:
                 for p in chunk:
                     p["learning_status"] = "analysis_failed"
                 failed += len(chunk)
+                log(f"[学习卡] 批次失败 ({type(exc).__name__}): {exc}")
             log(f"[学习卡] 已处理 {min(start + 3, len(selected))}/{len(selected)}，有效 {generated}")
     return {"model": model, "prompt_version": PROMPT_VERSION, "cached": cached,
             "model_enabled": bool(call_llm),
@@ -313,14 +319,17 @@ def build_discovery(projects, window, analysis, call_llm=None, previous=None):
     if not clusters and call_llm and len(ready) >= 3:
         prompt = (
             "从这些已阅读 README 的项目中找共同底层机制，而非宽泛的 Agent/图像等标签。"
-            "只把机制确实相同的至少3个项目归一组，不够就返回空数组。不要计算增长或宣称爆发。"
+            "只把机制确实相同的至少3个项目归一组，不够就让 groups 为空数组。不要计算增长或宣称爆发。"
             "每组给出 title(机制名称),mechanism(原理的通俗解释及共同点),"
             "inspiration(明确标注为可探索想法),members:[{repo,why(该项目怎样使用此机制),"
-            "sources:[输入中此项目的证据id]}]。尽量找出不同路线而非重复成员的同义分组。资料：\n" +
+            "sources:[输入中此项目的证据id]}]。输出对象 {groups:[...]}。"
+            "尽量找出不同路线而非重复成员的同义分组。资料：\n" +
             json.dumps(group_input, ensure_ascii=False)
         )
         try:
-            clusters = validate_clusters(parse_json(call_llm(SYSTEM, prompt)), ready, window)
+            response = parse_json(call_llm(SYSTEM, prompt))
+            rows = response.get("groups") if isinstance(response, dict) else None
+            clusters = validate_clusters(rows, ready, window)
             status = "ready" if clusters else "no_supported_groups"
         except (ValueError, TypeError, KeyError, RuntimeError):
             status = "failed"

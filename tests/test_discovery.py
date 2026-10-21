@@ -78,7 +78,7 @@ class ModelTests(unittest.TestCase):
 
         def respond(system, prompt):
             calls.append(prompt)
-            return json.dumps([{**learning(), "repo": "owner/tool"}])
+            return json.dumps({"items": [{**learning(), "repo": "owner/tool"}]})
 
         ps = [project()]
         result = enrich_learning(ps, respond, "model", log=lambda _: None)
@@ -94,8 +94,8 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(len(calls), 2)
 
     def test_failed_and_duplicate_responses_retry_next_time(self):
-        for response in ("not json", "{}", json.dumps([{"repo": "wrong/repo"}]),
-                         json.dumps([{**learning(), "repo": "owner/tool"}] * 2)):
+        for response in ("not json", "{}", json.dumps({"items": [{"repo": "wrong/repo"}]}),
+                         json.dumps({"items": [{**learning(), "repo": "owner/tool"}] * 2})):
             ps = [project()]
             result = enrich_learning(ps, lambda *_: response, "model", log=lambda _: None)
             self.assertEqual(result["failed"], 1)
@@ -112,7 +112,7 @@ class ModelTests(unittest.TestCase):
         seen = []
         def reply(_, prompt):
             seen.append(prompt)
-            return json.dumps([{**learning(), "repo": "owner/new"}])
+            return json.dumps({"items": [{**learning(), "repo": "owner/new"}]})
         result = enrich_learning(ps, reply, "model", [old], limit=1, log=lambda _: None)
         self.assertEqual(result["cached"], 1)
         self.assertEqual(result["generated"], 1)

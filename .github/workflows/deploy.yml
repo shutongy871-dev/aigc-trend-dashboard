@@ -24,6 +24,10 @@ on:
         description: "只更新已有资料的学习解读（跳过重新采集）"
         type: boolean
         default: false
+      llm_limit:
+        description: "本次最多分析多少个高热度项目"
+        required: false
+        default: "60"
 
 # GITHUB_TOKEN 权限：回写产物到仓库 + 发布 Pages
 permissions:
@@ -57,6 +61,8 @@ jobs:
           WINDOW_DAYS: ${{ github.event.inputs.days || '30' }}
           # 代码发布复用资料；每日定时任务继续完整采集。
           REFRESH_DISCOVERY: ${{ github.event_name == 'push' && 'true' || github.event.inputs.refresh_discovery || 'false' }}
+          # 代码发布先以 3 个项目验证模型协议；手动与每日任务使用完整预算。
+          LLM_LIMIT: ${{ github.event_name == 'push' && '3' || github.event.inputs.llm_limit || '60' }}
         run: |
           chmod +x run_daily.sh
           ./run_daily.sh "$WINDOW_DAYS"

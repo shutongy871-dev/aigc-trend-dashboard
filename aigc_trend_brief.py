@@ -1098,22 +1098,26 @@ def render_markdown(projects, hf_models, hn_hot, insights, window, meta):
 # --------------------------------------------------------------------------- #
 
 def discovery_llm(system, user):
-    """模型适配器；响应异常统一为 RuntimeError，避免把服务端内容或凭据写入产物。"""
+    """模型适配器；要求 JSON 对象，让免费路由只选择支持结构化输出的模型。"""
     try:
         resp = http_post_json(
             f"{LLM_BASE_URL.rstrip('/')}/chat/completions",
             headers={"Authorization": f"Bearer {LLM_API_KEY}"},
             body={"model": LLM_MODEL, "messages": [
                 {"role": "system", "content": system}, {"role": "user", "content": user}],
-                "temperature": 0.2, "max_tokens": 8000},
+                "temperature": 0.2, "max_tokens": 8000,
+                "response_format": {"type": "json_object"}},
             timeout=120,
         )
         content = resp["choices"][0]["message"]["content"]
         if not isinstance(content, str):
             raise ValueError("响应为空")
         return content
-    except Exception:
-        raise RuntimeError("模型请求或响应失败") from None
+    except Exception as exc:
+        # 不记录请求头、响应正文或模型输出，只保留可定位的异常类型与服务端错误摘要。
+        message = re.sub(r"\s+", " ", str(exc))[:300]
+        print(f"[LLM] 学习卡请求失败 ({type(exc).__name__}): {message}", flush=True)
+        raise RuntimeError(f"模型请求失败: {message}") from None
 
 
 def enrich_discovery(dataset, previous, limit=60, reuse_evidence=False):

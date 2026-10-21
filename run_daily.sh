@@ -9,13 +9,14 @@ cd "$(dirname "$0")"
 
 DAYS="${1:-30}"
 PY="${PYTHON:-python3}"
+LLM_LIMIT="${LLM_LIMIT:-60}"
 
 if [[ "${REFRESH_DISCOVERY:-false}" == "true" && -f output/aigc_data.json ]]; then
   echo "==> [1/2] 复用已采集资料，更新学习解读"
-  "$PY" aigc_trend_brief.py --refresh-discovery --output-dir output
+  "$PY" aigc_trend_brief.py --refresh-discovery --llm-limit "$LLM_LIMIT" --output-dir output
 else
   echo "==> [1/2] 采集近 ${DAYS} 天 AIGC 趋势数据"
-  "$PY" aigc_trend_brief.py --days "${DAYS}" --output-dir output
+  "$PY" aigc_trend_brief.py --days "${DAYS}" --llm-limit "$LLM_LIMIT" --output-dir output
 fi
 
 echo "==> [2/2] 渲染看板 → site/index.html"
