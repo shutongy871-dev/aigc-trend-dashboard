@@ -1097,20 +1097,27 @@ def render_markdown(projects, hf_models, hn_hot, insights, window, meta):
 # Main
 # --------------------------------------------------------------------------- #
 
-def _claim_schema():
-    return {
-        "type": ["object", "null"],
+def _claim_schema(nullable=True, readme_required=False):
+    schema = {
+        "type": "object",
         "properties": {
             "text": {"type": "string"},
-            "sources": {"type": "array", "items": {"type": "string"}},
+            "sources": {
+                "type": "array",
+                "items": {"type": "string", "pattern": "^R[0-9]+$" if readme_required else "^[DR][0-9]+$"},
+                "minItems": 1,
+            },
         },
         "required": ["text", "sources"],
         "additionalProperties": False,
     }
+    return {"anyOf": [schema, {"type": "null"}]} if nullable else schema
 
 
 def _learning_response_schema():
     claim = _claim_schema()
+    required_claim = _claim_schema(nullable=False)
+    summary_claim = _claim_schema(nullable=False, readme_required=True)
     return {
         "type": "object",
         "properties": {
@@ -1121,11 +1128,11 @@ def _learning_response_schema():
                     "properties": {
                         "repo": {"type": "string"},
                         "kind": {"type": "string", "enum": ["skill_tool", "application", "research", "other"]},
-                        "kind_reason": claim,
-                        "summary": claim,
+                        "kind_reason": required_claim,
+                        "summary": summary_claim,
                         "value": claim,
                         "audience": claim,
-                        "how_to": {"type": "array", "items": claim},
+                        "how_to": {"type": "array", "items": required_claim},
                         "outcome": claim,
                         "mechanism": claim,
                         "inspiration": claim,
@@ -1134,9 +1141,9 @@ def _learning_response_schema():
                             "type": ["object", "null"],
                             "properties": {
                                 "kind": {"type": "string", "enum": ["flow", "chat", "terminal", "cards"]},
-                                "input": claim,
-                                "steps": {"type": "array", "items": claim},
-                                "output": claim,
+                                "input": required_claim,
+                                "steps": {"type": "array", "items": required_claim},
+                                "output": required_claim,
                             },
                             "required": ["kind", "input", "steps", "output"],
                             "additionalProperties": False,

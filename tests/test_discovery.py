@@ -89,7 +89,12 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(seen["provider"], {"require_parameters": True})
         response_format = seen["response_format"]
         self.assertEqual(response_format["type"], "json_schema")
-        self.assertEqual(response_format["json_schema"]["schema"]["required"], ["items"])
+        schema = response_format["json_schema"]["schema"]
+        self.assertEqual(schema["required"], ["items"])
+        item = schema["properties"]["items"]["items"]
+        self.assertEqual(item["properties"]["summary"]["properties"]["sources"]["items"]["pattern"], "^R[0-9]+$")
+        self.assertNotIn("anyOf", item["properties"]["summary"])
+        self.assertIn("anyOf", item["properties"]["limitations"])
 
     def test_cluster_request_uses_groups_schema(self):
         seen = {}
