@@ -12,6 +12,10 @@ const step = workflow.split("      - name: 判断是否需要生成看板\n")[1]
 assert(step, "Missing render decision step.");
 const script = step.split("        run: |\n")[1].split("\n")
   .map((line) => line.replace(/^          /, "")).join("\n");
+const archiveStep = workflow.split("      - name: 回写当日数据与看板到仓库（归档）\n")[1]
+  .split("\n      - name:")[0];
+const archiveScript = archiveStep.split("        run: |\n")[1].split("\n")
+  .map((line) => line.replace(/^          /, "")).join("\n");
 const tempRoot = path.join(root, ".validation", "deploy-workflow-tests");
 fs.mkdirSync(tempRoot, { recursive: true });
 
@@ -33,11 +37,13 @@ function fixture(t) {
   // Fixture histories must be self-contained; use this disposable repo's hooks.
   // A developer's global hooks may write logs outside the test directory.
   git("config", "core.hooksPath", path.join(dir, ".git", "hooks"));
+  git("config", "commit.gpgsign", "false");
   write("site/index.html", "<html>existing page</html>");
   write("site/app.js", "// website script");
   write("site/vercel.json", "{}");
   write("render_dashboard.py", "# renderer");
   write("output/aigc_data.json", "{}");
+  write("output/aigc_brief.md", "existing brief");
   const before = commit();
   function needsRender(event = "push", previous = before) {
     const output = path.join(dir, "decision-output");
@@ -49,7 +55,7 @@ function fixture(t) {
     });
     return fs.readFileSync(output, "utf8").trim();
   }
-  return { dir, write, commit, needsRender };
+  return { dir, git, write, commit, needsRender };
 }
 
 test("publishes direct HTML, browser JS, and Vercel config changes without overwriting them", (t) => {
@@ -94,4 +100,49 @@ test("new history or a missing output causes a safe rebuild", (t) => {
   assert.equal(f.needsRender("push", "0".repeat(40)), "needed=true");
   fs.unlinkSync(path.join(f.dir, "site/index.html"));
   assert.equal(f.needsRender(), "needed=true");
+});
+
+function archiveFixture(t, changedFile, changedContent) {
+  const f = fixture(t);
+  const remote = fs.mkdtempSync(path.join(tempRoot, "remote-"));
+  t.after(() => fs.rmSync(remote, { recursive: true, force: true }));
+  f.git("init", "--bare", "-q", remote);
+  f.git("--git-dir=" + remote, "config", "core.hooksPath", path.join(remote, "hooks"));
+  f.git("branch", "-M", "main");
+  f.git("remote", "add", "origin", remote);
+  f.git("push", "-q", "-u", "origin", "main");
+  const source = f.git("rev-parse", "HEAD");
+  f.write(changedFile, changedContent);
+  f.commit();
+  f.git("push", "-q", "origin", "main");
+  f.git("checkout", "-q", "--detach", source);
+  f.write("site/index.html", "<html>new generated page</html>");
+  const output = path.join(f.dir, "archive-output");
+  execFileSync("bash", ["-e", "-o", "pipefail", "-c", archiveScript], {
+    cwd: f.dir,
+    env: { ...process.env, GITHUB_OUTPUT: output },
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  return { ...f, result: fs.readFileSync(output, "utf8").trim() };
+}
+
+test("a concurrent config push is retained while new HTML is archived and published", (t) => {
+  const f = archiveFixture(t, "site/vercel.json", '{"updatedRoute":true}');
+  assert.equal(f.result, "publish=true");
+  assert.equal(f.git("show", "origin/main:site/vercel.json"), '{"updatedRoute":true}');
+  assert.equal(f.git("show", "origin/main:site/index.html"), "<html>new generated page</html>");
+});
+
+test("newer source code prevents publishing a stale generated page", (t) => {
+  const f = archiveFixture(t, "render_dashboard.py", "# newer source code");
+  assert.equal(f.result, "publish=false");
+  assert.equal(f.git("show", "origin/main:render_dashboard.py"), "# newer source code");
+  assert.equal(f.git("show", "origin/main:site/index.html"), "<html>existing page</html>");
+});
+
+test("a user's newer HTML edit is never overwritten by an older running build", (t) => {
+  const f = archiveFixture(t, "site/index.html", "<html>new user edit</html>");
+  assert.equal(f.result, "publish=false");
+  assert.equal(f.git("show", "origin/main:site/index.html"), "<html>new user edit</html>");
 });
