@@ -892,11 +892,128 @@
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/app-chat.png",
         "https://raw.githubusercontent.com/Niko1221/Strata/HEAD/docs/media/terminal-monitor.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "analysis_failed",
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
       "description_zh": "任何消费硬件上的Quen3.8-Flash-Next:一击安装Windows / Linux. Strata 推理引擎,OpenAI/Anthropic API在localhost上,可选图像输入。",
       "translation_cache_key": "a9420b4a8d4bf43bb7bced23d311d519f7b19c9c5e6f8172e27c29160d28e364",
-      "translation_provider": "argos"
+      "translation_provider": "argos",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "交付形态为本地桌面应用或终端命令行工具，提供将超大模型部署到消费级硬件的推理能力。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "summary": {
+          "text": "Strata是一款能在游戏PC上运行1250亿参数Qwen3.8-Flash-Next模型的推理引擎，提供本地OpenAI/Anthropic API接口，支持图像输入且完全免费私密。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "value": {
+          "text": "让个人电脑具备运行超大规模参数模型的能力，实现数据完全本地留存、无网络依赖的私人AI助手与编码代理底层支持。",
+          "sources": [
+            "R1",
+            "R19"
+          ]
+        },
+        "audience": {
+          "text": "AI研究者、本地部署爱好者、追求数据隐私的开发者及希望在消费级显卡上运行大模型的PM。",
+          "sources": [
+            "R1"
+          ]
+        },
+        "outcome": {
+          "text": "在个人电脑上以约50-94 tokens/s的速度流畅对话、写代码、读图片，并能无缝对接Claude Code、Codex CLI等编码代理。",
+          "sources": [
+            "R10"
+          ]
+        },
+        "mechanism": {
+          "text": "通过将显卡作为高速工作台、内存作为书架、SSD作为档案库，结合推测性解码技术，将125B模型拆分并高效调度在消费级硬件上运行。",
+          "sources": [
+            "R19"
+          ]
+        },
+        "inspiration": {
+          "text": "能否进一步优化多模态大模型的端侧部署，使个人电脑不仅能跑文本，还能低延迟地处理视频流与复杂3D场景推理？",
+          "sources": [
+            "R19"
+          ]
+        },
+        "limitations": {
+          "text": "硬件门槛较高（需32GB以上内存与12GB+显存）；对老旧显卡或CPU支持有限；跨品牌多卡协同存在限制（不能跨NVIDIA和AMD）。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：从 releases 页面下载对应显卡的Strata桌面应用或安装终端命令行工具。",
+            "sources": [
+              "R4",
+              "R5"
+            ]
+          },
+          {
+            "text": "前提：电脑需具备至少32GB RAM+显存，约80GB空闲SSD空间，并安装好对应显卡驱动。",
+            "sources": [
+              "R2"
+            ]
+          },
+          {
+            "text": "操作：运行安装包或执行curl安装脚本，然后使用strata launch命令启动本地推理服务。",
+            "sources": [
+              "R4",
+              "R5"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "strata launch --model q2_0 --yes --no-tui",
+            "sources": [
+              "R5"
+            ]
+          },
+          "output": {
+            "text": "本地localhost上的OpenAI兼容推理服务",
+            "sources": [
+              "R5"
+            ]
+          },
+          "steps": [
+            {
+              "text": "检查PC配置",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "下载引擎与模型",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "启动本地API服务",
+              "sources": [
+                "R5"
+              ]
+            },
+            {
+              "text": "接收编码代理请求",
+              "sources": [
+                "R5"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "96a169071b49431884b81b357a5e330047161e6a4eb30493cf9f7eb53f3af1fa",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1331135699,
@@ -9543,11 +9660,129 @@
         "https://raw.githubusercontent.com/onehumanbeing/esp32-iphone-agent/HEAD/docs/images/example-alarm.png",
         "https://raw.githubusercontent.com/onehumanbeing/esp32-iphone-agent/HEAD/docs/images/app-screens.png"
       ],
-      "discovery_kind": "other",
-      "learning_status": "pending",
+      "discovery_kind": "skill_tool",
+      "learning_status": "llm",
       "description_zh": "让一个AI模型使用一个真iPhone,配有7 ESP32: AirPlay眼睛,USB HID手,任何OpenAI兼容的视觉模型. 没有Mac,没有开发者账户,没有越狱。",
       "translation_cache_key": "d9d7a01d4e6ae760b97b1791912bb6404c325fd20ed4c5162b8bc3191092cc09",
-      "translation_provider": "argos"
+      "translation_provider": "argos",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "交付形态为硬件固件（ESP32-S3）加iOS应用，作为让AI模型获得控制真实iPhone能力的桥梁工具。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "让AI模型用$7的ESP32控制真实iPhone：通过AirPlay提供眼睛，USB HID提供双手，兼容任何OpenAI视觉模型，无需Mac、开发者账号或越狱。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "以极低的硬件成本（约$7）为AI Agent打通iOS系统的视觉与操作闭环，绕过系统限制实现免越狱自动化。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "audience": {
+          "text": "产品经理、AI Agent开发者、硬件黑客及希望探索低门槛移动端自动化的技术爱好者。",
+          "sources": [
+            "D0"
+          ]
+        },
+        "outcome": {
+          "text": "AI Agent能够在不依赖Mac的情况下，直接在iPhone上完成如设闹钟、点击、滑动、输入等复杂UI自动化任务。",
+          "sources": [
+            "R2",
+            "R3"
+          ]
+        },
+        "mechanism": {
+          "text": "通过ESP32-S3作为AirPlay接收器获取屏幕流并经BLE转发给iPhone App，App调用视觉模型分析屏幕并规划动作，再通过BLE控制板载USB HID模拟鼠标键盘进行物理级交互。",
+          "sources": [
+            "R3"
+          ]
+        },
+        "inspiration": {
+          "text": "是否可以利用类似的低成本微控制器桥接方案，让AI Agent能够操控其他封闭生态（如智能电视、车载屏幕、自助终端）的物理按键与触控？",
+          "sources": [
+            "R3"
+          ]
+        },
+        "limitations": {
+          "text": "BLE带宽限制导致镜像分辨率低（480x1040）且帧率≤5fps；iOS系统限制导致无法镜像密码、支付等敏感界面；运行时手机Wi-Fi被热点占用，需依赖蜂窝数据。",
+          "sources": [
+            "R13"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：使用Mac上的Xcode和arduino-cli刷写ESP32-S3固件。",
+            "sources": [
+              "R6"
+            ]
+          },
+          {
+            "text": "前提：准备一台安装了Xcode的Mac、一块带PSRAM的ESP32-S3开发板、一部iOS 18+且带蜂窝数据的iPhone。",
+            "sources": [
+              "R4",
+              "R6"
+            ]
+          },
+          {
+            "text": "操作：安装NimBLE-Arduino库并运行hardware/flash.sh，然后克隆仓库配置iOS项目签名并连接手机运行。",
+            "sources": [
+              "R6",
+              "R7"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "flow",
+          "input": {
+            "text": "iPhone屏幕镜像 -> ESP32 AirPlay接收 -> BLE传输 -> 视觉模型分析 -> 规划动作 -> USB HID控制",
+            "sources": [
+              "R3"
+            ]
+          },
+          "output": {
+            "text": "iPhone界面发生预期变化（如成功设置闹钟）",
+            "sources": [
+              "R3"
+            ]
+          },
+          "steps": [
+            {
+              "text": "AirPlay镜像屏幕",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "BLE转发流",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "视觉模型推理",
+              "sources": [
+                "R3"
+              ]
+            },
+            {
+              "text": "生成点击/输入指令",
+              "sources": [
+                "R3"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "5c527ab653b9262658fa249bbd6efa510a28ebe119ec26c57b6a41fd85ec2bf6",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1322651268,
@@ -9648,10 +9883,128 @@
         "https://raw.githubusercontent.com/fuxicodex/Fuxi/HEAD/docs/fuxi-demo.gif"
       ],
       "discovery_kind": "skill_tool",
-      "learning_status": "pending",
+      "learning_status": "llm",
       "description_zh": "FuXi是一个快速,自成一体的AI编码AI 智能体,住在你的终端——编辑代码,运行命令,以及驱动工具,具有成本意识的路由跨LLM提供者。",
       "translation_cache_key": "e9eb904791cf41ae755c30d61a2091cdf67bacc8684e431cc5a29b089b80e8d2",
-      "translation_provider": "argos"
+      "translation_provider": "argos",
+      "learning": {
+        "kind": "skill_tool",
+        "kind_reason": {
+          "text": "交付形态为单静态二进制文件，作为终端环境下的AI编码助手和工具驱动引擎。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "summary": {
+          "text": "FuXi是一个快速、自包含的终端AI编码代理，能读写代码、运行命令并驱动工具，支持跨LLM提供商的成本感知路由与自动故障转移。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "value": {
+          "text": "提供本地优先、高度隐私保护且具备成本感知能力的终端AI编程体验，无需运行时依赖，适配多种大模型提供商。",
+          "sources": [
+            "R2",
+            "R6"
+          ]
+        },
+        "audience": {
+          "text": "专业开发者、AI工具产品经理及希望在本地终端实现高效自动化编码与工具编排的技术团队。",
+          "sources": [
+            "R8"
+          ]
+        },
+        "outcome": {
+          "text": "开发者可以直接在终端中用自然语言完成代码修改、测试运行、工具调用等完整开发闭环。",
+          "sources": [
+            "R2"
+          ]
+        },
+        "mechanism": {
+          "text": "基于Go构建的静态二进制TUI应用，内置MCP客户端与多模型路由，通过权限控制机制在本地安全地执行文件编辑与命令行操作。",
+          "sources": [
+            "R2",
+            "R5"
+          ]
+        },
+        "inspiration": {
+          "text": "如何设计一个更智能的本地代理，根据任务复杂度和成本自动在自建模型与商业API之间动态切换，以平衡效率与开销？",
+          "sources": [
+            "R2"
+          ]
+        },
+        "limitations": {
+          "text": "需要遵守其使用政策（禁止用于儿童或违法用途）；纯终端交互对非命令行用户有门槛；敏感操作默认需要手动批准。",
+          "sources": [
+            "R5",
+            "R8"
+          ]
+        },
+        "how_to": [
+          {
+            "text": "入口：通过官方提供的bootstrap脚本安装并启动终端会话。",
+            "sources": [
+              "R3"
+            ]
+          },
+          {
+            "text": "前提：需要注册FuXi账户或准备自己的LLM API Key。",
+            "sources": [
+              "R4"
+            ]
+          },
+          {
+            "text": "操作：运行curl -fsSL https://downloads.fuxicode.com/bootstrap.sh | bash，然后输入fuxi login并开始对话。",
+            "sources": [
+              "R3",
+              "R4"
+            ]
+          }
+        ],
+        "demo": {
+          "kind": "terminal",
+          "input": {
+            "text": "Fix the failing tests in this repository",
+            "sources": [
+              "R4"
+            ]
+          },
+          "output": {
+            "text": "测试全部通过的终端反馈",
+            "sources": [
+              "R4"
+            ]
+          },
+          "steps": [
+            {
+              "text": "分析代码库",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "定位失败测试",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "生成修复代码",
+              "sources": [
+                "R4"
+              ]
+            },
+            {
+              "text": "运行测试验证",
+              "sources": [
+                "R4"
+              ]
+            }
+          ]
+        }
+      },
+      "learning_cache_key": "5efe09a42a07e7c787574c37075a502abfbbe279d08784aa062993c8dc9e19ab",
+      "learning_model": "openrouter/free"
     },
     {
       "id": 1353548665,
@@ -98665,23 +99018,22 @@
       "prompt_version": "discovery-v2-json",
       "cached": 28,
       "model_enabled": true,
-      "generated": 0,
-      "failed": 3,
-      "ready": 28,
+      "generated": 3,
+      "failed": 0,
+      "ready": 31,
       "attempted": 3,
       "first_attempted": 2,
       "retried": 1,
       "queued": 982,
-      "failure_reasons": [
-        "RuntimeError: 模型请求失败: HTTP 429: "
-      ],
+      "failure_reasons": [],
       "status": "ready",
-      "generated_at": "2026-10-21 13:41 UTC"
+      "generated_at": "2026-10-22 06:36 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
     "skills_tools": [
       "trycua/cua",
+      "Niko1221/Strata",
       "guillaumemeyer/watermarks-remover",
       "yetone/magpie",
       "wheresryan22/anatomy",
@@ -98691,8 +99043,7 @@
       "genspark-ai/genoffice",
       "FareedKhan-dev/kimi-k3-in-c",
       "rehan-remade/universal-modder",
-      "KKKKhazix/AIHOT",
-      "XiaoDuoYa/codex-with-chatgpt"
+      "KKKKhazix/AIHOT"
     ],
     "applications": [
       "deepseek-ai/deepseek-harness",
@@ -98708,43 +99059,434 @@
       "QingYunA/answer-me-with-html",
       "ZJU-REAL/Easel"
     ],
-    "clusters": [
+    "clusters": [],
+    "cluster_status": "failed",
+    "cluster_cache_key": "10b8e7fdccf053c67bd6fd8bd3682e3d845133060566d5c22ef91e1b9fa1ad9b",
+    "candidates": [
       {
-        "title": "插件化挂载与运行时注入",
-        "mechanism": "多个项目采用插件/模块可独立加载、挂载到统一运行时的架构，使组件可灵活组合、热插拔，而非硬编码在单一流程中。共同点是：把模型、工具、UI、路由等拆成可插拔单元，由运行时负责加载、编排和生命周期管理。",
-        "inspiration": "可探索：插件热重载与跨平台运行时抽象（如 cua 的 SDK 统一 VM/容器/云运行时）是否可泛化为通用 agent 运行时标准。",
+        "title": "Agent/智能体",
         "members": [
-          {
-            "repo": "deepseek-ai/deepseek-harness",
-            "sources": [
-              "R2"
-            ],
-            "why": "everything-is-a-plugin 架构，每个组件作为独立插件加载到挂挂载器，支持灵活组合。"
-          },
-          {
-            "repo": "Ebony-Vinyl/dsh-our-free-model",
-            "sources": [
-              "R9"
-            ],
-            "why": "插件模式下直接挂载模型资源，绕过传统 API 调用链路，无需 API Key 即可使用模型。"
-          },
-          {
-            "repo": "dataelement/dsh-desktop",
-            "sources": [
-              "R4",
-              "R10"
-            ],
-            "why": "应用内置 DeepSeek Harness 本地运行，将插件式运行时嵌入桌面应用，支持多种模型提供商。"
-          }
+          "deepseek-ai/deepseek-harness",
+          "Ebony-Vinyl/dsh-our-free-model",
+          "trycua/cua",
+          "guillaumemeyer/watermarks-remover",
+          "browser-use/jev-ultrafast",
+          "lexmount/moli",
+          "yetone/magpie",
+          "wheresryan22/anatomy",
+          "dataelement/dsh-desktop",
+          "yc-software/qm",
+          "google/artemis",
+          "genspark-ai/genoffice",
+          "rehan-remade/universal-modder",
+          "deeplethe/utopia",
+          "KKKKhazix/AIHOT",
+          "zai-org/ZCode",
+          "jev-chat/jev-chat-jarvis",
+          "Human-Agent-Society/reef",
+          "XiaoDuoYa/codex-with-chatgpt",
+          "yjh051108/dsh-routing-suite",
+          "CopilotKit/OpenBot",
+          "Ryze-AI-Adgent/open-seo-mcp-skills",
+          "CopilotKit/OpenDots",
+          "Louis-CFM/coucou",
+          "dmmulroy/anti-slop",
+          "CopilotKit/openmuse",
+          "ApodexAI/FrontierAgent",
+          "monid-ai/monid",
+          "milind-soni/OpenMausBot",
+          "ccch1mneyyy/dsh-TUI",
+          "totec448-spec/chat-on-steroids",
+          "elie222/rakazo",
+          "eternityspring/shuohao-skills",
+          "omdsh-dev/DSH-better-sidebar",
+          "microsoft/skill-recorder",
+          "tigerless-labs/agent-memory",
+          "QingYunA/answer-me-with-html",
+          "Leonxlnx/unlazy",
+          "yetone/cumora",
+          "ZJU-REAL/Easel",
+          "ShawnPana/phone-harness",
+          "onecli/onecli",
+          "Jakeschincariol/replica-skill",
+          "omnirush-ai/omnirush-gui",
+          "wang2122/sprix-sage-router",
+          "NVlabs/SoL-Pi",
+          "vercel-labs/fx",
+          "onehumanbeing/esp32-iphone-agent",
+          "fuxicodex/Fuxi",
+          "anthropics/commerce-agents",
+          "Nanako0129/sepia",
+          "hardbeat920/monocode",
+          "EvoMap/AutoResearch",
+          "HarnessRouter/harnessrouter",
+          "QwenLM/Qwen-MM-Plugins",
+          "mcncarl/jianying-headless",
+          "lennney/stop-that-shit",
+          "bowenliang123/dsh-context",
+          "dzhng/jevgrep",
+          "typesafe-ai/skills",
+          "Pinvou/pinvou-agent",
+          "duty1g/x64dbg-mcp-server",
+          "software-mansion-labs/goldie",
+          "redhat-et/ripwire",
+          "Player-YN/BrowserKitten",
+          "nanaism/yomiyasu",
+          "NanmiCoder/dsh-agent-teams",
+          "VictorTaelin/OptMem",
+          "dream-num/univer-workspace",
+          "aliyun/ai-agent-handbook",
+          "xmanrui/dsh-im",
+          "AhmadHassan-BTed/AutoSwarm-Shadow-Adapter",
+          "unreallabsai/unreal-agent",
+          "rociiu/talorys",
+          "cbrock84/headcount",
+          "nano-muse/nanoMuse",
+          "memorax-ai/memorax-code",
+          "academa-labs/manimgx",
+          "jiwoochris/artex-global",
+          "DSH-APP/DSHA",
+          "kuafuai/andee",
+          "franzenzenhofer/big-arrow-on-the-screen",
+          "soumatheusgomes/vibe-coding-toolkit",
+          "AMAP-ML/LongHorizon-Harness",
+          "perplexityai/SPACE",
+          "angusdevgo/Seep-Reverse-Lab",
+          "TokenRhythm/NeoHorse",
+          "jtydhr88/screenwriting-skills",
+          "elysia395/dsh-wallpaper-engine",
+          "aoci-spec/aoci-code",
+          "krishhgg/Insomnia",
+          "hardenrun/aif",
+          "archestra-ai/OpenAPPA",
+          "Binaryify/open-kimi-ppt-skill",
+          "penso/herdr-gpui",
+          "egoist/waku",
+          "jundizhou/easy-stock",
+          "freestylefly/WeChatBridge",
+          "boyang-hu/website-rebuild-skill",
+          "Derpyu520/qq-bridge",
+          "trhhubsd/ARTEX",
+          "iAmCorey/Wake",
+          "alexgreensh/attention-span",
+          "agentconnect-md/agentconnect",
+          "brayonpi/hexstellar",
+          "changexbc/workbuddy-switch",
+          "LodyAI/Lody",
+          "petergyang/human-review",
+          "youngyangyang04/llm-master",
+          "2akouwu/reverify",
+          "mikehasa/golive-skill",
+          "Clearailhc/clearai-dsh",
+          "SaladDay/pi-from-scratch",
+          "marclou/mailcheap",
+          "feder-cr/invisible_playwright_mcp",
+          "awlevin/typesafe-computer-use",
+          "0xsline/awesome-deepseek-harness",
+          "ant-research/AntOmniEvo",
+          "Spielewoy/autoprompt-skill",
+          "vercel-labs/eve-software-factory-template",
+          "flizzywine/dsh-tavern",
+          "jwuthri-cloud/Tracely-ai",
+          "kharmanskyi/open-steps",
+          "Dpro-at/Tel-Agent",
+          "perplexityai/numbat",
+          "fy-agent/fyagent",
+          "undefined-ui/second-brain-os",
+          "kyky2347/ALTA",
+          "OpenSparX/MasterAgent",
+          "ovobrowsersupport/ovobrowser",
+          "Harvil1/codeAgent",
+          "morluto/awesome-reverse-engineering",
+          "StartLuxLabs/StartLux-Decision",
+          "okf-memory/okf-agent-memory",
+          "ruc-datalab/EvoOntology",
+          "qiz029/dscode",
+          "20000419/fauxnix",
+          "wangmiaozero/pi-harness",
+          "browser-use/macos-harness",
+          "outcrawlai/scout",
+          "MaxHu-xuan/task-state-guard",
+          "davidondrej/cloudroom-core",
+          "LiCinCan/blender-ai-mcp-addon",
+          "sodiumsun/agenttrail",
+          "alikon-art/DeterminFlow",
+          "dondai44423/donsetch",
+          "Electricitysheep/dsh-handbook",
+          "karanb192/itr-wala",
+          "rome-os/rome",
+          "lobehub/awesome-rsi",
+          "juspay/xyne-spaces",
+          "XHToken/Spark-X2.6",
+          "Zfinix/eleven",
+          "simonlin1212/vibe-astock",
+          "openqodex/openqodex",
+          "Aisland-SJL/dsh-worktable",
+          "mikehasa/agentacct",
+          "keli-wen/agy-staff",
+          "ethanplusai/codex-on-crack",
+          "sno-ai/sno-station",
+          "jamro/tiny-engineer",
+          "AmazingAng/old-coder",
+          "angel291592/Intent-Router",
+          "nightly-labs/openbot",
+          "Ayzzz123/mcd-coupon-strategist",
+          "LivXue/dsh-plugin-shop",
+          "whitelonng/dshcode",
+          "agents-universe/agents-universe",
+          "ganeshmshetty/openclip",
+          "logicrw/awesome-jev-projects",
+          "decionis/agent-safe-pipeline",
+          "EverMind-AI/SkillCorpus",
+          "teng-lin/weread-omni",
+          "lencx/Minke",
+          "markfulton/ai-employees",
+          "pizza-bot-app/pizza-bot",
+          "AnotiaWang/awesome-decision-models",
+          "Agenta-AI/awesome-ai-agent-platforms",
+          "LinklyAI/best-skills",
+          "jzjzzzzzzz/agent-me",
+          "emo-xiaoyu/harness-mix",
+          "KimGLee/Cambium",
+          "atria-asi/Atria-Dawn",
+          "criptogus/HermesOffice",
+          "Nehanth/pooled",
+          "AbdelStark/awesome-typesafe-jev",
+          "kydlikebtc/awesome-jev",
+          "kitlangton/scrawl",
+          "agentpit-io/hunter-community",
+          "qunqin24/Pulse",
+          "Xu123-Bob/Baize",
+          "HRuiCcc/RuiC-card-skill",
+          "deerwork-ai/deer-workflow",
+          "hanzohanzhe/Grandet",
+          "only-cli/oc",
+          "sno-ai/sno-station-skills",
+          "lajosdeme/mole",
+          "qybaihe/mu",
+          "KitionAI/kition",
+          "Innei/lody-ios",
+          "0sec-labs/0",
+          "shinthink/blitzstrike",
+          "wanshuiyin/HERO-Anti-OverDefense",
+          "tudoumashu/ai-memory-skillpack",
+          "OnlyTerp/opengrok",
+          "V1ki/dsh-plugin-subscriptions",
+          "Agent-Field/CodeAF",
+          "xbsheng/atguigu-note",
+          "aerovato/operator-memory",
+          "Merit-Systems/OpenInstinct",
+          "SheberDavid/v4-flash-godmode-opencode-go",
+          "Jaxton07/percho",
+          "FuRongJun-1999/dsh-memory",
+          "Sidiora-Labs/hyperfide",
+          "clavia-labs/tardigrade",
+          "RuoJi6/ARTEX",
+          "zj-unicom-ai/UniEmployee",
+          "Eurekaleo/awesome-ai-for-games",
+          "Apeireth/Apeireth",
+          "Dominic789654/awesome-deepseek-harness",
+          "dragonked2/alphacode",
+          "useagenthq/useagent",
+          "jiabaobei/memory-bridge",
+          "CHENG-LIANG1/real-company-interview-ai-coding-projects",
+          "martian56/redcell",
+          "shengsheng90/DSH-taskboard",
+          "humanfia/humanize",
+          "himovo/movo",
+          "AFK-surf/Comma",
+          "zorost/AI-Engineering-Lab",
+          "libukai/awesome-deepseek-harness",
+          "FengZhenfei/carrel",
+          "AlgoNoRhythm/Flare",
+          "Simreal-AI/Simreal-MLBench",
+          "rollroyces/py-idp",
+          "toolclub/dsh-agent-team-gui",
+          "See-Sol-Lab/DeepSeekGUI",
+          "dshplugin/dsh-plugin-hub",
+          "RomanSlack/jev-drone",
+          "pinganbbOvO/ai-companion-kit",
+          "wevm/frog",
+          "longsurf-ai/openchart",
+          "i3T4AN/KADATH",
+          "abacusai/abacusai-bot",
+          "Innate-Labs/Noobi.ai",
+          "HezaoHezao/poirot",
+          "pullboard-dev/pullboard",
+          "Nwflower/dsh-chat-import",
+          "bennyjo/phil",
+          "panaversity/ksor",
+          "libingzheren/Jev-Mem",
+          "SodaMem/SodaMem",
+          "orbi-build/orbi",
+          "converge-ai-labs/agent-foundation",
+          "Fazmin/AILearningGuide",
+          "hewzhew/dsh-agent-rp",
+          "Sidiora-Labs/centra-gideon-agent",
+          "hirotomasato/yowes",
+          "LSPosed/dexsql-release",
+          "bdg9412/artex-ko-plus",
+          "OpenMOSS/OpenETA",
+          "1173591564/Dynamics-memory",
+          "matank001/clodfarm",
+          "Remocn/remocn-studio",
+          "agentsea/nautilo",
+          "FeatherHunter/dsh-mattpocock-skills-deck",
+          "Shellishack/infinite-pokemon",
+          "bradeGithub/DSH-Plugins-Marketplace",
+          "tshemsedinov/reslop",
+          "bojieli/agentreach",
+          "shuyu-labs/transwork",
+          "ueboxai/uebox",
+          "Omni-Scientist/OmniScientist",
+          "eighttrigrams/us-vs-them",
+          "memoket/memoket-kite",
+          "oooscoos/Benzi",
+          "RoversX/ThinkTerm",
+          "callstackincubator/codex-mobile-dev-plugin",
+          "yuyuanweb/ai-ppt-generator",
+          "slow-stack/mneme",
+          "cocode-agency/cocode",
+          "AIpRoBuilder/FlowX",
+          "ZSeven-W/rish-app",
+          "Prism-Shadow/deepseek-harness-book",
+          "bgts-ai-org/bgts-context-engine",
+          "TensorHub-ORG/Coomi",
+          "bybit-exchange/kaas",
+          "sunyuzheng/lizheng-open-context",
+          "apowerb/apowerb",
+          "krishagarwal314/CodeJury",
+          "agent-for-dummys/Agent-For-Dummies",
+          "wanmol/goal-flow",
+          "liyupi/yu-ai-learn",
+          "849879772/recruitops-agent",
+          "microsoft/ArgusAgent",
+          "Cygnux-Labs/Tracekit",
+          "zhoujinjian/ai-testing-guide",
+          "ArihantDeva/heimdall",
+          "runta-dev/errand",
+          "oc8-ai/oc8",
+          "justxor/deepseek-local-guide-ru",
+          "fengzhizi715/YoloWebAgentStarter",
+          "lordx64/pentestkit",
+          "makifbaysal/tasktrooper",
+          "JEen-wang/Adaptive-rag",
+          "888newstep/ai-agent-platform",
+          "deepmemteam/deepmem",
+          "ashishsinha1602/schemagate",
+          "vstorm-co/agenticos",
+          "Eleven617/mall-ai-after-sales-platform",
+          "Omni-Scientist/Awesome-AI-Scientist",
+          "libnyx/LT2MD",
+          "malevrigns/atlas-agent-control-plane",
+          "BkashJEE/hermes-bot-forge",
+          "tntexploding/StruInfo",
+          "libenxier-beep/codex-memories",
+          "rafmacalaba/armada",
+          "kkjiangk/agent-py",
+          "z15114664687-dot/hr-onboarding-agent",
+          "IvenKooLab/loci",
+          "shangguanyunji663/Aegis-agent",
+          "zero11924065-dev/VetarAI",
+          "harryopo/tdsf-terminal-agent",
+          "GGBond121211/CodeInsight",
+          "vigorlee/eidra-agent",
+          "GroundedCore/nexusdesk",
+          "sunmughan/meta-automation",
+          "Sega757/Sovereign-Agent-Swarm",
+          "Sega757/Fast-AtomRAG-Core",
+          "enowdev/antares",
+          "HyxiaoGe/fusion",
+          "Router0824/OpsPilot-AI",
+          "melocream/awesome-llm-study",
+          "RayenMlayeh/jevcrawl",
+          "jaikydota/BullFlow",
+          "12errh/zen-proxy",
+          "beniedev/moonbite",
+          "shauryagangrade/awesome-ai-prompts",
+          "Hao0321/ai-short-drama",
+          "2430816465/campus-knowledge-agent",
+          "zeronezer/bidcraft",
+          "GregorBiswanger/featherspec",
+          "JiahongXu88/PaperTeam",
+          "FareedKhan-dev/agentic-knowledge-graph",
+          "langhost/langhost",
+          "zjy1346/OpenThesis",
+          "Git-on-my-level/self-improving-agent-ecosystem",
+          "deequoique/stashseek",
+          "SuperGODOG/ai-agent-interview-240",
+          "Xwh630/ai-agent-handbook",
+          "zeroaihub/Java-Agent-Study",
+          "ozynautetu-create/FlowForge-Optima",
+          "OmniJev/PlayJev",
+          "genoskietv/AdalFlow-Optimizer",
+          "SYuan03/benchboard",
+          "EricSun0218/OpenGameAgent",
+          "richardChenzhihui/OfficeBuddy",
+          "lna-lab/distill-kura",
+          "cporter202/ai-apis-you-can-ship-today",
+          "Queena34/StudyPilot",
+          "bodepudimuneendra-netizen/laya-jev-GraphRAG",
+          "ikhsan3adi/gemini-web2api",
+          "km1994/AIGC-Interview-Book",
+          "Yts1919/dsh-vision-complete",
+          "duyongan/dots-agent",
+          "laruence/wechatian",
+          "vyact/vyact",
+          "kyungseo/learnstead",
+          "stormwther18/HYSET",
+          "pinkbubblebubble/awesome-rsi",
+          "Past-da-king/agent",
+          "kasumaputu6633/visbridge-mcp",
+          "Lilly-Protocol/agentlily-runtime",
+          "Perruer/keelflow",
+          "ruvnet/dream-machine",
+          "BijectiveLabs/trading-research-agents",
+          "Navinspire-ia/navin",
+          "saghosh8/AI-For-DevOps",
+          "TDK-99/SnapplAI",
+          "cagridursun/agentic-developer-handbook",
+          "Lingikaushikreddy/Settlement-Village",
+          "fabricioctelles/jump-skills",
+          "tradertanmay/ai-agents-zero-to-hero",
+          "tomascupr/reelql",
+          "tayyabimam1/awesome-ai-agent-stack",
+          "Gen-Verse/DFM-Plans",
+          "irraz/vulnerator-ai",
+          "chetannada/Namaste-AI",
+          "vrajpal-jhala/langgraph-harness",
+          "Mohamed-Elgaraihy/Modawen_Agent-For-Wordpress",
+          "susyimes/species-public",
+          "JoasASantos/NeuroPurple",
+          "lawrencewzen/pi-vlm-proxy",
+          "Kaiden118/RunSleuth-Evidence-Grounded-ML-Training-Failure-Diagnosis-and-Repair-Verification",
+          "s0lda/hadron",
+          "weidutech/PentestPi",
+          "maddness/agent-research-radar",
+          "mchittineni/ultimate-ai-engineering-guide",
+          "kissshhot/Awesome-OPD",
+          "wundercorp/loki",
+          "Dicklesworthstone/dwarf_fortress_mcp",
+          "cromford-ai/cromford",
+          "LuxorLabs/jardinero",
+          "liaosiliangCodeLife/harness-mate-plat",
+          "khordoo/jev-reflex-autonomy-lab",
+          "cobusgreyling/Muse-Glimmer",
+          "Cyrax321/CONTINUUM",
+          "xiayiyang831xyy/AITC-Studio",
+          "ac1261692159/candela",
+          "ShengjieJin/ReSAIL",
+          "cloudcell/gnosislab",
+          "Little-Fridge/ViewCraft",
+          "JustVugg/anybridge"
         ],
-        "method": "llm",
         "metrics": {
           "comparable": true,
-          "recent": 0,
-          "previous": 0,
-          "change_pct": null,
+          "recent": 9,
+          "previous": 21,
+          "change_pct": -57.1,
           "signal": "同类聚集",
-          "members": 3,
+          "members": 413,
           "undated": 0,
           "recent_start": "2026-10-14",
           "previous_start": "2026-10-07",
@@ -98752,44 +99494,658 @@
         }
       },
       {
-        "title": "会话级分级任务协议与治理门控",
-        "mechanism": "项目在会话内定义从脑暴→计划→执行→验收的显式任务协议，并叠加红队门、审计端点和打卡制，把“怎么做”结构化、可测量、可回溯。共同点是：把 agent 的行为过程固化为带治理的步骤序列，而非自由生成。",
-        "inspiration": "可探索：分级协议能否外化为团队级治理框架，结合审计日志实现跨会话的合规追溯。",
+        "title": "图像生成",
         "members": [
-          {
-            "repo": "yjh051108/dsh-routing-suite",
-            "sources": [
-              "R2",
-              "R3",
-              "R4",
-              "R8"
-            ],
-            "why": "提供会话级两级任务协议（脑暴选择题对齐→北极星定稿→规格化计划→按规格注入→打卡制→组收官→终验）+ 红队门 + 审计端点。"
-          },
-          {
-            "repo": "miqdadbadjuber/anti-slop",
-            "sources": [
-              "R1",
-              "R18"
-            ],
-            "why": "三层规则（Hard Gate、Purpose Gate、Quality Locks）在动作前评估意图、工具使用和输出特征，控制 agent 行为边界。"
-          },
-          {
-            "repo": "microsoft/skill-recorder",
-            "sources": [
-              "R3"
-            ],
-            "why": "录制屏幕活动，分析阶段重构为意图和步骤序列，最终生成可执行的 Skill 文件，把手工操作固化为结构化技能。"
-          }
+          "Niko1221/Strata",
+          "miuuyy/codex-chatgpt-web",
+          "trycompai/crm",
+          "miqdadbadjuber/anti-slop",
+          "amagine-ai/Amagine3D",
+          "s1dashu/ip-as-logo-skill",
+          "ARahim3/DigUp",
+          "kaankiziltug/logo-design-skill",
+          "nateherkai/scroll-craft",
+          "Oldcircle/geo-sleuth",
+          "Arekejoker/qwen21-nsfw-pose-skill",
+          "yanliudesign/mono-color-skill",
+          "shadcn-ui/lint",
+          "Appllama/appllama-skills",
+          "chengyi-ai/native-subtitle-quote-image",
+          "xzf-thu/VoiceMem",
+          "AIMixer/ComfyUI_MiniMaxH3_Director",
+          "deeplethe/solid-glass",
+          "Inkloom-art/inkloom",
+          "Leonxlnx/earshot",
+          "oil-oil/oil-ui",
+          "achimala/dream-loop",
+          "feder-cr/git-ai",
+          "Anionex/agent-vision-toolkit",
+          "OpenMOSS/MOSS-Image",
+          "ysr666/dsh-vision-router",
+          "Pan-Chera/Multi-Agent-CAD",
+          "kgoedecke/doop",
+          "worldbench/DiffusionOPSD",
+          "whitecircle/halo",
+          "wangzhishou/OneBox",
+          "thesysdev/open-intelligent-ui",
+          "amitshekhariitbhu/ai-system-design",
+          "calmrocks/ai-engineer-notebooks",
+          "shanliuling/dsh-image-gen",
+          "GTKottman/mortiflix-oss",
+          "youart-open-source/awesome-gpt-image-2-5-prompts",
+          "Sidiora-Labs/Paxeer-X-Network",
+          "amitshekhariitbhu/ai-engineering-course",
+          "Luisacaotica/ComfyUI-MiniMaxH3Mod",
+          "op7418/guizang-yingzao-skill",
+          "modelscope/ms-cookbook",
+          "BaYue-SYJ/shuixian-prompts",
+          "wnby/photo-relic-editorial",
+          "cocofhu/grasp",
+          "six-nut/PocketMen-with-you",
+          "Blueforcer/ComfyUI-DLSS5-Enhancer",
+          "yuyuanweb/ai-picture-editor",
+          "duckyshell/ComfyUI-MiniMaxH3-Prompt-Writer",
+          "tettethu/VibeGame",
+          "heaven999b/hello-agent-system",
+          "Sateezg/codex-bridge",
+          "Saganaki22/ComfyUI-VDN-H3",
+          "Work-Fisher/ComfyUI-Fisher-Pose",
+          "SnowSky1/universal-imagegen-agent",
+          "WSL043/dsh-codex-subscription",
+          "filliptm/ComfyUI-FL-YuE2",
+          "hitkeeen/blender-ai-addon",
+          "astropuzzo/ComfyUI-MiniMax-H3-Image-Studio",
+          "MirroS-Lab/AgentGarten",
+          "speridlabs/iris-3b",
+          "veda-sparse/Veda-on-ComfyUI",
+          "iamyoki/qwen-image-2.1-skill",
+          "bamboostrip/Handwriting-simulator",
+          "KaiWU5/Awesome-AI4AI",
+          "OmniJev/OneJev",
+          "GENEXIS-AI/gpt-image-skill",
+          "Kai-Jungsthoefel/SOMA",
+          "GabrieleLozupone/kokon",
+          "inikolax/remiqora",
+          "ZSeven-W/dsh-crew",
+          "Vieeeeeee/wibi-style",
+          "sIlENtbuffER/Generative-Models",
+          "wildminder/awesome-qwen-image",
+          "ralksta/ComfyUI-Photoshoot",
+          "ashukae/ComfyUI-MangaScreen",
+          "zylwithxy/HRDiT",
+          "apimart-66/ai-api-aggregator",
+          "Buffalo2024/Rulora",
+          "Zhou-Yujing114514/deepseek-harness-linux",
+          "apimart-API-Gateway/grok-image-api",
+          "DenRakEiw/scumble",
+          "amirmushichge/brand-system-skill",
+          "apimart-66/openai-compatible-api-migration-kit",
+          "apimart-awesome-ai-api-proxy/nano-banana-pro-api",
+          "Konohamaru04/ComfyUI-NVIDIA-DLSS-Frame-Interpolation",
+          "apimart-API-Gateway/grok-imagine-api",
+          "sa-san10/rimochan-nyamuru-manga-forge",
+          "ZinYY/AdaFlash",
+          "joeseesun/qiaomu-codex-imagegen",
+          "apimart-awesome-ai-api-proxy/nano-banana-pro-prompts",
+          "dacnay816y62-hub/fantasy-qiqiguaiguai-skill",
+          "100yenadmin/fish-audio-hermes",
+          "kwhi6693-web/photo-abstract-editorial",
+          "T-Crypt/berth",
+          "chanon/comfyui-obvpm",
+          "SimpleJev/JevAny",
+          "Jit-Roy/WeeLLM",
+          "To3akaRin/VLMForge",
+          "jiahuiqu17/paper-signal",
+          "callirra-ai/gpt-image-2-5-prompt-atlas",
+          "Stormycry-cryp/dsh-AuthInOne",
+          "mingzitaichangduozaishuhoumian/chat2claude",
+          "henryhyw/slidepoise",
+          "AcademiaSD/AcademiaSD_LoRAlab-TrainerStudio",
+          "shixinnt/codex-image-context-runtime",
+          "Saganaki22/ComfyUI-Breeze-TTS-2",
+          "sgp2hidyk7jm/flux2-flux-2-prompts",
+          "omnichar/ComfyUI-Omnichar",
+          "oil-oil/dsh-vision",
+          "xlba2khlnrdsd8f/seedream5.0-seedream-5.0-api",
+          "AbrahamPaulJ/nightmare-mobile",
+          "ozguradmin/ahenk-turkish-tts",
+          "PedroMarinhoDev/ComfyUI-Drama3",
+          "twp0wh4xm56p6lc3/flux2-flux-2-gateway",
+          "bx0idu7sqebwpgu8/grokimagine2.0-grok-imagine-2.0-prompts",
+          "cqk4s1t/gptimage2.5-gpt-image-2.5-api",
+          "jplenio/ComfyUI-MiniMax-Music-Production-Toolkit",
+          "GuiYi-Xi/infinite-atelier",
+          "swping999/scene-card-studio",
+          "Sega757/meta-core",
+          "Sega757/Adaptive-AtomRAG",
+          "nj4naiem992lmr/seedream5.0-seedream-5.0-prompts",
+          "ZSeven-W/codex-openpencil",
+          "hmpg3ugc/gptimage2.5-gpt-image-2.5-prompts",
+          "qh7wn6hrf9tx/qwenimage3.0-qwen-image-3.0-prompts",
+          "pixelartistry/PixelArtistry-Watertight-Meshes",
+          "AmazingDraw/AmazingDraw",
+          "nmkshs742wz1yrh/nanobananapro-nano-banana-pro-4k",
+          "qr664tnsxq0eyn4v/nanobananapro-nano-banana-pro-gateway",
+          "fjaefshg9/flux2-flux-2-api",
+          "lfzgvaqci0occqg/qwenimage3.0-qwen-image-3.0-gateway",
+          "nevertoday/xxd-panel-028",
+          "k2c2gbd1pqdj01wo/grokimagine2.0-grok-imagine-2.0-api",
+          "ArrozDotachi/InvokeAI-Windows-Setup-Guide",
+          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ja",
+          "ga7ycgew/grokimagine2.0-grok-imagine-2.0-2k",
+          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api",
+          "YeamimHossainSajid/CodeMonk",
+          "ydfqphoks5738xo/seedream5.0-seedream-5.0-gateway",
+          "apimartore3/grok-imagine-2.0-ext-reverse-api-pt",
+          "apimartx/grok-imagine-2.0-ext-reverse-api-ja",
+          "apimartf0n/grok-imagine-1.5-ext-reverse-api-cn",
+          "apimartkjp84/grok-imagine-image-2.0-api-ja",
+          "apimartmr8yx2qg/grok-imagine-1.5-edit-ext-reverse-api-fr",
+          "apimartjk2mb7hx/gpt-image-2-ext-reverse-api-de",
+          "apimartbnv6wl16d/flux-kontext-ext-reverse-api-de",
+          "apimartl/nano-banana-ext-reverse-api-es",
+          "apimarthklu96f/nano-banana-2-lite-ext-reverse-api-cn",
+          "apimarth/gpt-image-2.5-ext-reverse-api-id",
+          "apimarttv/flux-kontext-ext-reverse-api-cn",
+          "apimartogd4o/grok-imagine-1.5-edit-ext-reverse-api-ru",
+          "rhfeiyang/HC-DLM",
+          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-cn",
+          "azle5biyd9td956/z-image-turbo-api-cn",
+          "apimartug3/grok-imagine-1.5-edit-ext-reverse-api-cn",
+          "apimartb1r/nano-banana-ext-reverse-api-id",
+          "apimartoy243w/nano-banana-ext-reverse-api-ja",
+          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ja",
+          "coleygroup/shepherd2",
+          "apimartjx02t2cb/gemini-3.1-flash-image-preview-official-api-ja",
+          "gkdh0uepxud4b/gptimage2.5-gpt-image-2.5-4k",
+          "apimartmz0cfw/grok-imagine-1.5-ext-reverse-api-es",
+          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-es",
+          "apimartc/grok-imagine-1.5-ext-reverse-api-fr",
+          "apimartri/nano-banana-2-ext-reverse-api-pt",
+          "apimartlzras0rk/gpt-image-2-official-api-ja",
+          "apimartbv/gemini-3-pro-image-preview-official-api-cn",
+          "apimartlzras0rk/gpt-image-2-official-api-ko",
+          "apimarto5ma0x/nano-banana-2-lite-ext-reverse-api-de",
+          "apimartl/nano-banana-ext-reverse-api-de",
+          "apimarth/gpt-image-2.5-ext-reverse-api-fr",
+          "apimarte/grok-imagine-1.5-edit-ext-reverse-api-de",
+          "apimartwmdnevht/grok-imagine-1.5-ext-reverse-api-ko",
+          "DandreYang/local-image-gen",
+          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-pt",
+          "apimartpcl9k6o1r/grok-imagine-1.5-edit-ext-reverse-api-ja",
+          "apimartri/nano-banana-2-ext-reverse-api-ru",
+          "apimarts1t/grok-imagine-2.0-ext-reverse-api-cn",
+          "janishar/qwen-image-2.1-studio",
+          "apimartyr1ot/gemini-2.5-flash-image-preview-official-api-fr",
+          "apimartg3/gpt-image-2.5-ext-reverse-api-ja",
+          "apimartoh/gemini-3.1-flash-image-preview-official-api-cn",
+          "apimartkjp84/grok-imagine-image-2.0-api-ko",
+          "apimartpg9/nano-banana-2-ext-reverse-api",
+          "apimarts7ese/nano-banana-2-ext-reverse-api-es",
+          "mehmetbulutaktas458-dev/Aozora-Forge",
+          "Saganaki22/ComfyUI-Hyperflow",
+          "TKY-27/iris-3b-metal",
+          "apimartx34tmfg46/flux-kontext-ext-reverse-api-ja",
+          "apimartywdtp3/nano-banana-2-ext-reverse-api-ko",
+          "apimartle1u4rgu4/gpt-image-2.5-ext-reverse-api-ru",
+          "angelmariserg-glitch/diffusion-forge-lab",
+          "misCandijay2025/lora-forge-alibaba-cloud",
+          "KingHsp/vram-sage-training",
+          "njgymb/diffusers-sculptor",
+          "R0650N/spirit-flux-refiner",
+          "nrodriguez1997/lora-docker-aliyun-pipeline",
+          "kinzaaliakbar18u-netizen/flux-lora-forge",
+          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ko",
+          "apimartlw69qg/grok-imagine-image-2.0-api-cn",
+          "Anil-matcha/Nano-Banana-2.1-API",
+          "dataPro-lgtm/fde-interview-fieldbook",
+          "apimartg583b51/flux-2-max-api-fr",
+          "apimartbv/gemini-3-pro-image-preview-official-api-fr",
+          "Tranz007/ux-skills",
+          "t9hid1p6ue2a/z-image-turbo-api-ko",
+          "t9hid1p6ue2a/z-image-turbo-api-ja",
+          "ThetaCursed/TinyLuma",
+          "chyp3r/KACHOW-Teknofest-2026",
+          "dlazy-ai/ecommerce-skills",
+          "alexw5702-afk/krea2-anypaint",
+          "apimartg583b51/flux-2-max-api-cn",
+          "azle5biyd9td956/z-image-turbo-api-fr",
+          "whmc76/ComfyUI-NVIDIA-RTX-VSR-Pro",
+          "sparklingcoffee777/ComfyUI-Anima-2.9B-loraPatch",
+          "sunxin-ai/dsh-design-qa",
+          "apimartoh/gemini-3.1-flash-image-preview-official-api-fr",
+          "tamanitomo/tamanitomo",
+          "PedroMarinhoDev/ComfyUI-HunyuanImage3",
+          "apimartlt3f/gemini-2.5-flash-image-preview-official-api-ko",
+          "hiroki-abe-58/ComfyUI-DBS",
+          "Greninja9257/LabLLM",
+          "sunyifeng11111/sun-felt-wechat-illustrator",
+          "See-Sol-Lab/Picxel",
+          "Icbears/minimax-h3-v100-patch",
+          "apimarte80m2k/gemini-3-pro-image-preview-official-api-ja",
+          "VectorSpaceLab/InfoVis",
+          "apimartstev/gpt-image-2-official-api-cn",
+          "lzs0594/dreamy-motion-editorial",
+          "nickotmazgin/fluentvoice-pro",
+          "HECer/ComfyUI-DLSS5",
+          "HoppouAI/Breeze-TTS-2.cpp",
+          "KuOnoda/AutoRef",
+          "aaalll12322/ComfyUI-MiniMaxH3-SolAttn-V100",
+          "sjh9714/krea2-wildcards",
+          "jiemianduan/image-to-prompt",
+          "rakshazi/krea2-prompting",
+          "shanliuling/meme-sticker",
+          "YogurtJ/pivane",
+          "apimart00-12/grok-imagine-2-api-cn",
+          "apimart-223/flux-2-api-ja",
+          "apimart-2dwad/flux-2-api-fr",
+          "apimart-1123/z-image-api-ko",
+          "fengyungithub/dsh-short-video-studio",
+          "beckettharriman/gimp-openfill",
+          "piskie-dev/piskie",
+          "Encephos/markdown-link-resolver",
+          "wu529778790/freeimg.shenzjd.com",
+          "wwjjqq888888-pixel/nanfeng-h3-comfyui",
+          "0toshigami/orbis-pictus",
+          "apimart-ww1/seedream-5-api-cn",
+          "AtlasCloudAI/awesome-gpt-image-2.5-prompts",
+          "apimart-1sww/qwen-image-3-api-cn",
+          "mozophe/ComfyUI-Qwen-Image-2.1-PromptEnhancer-MTP",
+          "fth1905-bot/ComfyUI-Civitai-Browser",
+          "fry-haha/image-words",
+          "walkinglabs/hands-on-world-models",
+          "apimart-ss223w/seedream-5-api-ko",
+          "Technicalflight/image-prompt-reverse",
+          "pixelsncodes/GesturePortal",
+          "Mr9esx/Pixoma",
+          "apimart-988/nano-banana-2-api-ja",
+          "overflowofedge/ComfyUI-Qwen-Watermark",
+          "DevNullInc/RenegadeCMM",
+          "barbarabax/sonora-studio",
+          "T8mars/Comfyui-SenseNova-U1.5-Wrapper-T8",
+          "Neon-Sparks/ComfyUI-NeonsStyleExplorer",
+          "T8mars/comfyui-fireredaudio-T8",
+          "mirzayasirabdullahbaig07/AURA-Alpaca-AI-Project",
+          "windforce19820520-ai/visual-ontology-constraint-engine",
+          "TheLocalLab/ComfyUI-SongScribe",
+          "o-l-l-i/ComfyUI-Olm-SoL-Refiner",
+          "Saganaki22/FireRedTTS3-ComfyUI",
+          "petrel-cn/prompt-generator",
+          "MengXinSu/LocalDream-Operit-Plugin",
+          "yanfei0725/dsh-qwen-paint",
+          "Ornn8/bside-olivia-community"
         ],
-        "method": "llm",
         "metrics": {
           "comparable": true,
-          "recent": 0,
+          "recent": 10,
+          "previous": 14,
+          "change_pct": -28.6,
+          "signal": "同类聚集",
+          "members": 278,
+          "undated": 0,
+          "recent_start": "2026-10-14",
+          "previous_start": "2026-10-07",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      {
+        "title": "视频生成",
+        "members": [
+          "hypit-ai/hypit",
+          "yihui-dev/awesome-opus5-5-videos",
+          "lemomo-ai/lemo-opuscar",
+          "feitangyuan/onetake",
+          "Vincentwei1021/anything2explainer",
+          "LearnPrompt/awesome-seedance",
+          "coldteadotai/pr-lens",
+          "edenfunf/reelmimic",
+          "Vincentwei1021/video-talkcraft",
+          "openfilm/openfilm",
+          "glanderness/BeefTV",
+          "ant-research/4DAnyone",
+          "NikoDemon80/ComfyUI-H3-Motion-Context",
+          "scenario-labs/skills",
+          "Bingeljell/image-to-3dlab",
+          "Junchao-cs/SolarWM",
+          "Aryanutkarsh/SeeCode",
+          "alesha-pro/tools",
+          "vincentsch/explainroo",
+          "scenario-labs/blender-plugin",
+          "Yzw202011/OmniSpace",
+          "Carasibana/ComfyUI-H3-FaceRefine",
+          "Mr-funny/hbg-classical-poem-silk-video",
+          "sitor-ai/frametell",
+          "liyupi/ai-promo-video-maker",
+          "apiframe-ai/seedance-2.0-api",
+          "seesee75-commits/ComfyUI-MiniMaxH3-Director",
+          "MirroS-Lab/HarnessEval-W",
+          "SkyNotSilent/awesome-MiniMax-H3-cases",
+          "JGRFW/comfyui-AICG3D",
+          "FavioVazquez/showtime",
+          "benjiyaya/Calliope",
+          "LynnReal-AI/LynnReal-Omni",
+          "Luciole-Studio/Misaka-Agent",
+          "hasso5703/dgx-spark-qwen38",
+          "BeatAPI/BeatDesign",
+          "Yzmblog/DMAD",
+          "BeatAPI/awesome-minimax-h3-prompts",
+          "suihe1/short-drama-production",
+          "OneMoh/html-explainer",
+          "Heroesjouney/AIMovieStudiov2",
+          "Zzz1phyrf/ComfyUI-H3-LongVideo",
+          "vanzll/DiffusionART",
+          "Saganaki22/ComfyUI-sol-attn",
+          "Rylaispirit/cinematic-video-prompt-skill",
+          "drowzeys/Imagination-Studio-by-keys-Wasserman",
+          "apimart-api-ai-Aggregator/seedance-2.0-api",
+          "karuvanan/MiniMax-H3-Director-Cut-Studio",
+          "Shuo-Liang-0111/RA-Bench",
+          "apimart-api-ai-Aggregator/seedance-2.5-api",
+          "rookiestar28/ComfyUI-MiniMaxH3-Studio",
+          "notivn/AIEV",
+          "j955229/ComfyUI-MiniMax-H3-Motion-Director",
+          "Saganaki22/ComfyUI-Viggle-Animate-H3",
+          "unknowlei/minimax-h3-opencode-skills",
+          "agent-next/video-agent",
+          "ruashots/open-h3-ir",
+          "Rimcat-JA/blockvideo",
+          "htobty/ReadyLLM",
+          "ejsyk3xdp3t2o/wan3.0video-wan-3.0-video-api",
+          "iyqhcef3ffn/hailuo2.3-hailuo-2.3-gateway",
+          "ovdtze56q1zgksb4/kling3-kling-3-prompts",
+          "ok66oqyea0fi8zqv/seedance2.5-seedance-2.5-api-cn",
+          "saihhold-zhao/polox_ai",
+          "MajoorWaldi/ComfyUI-Majoor-OmniCam",
+          "0xS4N4TG/papercut-explainer",
+          "SupercmoHQ/superCMO-skills",
+          "gslsvt43llzsaw/wan3.0video-wan-3.0-video-prompts",
+          "ki0ti51/kling3-kling-3-api",
+          "xcb1lkup/seedance2.0-seedance-2.0-api",
+          "ZeamoxWang/pdmd",
+          "lshhhhhhh/ai-school-op",
+          "chiphoton/DeepSeek-Harness-Video-Director",
+          "delaprada/Mask-Forcing",
+          "ik29kerqejooyj/hailuo2.3-hailuo-2.3-api",
+          "ausboss/ComfyUI-AusBoss",
+          "hhad58x5d3nht3a/seedance2.0mini-seedance-2.0-mini-api",
+          "j7ts80q4tkx1ism4/wan3.0video-wan-3.0-video-gateway",
+          "vsm67u54g4j/seedance2.5-seedance-2.5-1080p",
+          "d3qqcegqn5bf1aco/seedance2.5-seedance-2.5-gateway",
+          "xfeqaolq2ovnv/seedance2.5-seedance-2.5-prompts",
+          "n395cux/seedance2.0-seedance-2.0-4k",
+          "mkamranr/reelforge",
+          "imbutus/ComfyUI-MiniMaxDirector",
+          "XRSPACE-Inc/perxona-connect-kit",
+          "xixihhhh/ai-short-drama-skill",
+          "tristmeister/HEISS-UI",
+          "chiphoton/MiniMax-H3-Codex-Drama",
+          "worldbench/awesome-agentic-world-model",
+          "liyupi/ai-desktop-outfit-video",
+          "Cripacx/mediagen",
+          "maosika-ai/reshot",
+          "Okohedeki/scroll-studio",
+          "tomatoparkdao/omniailab-ai-director",
+          "PotionUI/PotionUI",
+          "worldbench/Orbia",
+          "guangjun5952/minimax-h3-broll-generator",
+          "jnMetaCode/openshorts",
+          "anisayari/sparky",
+          "animede/Realtime_Narration_Video",
+          "LaplaceYoung/dsh-directorx",
+          "sonlovinbot/Muse-animated-short-film",
+          "liyupi/niulai-video-generator",
+          "ethanfel/ComfyUI-H3-Prompt-IDE",
+          "mini-yifan/open-source-video-gen-skill",
+          "ZenHG/ComfyUI-H3-Latent-Relay",
+          "ruashots/ComfyUI-OpenH3-IR",
+          "buqi-code/buqi-minimax-h3-multigpu",
+          "supElement/ComfyUI_MinimaxH3_AutoContext",
+          "sepiablue-ai/ComfyUI-H3-X2-Stream",
+          "aashish254/Aniflow",
+          "jakemanger/whatmodel",
+          "appautomaton/mlx-h3",
+          "Backboard-io/Backboard-Desktop",
+          "webkubor/museav-cli",
+          "akatz-ai/h3-relay",
+          "orylite/lindyson-ai",
+          "Deen-Media/dgx-monarch",
+          "AI-KSK/aiksk-minimax-h3-local-prompt",
+          "ModelTC/LightVAE",
+          "sadekxD/cardstock-diorama-myth",
+          "b3b41020/free-multimodal-proxy",
+          "lcy362/free-short-video-studio",
+          "IvenKooLab/comfy-agent",
+          "apimart-13e42/veo-3.1-api-ja",
+          "BeatAPI/awesome-seedance-2-5-prompts",
+          "JerrIsTheBesta/AI-Short-Drama-Studio",
+          "apimart-ww/seedance-2.0-mini-api-cn",
+          "klsoen/opus-js-animations",
+          "erhanmeydan/kilnframe",
+          "apimart-232ww/wan-3.0-video-api-fr",
+          "underworldhistory1-ctrl/minimax-h3-higgsfield",
+          "apimart-w1/wan-3.0-video-api-cn",
+          "cvlab-kaist/GRACE",
+          "vakovalskii/nd-video-studio",
+          "apimart-2wsd2/hailuo-2.3-api-ja",
+          "L-Trunks/ai-film-skills",
+          "ZhuYichuan/infinite-canvas",
+          "siyuan-liu31/minimax-h3-video-studio",
+          "EvolvingLMMs-Lab/MacOS-H3-Speedrun",
+          "vediograph-wuzhijing/videograph-validation",
+          "apimart-32w/seedance-2.0-mini-api-ja",
+          "APImart-23ww/kling-3-api-ko",
+          "bo961386926/manga-studio",
+          "Anil-matcha/awesome-uncensored-ai-video-models",
+          "fanchengchen1-collab/super-director",
+          "apimart-sc/kling-3-api-cn",
+          "Anil-matcha/awesome-minimax-h3-prompts",
+          "wubin1836/ai-hive-agent-skills",
+          "travelmapworld/avatar-speak-pro-download",
+          "spicyapi-ai/comfyui-spicyapi",
+          "GravityVerseYield47/flux-ai-works"
+        ],
+        "metrics": {
+          "comparable": true,
+          "recent": 1,
+          "previous": 8,
+          "change_pct": -87.5,
+          "signal": "同类聚集",
+          "members": 152,
+          "undated": 0,
+          "recent_start": "2026-10-14",
+          "previous_start": "2026-10-07",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      {
+        "title": "语音/音乐",
+        "members": [
+          "QwenAudio/qwen-audio-agent",
+          "kajisho5/ffmpeg-skill",
+          "leemysw/yovoice",
+          "Tencent-Hunyuan/AuK",
+          "maxrave-dev/kotlin-footguns",
+          "HanyuanWang/LiveStream-Agent-Studio",
+          "autonomous-ai/openharness",
+          "ThinkOffApp/CarWatch",
+          "NoizAI/HelixWorld",
+          "tornikegomareli/Talkify",
+          "Code-Amadeus/Amadeus",
+          "Johnson-Durui/Companion-Space",
+          "TaoLiveAIGC/TLive-Omni",
+          "assafkip/claudemy",
+          "allmodels-io/hermes-speech",
+          "chenkanglin198904/Personal_External_Brain",
+          "sobranie2406/modureader",
+          "nyosegawa/speech.cpp",
+          "nari-labs/nari-qwen3-tts",
+          "christos-antono/NPCTalk",
+          "callebtc/sayit",
+          "Sallyn0225/eidolon-sc",
+          "Verlintas/BetterAIChat",
+          "Cuongyd196/cit-voice-studio",
+          "mat-nolen/tldr-radio",
+          "ShadowSafin/AndroLLM",
+          "sahilmahendrakar/paradee",
+          "Quor-a/ZorvAI",
+          "vahmoh25/Veda",
+          "recepyagmur/EnglishPractice",
+          "jaredrhod/backtalk",
+          "PolinniZhong/omi-read-aloud",
+          "PolinniZhong/dsh-omi-voice",
+          "swax/dub-anything",
+          "NguyenSiTrung/VieNeuTTSApp",
+          "ayutaz/sanoTTS-jp",
+          "jceronch1/Clonar-voz",
+          "NanmiCoder/creator-pipeline",
+          "phucnguyentvp1/frameweaver",
+          "wiringai/mod_earshot",
+          "wavtechyukky/LeapSinger",
+          "shikki841/inaudio",
+          "Sujit273-cpu/rep-forge",
+          "lzynb0206/WeChat-iLink-Multimodal-Bot",
+          "xujialiu/Zotero-OpenReader",
+          "JJosephph/ms-edge-tts-gui",
+          "webkubor/reel-kit",
+          "pegainfer-project/pega-omni",
+          "tlack/babytalk",
+          "Mudb0y/openevv",
+          "stronghamjji/PersoDub",
+          "lintsinghua/paint-mv-skills",
+          "C4rohan/Lampline",
+          "team-telnyx/medical-pronunciation-dictionary",
+          "franciscocarloserra/ttslibre",
+          "tanviet12/sano-sach-noi",
+          "SueliHora/fofoca",
+          "gonzalo-cordova-pou/voice-ai-benchmarks",
+          "synrise25/rss-pod",
+          "alenisaw/awesome-kaz-models",
+          "zanbinxu/shuting",
+          "lokutor-ai/ito",
+          "1624318455/dsh-plugin-tts",
+          "francordel/myrtia",
+          "loudreader/loudkit",
+          "vincenzo-afk/MAYA",
+          "agencyenterprise/jev-recipes",
+          "ictinnovations/asterisk-ai-voice-agent",
+          "saravanaspar/F.R.I.D.A.Y",
+          "weslocke/ED-Outrider",
+          "fitnessgymlife/Awesome-ki-audio-automation-de",
+          "VORNEX-01/JARVIS-VORNEX",
+          "Tahirpathan-AiLab/Athena_RAG_Intelligence",
+          "qishuilalala/dsh-voice-mode"
+        ],
+        "metrics": {
+          "comparable": true,
+          "recent": 4,
+          "previous": 2,
+          "change_pct": 100.0,
+          "signal": "样本内加速",
+          "members": 74,
+          "undated": 0,
+          "recent_start": "2026-10-14",
+          "previous_start": "2026-10-07",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      {
+        "title": "模型/推理/微调",
+        "members": [
+          "NandhaKishorM/laya",
+          "deepseek-ai/DeepInfer",
+          "jaredpalmer/kev",
+          "FareedKhan-dev/kimi-k3-in-c",
+          "mizorewww/laya-mlx",
+          "bojieli/ai-infra-book",
+          "yibie/awesome-jev",
+          "Folkbench/folkbench",
+          "datawhalechina/zero-to-sglang",
+          "nokia-applied-research/AnyJev",
+          "mw00/project-maya",
+          "panxunying/ai-coding-welfare",
+          "zachahn/vomit",
+          "YeonwooSung/llm-architecture-from-scratch",
+          "peonist-ai/halogen-flash-server",
+          "LosaLosSantos/aurelio-finance",
+          "patchy631/time-to-first-token",
+          "Edwardxlai/easyread",
+          "receptron/laya",
+          "xinxuxin/keystone-bench",
+          "gufo-org/gufo",
+          "aigclink/geolook",
+          "cobanov/PS5LM",
+          "whirlchat/whirl",
+          "OmniJev/awesome-jev-gallery",
+          "Han-1413141/dsh-cost-meter",
+          "amitshekhariitbhu/llm-inference-engineering",
+          "liyupi/ai-model-world",
+          "udaysharmadev/Not-Ai",
+          "Dreamer-Toby/STEPQuant",
+          "FoShmily/ai-paper-system",
+          "ForeverBlue816/PrismQuant",
+          "antonkarasbiz/littleaibox",
+          "Trunks820/Yuntu",
+          "Oeditus/yoke",
+          "NiuTrans/RL-without-Tears",
+          "iamarxs/AnyWorld",
+          "ruvnet/ai-text-watermark",
+          "1667-ai/1667",
+          "shyringo/deepseek-v4-flash-0731-in-c",
+          "Bifrostapi/ai-api-examples",
+          "zero2005x/ipasAI",
+          "Tahirpathan-AiLab/Evaan_Personal_Intelligence_Engine",
+          "shyringo/qwen3.8-flash-next-in-c",
+          "shyringo/qwen3.8-27b-in-c"
+        ],
+        "metrics": {
+          "comparable": true,
+          "recent": 1,
           "previous": 0,
           "change_pct": null,
           "signal": "同类聚集",
-          "members": 3,
+          "members": 45,
+          "undated": 0,
+          "recent_start": "2026-10-14",
+          "previous_start": "2026-10-07",
+          "end_exclusive": "2026-10-21"
+        }
+      },
+      {
+        "title": "RAG/知识库",
+        "members": [
+          "Tencent/WeMM-Embedding",
+          "crow-hq/llm-wiki-v2",
+          "jsdhwfmax/EvalForge",
+          "cdcailf/cjkfold",
+          "Sreehari05055/thesys-core",
+          "VectifyAI/jev-doc-search",
+          "aru-labs/lossless-memory",
+          "salikhussain71-code/PAKGOV-RAG-project",
+          "MiaoWuNYA/rikkahub-sillytavern-android",
+          "fyfsxkh/TokBrain",
+          "Soren-ABT/dsh-knowledge",
+          "lichuang/semquery",
+          "huihuijiangqiang/moshu",
+          "AI4CharityPL/kancelaria-lex",
+          "AbdoslamB/InkDoc",
+          "arnsri33/embedflow",
+          "unitedrhino/docling",
+          "cjxxx222/quizforge",
+          "lattifai/awesome-EmbeddingGemma",
+          "axem-solutions/shaide",
+          "shengjidaguai-china/xiaoguan",
+          "p10node/docflare-ai",
+          "noyce6983981-max/ocr-vlm-local-retrieval",
+          "paulknysh/raggy",
+          "OceanOver/Tomechat"
+        ],
+        "metrics": {
+          "comparable": true,
+          "recent": 0,
+          "previous": 5,
+          "change_pct": -100.0,
+          "signal": "同类聚集",
+          "members": 25,
           "undated": 0,
           "recent_start": "2026-10-14",
           "previous_start": "2026-10-07",
@@ -98797,15 +100153,12 @@
         }
       }
     ],
-    "cluster_status": "ready",
-    "cluster_cache_key": "e88702440146b73fb47f4ddba4773cc7a4de461128cab5240647cf662263f7ee",
-    "candidates": [],
     "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
   },
   "translation": {
     "existing_zh": 184,
-    "cached": 0,
-    "translated": 825,
+    "cached": 825,
+    "translated": 0,
     "failed": 0
   }
 }
