@@ -59734,7 +59734,10 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "pending",
+      "description_zh": "Fast-AtomRAG-Core 项目",
+      "translation_cache_key": "4f0a5e42ab591d019eeac2d2dadb7d38e405e4d90747e9020b761a432ec17668",
+      "translation_provider": "bing"
     },
     {
       "id": 1386051053,
@@ -77534,7 +77537,10 @@
         "https://raw.githubusercontent.com/chyp3r/KACHOW-Teknofest-2026/HEAD/assets/screenshots/5.png"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "pending",
+      "description_zh": "Teknofest 2026 自然语言智能体竞赛第一场景中开发的公共部门多 AI 智能体 SaaS 系统，用于正式文件分析和草稿生成。",
+      "translation_cache_key": "320a41ace8461ed35f3c836123bbb593d9b297fc675ae87da25ed33f188d444f",
+      "translation_provider": "bing"
     },
     {
       "id": 1388459267,
@@ -93685,7 +93691,10 @@
         "https://raw.githubusercontent.com/APImart-23ww/kling-3-api-ko/HEAD/assets/01-preview-thumb.jpg"
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "pending",
+      "description_zh": "Kling v3 API 韩语指南：介绍模型 ID、每秒 0.0672 美元的费用、参数、cURL 与 Python 示例，以及兼容 OpenAI 的端点。",
+      "translation_cache_key": "6b61c0e37c7dff0f9c1907193ccaa69b1f9fcee56b9e836d90a252b8c8902e85",
+      "translation_provider": "bing"
     },
     {
       "id": 1335640887,
@@ -97700,7 +97709,10 @@
         }
       ],
       "discovery_kind": "other",
-      "learning_status": "pending"
+      "learning_status": "pending",
+      "description_zh": "Flux AI Works 项目",
+      "translation_cache_key": "823ef54634be987da937344c20e4a584a6294761f83cd00aeb483b143c398a9e",
+      "translation_provider": "bing"
     },
     {
       "id": 1355336107,
@@ -99015,7 +99027,7 @@
       "queued": 982,
       "failure_reasons": [],
       "status": "ready",
-      "generated_at": "2026-10-22 07:45 UTC"
+      "generated_at": "2026-10-22 07:49 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -100146,7 +100158,7 @@
   "translation": {
     "existing_zh": 184,
     "cached": 821,
-    "translated": 0,
-    "failed": 4
+    "translated": 4,
+    "failed": 0
   }
 }
