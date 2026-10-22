@@ -157,6 +157,27 @@ class TranslationTests(unittest.TestCase):
         self.assertEqual([len(batch) for batch in calls], [40, 40, 1])
         self.assertEqual(result["translated"], 81)
 
+    def test_missing_batch_result_retries_only_that_item(self):
+        retries = []
+
+        def translate(text):
+            retries.append(text)
+            return "逐条重试后的中文简介"
+
+        def translate_many(_):
+            return ["", "批量中文简介"]
+
+        translate.translate_many = translate_many
+        projects = [project("o/first"), project("o/second")]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects, translator=translate)
+
+        self.assertEqual(retries, ["Agent skill for charts"])
+        self.assertEqual(projects[0]["description_zh"], "逐条重试后的中文简介")
+        self.assertEqual(projects[1]["description_zh"], "批量中文简介")
+        self.assertEqual(result["translated"], 2)
+        self.assertEqual(result["failed"], 0)
+
     def test_translation_failure_keeps_original_fallback_available(self):
         def fail(_):
             raise RuntimeError("Bing failed")

@@ -395,7 +395,18 @@ def enrich_translated_descriptions(projects, previous=(), translator=None):
                 if len(results) != len(batch):
                     raise ValueError("译文数量与输入不一致")
                 for item, result in zip(batch, results):
-                    if not store(item[0], item[2], result, "bing"):
+                    if store(item[0], item[2], result, "bing"):
+                        continue
+                    try:
+                        retry_result = translator(item[1])
+                    except (ValueError, RuntimeError, TypeError) as exc:
+                        failed += 1
+                        if failure_logs < 3:
+                            print(f"[翻译] {item[0].get('full_name')} 逐条重试失败: {exc}",
+                                  flush=True)
+                            failure_logs += 1
+                        continue
+                    if not store(item[0], item[2], retry_result, "bing"):
                         failed += 1
             except (ValueError, RuntimeError, TypeError) as exc:
                 failed += len(batch)

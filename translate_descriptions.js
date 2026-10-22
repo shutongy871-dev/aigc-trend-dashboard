@@ -26,7 +26,7 @@ function makeBatches(texts) {
       batch = [];
       length = 0;
     }
-    batch.push({ index, item });
+    batch.push({ index, item, text });
     length += item.length + 1;
   });
   if (batch.length) batches.push(batch);
@@ -54,14 +54,20 @@ async function main() {
     const batch = batches[index];
     try {
       const response = await withTimeout(translate(
-        batch.map((item) => item.item).join("\n"),
+        batch.length === 1
+          ? batch[0].text
+          : batch.map((item) => item.item).join("\n"),
         null,
         "zh-Hans",
       ));
-      const parsed = parseBatch(response.translation || "");
-      batch.forEach((item) => {
-        results[item.index] = parsed.get(item.index) || "";
-      });
+      if (batch.length === 1) {
+        results[batch[0].index] = (response.translation || "").trim();
+      } else {
+        const parsed = parseBatch(response.translation || "");
+        batch.forEach((item) => {
+          results[item.index] = parsed.get(item.index) || "";
+        });
+      }
     } catch (error) {
       console.error(`batch ${index + 1}/${batches.length}: ${error.message}`);
       break;
