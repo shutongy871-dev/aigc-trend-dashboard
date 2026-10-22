@@ -17,6 +17,10 @@
   ],
   "rewrites": [
     {
+      "source": "/aigc-trend-dashboard/",
+      "destination": "/index.html"
+    },
+    {
       "source": "/aigc-trend-dashboard",
       "destination": "/index.html"
     },

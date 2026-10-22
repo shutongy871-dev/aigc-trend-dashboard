@@ -120,3 +120,11 @@ test("a path beginning with // cannot change the configured destination origin",
   assert.equal(new URL(result.calls[0]).origin, destinationOrigin);
   assert.equal(new URL(result.calls[0]).pathname, "//outside.example/test");
 });
+
+test("the actual old homepage path resolves explicitly to index.html on Vercel", () => {
+  const config = JSON.parse(fs.readFileSync(path.join(root, "site/vercel.json"), "utf8"));
+  const destination = new URL(execute("https://shutongy871-dev.github.io/aigc-trend-dashboard/").calls[0]);
+  const route = config.rewrites.find((rule) => rule.source === destination.pathname);
+  assert.equal(route?.destination, "/index.html",
+    "Rewriting an empty wildcard to / does not serve index.html on Vercel.");
+});
