@@ -98,6 +98,12 @@ class TranslationTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[0][0], "node")
         self.assertEqual(translator.batch_size, 40)
 
+    def test_unchanged_short_product_name_gets_honest_chinese_label(self):
+        self.assertEqual(
+            aigc_trend_brief._polish_translation("Flux AI Works", "Flux AI Works"),
+            "Flux AI Works 项目",
+        )
+
     def test_translation_is_cached_without_overwriting_source(self):
         projects = [project(), {**project("o/chinese"), "description": "中文项目简介"}]
         result = aigc_trend_brief.enrich_translated_descriptions(

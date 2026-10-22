@@ -279,6 +279,12 @@ def _polish_translation(text, source=""):
         polished = polished.replace("计算机使用", "计算机操作").replace("计算使用", "计算机操作")
     polished = re.sub(r"(?<=[\u3400-\u9fff])AI", " AI", polished)
     polished = re.sub(r"AI(?=[\u3400-\u9fff])", "AI ", polished)
+    if (polished.casefold() == source.strip().casefold()
+            and not re.search(r"[\u3400-\u9fff]", polished)
+            and len(polished) <= 80
+            and len(polished.split()) <= 4
+            and not re.search(r"[.!?。！？]", polished)):
+        polished = f"{polished} 项目"
     return polished
 
 
