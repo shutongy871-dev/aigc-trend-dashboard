@@ -886,7 +886,7 @@ function renderTrends() {
         const p = byRepo.get(n); return p ? '<li><a href="' + safeURL(p.url) + '" target="_blank" rel="noopener">' + esc(n) + " ↗</a></li>" : "";
       }).join("") + "</ul></article>").join("");
   }
-  el.innerHTML = '<div class="discovery-intro"><h2>趋势总结 / 机制与爆发观察</h2><p>跨项目阅读共同原理，并用两个完整 7 日的样本观察近期变化。</p></div>' +
+  el.innerHTML = '<div class="discovery-intro"><h2>趋势总结 / 机制与爆发观察</h2></div>' +
     (!clusters.length ? '<p class="scope-note">当前窗口尚未形成至少 3 个项目支撑的机制分组。以下只作为继续研究的候选方向。</p><br>' : "") +
     '<div class="discovery-grid">' + (body || '<div class="empty">暂无符合条件的机制观察。</div>') +
     '</div><p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") +
