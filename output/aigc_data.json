@@ -99015,7 +99015,7 @@
       "queued": 982,
       "failure_reasons": [],
       "status": "ready",
-      "generated_at": "2026-10-22 07:37 UTC"
+      "generated_at": "2026-10-22 07:42 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -100145,8 +100145,8 @@
   },
   "translation": {
     "existing_zh": 184,
-    "cached": 0,
-    "translated": 821,
+    "cached": 821,
+    "translated": 0,
     "failed": 4
   }
 }
