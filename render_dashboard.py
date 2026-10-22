@@ -45,6 +45,48 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>生成式 AI 及其应用生态趋势看板</title>
+<script id="github-pages-vercel-redirect">
+(function () {
+  // 仅 GitHub Pages 跳转；Vercel、自定义域名和本地访问均不受影响。
+  if (!window.location.hostname.toLowerCase().endsWith(".github.io")) return;
+
+  // 使用固定生产域名，使两个入口始终访问最新成功部署；与生成模板保持同步。
+  var VERCEL_URL = "https://aigc-trend-dashboard-site.vercel.app";
+  var target = new URL(VERCEL_URL);
+  target.pathname = window.location.pathname;
+  target.search = window.location.search;
+  target.hash = window.location.hash;
+
+  function showFallback() {
+    if (document.getElementById("vercel-redirect-fallback")) return;
+    var notice = document.createElement("aside");
+    notice.id = "vercel-redirect-fallback";
+    notice.setAttribute("role", "status");
+    // 样式仅作用于新增提示，不修改网站原有 CSS 或业务元素。
+    notice.style.cssText = "position:relative;z-index:2;padding:14px 24px;background:#111729;color:#e8ecf6;border-bottom:1px solid #7c8cff;font:14px/1.6 sans-serif;overflow-wrap:anywhere;";
+    notice.appendChild(document.createTextNode("如果页面没有自动跳转，"));
+    var link = document.createElement("a");
+    link.href = target.href;
+    link.textContent = "请点击此处访问 Vercel 网站";
+    link.style.cssText = "color:#c4ccff;text-decoration:underline;";
+    notice.appendChild(link);
+    notice.appendChild(document.createTextNode("。"));
+    document.body.prepend(notice);
+  }
+
+  // 若自动导航没有离开旧页，在正文可用后显示同一目标的手动链接。
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showFallback, { once: true });
+  } else {
+    showFallback();
+  }
+  try {
+    window.location.replace(target.href);
+  } catch (error) {
+    // 导航被浏览器阻止时保留原页面和上面的兜底链接。
+  }
+})();
+</script>
 <style>
   :root {
     --bg: #0a0e1a;

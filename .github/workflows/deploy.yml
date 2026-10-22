@@ -3,16 +3,7 @@ name: 每日采集并部署看板
 on:
   push:
     branches: [main]
-    paths:
-      - "render_dashboard.py"
-      - "aigc_trend_brief.py"
-      - "translate_descriptions.js"
-      - "package.json"
-      - "package-lock.json"
-      - "project_discovery.py"
-      - "run_daily.sh"
-      - "tests/**"
-      - ".github/workflows/deploy.yml"
+    # 每次 main 推送都更新入口；仅静态文件变更时不重跑采集和生成器。
   # UTC 01:05 = 北京时间 09:05（定时任务为尽力而为，偶发延迟属正常）
   schedule:
     - cron: "5 1 * * *"
@@ -49,16 +40,40 @@ jobs:
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: 安装 Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      - name: 判断是否需要生成看板
+        id: render
+        env:
+          WORKFLOW_EVENT: ${{ github.event_name }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [[ "$WORKFLOW_EVENT" != "push" ]] || [[ ! -f site/index.html ]]; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          elif ! git cat-file -e "${PUSH_BEFORE_SHA}^{commit}" 2>/dev/null; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          elif ! git diff --quiet "$PUSH_BEFORE_SHA" HEAD -- \
+            render_dashboard.py aigc_trend_brief.py project_discovery.py \
+            translate_descriptions.js package.json package-lock.json \
+            run_daily.sh output/aigc_data.json; then
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 安装免登录翻译客户端
+        if: steps.render.outputs.needed == 'true'
         run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: 采集数据并渲染看板
+        if: steps.render.outputs.needed == 'true'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3' }}
@@ -75,6 +90,9 @@ jobs:
 
       - name: 校验学习卡与趋势口径
         run: python -m unittest discover -s tests -p 'test_*.py'
+
+      - name: 校验新旧入口跳转与部署配置
+        run: node --test tests/vercel_redirect.cjs tests/deploy_workflow.cjs
 
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
