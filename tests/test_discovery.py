@@ -450,7 +450,7 @@ class ClusterTests(unittest.TestCase):
         self.assertIn('option value="7"', html)
         self.assertIn("projects.filter(inSelectedWindow)", html)
         self.assertIn('p.discovery_kind === targetKind', html)
-        self.assertIn("已取消 Top 12 截断", html)
+        self.assertNotIn("已取消 Top 12 截断", html)
         self.assertNotIn('</script><img src=x', html)
         self.assertNotIn("赛道通用示意", html)
         self.assertNotIn("GitHub 授权令牌", html)

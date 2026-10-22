@@ -831,7 +831,7 @@ function renderFeatured(kind) {
     .filter(p => p.discovery_kind === targetKind && matchesQuery(p))
     .sort((a, b) => b.heat_score - a.heat_score);
   document.getElementById("hint").textContent = "共 " + list.length + " 个" +
-    (skills ? " Skill / 工具" : " 软件 / 应用") + " · 已取消 Top 12 截断";
+    (skills ? " Skill / 工具" : " 软件 / 应用");
   const el = document.getElementById("content");
   el.className = "";
   el.innerHTML = '<div class="discovery-grid">' + (list.length ? list.map((p, i) => projectCard(p, i, kind)).join("") :
