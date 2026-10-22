@@ -663,8 +663,14 @@ function renderChips() {
 }
 
 /* ---------- 项目卡片 ---------- */
+function hasChineseText(value) {
+  return /[\u3400-\u9fff]/.test(String(value || ""));
+}
+function chineseClaim(...claims) {
+  return claims.find(claim => hasChineseText(claim?.text));
+}
 function zhDesc(p) {
-  if (p.learning?.summary) return p.learning.summary.text;
+  if (hasChineseText(p.learning?.summary?.text)) return p.learning.summary.text;
   if (p.description_zh && ["source", "bing"].includes(p.translation_provider)) return p.description_zh;
   if (p.description) return p.description;
   return "项目尚未提供简介，展开查看已收集的 README 资料。";
@@ -674,7 +680,8 @@ function descriptionHTML(p) {
     .replace(/([。！？；])\s+(?=[A-Za-z])/g, "$1\u0000")
     .replace(/([.!?;])\s+(?=[\u3400-\u9fff])/g, "$1\u0000")
     .split("\u0000").map(x => x.trim()).filter(Boolean);
-  const refs = p.learning?.summary ? refsHTML(p, p.learning.summary.sources) : "";
+  const refs = hasChineseText(p.learning?.summary?.text)
+    ? refsHTML(p, p.learning.summary.sources) : "";
   return parts.map((part, index) => {
     const lang = /[\u3400-\u9fff]/.test(part) ? "zh-CN" : "en";
     return '<p lang="' + lang + '">' + esc(part) + (index === parts.length - 1 ? refs : "") + "</p>";
@@ -710,7 +717,8 @@ function projectCard(p, i, featuredKind="") {
       '<a class="icon-btn" href="' + esc(p.url) + '" target="_blank" rel="noopener" title="在 GitHub 打开" aria-label="GitHub 链接">' + ICON.github + "</a></div>" +
       '<div class="card-title">' + esc(p.full_name) + "</div>" +
       '<div class="card-desc">' + descriptionHTML(p) + "</div>" +
-      factHTML(p, "帮你解决什么", p.learning?.value, "learning-value") +
+      factHTML(p, "帮你解决什么",
+        chineseClaim(p.learning?.value, p.learning?.outcome), "learning-value") +
       '<div class="metrics">' +
         '<span class="metric">' + ICON.star + fmt(p.stars) + "</span>" +
         '<span class="metric">' + ICON.fork + fmt(p.forks) + "</span>" +
@@ -736,9 +744,12 @@ function refsHTML(p, ids) {
       '" target="_blank" rel="noopener">[' + esc(id) + "]</a>" : "";
   }).join("");
 }
-function claimHTML(p, claim) { return claim ? esc(claim.text) + refsHTML(p, claim.sources) : ""; }
+function claimHTML(p, claim) {
+  return hasChineseText(claim?.text) ? esc(claim.text) + refsHTML(p, claim.sources) : "";
+}
 function factHTML(p, label, claim, cls="") {
-  return claim ? '<div class="learning-fact ' + cls + '"><strong>' + esc(label) + "</strong><p>" +
+  return hasChineseText(claim?.text)
+    ? '<div class="learning-fact ' + cls + '"><strong>' + esc(label) + "</strong><p>" +
     claimHTML(p, claim) + "</p></div>" : "";
 }
 function downloadPrompt(p) {
@@ -749,11 +760,19 @@ function downloadPrompt(p) {
 function learningDemo(p) {
   const d = p.learning?.demo;
   if (!d) return '<p class="learning-fact">暂缺可核实的使用演示，请查看官方使用说明。</p>';
-  return '<div class="demo-box"><p class="learning-fact">' + claimHTML(p, d.input) + "</p>" +
+  const input = chineseClaim(d.input);
+  const output = chineseClaim(d.output);
+  const steps = (d.steps || []).filter(step => hasChineseText(step?.text));
+  if (!input && !output && !steps.length) {
+    return '<p class="learning-fact">暂缺中文使用演示，请查看官方使用说明。</p>';
+  }
+  return '<div class="demo-box">' +
+    (input ? '<p class="learning-fact">' + claimHTML(p, input) + "</p>" : "") +
     '<div class="demo-result">' +
     '<strong class="demo-stage-title">处理过程</strong>' +
-    '<ol class="learning-steps">' + d.steps.map(c => '<li>' + claimHTML(p, c) + "</li>").join("") + "</ol>" +
-    factHTML(p, "预期产物", d.output) + "</div></div>";
+    (steps.length ? '<ol class="learning-steps">' +
+      steps.map(c => '<li>' + claimHTML(p, c) + "</li>").join("") + "</ol>" : "") +
+    factHTML(p, "预期产物", output) + "</div></div>";
 }
 function matchesQuery(p) {
   const q = state.query.trim().toLowerCase();
