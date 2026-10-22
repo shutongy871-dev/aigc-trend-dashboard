@@ -108,12 +108,18 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   }
   .subtitle { color: var(--text-dim); margin-top: 8px; font-size: 14.5px; }
   .hero-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .window-pill {
-    display: inline-flex; align-items: center; gap: 8px;
+  .window-filter {
+    display: grid; grid-template-columns: auto auto; align-items: center; gap: 2px 8px;
     background: var(--accent-soft); color: #c4ccff;
     border: 1px solid rgba(124, 140, 255, 0.3);
-    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    padding: 7px 10px 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
   }
+  .window-filter label { color: var(--text-dim); }
+  .window-filter select {
+    border: 0; background: transparent; padding: 2px 22px 2px 4px;
+    color: #dce1ff; font-size: 13px; font-weight: 700;
+  }
+  .window-dates { grid-column: 1 / -1; color: var(--text-faint); font-size: 11px; }
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 26px; }
   .stat {
     background: var(--card); border: 1px solid var(--border);
@@ -522,7 +528,15 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         <div class="subtitle">每天发现值得尝试的 AI：理解它的原理，学会使用，找到下一个灵感。</div>
       </div>
       <div class="hero-actions">
-        <div class="window-pill" id="windowPill"></div>
+        <div class="window-filter">
+          <label for="windowFilter">创建时间</label>
+          <select id="windowFilter">
+            <option value="full" id="fullWindowOption">本期</option>
+            <option value="30">近 30 天</option>
+            <option value="7">近 7 天</option>
+          </select>
+          <span class="window-dates" id="windowDates"></span>
+        </div>
       </div>
     </div>
     <div class="stats" id="stats"></div>
@@ -577,7 +591,9 @@ const hnStories = DASH_DATA.hn_hot_stories || [];
 const discovery = DASH_DATA.discovery || {};
 const byRepo = new Map(projects.map(p => [p.full_name, p]));
 
-const state = { tab: "skills", query: "", category: "全部", sort: "heat" };
+const state = {
+  tab: "skills", query: "", category: "全部", sort: "heat", windowDays: "full"
+};
 
 /* ---------- 图标 ---------- */
 const ICON = {
@@ -600,6 +616,28 @@ const ICON = {
 /* ---------- 数字格式化 ---------- */
 const fmt = n => (Number(n) || 0).toLocaleString("en-US");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function selectedWindow() {
+  const configured = DASH_DATA.window || {};
+  const end = String(configured.end || "").slice(0, 10);
+  if (state.windowDays === "full") {
+    return { start: String(configured.start || "").slice(0, 10), end,
+      days: Number(configured.days) || 90, full: true };
+  }
+  const days = Number(state.windowDays);
+  const endDate = new Date(end + "T00:00:00Z");
+  const startDate = new Date(endDate);
+  startDate.setUTCDate(startDate.getUTCDate() - days + 1);
+  return { start: startDate.toISOString().slice(0, 10), end, days, full: false };
+}
+function inSelectedWindow(item) {
+  const active = selectedWindow();
+  if (active.full) return true;
+  const created = String(item?.created_at || "").slice(0, 10);
+  return Boolean(created && created >= active.start && created <= active.end);
+}
+function scopedProjects() {
+  return projects.filter(inSelectedWindow);
+}
 
 /* ---------- 复制 ---------- */
 let toastTimer;
@@ -635,13 +673,20 @@ async function copyText(text, btn) {
 
 /* ---------- 顶部信息 ---------- */
 function renderHeader() {
-  const w = DASH_DATA.window || {};
-  document.getElementById("windowPill").textContent = (w.start || "?") + " ~ " + (w.end || "?");
+  const active = selectedWindow();
+  const scoped = scopedProjects();
+  const configuredDays = Number(DASH_DATA.window?.days) || 90;
+  document.getElementById("fullWindowOption").textContent = "本期 " + configuredDays + " 天";
+  document.getElementById("windowFilter").value = String(state.windowDays);
+  document.getElementById("windowDates").textContent = active.start + " ~ " + active.end + " UTC";
   const stats = [
-    { num: (discovery.skills_tools || []).length, cls: "accent", lbl: "高 Star 技能与工具" },
-    { num: (discovery.applications || []).length, cls: "pink", lbl: "高 Star 软件与应用" },
-    { num: (discovery.clusters || []).length, cls: "amber", lbl: "共同机制观察" },
-    { num: projects.length, cls: "", lbl: "本期收录项目" }
+    { num: scoped.filter(p => p.discovery_kind === "skill_tool").length,
+      cls: "accent", lbl: "Skill / 工具" },
+    { num: scoped.filter(p => p.discovery_kind === "application").length,
+      cls: "pink", lbl: "软件 / 应用" },
+    { num: scoped.filter(p => p.discovery_kind === "research").length,
+      cls: "amber", lbl: "研究 / 模型" },
+    { num: scoped.length, cls: "", lbl: "当前窗口项目" }
   ];
   document.getElementById("stats").innerHTML = stats.map(s =>
     '<div class="stat"><div class="num ' + s.cls + '">' + fmt(s.num) + '</div><div class="lbl">' + s.lbl + "</div></div>"
@@ -653,7 +698,7 @@ function renderChips() {
   const box = document.getElementById("chips");
   if (state.tab !== "projects") { box.style.display = "none"; return; }
   box.style.display = "flex";
-  const cats = ["全部", ...new Set(projects.map(p => p.category).filter(Boolean))];
+  const cats = ["全部", ...new Set(scopedProjects().map(p => p.category).filter(Boolean))];
   box.innerHTML = cats.map(c =>
     '<button class="chip' + (state.category === c ? " active" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</button>"
   ).join("");
@@ -781,13 +826,18 @@ function matchesQuery(p) {
 }
 function renderFeatured(kind) {
   const skills = kind === "skills";
-  const list = (discovery[skills ? "skills_tools" : "applications"] || []).map(n => byRepo.get(n)).filter(p => p && matchesQuery(p));
-  document.getElementById("hint").textContent = "";
+  const targetKind = skills ? "skill_tool" : "application";
+  const list = scopedProjects()
+    .filter(p => p.discovery_kind === targetKind && matchesQuery(p))
+    .sort((a, b) => b.heat_score - a.heat_score);
+  document.getElementById("hint").textContent = "共 " + list.length + " 个" +
+    (skills ? " Skill / 工具" : " 软件 / 应用") + " · 已取消 Top 12 截断";
   const el = document.getElementById("content");
   el.className = "";
   el.innerHTML = '<div class="discovery-grid">' + (list.length ? list.map((p, i) => projectCard(p, i, kind)).join("") :
       '<div class="empty">暂无匹配项目，试试其他关键词或查看全部项目。</div>') + "</div>" +
-    '<p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") + "</p>";
+    '<p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") +
+    " Skill / 工具分类优先采用 AI 学习卡，其余项目按仓库名称、简介与 topics 规则初筛。</p>";
   bindCopy(el); bindExpand(el);
 }
 function metricBars(m) {
@@ -800,17 +850,28 @@ function metricBars(m) {
     '<span class="mini-note">' + (m.change_pct === null ? "前期为 0，不计算增长百分比" :
       "样本内环比 " + (m.change_pct > 0 ? "+" : "") + m.change_pct + "%") + "</span></div>";
 }
+function scopedMetricBars(m) {
+  return state.windowDays === "full" ? metricBars(m)
+    : '<div class="analysis-notice">当前仅筛选项目范围；双周趋势需切回“本期”窗口查看。</div>';
+}
 function renderTrends() {
   const el = document.getElementById("content");
   const q = state.query.trim().toLowerCase();
-  const clusters = (discovery.clusters || []).filter(c => !q || JSON.stringify(c).toLowerCase().includes(q));
+  const clusters = (discovery.clusters || []).map(c => ({
+    ...c, members: c.members.filter(m => inSelectedWindow(byRepo.get(m.repo)))
+  })).filter(c => c.members.length >= 3)
+    .filter(c => !q || JSON.stringify(c).toLowerCase().includes(q));
+  const candidates = (discovery.candidates || []).map(c => ({
+    ...c, members: c.members.filter(repo => inSelectedWindow(byRepo.get(repo)))
+  })).filter(c => c.members.length >= 3)
+    .filter(c => !q || JSON.stringify(c).toLowerCase().includes(q));
   document.getElementById("hint").textContent = "至少 3 个项目支持同一机制 · 原理由 AI 归纳 · 数量按创建日期计算";
   el.className = "";
   let body = "";
-  if (discovery.clusters?.length) {
+  if (clusters.length) {
     body = clusters.map(c => '<article class="card trend-card"><div class="badges"><span class="badge-cat">' +
       esc(c.metrics.signal) + '</span><span class="mini-note">' + c.members.length + ' 个项目 · AI 机制分析</span></div><h3>' +
-      esc(c.title) + '</h3><p>' + esc(c.mechanism) + "</p>" + metricBars(c.metrics) +
+      esc(c.title) + '</h3><p>' + esc(c.mechanism) + "</p>" + scopedMetricBars(c.metrics) +
       (c.inspiration ? '<div class="learning-fact learning-value"><strong>值得尝试的想法</strong><p>' + esc(c.inspiration) + "</p></div>" : "") +
       '<ul class="trend-members">' + c.members.map(m => {
         const p = byRepo.get(m.repo);
@@ -818,22 +879,22 @@ function renderTrends() {
           ' ↗</a><p>' + esc(m.why) + refsHTML(p, m.sources) + "</p></li>" : "";
       }).join("") + "</ul></article>").join("");
   } else {
-    body = (discovery.candidates || []).filter(c => !q || JSON.stringify(c).toLowerCase().includes(q)).map(c =>
+    body = candidates.map(c =>
       '<article class="card trend-card"><span class="source-status">标签初筛 · 尚未验证共同机制</span><h3>' + esc(c.title) +
       '</h3><p>' + c.members.length + " 个候选项目。属于同一赛道，是否使用相同底层原理仍需逐项阅读。</p>" +
-      metricBars(c.metrics) + '<ul class="trend-members">' + c.members.slice(0, 4).map(n => {
+      scopedMetricBars(c.metrics) + '<ul class="trend-members">' + c.members.slice(0, 4).map(n => {
         const p = byRepo.get(n); return p ? '<li><a href="' + safeURL(p.url) + '" target="_blank" rel="noopener">' + esc(n) + " ↗</a></li>" : "";
       }).join("") + "</ul></article>").join("");
   }
   el.innerHTML = '<div class="discovery-intro"><h2>趋势总结 / 机制与爆发观察</h2><p>跨项目阅读共同原理，并用两个完整 7 日的样本观察近期变化。</p></div>' +
-    (!discovery.clusters?.length ? '<p class="scope-note">本期尚未形成至少 3 个项目支撑的机制分组。以下只作为继续研究的候选方向。</p><br>' : "") +
+    (!clusters.length ? '<p class="scope-note">当前窗口尚未形成至少 3 个项目支撑的机制分组。以下只作为继续研究的候选方向。</p><br>' : "") +
     '<div class="discovery-grid">' + (body || '<div class="empty">暂无符合条件的机制观察。</div>') +
     '</div><p class="scope-note" style="margin-top:22px">' + esc(discovery.scope || "") +
     ' “样本内加速”要求近 7 日至少 3 个、前 7 日至少 2 个，且数量至少翻倍。</p>';
 }
 function renderProjects() {
   const q = state.query.trim().toLowerCase();
-  let list = projects.filter(p => {
+  let list = scopedProjects().filter(p => {
     if (state.category !== "全部" && p.category !== state.category) return false;
     return matchesQuery(p);
   });
@@ -876,7 +937,8 @@ function modelCard(m, i) {
 }
 function renderModels() {
   const q = state.query.trim().toLowerCase();
-  const list = hfModels.filter(m => !q || [m.id, m.task_cn, (m.tags || []).join(" ")].join(" ").toLowerCase().includes(q));
+  const list = hfModels.filter(inSelectedWindow)
+    .filter(m => !q || [m.id, m.task_cn, (m.tags || []).join(" ")].join(" ").toLowerCase().includes(q));
   document.getElementById("hint").textContent = "共 " + list.length + " 个热门新模型";
   const el = document.getElementById("content");
   el.className = "grid";
@@ -889,7 +951,8 @@ function renderModels() {
 /* ---------- HN 热议 ---------- */
 function renderHN() {
   const q = state.query.trim().toLowerCase();
-  const list = hnStories.filter(s => !q || [s.title, s.url].join(" ").toLowerCase().includes(q));
+  const list = hnStories.filter(inSelectedWindow)
+    .filter(s => !q || [s.title, s.url].join(" ").toLowerCase().includes(q));
   document.getElementById("hint").textContent = "共 " + list.length + " 条社区热议";
   const el = document.getElementById("content");
   el.className = "list";
@@ -964,6 +1027,12 @@ document.getElementById("search").addEventListener("input", e => {
   renderCurrent();
 });
 document.getElementById("sort").addEventListener("change", e => { state.sort = e.target.value; renderProjects(); });
+document.getElementById("windowFilter").addEventListener("change", e => {
+  state.windowDays = e.target.value === "full" ? "full" : Number(e.target.value);
+  renderHeader();
+  renderChips();
+  renderCurrent();
+});
 
 renderHeader();
 switchTab("skills");

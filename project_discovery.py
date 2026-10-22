@@ -417,6 +417,8 @@ def build_discovery(projects, window, analysis, call_llm=None, previous=None):
         "clusters": clusters, "cluster_status": status, "cluster_cache_key": group_key,
         "candidates": candidates,
         "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。"
+                 "采集采用 topic、关键词和全站兜底三层查询，各层有不同 Stars 门槛；"
+                 "每次查询只取按 Stars 排序的前 100 条，并经生成式 AI 白名单过滤。"
                  "增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，"
                  "受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。",
     }
