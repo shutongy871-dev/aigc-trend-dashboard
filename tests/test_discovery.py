@@ -374,7 +374,7 @@ class ClusterTests(unittest.TestCase):
         html = build_html(data)
         self.assertIn(r'<\/script><img', html)
         self.assertIn("中文机翻简介", html)
-        self.assertLess(html.index("if (p.description_zh)"), html.index("if (p.description)"))
+        self.assertLess(html.index("if (p.description_zh &&"), html.index("if (p.description)"))
         self.assertNotIn('</script><img src=x', html)
         self.assertNotIn("赛道通用示意", html)
         self.assertNotIn("GitHub 授权令牌", html)

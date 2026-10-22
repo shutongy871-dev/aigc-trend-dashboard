@@ -665,7 +665,7 @@ function renderChips() {
 /* ---------- 项目卡片 ---------- */
 function zhDesc(p) {
   if (p.learning?.summary) return p.learning.summary.text;
-  if (p.description_zh) return p.description_zh;
+  if (p.description_zh && p.translation_provider !== "argos") return p.description_zh;
   if (p.description) return p.description;
   return "项目尚未提供简介，展开查看已收集的 README 资料。";
 }
