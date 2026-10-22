@@ -192,7 +192,7 @@ def validate_learning(raw, evidence):
 
 
 def enrich_learning(projects, call_llm=None, model="", previous=(), limit=90, log=print):
-    """按热度预算分析；缓存随公共证据/模型/提示词变化失效，不缓存失败响应。"""
+    """复用通过校验且证据未变的解读；更换执行模型不使已有有效成果失效。"""
     prior = {p["full_name"]: p for p in previous}
     first_pending, retry_pending = [], []
     cached, generated, failed = 0, 0, 0
@@ -212,9 +212,13 @@ def enrich_learning(projects, call_llm=None, model="", previous=(), limit=90, lo
         source_model = old.get("learning_model", model)
         key = evidence_key(p, source_model)
         valid = validate_learning(old.get("learning"), p.get("evidence", []))
-        if old.get("learning_cache_key") == key and valid and (not call_llm or source_model == model):
+        if old.get("learning_cache_key") == key and valid:
             p.update(learning=valid, learning_status="llm", learning_cache_key=key,
                      learning_model=source_model, discovery_kind=valid["kind"])
+            if old.get("learning_provider"):
+                p["learning_provider"] = old["learning_provider"]
+            if old.get("learning_generated_at"):
+                p["learning_generated_at"] = old["learning_generated_at"]
             cached += 1
         elif any(e["id"].startswith("R") for e in p.get("evidence", [])):
             target = retry_pending if old.get("learning_status") == "analysis_failed" else first_pending

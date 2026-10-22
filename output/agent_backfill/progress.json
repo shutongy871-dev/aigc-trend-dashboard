@@ -1,0 +1,10 @@
+{
+  "target_total": 982,
+  "completed": 982,
+  "remaining": 0,
+  "all_project_statuses": {
+    "llm": 1013,
+    "insufficient_evidence": 1
+  },
+  "batches_complete": 82
+}

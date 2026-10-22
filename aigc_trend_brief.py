@@ -357,21 +357,20 @@ def enrich_translated_descriptions(projects, previous=(), translator=None):
         project.pop("translation_provider", None)
         if not text:
             continue
-        if _is_chinese_source(text):
-            project["description_zh"] = text
-            project["translation_provider"] = "source"
-            existing_zh += 1
-            continue
         key = translation_cache_key(text)
         old = prior.get(project.get("full_name"), {})
         old_zh = (old.get("description_zh") or "").strip()
         cache_provider = old.get("translation_provider")
         if (old.get("translation_cache_key") == key and old_zh
-                and cache_provider == "bing"):
+                and cache_provider in {"bing", "trae-agent"}):
             project["description_zh"] = old_zh
             project["translation_cache_key"] = key
             project["translation_provider"] = cache_provider
             cached += 1
+        elif _is_chinese_source(text):
+            project["description_zh"] = text
+            project["translation_provider"] = "source"
+            existing_zh += 1
         else:
             pending.append((project, text, key))
 
