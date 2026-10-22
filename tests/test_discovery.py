@@ -103,6 +103,19 @@ class TranslationTests(unittest.TestCase):
             aigc_trend_brief._polish_translation("Flux AI Works", "Flux AI Works"),
             "Flux AI Works 项目",
         )
+        self.assertEqual(
+            aigc_trend_brief._polish_translation("", "Fast-AtomRAG-Core"),
+            "Fast-AtomRAG-Core 项目",
+        )
+
+    def test_verified_multilingual_override_survives_empty_provider_result(self):
+        source = (
+            "Kling v3 API 한국어 가이드: 모델 ID, 초당 $0.0672 요금, 파라미터, "
+            "cURL·Python 예제와 OpenAI 호환 엔드포인트 설명."
+        )
+        result = aigc_trend_brief._polish_translation("", source)
+        self.assertIn("Kling v3 API 韩语指南", result)
+        self.assertIn("兼容 OpenAI 的端点", result)
 
     def test_translation_is_cached_without_overwriting_source(self):
         projects = [project(), {**project("o/chinese"), "description": "中文项目简介"}]
