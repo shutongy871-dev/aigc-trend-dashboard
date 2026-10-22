@@ -314,7 +314,9 @@ def build_bing_translator():
         return translate_many([text])[0]
 
     translate.translate_many = translate_many
-    translate.batch_size = 10000
+    # 真实简介约 40 条就会触发 2-3 次 Bing 请求；限制子进程规模，
+    # 避免整批数据超过 subprocess 的 60 秒上限后丢失全部已完成译文。
+    translate.batch_size = 40
     return translate
 
 

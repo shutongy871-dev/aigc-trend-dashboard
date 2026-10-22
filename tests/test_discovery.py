@@ -96,6 +96,7 @@ class TranslationTests(unittest.TestCase):
             "A privacy-first app that strips AI watermarks from content you own."
         ])
         self.assertEqual(run.call_args.args[0][0], "node")
+        self.assertEqual(translator.batch_size, 40)
 
     def test_translation_is_cached_without_overwriting_source(self):
         projects = [project(), {**project("o/chinese"), "description": "中文项目简介"}]
@@ -130,6 +131,25 @@ class TranslationTests(unittest.TestCase):
             projects, translator=translate)
         self.assertEqual(len(calls), 1)
         self.assertEqual(result["translated"], 3)
+
+    def test_batch_translator_limits_each_subprocess_workload(self):
+        calls = []
+
+        def translate(_):
+            self.fail("存在批量接口时不应逐条翻译")
+
+        def translate_many(texts):
+            calls.append(texts)
+            return ["中文简介"] * len(texts)
+
+        translate.translate_many = translate_many
+        translate.batch_size = 40
+        projects = [project(f"o/{index}") for index in range(81)]
+        result = aigc_trend_brief.enrich_translated_descriptions(
+            projects, translator=translate)
+
+        self.assertEqual([len(batch) for batch in calls], [40, 40, 1])
+        self.assertEqual(result["translated"], 81)
 
     def test_translation_failure_keeps_original_fallback_available(self):
         def fail(_):
