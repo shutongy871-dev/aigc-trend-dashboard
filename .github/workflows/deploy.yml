@@ -67,8 +67,8 @@ jobs:
           WINDOW_DAYS: ${{ github.event.inputs.days || '30' }}
           # 代码发布复用资料；每日定时任务继续完整采集。
           REFRESH_DISCOVERY: ${{ github.event_name == 'push' && 'true' || github.event.inputs.refresh_discovery || 'false' }}
-          # 代码发布先以 3 个项目验证模型协议；每日滚动处理 90 个，约 30 次模型请求。
-          LLM_LIMIT: ${{ github.event_name == 'push' && '3' || github.event.inputs.llm_limit || '90' }}
+          # 代码发布不重试外部模型；每日滚动处理 90 个，约 30 次模型请求。
+          LLM_LIMIT: ${{ github.event_name == 'push' && '0' || github.event.inputs.llm_limit || '90' }}
         run: |
           chmod +x run_daily.sh
           ./run_daily.sh "$WINDOW_DAYS"
