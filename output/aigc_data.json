@@ -99027,7 +99027,7 @@
       "queued": 982,
       "failure_reasons": [],
       "status": "ready",
-      "generated_at": "2026-10-22 08:12 UTC"
+      "generated_at": "2026-10-22 08:36 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
@@ -100153,7 +100153,7 @@
         }
       }
     ],
-    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
+    "scope": "本期抓取的新建仓库及 HN 补充项目，非 GitHub 全站排行。Stars 为累计值。采集采用 topic、关键词和全站兜底三层查询，各层有不同 Stars 门槛；每次查询只取按 Stars 排序的前 100 条，并经生成式 AI 白名单过滤。增长为当期样本中两个完整 UTC 7 日的新建仓库数差异，受搜索覆盖、热度门槛、项目年龄影响；不是 Star 增速或全市场增长。"
   },
   "translation": {
     "existing_zh": 184,
