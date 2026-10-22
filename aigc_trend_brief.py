@@ -293,7 +293,7 @@ def build_bing_translator():
                 input=json.dumps([str(text)[:500] for text in texts], ensure_ascii=False),
                 text=True,
                 capture_output=True,
-                timeout=600,
+                timeout=60,
                 check=False,
             )
         except (OSError, subprocess.TimeoutExpired) as exc:

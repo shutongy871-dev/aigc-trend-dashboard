@@ -3,9 +3,16 @@ const { translate } = require("bing-translate-api");
 
 const MAX_BATCH_CHARS = 2600;
 const REQUEST_DELAY_MS = 900;
+const REQUEST_TIMEOUT_MS = 20000;
 
 const marker = (index) => `[[AIGC_${String(index).padStart(6, "0")}]]`;
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const withTimeout = (promise) => Promise.race([
+  promise,
+  new Promise((_, reject) => {
+    setTimeout(() => reject(new Error("request timed out")), REQUEST_TIMEOUT_MS);
+  }),
+]);
 
 function makeBatches(texts) {
   const batches = [];
@@ -46,21 +53,23 @@ async function main() {
   for (let index = 0; index < batches.length; index += 1) {
     const batch = batches[index];
     try {
-      const response = await translate(
+      const response = await withTimeout(translate(
         batch.map((item) => item.item).join("\n"),
         null,
         "zh-Hans",
-      );
+      ));
       const parsed = parseBatch(response.translation || "");
       batch.forEach((item) => {
         results[item.index] = parsed.get(item.index) || "";
       });
     } catch (error) {
       console.error(`batch ${index + 1}/${batches.length}: ${error.message}`);
+      break;
     }
     if (index + 1 < batches.length) await sleep(REQUEST_DELAY_MS);
   }
-  process.stdout.write(JSON.stringify(results));
+  fs.writeFileSync(1, JSON.stringify(results));
+  process.exit(0);
 }
 
 main().catch((error) => {
