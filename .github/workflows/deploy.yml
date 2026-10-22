@@ -6,9 +6,11 @@ on:
     paths:
       - "render_dashboard.py"
       - "aigc_trend_brief.py"
+      - "translate_descriptions.js"
+      - "package.json"
+      - "package-lock.json"
       - "project_discovery.py"
       - "run_daily.sh"
-      - "requirements.txt"
       - "tests/**"
       - ".github/workflows/deploy.yml"
   # UTC 01:05 = 北京时间 09:05（定时任务为尽力而为，偶发延迟属正常）
@@ -52,17 +54,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
-          cache-dependency-path: requirements.txt
 
-      - name: 缓存离线翻译模型
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/aigc-trend-brief
-          key: argos-en-zh-v1
-
-      - name: 安装离线翻译依赖
-        run: pip install -r requirements.txt
+      - name: 安装免登录翻译客户端
+        run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: 采集数据并渲染看板
         env:

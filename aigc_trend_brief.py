@@ -27,21 +27,18 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
-import importlib
 import json
 import os
 import re
-import shutil
+import subprocess
 import sys
-import tempfile
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
-import zipfile
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
 from project_discovery import extract_evidence, enrich_learning, build_discovery
 
 # --------------------------------------------------------------------------- #
@@ -161,9 +158,7 @@ LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "https://ark.cn-beijing.volces.com
 LLM_MODEL = os.environ.get("LLM_MODEL", "doubao-seed-1-6-250615")
 LLM_API_KEY = os.environ.get("LLM_API_KEY", "")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
-TRANSLATION_ENGINE = "argos-en-zh-v1"
-TRANSLATION_MODEL_URL = "https://argos-net.com/v1/translate-en_zh-1_9.argosmodel"
-TRANSLATION_MODEL_SHA256 = "433e7c4f034d87fbe2353161e05f18646d7999452f801a4e1f0378522b9850ab"
+TRANSLATION_ENGINE = "bing-web-v1"
 
 
 # --------------------------------------------------------------------------- #
@@ -252,7 +247,7 @@ def http_post_json(url, headers=None, body=None, timeout=60):
 
 
 # --------------------------------------------------------------------------- #
-# 中文简介兜底：本地离线翻译（不需要账号或 API Key）
+# 中文简介兜底：Bing 网页翻译（无需账号或 API Key）
 # --------------------------------------------------------------------------- #
 
 def translation_cache_key(text):
@@ -261,125 +256,66 @@ def translation_cache_key(text):
     return hashlib.sha256(raw).hexdigest()
 
 
-def _translation_model_dir():
-    configured = os.environ.get("TRANSLATION_MODEL_DIR")
-    return Path(configured).expanduser() if configured else (
-        Path.home() / ".cache" / "aigc-trend-brief" / "argos-en-zh-1.9")
-
-
-def _ensure_translation_model():
-    """下载并校验固定版本的 Argos 英中模型，后续运行直接复用本地缓存。"""
-    model_dir = _translation_model_dir()
-    required = (model_dir / "model" / "model.bin", model_dir / "sentencepiece.model")
-    if all(path.is_file() for path in required):
-        return model_dir
-
-    model_dir.parent.mkdir(parents=True, exist_ok=True)
-    print("[翻译] 首次运行，下载离线英中模型（约 67 MB）...", flush=True)
-    with tempfile.TemporaryDirectory(dir=model_dir.parent) as temp_name:
-        temp_dir = Path(temp_name)
-        archive = temp_dir / "model.argosmodel"
-        digest = hashlib.sha256()
-        request = urllib.request.Request(
-            TRANSLATION_MODEL_URL, headers={"User-Agent": "aigc-trend-brief/1.0"})
-        with urllib.request.urlopen(request, timeout=120) as response, archive.open("wb") as output:
-            while True:
-                chunk = response.read(1024 * 1024)
-                if not chunk:
-                    break
-                digest.update(chunk)
-                output.write(chunk)
-        if digest.hexdigest() != TRANSLATION_MODEL_SHA256:
-            raise RuntimeError("Argos 模型完整性校验失败")
-        with zipfile.ZipFile(archive) as bundle:
-            bundle.extractall(temp_dir / "unpacked")
-        extracted = temp_dir / "unpacked" / "translate-en_zh-1_9"
-        if not (extracted / "model" / "model.bin").is_file():
-            raise RuntimeError("Argos 模型包结构无效")
-        if model_dir.exists():
-            shutil.rmtree(model_dir)
-        extracted.rename(model_dir)
-    return model_dir
-
-
-def _prepare_translation_source(text):
-    """先固定生成式 AI 术语，避免通用翻译模型按日常语义误译。"""
+def _polish_translation(text, source=""):
+    """只修正已验证的生硬短语和 AIGC 术语，不改写原意。"""
     replacements = (
-        (r"\bretrieval[- ]augmented generation\b", "RAG"),
-        (r"\blarge language models?\b", "LLM"),
-        (r"\bfine[- ]tun(?:e|ing)\b", "fine-tune"),
-        (r"\btransformers?\b", "Transformer"),
-        (r"\bprompt engineering\b", "prompt-engineering"),
-        (r"\bvector embeddings?\b", "vector-embedding"),
-        (r"\bagents?\b", "AI Agent"),
-    )
-    prepared = text
-    for pattern, replacement in replacements:
-        prepared = re.sub(pattern, replacement, prepared, flags=re.I)
-    return prepared
-
-
-def _clean_translation(text):
-    """修正常见技术误译和模型产生的大小写漂移。"""
-    replacements = (
-        ("回收式发电", "RAG"),
-        ("变形器", "Transformer"),
-        ("快速工程", "提示词工程"),
-        ("即时工程", "提示词工程"),
-        ("矢量嵌入", "向量嵌入"),
-        ("载体集成", "向量嵌入"),
-        ("推论", "推理"),
-        ("管道", "工作流"),
-        ("AI Agent", "AI 智能体"),
+        ("私密的第一", "注重隐私"),
+        ("隐私第一", "注重隐私"),
+        ("以隐私为先", "注重隐私"),
+        ("应用程序", "应用"),
+        ("AI 代理", "AI 智能体"),
         ("AI代理", "AI 智能体"),
-        ("人工智能的代理", "AI 智能体"),
-        ("代理技能", "智能体技能"),
-        ("代理框架", "智能体框架"),
-        ("代理平台", "智能体平台"),
-        ("LLMS", "LLM"),
-        ("LORA", "LoRA"),
+        ("检索增强生成", "RAG"),
+        ("大型语言模型", "LLM"),
+        ("病毒视频", "爆款视频"),
     )
-    cleaned = text
+    polished = str(text or "").strip()
     for old, new in replacements:
-        cleaned = cleaned.replace(old, new)
-    cleaned = cleaned.strip()
-    return cleaned[:-1] + "。" if cleaned.endswith(".") else cleaned
+        polished = polished.replace(old, new)
+    source_lower = source.lower()
+    if re.search(r"\bagents?\b", source_lower) and "proxy" not in source_lower:
+        polished = polished.replace("网络代理", "Web 智能体").replace("代理", "智能体")
+    if "computer-use" in source_lower:
+        polished = polished.replace("计算机使用", "计算机操作").replace("计算使用", "计算机操作")
+    polished = re.sub(r"(?<=[\u3400-\u9fff])AI", " AI", polished)
+    polished = re.sub(r"AI(?=[\u3400-\u9fff])", "AI ", polished)
+    return polished
 
 
-def build_argos_translator():
-    """加载 Argos 的轻量 CTranslate2 运行时；不可用时返回 None，不阻断采集。"""
-    try:
-        ctranslate2 = importlib.import_module("ctranslate2")
-        sentencepiece = importlib.import_module("sentencepiece")
-        model_dir = _ensure_translation_model()
-        engine = ctranslate2.Translator(
-            str(model_dir / "model"), device="cpu", compute_type="int8")
-        tokenizer = sentencepiece.SentencePieceProcessor(
-            model_file=str(model_dir / "sentencepiece.model"))
+def build_bing_translator():
+    """调用免登录 Bing 翻译客户端；Node 辅助进程负责 HTTP/2 与自动分批。"""
+    helper = Path(__file__).with_name("translate_descriptions.js")
 
-        def translate_many(texts):
-            sources = [
-                tokenizer.encode(_prepare_translation_source(text), out_type=str)
-                for text in texts
-            ]
-            results = engine.translate_batch(
-                sources, replace_unknowns=True, beam_size=4, length_penalty=0.2,
-                max_batch_size=64, batch_type="tokens")
-            return [
-                _clean_translation(
-                    tokenizer.decode_pieces(row.hypotheses[0])
-                    .replace("▁", " ").replace("_", " "))
-                for row in results
-            ]
+    def translate_many(texts):
+        try:
+            process = subprocess.run(
+                ["node", str(helper)],
+                input=json.dumps([str(text)[:500] for text in texts], ensure_ascii=False),
+                text=True,
+                capture_output=True,
+                timeout=600,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise RuntimeError(f"Bing 翻译客户端不可用: {exc}") from None
+        if process.returncode:
+            detail = re.sub(r"\s+", " ", process.stderr)[-240:]
+            raise RuntimeError(f"Bing 翻译失败: {detail or 'unknown error'}")
+        try:
+            results = json.loads(process.stdout)
+        except (TypeError, json.JSONDecodeError):
+            raise ValueError("Bing 翻译返回了无效 JSON") from None
+        if not isinstance(results, list) or len(results) != len(texts):
+            raise ValueError("Bing 译文数量与输入不一致")
+        return [_polish_translation(result, source)
+                for result, source in zip(results, texts)]
 
-        def translate(text):
-            return translate_many([text])[0]
+    def translate(text):
+        return translate_many([text])[0]
 
-        translate.translate_many = translate_many
-        return translate
-    except (ImportError, OSError, RuntimeError, ValueError, zipfile.BadZipFile) as exc:
-        print(f"[翻译] Argos 不可用，保留已有中文或原文: {exc}", flush=True)
-        return None
+    translate.translate_many = translate_many
+    translate.batch_size = 10000
+    return translate
 
 
 def _has_chinese(text):
@@ -392,46 +328,10 @@ def _is_chinese_source(text):
             and not re.search(r"[\u3040-\u30ff\uac00-\ud7af]", text))
 
 
-def _requires_multilingual_translation(text):
-    """Argos 当前只装英中模型，其余明显的非拉丁文字交给匿名 API。"""
-    chars = re.findall(
-        r"[\u0370-\u052f\u0590-\u08ff\u0900-\u0dff\u0e00-\u0e7f"
-        r"\u3040-\u30ff\uac00-\ud7af]", text or "")
-    return len(chars) >= 3
-
-
-def _translation_source_language(text):
-    for pattern, code in (
-        (r"[\u3040-\u30ff]", "ja"),
-        (r"[\uac00-\ud7af]", "ko"),
-        (r"[\u0400-\u052f]", "ru"),
-        (r"[\u0600-\u06ff]", "ar"),
-        (r"[\u0900-\u097f]", "hi"),
-        (r"[\u0e00-\u0e7f]", "th"),
-        (r"[\u0370-\u03ff]", "el"),
-    ):
-        if re.search(pattern, text):
-            return code
-    return "autodetect"
-
-
-def translate_mymemory(text):
-    """无需账号的多语言兜底；只处理 Argos 不支持或未产出中文的少量简介。"""
-    params = urllib.parse.urlencode({
-        "q": text[:500],
-        "langpair": f"{_translation_source_language(text)}|zh-CN",
-    })
-    payload = http_get_json(f"https://api.mymemory.translated.net/get?{params}")
-    if payload.get("responseStatus") != 200:
-        raise RuntimeError(str(payload.get("responseDetails") or "MyMemory 翻译失败")[:160])
-    return _clean_translation(str(payload.get("responseData", {}).get("translatedText") or ""))
-
-
-def enrich_translated_descriptions(
-        projects, previous=(), translator=None, fallback_translator=translate_mymemory):
+def enrich_translated_descriptions(projects, previous=(), translator=None):
     """为项目简介补充中文兜底；缓存命中不重复翻译，失败不覆盖历史结果。"""
     prior = {p.get("full_name"): p for p in previous}
-    pending, multilingual_pending = [], []
+    pending = []
     cached = existing_zh = 0
     for project in projects:
         text = (project.get("description") or "").strip()
@@ -448,24 +348,20 @@ def enrich_translated_descriptions(
         key = translation_cache_key(text)
         old = prior.get(project.get("full_name"), {})
         old_zh = (old.get("description_zh") or "").strip()
-        multilingual = _requires_multilingual_translation(text)
         cache_provider = old.get("translation_provider")
-        cache_allowed = not multilingual or cache_provider == "mymemory"
-        if old.get("translation_cache_key") == key and old_zh and cache_allowed:
+        if (old.get("translation_cache_key") == key and old_zh
+                and cache_provider == "bing"):
             project["description_zh"] = old_zh
             project["translation_cache_key"] = key
-            project["translation_provider"] = cache_provider or "cache"
+            project["translation_provider"] = cache_provider
             cached += 1
-        elif multilingual:
-            multilingual_pending.append((project, text, key))
         else:
             pending.append((project, text, key))
 
     if pending and translator is None:
-        translator = build_argos_translator()
+        translator = build_bing_translator()
     translated = 0
-    offline_failed = 0
-    fallback_pending = list(multilingual_pending)
+    failed = 0
     failure_logs = 0
 
     def store(project, key, result, provider):
@@ -481,7 +377,7 @@ def enrich_translated_descriptions(
 
     if translator:
         translate_many = getattr(translator, "translate_many", None)
-        batch_size = 100 if callable(translate_many) else 1
+        batch_size = getattr(translator, "batch_size", 40) if callable(translate_many) else 1
         for start in range(0, len(pending), batch_size):
             batch = pending[start:start + batch_size]
             try:
@@ -491,10 +387,10 @@ def enrich_translated_descriptions(
                 if len(results) != len(batch):
                     raise ValueError("译文数量与输入不一致")
                 for item, result in zip(batch, results):
-                    if not store(item[0], item[2], result, "argos"):
-                        fallback_pending.append(item)
+                    if not store(item[0], item[2], result, "bing"):
+                        failed += 1
             except (ValueError, RuntimeError, TypeError) as exc:
-                fallback_pending.extend(batch)
+                failed += len(batch)
                 if failure_logs < 3:
                     print(f"[翻译] {batch[0][0].get('full_name')} 等项目失败: {exc}", flush=True)
                     failure_logs += 1
@@ -502,19 +398,7 @@ def enrich_translated_descriptions(
             if done % 100 == 0 or done == len(pending):
                 print(f"[翻译] 中文简介进度 {done}/{len(pending)}", flush=True)
     else:
-        offline_failed = len(pending)
-
-    failed = offline_failed
-    for project, text, key in fallback_pending:
-        try:
-            result = fallback_translator(text) if fallback_translator else ""
-            if not store(project, key, result, "mymemory"):
-                raise ValueError("译文为空或不含中文")
-        except (ValueError, RuntimeError, TypeError) as exc:
-            failed += 1
-            if failure_logs < 3:
-                print(f"[翻译] {project.get('full_name')} 兜底失败: {exc}", flush=True)
-                failure_logs += 1
+        failed = len(pending)
 
     print(f"[翻译] 中文简介：原生 {existing_zh}，缓存 {cached}，"
           f"新增 {translated}，失败 {failed}", flush=True)

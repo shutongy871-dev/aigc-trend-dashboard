@@ -75,20 +75,27 @@ class EvidenceTests(unittest.TestCase):
 
 
 class TranslationTests(unittest.TestCase):
-    def test_technical_terms_are_protected_and_cleaned(self):
-        source = aigc_trend_brief._prepare_translation_source(
-            "Fine-tuning large language models with retrieval-augmented generation, "
-            "Transformers, prompt engineering, and vector embeddings.")
-        self.assertIn("LLM", source)
-        self.assertIn("RAG", source)
-        self.assertIn("Transformer", source)
-        cleaned = aigc_trend_brief._clean_translation(
-            "使用变形器、快速工程、载体集成和AI Agent构建RAG管道.")
+    def test_bing_translator_batches_and_polishes_known_bad_phrasing(self):
+        completed = type("Completed", (), {
+            "returncode": 0,
+            "stdout": json.dumps([
+                "一款以隐私为先的应用，可从你拥有的内容中移除 AI 水印。"
+            ], ensure_ascii=False),
+            "stderr": "",
+        })()
+        with patch.object(aigc_trend_brief.subprocess, "run", return_value=completed) as run:
+            translator = aigc_trend_brief.build_bing_translator()
+            result = translator.translate_many([
+                "A privacy-first app that strips AI watermarks from content you own."
+            ])
+
         self.assertEqual(
-            cleaned, "使用Transformer、提示词工程、向量嵌入和AI 智能体构建RAG工作流。")
-        self.assertEqual(aigc_trend_brief._translation_source_language("日本語のツール"), "ja")
-        self.assertEqual(aigc_trend_brief._translation_source_language("한국어 도구"), "ko")
-        self.assertEqual(aigc_trend_brief._translation_source_language("русский проект"), "ru")
+            result, ["一款注重隐私的应用，可从你拥有的内容中移除 AI 水印。"])
+        request = json.loads(run.call_args.kwargs["input"])
+        self.assertEqual(request, [
+            "A privacy-first app that strips AI watermarks from content you own."
+        ])
+        self.assertEqual(run.call_args.args[0][0], "node")
 
     def test_translation_is_cached_without_overwriting_source(self):
         projects = [project(), {**project("o/chinese"), "description": "中文项目简介"}]
@@ -126,38 +133,36 @@ class TranslationTests(unittest.TestCase):
 
     def test_translation_failure_keeps_original_fallback_available(self):
         def fail(_):
-            raise RuntimeError("offline model failed")
+            raise RuntimeError("Bing failed")
 
         projects = [project()]
         result = aigc_trend_brief.enrich_translated_descriptions(
-            projects, translator=fail, fallback_translator=None)
+            projects, translator=fail)
         self.assertNotIn("description_zh", projects[0])
         self.assertEqual(projects[0]["description"], "Agent skill for charts")
         self.assertEqual(result["failed"], 1)
 
-    def test_non_english_description_uses_keyless_fallback(self):
+    def test_non_english_description_uses_same_multilingual_model(self):
         projects = [{**project(), "description": "日本語のAIツール"}]
         result = aigc_trend_brief.enrich_translated_descriptions(
             projects,
-            translator=lambda _: self.fail("日文不应交给英中模型"),
-            fallback_translator=lambda _: "日语人工智能工具",
+            translator=lambda _: "日语人工智能工具",
         )
         self.assertEqual(projects[0]["description_zh"], "日语人工智能工具")
-        self.assertEqual(projects[0]["translation_provider"], "mymemory")
+        self.assertEqual(projects[0]["translation_provider"], "bing")
         self.assertEqual(result["translated"], 1)
 
-    def test_non_english_does_not_reuse_english_model_cache(self):
+    def test_old_argos_cache_is_never_reused(self):
         old = {**project(), "description": "한국어 AI 도구", "description_zh": "旧误译",
                "translation_provider": "argos"}
         old["translation_cache_key"] = aigc_trend_brief.translation_cache_key(old["description"])
         current = [{**project(), "description": old["description"]}]
         aigc_trend_brief.enrich_translated_descriptions(
             current, previous=[old],
-            translator=lambda _: self.fail("韩文不应交给英中模型"),
-            fallback_translator=lambda _: "韩语人工智能工具",
+            translator=lambda _: "韩语人工智能工具",
         )
         self.assertEqual(current[0]["description_zh"], "韩语人工智能工具")
-        self.assertEqual(current[0]["translation_provider"], "mymemory")
+        self.assertEqual(current[0]["translation_provider"], "bing")
 
 
 class ModelTests(unittest.TestCase):
@@ -370,11 +375,13 @@ class ClusterTests(unittest.TestCase):
             **project(),
             "description": '</script><img src=x onerror="alert(1)">',
             "description_zh": "中文机翻简介",
+            "translation_provider": "bing",
         }]}
         html = build_html(data)
         self.assertIn(r'<\/script><img', html)
         self.assertIn("中文机翻简介", html)
         self.assertLess(html.index("if (p.description_zh &&"), html.index("if (p.description)"))
+        self.assertIn('["source", "bing"].includes', html)
         self.assertNotIn('</script><img src=x', html)
         self.assertNotIn("赛道通用示意", html)
         self.assertNotIn("GitHub 授权令牌", html)

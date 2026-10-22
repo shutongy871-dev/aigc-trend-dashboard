@@ -1,0 +1,7 @@
+{
+  "name": "aigc-trend-dashboard",
+  "private": true,
+  "dependencies": {
+    "bing-translate-api": "4.3.0"
+  }
+}
