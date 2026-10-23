@@ -1,0 +1,41 @@
+name: 每日任务启动与成功监测
+
+on:
+  schedule:
+    # 每小时北京时间 :35 巡检；与采集共用 GitHub 调度，可能延迟。
+    - cron: "35 * * * *"
+  workflow_run:
+    workflows: ["每日采集并部署看板"]
+    types: [requested, in_progress, completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  issues: write
+
+concurrency:
+  group: daily-task-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.event == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 检查启动、耗时及部署结果
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # 启用前的日期不产生补发告警。
+          MONITOR_SINCE: "2026-10-23"
+        run: python monitor_daily.py
