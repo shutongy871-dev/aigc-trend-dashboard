@@ -5,3 +5,18 @@ __pycache__/
 node_modules/
 .env
 .env.*
+
+# 一次性回填中间材料；正式内容已合并到 output/aigc_data.json
+/agent_backfill.py
+/output/agent_backfill/
+
+# 本地默认网页输出；正式部署入口为 site/index.html
+/output/aigc_dashboard.html
+
+# 本地语义搜索 Spike，不作为产品交付入库
+/semantic_search_demo.py
+/semantic_search_demo.md
+/semantic_search_constraints.py
+/semantic_search_offline_facts.json
+/compare_semantic_search.py
+/test_semantic_search_constraints.py
