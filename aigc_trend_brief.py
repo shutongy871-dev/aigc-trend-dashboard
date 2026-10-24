@@ -3,13 +3,13 @@
 """
 AIGC 前沿趋势自动简报
 =====================
-采集近 N 天（默认 30 天）AIGC 领域的前沿开源项目 / 模型 / 社区热议，
+采集近 N 天（默认 90 天）AIGC 领域的前沿开源项目 / 模型 / 社区热议，
 输出结构化 Markdown 简报 + JSON 数据明细。
 
 数据源（均为官方公开 API，零第三方依赖，Python 3.9+）：
-  1. GitHub Search API    —— 近 30 天新建的高热度仓库
+  1. GitHub Search API    —— 窗口内新建的高热度仓库
   2. Hacker News Algolia  —— 技术社区热议（points > 50）
-  3. Hugging Face API     —— 近期热门新模型（likes7d 榜，近 30 天创建）
+  3. Hugging Face API     —— 近期热门新模型（likes7d 榜，窗口内创建）
 
 可选增强（无凭证时自动降级，不影响主流程）：
   GITHUB_TOKEN   GitHub PAT，提升 Search 限流（匿名 10 次/分钟 -> 认证 30 次/分钟）
@@ -19,7 +19,7 @@ AIGC 前沿趋势自动简报
   HTTPS_PROXY    如需代理，按系统环境变量自动生效
 
 用法：
-  python3 aigc_trend_brief.py              # 默认近 30 天
+  python3 aigc_trend_brief.py              # 默认近 90 天
   python3 aigc_trend_brief.py --days 7     # 指定窗口
 """
 from __future__ import annotations
@@ -27,6 +27,7 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
+import http.client
 import json
 import os
 import re
@@ -45,7 +46,7 @@ from project_discovery import extract_evidence, enrich_learning, build_discovery
 # 配置区（口径常量，集中管理）
 # --------------------------------------------------------------------------- #
 
-WINDOW_DAYS = 30
+WINDOW_DAYS = 90
 GITHUB_MIN_STARS = 20          # topic 组仓库的最低 star
 KEYWORD_MIN_STARS = 50         # 关键词组（噪声更大）提高门槛
 FALLBACK_MIN_STARS = 100       # 全站兜底组门槛，客户端再过 AIGC 白名单
@@ -221,7 +222,7 @@ def _request(method, url, headers=None, body=None, timeout=30):
                 last_err = payload.get("message", str(e))
                 continue
             raise RuntimeError(f"HTTP {e.code}: {payload.get('message', raw[:200])}") from None
-        except (urllib.error.URLError, TimeoutError) as e:
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead) as e:
             last_err = str(e)
             if attempt < 2:
                 time.sleep(3 * (attempt + 1))
@@ -571,7 +572,7 @@ def fetch_hackernews(start_ts):
     # 输入：窗口起始的 Unix 时间戳 start_ts（秒）
     # 返回值：按 objectID 去重后的 HN 帖子 dict 列表
     # 关键行为：用 10 个词组搜 Algolia（points>50、窗口内），客户端再用白名单过滤前缀噪声
-    """多词组搜索 HN 近 30 天高分故事，按 objectID 去重。"""
+    """多词组搜索 HN 窗口内高分故事，按 objectID 去重。"""
     stories = {}
     print(f"[HackerNews] {len(HN_QUERIES)} 个词组，points > {HN_MIN_POINTS}",
           flush=True)
@@ -659,7 +660,7 @@ def attach_hackernews(projects, hn_stories, start_date):
     HN 双向整合：
       1. 指向已有 GitHub 项目的故事 -> 写入 HN 热度；
       2. 指向集合外 GitHub 仓库的故事 -> 调 core API 反查补全（HN 反向捕获
-         "近 30 天爆发的老项目" 与 "无 topic 的新项目"，补正向查询的盲区）；
+         "窗口内爆发的老项目" 与 "无 topic 的新项目"，补正向查询的盲区）；
       3. 其余 AI 故事 -> 社区热议列表。
     """
     by_key = {p["full_name"].lower(): p for p in projects}  # 小写键，容忍 URL 大小写差异
@@ -1237,7 +1238,7 @@ def render_markdown(projects, hf_models, hn_hot, insights, window, meta):
     # Hugging Face
     lines += [
         "",
-        "## 五、Hugging Face 近 30 天热门新模型",
+        f"## 五、Hugging Face 近 {meta['days']} 天热门新模型",
         "",
         "| # | 模型 | 任务 | ❤️ Likes | Downloads | 发布日期 |",
         "|---|---|---|---:|---:|---|",

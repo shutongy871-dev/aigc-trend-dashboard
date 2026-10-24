@@ -1,4 +1,4 @@
-每日采集仍由 `.github/workflows/deploy.yml` 在北京时间 09:05 定时触发。
+每日采集仍由 `.github/workflows/deploy.yml` 在北京时间 09:05 定时触发，默认采集近 90 天。
 `.github/workflows/monitor.yml` 单独监测，不调用采集、翻译或模型服务。
 
 - 每小时北京时间 :35 巡检；定时采集任务创建、开始、结束时也触发监测。

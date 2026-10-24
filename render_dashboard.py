@@ -573,9 +573,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         <div class="window-filter">
           <label for="windowFilter">创建时间</label>
           <select id="windowFilter">
-            <option value="full" id="fullWindowOption">本期</option>
-            <option value="30">近 30 天</option>
-            <option value="7">近 7 天</option>
+            __AIGC_WINDOW_OPTIONS__
           </select>
           <span class="window-dates" id="windowDates"></span>
         </div>
@@ -717,8 +715,6 @@ async function copyText(text, btn) {
 function renderHeader() {
   const active = selectedWindow();
   const scoped = scopedProjects();
-  const configuredDays = Number(DASH_DATA.window?.days) || 90;
-  document.getElementById("fullWindowOption").textContent = "本期 " + configuredDays + " 天";
   document.getElementById("windowFilter").value = String(state.windowDays);
   document.getElementById("windowDates").textContent = active.start + " ~ " + active.end + " UTC";
   const stats = [
@@ -1096,7 +1092,13 @@ def build_payload(data: dict) -> dict:
 
 def build_html(data: dict) -> str:
     payload_json = json.dumps(build_payload(data), ensure_ascii=False).replace("</", "<\\/")
-    return HTML_TEMPLATE.replace(DATA_TOKEN, payload_json)
+    configured_days = int(data.get("window", {}).get("days") or 90)
+    # 完整采集窗口只出现一次；子窗口必须小于实际数据范围。
+    options = [f'<option value="full" id="fullWindowOption">近 {configured_days} 天</option>']
+    options.extend(f'<option value="{days}">近 {days} 天</option>'
+                   for days in (30, 7) if days < configured_days)
+    return (HTML_TEMPLATE.replace("__AIGC_WINDOW_OPTIONS__", "\n            ".join(options))
+            .replace(DATA_TOKEN, payload_json))
 
 
 def main():

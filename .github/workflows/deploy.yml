@@ -13,7 +13,7 @@ on:
       days:
         description: "回溯天数"
         required: false
-        default: "30"
+        default: "90"
       refresh_discovery:
         description: "只更新已有资料的学习解读（跳过重新采集）"
         type: boolean
@@ -81,7 +81,7 @@ jobs:
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3' }}
           LLM_MODEL: ${{ secrets.LLM_MODEL || 'doubao-seed-1-6-250615' }}
           GITHUB_TOKEN: ${{ github.token }}
-          WINDOW_DAYS: ${{ github.event.inputs.days || '30' }}
+          WINDOW_DAYS: ${{ github.event.inputs.days || '90' }}
           # 代码发布复用资料；每日定时任务继续完整采集。
           REFRESH_DISCOVERY: ${{ github.event_name == 'push' && 'true' || github.event.inputs.refresh_discovery || 'false' }}
           # 代码发布不重试外部模型；每日滚动处理 90 个，约 30 次模型请求。
