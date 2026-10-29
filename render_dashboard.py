@@ -144,7 +144,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   header.hero { margin-bottom: 32px; }
   .hero-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   h1 {
-    font-size: 32px; font-weight: 800; letter-spacing: -0.02em;
+    font-size: 32px; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;
     background: linear-gradient(120deg, #fff 20%, #aeb9ff 60%, #d3b8ff);
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
   }
@@ -176,6 +176,18 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .stat .num.amber { color: var(--warn); }
 
   /* 控制条 */
+  .section-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 28px 0 20px; }
+  .section-tab {
+    padding: 18px 20px; text-align: left; cursor: pointer; color: var(--text-dim);
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    font-family: var(--sans);
+  }
+  .section-tab strong { display: block; font-size: 18px; color: var(--text); }
+  .section-tab small { display: block; font-size: 12px; margin-top: 5px; }
+  .section-tab:hover { border-color: var(--border-strong); }
+  .section-tab.active { border-color: var(--accent); background: var(--accent-soft); }
+  .section-tab.active strong { color: #c4ccff; }
+  .section-tab:focus-visible, .builder-expand:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .toolbar {
     display: flex; flex-direction: column; gap: 14px;
     margin: 30px 0 22px;
@@ -549,13 +561,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .demo-stage-title { display: block; color: #bac5f7; font-size: 12px; margin: 12px 0 4px; }
   .tabs { flex-wrap: wrap; max-width: 100%; }
   .builder-view { display: flex; flex-direction: column; gap: 20px; }
-  .builder-intro { padding: 24px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); }
-  .builder-kicker { color: var(--good); font: 12px var(--mono); letter-spacing: .08em; margin-bottom: 8px; }
-  .builder-intro h2 { font-size: 24px; letter-spacing: -.025em; }
-  .builder-intro p { color: var(--text-dim); font-size: 14px; margin-top: 8px; }
-  .builder-source { display: flex; gap: 8px 20px; flex-wrap: wrap; margin-top: 18px; color: var(--text-dim); font-size: 12px; }
-  .builder-source a, .builder-card a { color: #c4ccff; text-decoration: none; }
-  .builder-source a:hover, .builder-card a:hover { text-decoration: underline; }
+  .builder-card a { color: #c4ccff; text-decoration: none; }
+  .builder-card a:hover { text-decoration: underline; }
   .builder-warning { margin-top: 12px; padding: 10px 14px; border-left: 2px solid var(--warn); color: var(--warn); font-size: 13px; }
   .builder-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
   .builder-filters select { max-width: 100%; }
@@ -577,7 +584,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .builder-tag { color: var(--text-dim); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; font-size: 11px; }
   @media (max-width: 760px) {
     .builder-grid { grid-template-columns: 1fr; }
-    .builder-intro, .builder-card { padding: 18px; }
+    .builder-card { padding: 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -588,6 +595,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
     .tab { padding: 8px 10px; font-size: 12px; }
     .summary-nav { grid-template-columns: 1fr auto; }
     .summary-nav-kicker { grid-column: 1 / -1; }
+    .section-nav { gap: 8px; }
+    .section-tab { padding: 14px 10px; }
+    .section-tab strong { font-size: 14px; }
+    .section-tab small { font-size: 11px; }
     h1 { font-size: 26px; }
     .wrap { padding: 28px 16px 60px; }
   }
@@ -611,17 +622,28 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
         </div>
       </div>
     </div>
-    <div class="stats" id="stats"></div>
   </header>
 
+  <nav class="section-nav" aria-label="看板内容板块">
+    <button class="section-tab active" data-section="projects" type="button" aria-pressed="true">
+      <strong>项目发现</strong><small>工具 · 应用 · 模型</small>
+    </button>
+    <button class="section-tab" data-section="hn" type="button" aria-pressed="false">
+      <strong>HN 热议</strong><small>Hacker News 社区讨论</small>
+    </button>
+    <button class="section-tab" data-section="builders" type="button" aria-pressed="false">
+      <strong>Builder 观点</strong><small>海外 Builder 每日推文</small>
+    </button>
+  </nav>
+
+  <div class="stats" id="stats"></div>
+
   <div class="toolbar">
-    <div class="tabs">
+    <div class="tabs" id="projectTabs" aria-label="项目分类">
       <button class="tab" data-tab="projects">全部项目</button>
       <button class="tab active" data-tab="skills">Skill / 工具</button>
       <button class="tab" data-tab="apps">软件 / 小程序</button>
       <button class="tab" data-tab="models">HF 新模型</button>
-      <button class="tab" data-tab="hn">HN 热议</button>
-      <button class="tab" data-tab="builders">Builder 观点</button>
     </div>
     <div class="controls" id="controls">
       <div class="search-box">
@@ -647,7 +669,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <main id="content"></main>
 
   <footer>
-    资料来自 GitHub README、Hugging Face、Hacker News 与 Follow Builders · AI 解读附来源，Builder 观点保留原文
+    资料来自 GitHub README、Hugging Face、Hacker News 与
+    <a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener noreferrer" style="color:inherit">Follow Builders</a>
+    · AI 解读附来源，Builder 观点保留原文
   </footer>
 </div>
 
@@ -667,7 +691,8 @@ const byRepo = new Map(projects.map(p => [p.full_name, p]));
 
 const state = {
   tab: "skills", query: "", category: "全部", sort: "heat", windowDays: "full",
-  builderAuthor: "all", builderSort: "engagement", builderHideShort: true
+  builderAuthor: "all", builderSort: "engagement", builderHideShort: true,
+  builderDate: "all", projectTab: "skills"
 };
 
 /* ---------- 图标 ---------- */
@@ -1050,11 +1075,22 @@ function builderTime(value) {
     hour: "2-digit", minute: "2-digit", hour12: false
   }).format(date) + " 北京时间";
 }
+function builderDate(value) {
+  const date = new Date(value);
+  if (!value || Number.isNaN(date.getTime())) return "";
+  const parts = new Intl.DateTimeFormat("en", {
+    timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit"
+  }).formatToParts(date);
+  const part = type => parts.find(p => p.type === type).value;
+  return part("year") + "-" + part("month") + "-" + part("day");
+}
 function selectBuilderPosts(posts, options) {
-  // SQL 等效：WHERE author/query/context filters; ORDER BY interactions DESC, created_at DESC.
+  // SQL 等效：WHERE DATE(created_at AT TIME ZONE 'Asia/Shanghai') = selected_date
+  // AND author/query/context filters; ORDER BY interactions DESC, created_at DESC.
   const q = options.query.trim().toLowerCase();
   const interactions = p => [p.likes, p.retweets, p.replies].reduce((sum, n) => sum + (n || 0), 0);
   return posts.filter(p => options.builderAuthor === "all" || p.handle === options.builderAuthor)
+    .filter(p => options.builderDate === "all" || builderDate(p.created_at) === options.builderDate)
     .filter(p => !options.builderHideShort || !p.short_context)
     .filter(p => !q || [p.name, p.handle, p.bio, p.text].join(" ").toLowerCase().includes(q))
     .sort((a, b) => (options.builderSort === "engagement" ? interactions(b) - interactions(a) : 0)
@@ -1081,26 +1117,24 @@ function renderBuilders() {
   const list = selectBuilderPosts(posts, state);
   const authors = [...new Map(posts.map(p => [p.handle, p.name])).entries()]
     .sort((a, b) => a[1].localeCompare(b[1]));
+  const dates = [...new Set(posts.map(p => builderDate(p.created_at)).filter(Boolean))].sort().reverse();
   const generated = new Date(builderFeed.generated_at);
   const stale = builderFeed.generated_at && !Number.isNaN(generated.getTime())
     && Date.now() - generated.getTime() > 36 * 3600000;
   const warning = [builderFeed.warning, stale ? "来源已超过 36 小时未更新，以下为最近一次快照。" : ""].filter(Boolean).join(" ");
   const el = document.getElementById("content");
   el.className = "builder-view";
-  document.getElementById("hint").textContent = "最新每日推文快照 · 可搜索作者、原文和产品名称";
-  el.innerHTML = '<section class="builder-intro"><div class="builder-kicker">FOLLOW BUILDERS / DAILY VOICES</div>' +
-    '<h2>听听正在做产品的人怎么说</h2>' +
-    '<p>来自 Zara Zhang 的 Follow Builders 来源名单。保留英文原文，关注一线产品、技术与行业观点。</p>' +
-    '<p>名单精选，推文未经逐条精选；互动量帮助浏览，不代表观点质量。引用内容和图片请到原帖查看。</p>' +
-    '<div class="builder-source"><span>来源更新：' + esc(builderTime(builderFeed.generated_at)) + '</span>' +
-    '<span>看板获取：' + esc(builderTime(builderFeed.fetched_at)) + '</span>' +
-    (builderFeed.lookback_hours != null ? '<span>来源回溯：' + fmt(builderFeed.lookback_hours) + ' 小时</span>' : '') +
-    '<a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener noreferrer">来源与项目 ↗</a></div>' +
+  document.getElementById("hint").textContent = "";
+  el.innerHTML =
     (warning ? '<div class="builder-warning" role="status">' + esc(warning) + '</div>' : '') +
-    '</section><div class="builder-filters"><select id="builderAuthor" aria-label="筛选 Builder">' +
+    '<div class="builder-filters"><select id="builderAuthor" aria-label="筛选 Builder">' +
     '<option value="all">全部 Builder（' + authors.length + '）</option>' +
     authors.map(([handle, name]) => '<option value="' + esc(handle) + '"' +
       (state.builderAuthor === handle ? ' selected' : '') + '>' + esc(name) + '</option>').join('') +
+    '</select><select id="builderDate" aria-label="筛选发帖日期（北京时间）">' +
+    '<option value="all">全部发帖日期（北京时间）</option>' +
+    dates.map(date => '<option value="' + date + '"' + (state.builderDate === date ? ' selected' : '') +
+      '>' + date + '</option>').join('') +
     '</select><select id="builderSort" aria-label="观点排序">' +
     '<option value="engagement"' + (state.builderSort === "engagement" ? ' selected' : '') + '>按互动量</option>' +
     '<option value="newest"' + (state.builderSort === "newest" ? ' selected' : '') + '>按最新发布</option></select>' +
@@ -1124,6 +1158,7 @@ document.getElementById("content").addEventListener("click", e => {
 });
 document.getElementById("content").addEventListener("change", e => {
   if (e.target.id === "builderAuthor") state.builderAuthor = e.target.value;
+  else if (e.target.id === "builderDate") state.builderDate = e.target.value;
   else if (e.target.id === "builderSort") state.builderSort = e.target.value;
   else if (e.target.id === "builderHideShort") state.builderHideShort = e.target.checked;
   else return;
@@ -1160,17 +1195,36 @@ function bindExpand(root) {
 }
 
 /* ---------- 视图切换 ---------- */
+function sectionForTab(tab) {
+  return tab === "builders" || tab === "hn" ? tab : "projects";
+}
 function switchTab(tab) {
+  const section = sectionForTab(tab);
+  if (section !== sectionForTab(state.tab)) {
+    state.query = "";
+    document.getElementById("search").value = "";
+  }
   state.tab = tab;
+  if (section === "projects" && tab !== "trends") state.projectTab = tab;
+  document.querySelectorAll(".section-tab").forEach(button => {
+    const active = button.dataset.section === section;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
   document.querySelectorAll(".tab").forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
+  document.getElementById("projectTabs").style.display = section === "projects" ? "" : "none";
+  document.getElementById("stats").style.display = section === "projects" ? "" : "none";
+  document.getElementById("summaryNav").style.display = section === "projects" ? "" : "none";
   document.getElementById("summaryNav").classList.toggle("active", tab === "trends");
   const controls = document.getElementById("controls");
   const sortSel = document.getElementById("sort");
   controls.style.display = "flex";
   sortSel.style.display = tab === "projects" ? "" : "none";
   document.getElementById("search").placeholder = tab === "builders"
-    ? "搜索 Builder、英文观点或产品名称…" : "搜索项目、用途、原理或你想解决的问题…";
-  document.getElementById("search").setAttribute("aria-label", tab === "builders" ? "搜索 Builder 与推文" : "搜索项目与原理");
+    ? "搜索 Builder、英文观点或产品名称…" : tab === "hn"
+    ? "搜索 HN 热议标题或链接…" : "搜索项目、用途、原理或你想解决的问题…";
+  document.getElementById("search").setAttribute("aria-label", tab === "builders"
+    ? "搜索 Builder 与推文" : tab === "hn" ? "搜索 HN 热议" : "搜索项目与原理");
   document.querySelector(".window-filter").style.display = tab === "builders" ? "none" : "";
   renderChips();
   renderCurrent();
@@ -1188,6 +1242,13 @@ function renderCurrent() {
 document.querySelectorAll(".tab").forEach(t =>
   t.addEventListener("click", () => switchTab(t.dataset.tab))
 );
+document.querySelectorAll(".section-tab").forEach(button => {
+  button.addEventListener("click", () => {
+    const section = button.dataset.section;
+    switchTab(section === "projects" ? state.projectTab : section);
+    history.replaceState(null, "", "#" + section);
+  });
+});
 document.getElementById("summaryNav").addEventListener("click", () => switchTab("trends"));
 document.getElementById("search").addEventListener("input", e => {
   state.query = e.target.value;
@@ -1202,7 +1263,7 @@ document.getElementById("windowFilter").addEventListener("change", e => {
 });
 
 renderHeader();
-switchTab(location.hash === "#builders" ? "builders" : "skills");
+switchTab(location.hash === "#builders" ? "builders" : location.hash === "#hn" ? "hn" : "skills");
 </script>
 </body>
 </html>
