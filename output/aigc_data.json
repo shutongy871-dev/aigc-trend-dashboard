@@ -150211,8 +150211,8 @@
   ],
   "translation": {
     "existing_zh": 146,
-    "cached": 893,
-    "translated": 24,
+    "cached": 917,
+    "translated": 0,
     "failed": 0
   },
   "discovery": {
@@ -150230,7 +150230,7 @@
       "queued": 362,
       "failure_reasons": [],
       "status": "ready",
-      "generated_at": "2026-10-29 14:33 UTC"
+      "generated_at": "2026-10-29 14:39 UTC"
     },
     "min_stars": 100,
     "selection_limit": 12,
