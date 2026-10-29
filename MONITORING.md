@@ -1,6 +1,34 @@
 每日采集仍由 `.github/workflows/deploy.yml` 在北京时间 09:05 定时触发，默认采集近 90 天。
 `.github/workflows/monitor.yml` 单独监测，不调用采集、翻译或模型服务。
 
+Builder 观点另由 `.github/workflows/builders.yml` 在北京时间 15:17 定时刷新，
+比 Follow Builders 上游计划更新时间（14:17）晚一小时。该任务复用部署工作流，
+仅下载公开 `feed-x.json` 并重新渲染页面，不重新采集项目、不调用翻译或大模型。
+上午完整流程也会读取这份内容源。两条发布共用 `pages` 并发组与归档冲突保护。
+GitHub 调度可能延迟，15:17 不保证上游已经更新，以页面“来源更新”时间为准。
+
+本地预览：
+
+```bash
+python3 builder_feed.py
+python3 render_dashboard.py --data output/aigc_data.json --out site/index.html
+python3 -m http.server 8000 --directory site
+# 打开 http://localhost:8000/#builders
+```
+
+快照保存在 `output/builder_feed.json`，包含原文、作者自述、原帖链接、发帖时间、
+来源更新时间、成功获取时间与互动量。链接必须匹配来源作者与推文 ID；重复 ID 去重。
+只保留最新快照，不积累历史；“隐藏短帖”仅按移除链接与 @提及后的正文不足 60 字符判断，
+不是 AI 相关性或观点质量筛选。默认按赞 + 转发 + 回复排序，数字为上游采集时快照。
+展示来源名单归属于 Zara Zhang / Follow Builders，原文属于各自作者，
+引用推文、图片和外链语境通过原帖查看；本版不生成摘要或中文翻译。
+
+上游下载或校验失败时保留上次成功快照，页面显示更新异常，Actions 给出 warning；
+首次失败显示空态。合法的空内容源会清空旧推文，超过 36 小时未更新会显示旧快照提示。
+当前每日 Issue 监测仍只覆盖上午完整流程，**不覆盖下午 Builder 专项任务**；
+专项任务查看 Actions → 每日刷新 Builder 观点，失败/部分内容也请检查日志与页面提示。
+手动刷新可运行专项工作流，或在原部署工作流勾选 `builders_only`。
+
 - 每小时北京时间 :35 巡检；定时采集任务创建、开始、结束时也触发监测。
 - 北京时间 09:35 仍无定时任务，或已创建但 build 仍在排队，标记异常。
 - 从 build 实际开始算起超过 2 小时未完成，标记超时；不会终止采集。

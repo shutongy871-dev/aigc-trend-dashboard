@@ -53,7 +53,7 @@ function fixture(t) {
       env: { ...process.env, WORKFLOW_EVENT: event, PUSH_BEFORE_SHA: previous, GITHUB_OUTPUT: output },
       encoding: "utf8",
     });
-    return fs.readFileSync(output, "utf8").trim();
+    return fs.readFileSync(output, "utf8").trim().split("\n").find(line => line.startsWith("needed="));
   }
   return { dir, git, write, commit, needsRender };
 }
@@ -78,6 +78,14 @@ test("renders a changed Python template even when HTML changes in the same push"
 test("renders changed source data", (t) => {
   const f = fixture(t);
   f.write("output/aigc_data.json", '{"updated":true}');
+  f.commit();
+  assert.equal(f.needsRender(), "needed=true");
+});
+
+test("renders changed Builder collector and snapshot", (t) => {
+  const f = fixture(t);
+  f.write("builder_feed.py", "# updated collector");
+  f.write("output/builder_feed.json", '{"posts":[]}');
   f.commit();
   assert.equal(f.needsRender(), "needed=true");
 });

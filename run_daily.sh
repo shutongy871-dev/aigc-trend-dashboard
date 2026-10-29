@@ -19,8 +19,11 @@ else
   "$PY" aigc_trend_brief.py --days "${DAYS}" --llm-limit "$LLM_LIMIT" --output-dir output
 fi
 
+echo "==> 获取 Builder 最新公开推文（无需模型）"
+"$PY" builder_feed.py --out output/builder_feed.json
+
 echo "==> [2/2] 渲染看板 → site/index.html"
 mkdir -p site
-"$PY" render_dashboard.py --data output/aigc_data.json --out site/index.html
+"$PY" render_dashboard.py --data output/aigc_data.json --builders output/builder_feed.json --out site/index.html
 
 echo "==> 流水线完成"

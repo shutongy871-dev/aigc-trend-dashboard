@@ -22,6 +22,15 @@ on:
         description: "本次最多尝试分析多少个项目"
         required: false
         default: "90"
+      builders_only:
+        description: "仅刷新 Builder 推文（不采集项目、不调用模型）"
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      builders_only:
+        type: boolean
+        default: false
 
 # GITHUB_TOKEN 权限：回写产物到仓库 + 发布 Pages
 permissions:
@@ -56,7 +65,9 @@ jobs:
         env:
           WORKFLOW_EVENT: ${{ github.event_name }}
           PUSH_BEFORE_SHA: ${{ github.event.before }}
+          BUILDERS_ONLY: ${{ inputs.builders_only || false }}
         run: |
+          echo "builders_only=${BUILDERS_ONLY:-false}" >> "$GITHUB_OUTPUT"
           if [[ "$WORKFLOW_EVENT" != "push" ]] || [[ ! -f site/index.html ]]; then
             echo "needed=true" >> "$GITHUB_OUTPUT"
           elif ! git cat-file -e "${PUSH_BEFORE_SHA}^{commit}" 2>/dev/null; then
@@ -64,18 +75,18 @@ jobs:
           elif ! git diff --quiet "$PUSH_BEFORE_SHA" HEAD -- \
             render_dashboard.py aigc_trend_brief.py project_discovery.py \
             translate_descriptions.js package.json package-lock.json \
-            run_daily.sh output/aigc_data.json; then
+            run_daily.sh builder_feed.py output/aigc_data.json output/builder_feed.json; then
             echo "needed=true" >> "$GITHUB_OUTPUT"
           else
             echo "needed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: 安装免登录翻译客户端
-        if: steps.render.outputs.needed == 'true'
+        if: steps.render.outputs.needed == 'true' && steps.render.outputs.builders_only != 'true'
         run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: 采集数据并渲染看板
-        if: steps.render.outputs.needed == 'true'
+        if: steps.render.outputs.needed == 'true' && steps.render.outputs.builders_only != 'true'
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL || 'https://ark.cn-beijing.volces.com/api/v3' }}
@@ -90,6 +101,12 @@ jobs:
           chmod +x run_daily.sh
           ./run_daily.sh "$WINDOW_DAYS"
 
+      - name: 仅刷新 Builder 推文并渲染看板
+        if: steps.render.outputs.needed == 'true' && steps.render.outputs.builders_only == 'true'
+        run: |
+          python builder_feed.py --out output/builder_feed.json
+          python render_dashboard.py --data output/aigc_data.json --builders output/builder_feed.json --out site/index.html
+
       - name: 校验学习卡与趋势口径
         run: python -m unittest discover -s tests -p 'test_*.py'
 
@@ -103,6 +120,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           source_sha="$(git rev-parse HEAD)"
           git add output/aigc_data.json output/aigc_brief.md site/index.html
+          if [[ -f output/builder_feed.json ]]; then
+            git add output/builder_feed.json
+          fi
           if ! git diff --cached --quiet; then
             git commit -m "chore(data): 每日趋势数据与看板更新 $(date -u +%Y-%m-%d)"
           fi
@@ -114,6 +134,7 @@ jobs:
             if ! git diff --quiet "$source_sha" origin/main -- \
               render_dashboard.py aigc_trend_brief.py project_discovery.py \
               translate_descriptions.js package.json package-lock.json run_daily.sh \
+              builder_feed.py output/builder_feed.json \
               output/aigc_data.json output/aigc_brief.md site/index.html; then
               echo "检测到更新的源码或产物，跳过过期发布。"
               echo "publish=false" >> "$GITHUB_OUTPUT"

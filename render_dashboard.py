@@ -547,6 +547,38 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .mini-note { font-size: 11px; color: var(--text-faint); }
   .demo-result { border-left: 2px solid var(--good); padding-left: 12px; }
   .demo-stage-title { display: block; color: #bac5f7; font-size: 12px; margin: 12px 0 4px; }
+  .tabs { flex-wrap: wrap; max-width: 100%; }
+  .builder-view { display: flex; flex-direction: column; gap: 20px; }
+  .builder-intro { padding: 24px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); }
+  .builder-kicker { color: var(--good); font: 12px var(--mono); letter-spacing: .08em; margin-bottom: 8px; }
+  .builder-intro h2 { font-size: 24px; letter-spacing: -.025em; }
+  .builder-intro p { color: var(--text-dim); font-size: 14px; margin-top: 8px; }
+  .builder-source { display: flex; gap: 8px 20px; flex-wrap: wrap; margin-top: 18px; color: var(--text-dim); font-size: 12px; }
+  .builder-source a, .builder-card a { color: #c4ccff; text-decoration: none; }
+  .builder-source a:hover, .builder-card a:hover { text-decoration: underline; }
+  .builder-warning { margin-top: 12px; padding: 10px 14px; border-left: 2px solid var(--warn); color: var(--warn); font-size: 13px; }
+  .builder-filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .builder-filters select { max-width: 100%; }
+  .builder-filters label { display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 13px; cursor: pointer; }
+  .builder-filters input { accent-color: var(--accent); }
+  .builder-count { color: var(--text-dim); font-size: 13px; }
+  .builder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+  .builder-card { min-width: 0; padding: 22px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+  .builder-author { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .builder-author strong { font-size: 16px; }
+  .builder-handle, .builder-time { color: var(--text-dim); font-size: 12px; }
+  .builder-bio { color: var(--text-dim); font-size: 12px; margin-top: 8px; white-space: pre-line; overflow-wrap: anywhere; }
+  .builder-text { margin: 18px 0; font-size: 15px; line-height: 1.75; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .builder-text.clamped { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
+  .builder-bottom { border-top: 1px solid var(--border); padding-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
+  .builder-metrics { display: flex; flex-wrap: wrap; gap: 12px; color: var(--text-dim); font-size: 12px; }
+  .builder-actions { display: flex; align-items: center; gap: 14px; font-size: 13px; }
+  .builder-expand { border: none; background: transparent; color: #c4ccff; cursor: pointer; font: inherit; }
+  .builder-tag { color: var(--text-dim); border: 1px solid var(--border); border-radius: 5px; padding: 2px 6px; font-size: 11px; }
+  @media (max-width: 760px) {
+    .builder-grid { grid-template-columns: 1fr; }
+    .builder-intro, .builder-card { padding: 18px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
@@ -589,6 +621,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
       <button class="tab" data-tab="apps">软件 / 小程序</button>
       <button class="tab" data-tab="models">HF 新模型</button>
       <button class="tab" data-tab="hn">HN 热议</button>
+      <button class="tab" data-tab="builders">Builder 观点</button>
     </div>
     <div class="controls" id="controls">
       <div class="search-box">
@@ -614,7 +647,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <main id="content"></main>
 
   <footer>
-    资料来自 GitHub README、Hugging Face 与 Hacker News · AI 解读附来源，效果示意不代表实测
+    资料来自 GitHub README、Hugging Face、Hacker News 与 Follow Builders · AI 解读附来源，Builder 观点保留原文
   </footer>
 </div>
 
@@ -629,10 +662,12 @@ const projects = DASH_DATA.projects || [];
 const hfModels = DASH_DATA.hf_models || [];
 const hnStories = DASH_DATA.hn_hot_stories || [];
 const discovery = DASH_DATA.discovery || {};
+const builderFeed = DASH_DATA.builder_feed || {};
 const byRepo = new Map(projects.map(p => [p.full_name, p]));
 
 const state = {
-  tab: "skills", query: "", category: "全部", sort: "heat", windowDays: "full"
+  tab: "skills", query: "", category: "全部", sort: "heat", windowDays: "full",
+  builderAuthor: "all", builderSort: "engagement", builderHideShort: true
 };
 
 /* ---------- 图标 ---------- */
@@ -1006,6 +1041,95 @@ function renderHN() {
   ).join("") : '<div class="empty">' + ICON.searchDim + "<div>没有符合条件的热议</div></div>";
 }
 
+/* ---------- Builder 观点：只展示来源原文，不生成观点或翻译 ---------- */
+function builderTime(value) {
+  const date = new Date(value);
+  if (!value || Number.isNaN(date.getTime())) return "暂无";
+  return new Intl.DateTimeFormat("zh-CN", {
+    timeZone: "Asia/Shanghai", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hour12: false
+  }).format(date) + " 北京时间";
+}
+function selectBuilderPosts(posts, options) {
+  // SQL 等效：WHERE author/query/context filters; ORDER BY interactions DESC, created_at DESC.
+  const q = options.query.trim().toLowerCase();
+  const interactions = p => [p.likes, p.retweets, p.replies].reduce((sum, n) => sum + (n || 0), 0);
+  return posts.filter(p => options.builderAuthor === "all" || p.handle === options.builderAuthor)
+    .filter(p => !options.builderHideShort || !p.short_context)
+    .filter(p => !q || [p.name, p.handle, p.bio, p.text].join(" ").toLowerCase().includes(q))
+    .sort((a, b) => (options.builderSort === "engagement" ? interactions(b) - interactions(a) : 0)
+      || b.created_at.localeCompare(a.created_at));
+}
+function builderCard(p) {
+  const metric = n => n == null ? "—" : fmt(n);
+  return '<article class="builder-card">' +
+    '<div class="builder-author"><div><strong>' + esc(p.name) + '</strong>' +
+    '<div class="builder-handle">@' + esc(p.handle) + '</div></div>' +
+    '<time class="builder-time" datetime="' + esc(p.created_at) + '">' + esc(builderTime(p.created_at)) + '</time></div>' +
+    '<p class="builder-bio">' + esc(p.bio) + '</p>' +
+    '<p class="builder-text clamped" lang="en">' + esc(p.text) + '</p>' +
+    '<div class="builder-bottom"><div class="builder-metrics">' +
+    '<span>赞 ' + metric(p.likes) + '</span><span>转发 ' + metric(p.retweets) + '</span><span>回复 ' + metric(p.replies) + '</span>' +
+    (p.is_quote ? '<span class="builder-tag">引用推文 · 语境见原帖</span>' : '') +
+    (p.short_context ? '<span class="builder-tag">短帖 / 链接</span>' : '') +
+    '</div><div class="builder-actions">' +
+    '<button class="builder-expand" type="button" aria-expanded="false"><span class="builder-expand-label">展开原文</span></button>' +
+    '<a href="' + esc(p.url) + '" target="_blank" rel="noopener noreferrer">查看原帖 ↗</a></div></div></article>';
+}
+function renderBuilders() {
+  const posts = builderFeed.posts || [];
+  const list = selectBuilderPosts(posts, state);
+  const authors = [...new Map(posts.map(p => [p.handle, p.name])).entries()]
+    .sort((a, b) => a[1].localeCompare(b[1]));
+  const generated = new Date(builderFeed.generated_at);
+  const stale = builderFeed.generated_at && !Number.isNaN(generated.getTime())
+    && Date.now() - generated.getTime() > 36 * 3600000;
+  const warning = [builderFeed.warning, stale ? "来源已超过 36 小时未更新，以下为最近一次快照。" : ""].filter(Boolean).join(" ");
+  const el = document.getElementById("content");
+  el.className = "builder-view";
+  document.getElementById("hint").textContent = "最新每日推文快照 · 可搜索作者、原文和产品名称";
+  el.innerHTML = '<section class="builder-intro"><div class="builder-kicker">FOLLOW BUILDERS / DAILY VOICES</div>' +
+    '<h2>听听正在做产品的人怎么说</h2>' +
+    '<p>来自 Zara Zhang 的 Follow Builders 来源名单。保留英文原文，关注一线产品、技术与行业观点。</p>' +
+    '<p>名单精选，推文未经逐条精选；互动量帮助浏览，不代表观点质量。引用内容和图片请到原帖查看。</p>' +
+    '<div class="builder-source"><span>来源更新：' + esc(builderTime(builderFeed.generated_at)) + '</span>' +
+    '<span>看板获取：' + esc(builderTime(builderFeed.fetched_at)) + '</span>' +
+    (builderFeed.lookback_hours != null ? '<span>来源回溯：' + fmt(builderFeed.lookback_hours) + ' 小时</span>' : '') +
+    '<a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener noreferrer">来源与项目 ↗</a></div>' +
+    (warning ? '<div class="builder-warning" role="status">' + esc(warning) + '</div>' : '') +
+    '</section><div class="builder-filters"><select id="builderAuthor" aria-label="筛选 Builder">' +
+    '<option value="all">全部 Builder（' + authors.length + '）</option>' +
+    authors.map(([handle, name]) => '<option value="' + esc(handle) + '"' +
+      (state.builderAuthor === handle ? ' selected' : '') + '>' + esc(name) + '</option>').join('') +
+    '</select><select id="builderSort" aria-label="观点排序">' +
+    '<option value="engagement"' + (state.builderSort === "engagement" ? ' selected' : '') + '>按互动量</option>' +
+    '<option value="newest"' + (state.builderSort === "newest" ? ' selected' : '') + '>按最新发布</option></select>' +
+    '<label><input id="builderHideShort" type="checkbox"' + (state.builderHideShort ? ' checked' : '') +
+    '>隐藏短帖 / 纯链接（正文不足 60 字符）</label></div>' +
+    '<div class="builder-count">显示 ' + list.length + ' / ' + posts.length + ' 条 · ' + authors.length + ' 位 Builder' +
+    ' · 互动量 = 赞 + 转发 + 回复（来源采集时）</div>' +
+    '<div class="builder-grid">' +
+    (list.length ? list.map(builderCard).join('') : '<div class="empty" style="grid-column:1/-1">' +
+      (posts.length ? '没有符合条件的推文，试试清空搜索或显示短帖。' : '当前没有可展示的推文，请稍后查看。') + '</div>') + '</div>';
+}
+// 绑定在稳定容器上；筛选和搜索重新渲染后仍然只展开被点击的卡片。
+document.getElementById("content").addEventListener("click", e => {
+  const button = e.target.closest(".builder-expand");
+  if (!button) return;
+  const text = button.closest(".builder-card").querySelector(".builder-text");
+  const expanded = button.getAttribute("aria-expanded") !== "true";
+  text.classList.toggle("clamped", !expanded);
+  button.setAttribute("aria-expanded", String(expanded));
+  button.querySelector(".builder-expand-label").textContent = expanded ? "收起原文" : "展开原文";
+});
+document.getElementById("content").addEventListener("change", e => {
+  if (e.target.id === "builderAuthor") state.builderAuthor = e.target.value;
+  else if (e.target.id === "builderSort") state.builderSort = e.target.value;
+  else if (e.target.id === "builderHideShort") state.builderHideShort = e.target.checked;
+  else return;
+  renderBuilders();
+});
+
 /* ---------- 复制绑定 ---------- */
 function bindCopy(root) {
   root.querySelectorAll(".copy-btn[data-cmd]").forEach(btn =>
@@ -1044,6 +1168,10 @@ function switchTab(tab) {
   const sortSel = document.getElementById("sort");
   controls.style.display = "flex";
   sortSel.style.display = tab === "projects" ? "" : "none";
+  document.getElementById("search").placeholder = tab === "builders"
+    ? "搜索 Builder、英文观点或产品名称…" : "搜索项目、用途、原理或你想解决的问题…";
+  document.getElementById("search").setAttribute("aria-label", tab === "builders" ? "搜索 Builder 与推文" : "搜索项目与原理");
+  document.querySelector(".window-filter").style.display = tab === "builders" ? "none" : "";
   renderChips();
   renderCurrent();
 }
@@ -1054,6 +1182,7 @@ function renderCurrent() {
   if (tab === "projects") renderProjects();
   if (tab === "models") renderModels();
   if (tab === "hn") renderHN();
+  if (tab === "builders") renderBuilders();
 }
 
 document.querySelectorAll(".tab").forEach(t =>
@@ -1073,7 +1202,7 @@ document.getElementById("windowFilter").addEventListener("change", e => {
 });
 
 renderHeader();
-switchTab("skills");
+switchTab(location.hash === "#builders" ? "builders" : "skills");
 </script>
 </body>
 </html>
@@ -1087,6 +1216,7 @@ def build_payload(data: dict) -> dict:
         "hf_models": data.get("hf_models", []),
         "hn_hot_stories": data.get("hn_hot_stories", []),
         "discovery": data.get("discovery", {}),
+        "builder_feed": data.get("builder_feed", {}),
     }
 
 
@@ -1106,11 +1236,17 @@ def main():
     parser.add_argument("--data", help="指定数据 JSON；缺省优先取固定名 aigc_data.json")
     parser.add_argument("--output-dir", default="output", help="输出目录")
     parser.add_argument("--out", help="显式指定输出文件路径（部署时可直接产出 index.html）")
+    parser.add_argument("--builders", help="Builder 快照；缺省读取数据 JSON 同目录的 builder_feed.json")
     args = parser.parse_args()
 
     data_path = args.data or find_latest_data(args.output_dir)
     with open(data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
+
+    builder_path = args.builders or os.path.join(os.path.dirname(data_path), "builder_feed.json")
+    if os.path.exists(builder_path):
+        with open(builder_path, "r", encoding="utf-8") as f:
+            data["builder_feed"] = json.load(f)
 
     html = build_html(data)
 
