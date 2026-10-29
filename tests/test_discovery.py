@@ -438,7 +438,7 @@ class ClusterTests(unittest.TestCase):
             "translation_provider": "bing",
         }]}
         html = build_html(data)
-        self.assertIn(r'<\/script><img', html)
+        self.assertIn(r'\u003c/script>\u003cimg', html)
         self.assertIn("中文机翻简介", html)
         self.assertLess(html.index("if (p.description_zh &&"), html.index("if (p.description)"))
         self.assertIn('["source", "bing", "trae-agent"].includes', html)

@@ -97,11 +97,12 @@ class BuilderFeedTests(unittest.TestCase):
 
     def test_snapshot_is_embedded_and_script_termination_is_escaped(self):
         result = normalize_feed(source(), NOW)
-        result["posts"][0]["text"] = '</script><script>alert("x")</script>'
+        result["posts"][0]["text"] = '<!--<script></script><script>alert("x")</script>'
         page = build_html({"window": {"days": 90}, "builder_feed": result})
         self.assertIn('"builder_feed":', page)
         self.assertNotIn('</script><script>alert("x")', page)
-        self.assertIn(r'<\/script>', page)
+        self.assertNotIn('<!--<script>', page)
+        self.assertIn(r'\u003c/script>', page)
 
 
 if __name__ == "__main__":

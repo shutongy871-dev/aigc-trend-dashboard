@@ -1221,7 +1221,8 @@ def build_payload(data: dict) -> dict:
 
 
 def build_html(data: dict) -> str:
-    payload_json = json.dumps(build_payload(data), ensure_ascii=False).replace("</", "<\\/")
+    # 外部原文可能包含 HTML 示例；转义 < 也防止 <!-- / <script> 改变 HTML 解析状态。
+    payload_json = json.dumps(build_payload(data), ensure_ascii=False).replace("<", "\\u003c")
     configured_days = int(data.get("window", {}).get("days") or 90)
     # 完整采集窗口只出现一次；子窗口必须小于实际数据范围。
     options = [f'<option value="full" id="fullWindowOption">近 {configured_days} 天</option>']
